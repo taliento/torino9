@@ -13,14 +13,14 @@ export class CarouselService {
 
   getAll(): Promise<DTCarousel[]> {
     return this.http.
-      get(this.config.apiUrl + '/carousel')
+      get('/carousel')
       .toPromise()
       .then(response => response.json() as DTCarousel[])
       .catch(this.handleError);
   }
 
   getPaged(params: any) {
-    const url = `${this.config.apiUrl}/carousel/${params.limit}/${params.page}/${params.size}`;
+    const url = `/carousel/${params.limit}/${params.page}/${params.size}`;
     return this.http.get(url);
   }
 
@@ -29,7 +29,7 @@ export class CarouselService {
   }
 
   getById(_id: string): Promise<DTCarousel> {
-    const url = `${this.config.apiUrl}/carousel/${_id}`;
+    const url = `/carousel/${_id}`;
       return this.http.
       get(url)
       .toPromise()

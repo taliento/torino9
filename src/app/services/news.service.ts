@@ -13,23 +13,23 @@ export class NewsService {
 
   getAll(): Promise<News[]> {
     return this.http.
-      get(this.config.apiUrl + '/news')
+      get('/news')
       .toPromise()
       .then(response => response.json() as News[])
       .catch(this.handleError);
   }
 
   getPagedNews(params: any) {
-    const url = `${this.config.apiUrl}/news/${params.limit}/${params.page}/${params.size}`;
+    const url = `/news/${params.limit}/${params.page}/${params.size}`;
     return this.http.get(url);
   }
 
   count() {
-    return this.http.get(this.config.apiUrl + '/news/count');
+    return this.http.get('/news/count');
   }
 
   getById(_id: string): Promise<News> {
-    const url = `${this.config.apiUrl}/news/${_id}`;
+    const url = `/news/${_id}`;
       return this.http.
       get(url)
       .toPromise()
