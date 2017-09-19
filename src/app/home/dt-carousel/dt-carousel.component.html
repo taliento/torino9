@@ -1,0 +1,10 @@
+<ngb-carousel>
+  <ng-template *ngFor="let carouselItem of carouselList" ngbSlide>
+    <img [src]="carouselItem.imgPath" [alt]="carouselItem.alt">
+    <div class="carousel-caption d-md-block text-left">
+      <h1>{{carouselItem.title}}</h1>
+      <p>{{carouselItem.text}}</p>
+      <p><a class="btn btn-lg btn-primary" [href]="carouselItem.btnHref" role="button">{{carouselItem.btnText}}</a></p>
+    </div>
+  </ng-template>
+</ngb-carousel>

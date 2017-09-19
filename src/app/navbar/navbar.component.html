@@ -1,0 +1,38 @@
+<nav class="navbar navbar-expand-md fixed-top navbar-light" style="background-color: #7aadff;">
+
+<a class="navbar-brand" [routerLink]="[brandMenu.path]" (click)="isCollapsed = true">
+  <img src="assets/images/logo.svg" width="30" height="30" class="d-inline-block align-top" alt="">
+  {{brandMenu.title}}
+</a>
+
+<button class="navbar-toggler" type="button" (click)="isCollapsed = !isCollapsed">
+  <span class="navbar-toggler-icon"></span>
+</button>
+
+<div class="navbar-collapse" [ngClass]="{collapse: isCollapsed}">
+
+  <ul class="navbar-nav mr-auto">
+    <li *ngFor="let menuItem of menuItems" class="nav-item">
+      <a class="nav-link" [routerLink]="[menuItem.path]" routerLinkActive="active" (click)="isCollapsed = true">{{menuItem.title}}</a>
+    </li>
+  </ul>
+
+  <form class="form-inline" *ngIf="!user">
+
+    <button class="btn btn-outline-primary my-2 my-sm-0" type='button' [routerLink]="['login']" routerLinkActive="active" (click)="isCollapsed = true">Signin</button>
+
+    <span style="color:black;padding-left:10px;padding-right:10px;"> or </span>
+
+    <button class="btn btn-outline-primary my-2 my-sm-0" type='button' [routerLink]="['register']" routerLinkActive="active" (click)="isCollapsed = true">Signup</button>
+
+  </form>
+
+  <form class="form-inline" *ngIf="user">
+    <a class="nav-item nav-link" [routerLink]="['admin']" routerLinkActive="active">{{user.username}}</a>
+  </form>
+</div>
+
+<!-- <form class="form-inline mt-2 mt-md-0">
+<input class="form-control mr-sm-2" type="text" placeholder="Search">
+</form> -->
+</nav>

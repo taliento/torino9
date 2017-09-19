@@ -1,0 +1,23 @@
+<div class="container">
+  <div class="row">
+    <div class="col-lg-8 offset-lg-2 col-md-10 offset-md-1">
+      <div *ngFor="let news of newsList">
+        <div class="post-preview" >
+          <a (click)="onSelect(news)">
+            <h2 class="post-title">
+              {{news.title}}
+            </h2>
+            <h3 class="post-subtitle">
+              {{news.subtitle}}
+            </h3>
+          </a>
+          <p class="post-meta">Posted by <a href="#">{{news.author}}</a> on {{news.insertDate | date:'short' }}</p>
+        </div>
+        <hr>
+      </div>
+      <div *ngIf="collectionSize > 0">
+        <ngb-pagination [pageSize]="pageSize" [collectionSize]="collectionSize" [(page)]="page" [rotate]="true" (pageChange)="loadPage($event)"></ngb-pagination>
+      </div>
+    </div>
+  </div>
+</div>

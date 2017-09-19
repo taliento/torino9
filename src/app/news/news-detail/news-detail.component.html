@@ -1,0 +1,21 @@
+<article *ngIf="news">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 offset-lg-2 col-md-10 offset-md-1">
+                {{news.text}}
+            </div>
+
+        </div>
+        <br>
+        <p class="post-meta">Posted by <a href="#">{{news.author}}</a> on {{news.insertDate | date:'short' }}</p>
+    </div>
+<article>
+
+<div class="container" *ngIf="!news">
+  <p>News not found!!</p>
+</div>
+
+<br>
+<div class="container" >
+  <div class="btn btn-secondary" (click)="gotoNews()">Back</div>
+</div>
