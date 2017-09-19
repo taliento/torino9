@@ -30,8 +30,9 @@ app.use('/news', require('./controllers/news.controller'));
 app.use('/calendar', require('./controllers/calendar.controller'));
 app.use('/carousel', require('./controllers/carousel.controller'));
 
-// start server
-var port = process.env.NODE_ENV === 'production' ? 80 : 3000;
-var server = app.listen(port, function () {
-  console.log('Server listening on port ' + port);
+
+// Initialize the app.
+var server = app.listen(process.env.PORT || 8080, function () {
+  var port = server.address().port;
+  console.log("App now running on port", port);
 });
