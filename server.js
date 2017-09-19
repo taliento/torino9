@@ -17,6 +17,7 @@ app.use(express.static(distDir));
 // use JWT auth to secure the api
 app.use(expressJwt({ secret: config.secret }).
 unless({ path: [
+  '/',
   '/users/authenticate',
   '/users/register',
   /^\/news\/.*/, '/news',
