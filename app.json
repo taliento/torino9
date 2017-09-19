@@ -1,0 +1,7 @@
+{
+  "name": "torino9app",
+  "description": "torino9 site",
+  "repository": "https://github.com/taliento/torino9",
+  "logo": "https://mysterious-hollows-14674.herokuapp.com/assets/images/logo.svg",
+  "keywords": ["node", "express", "angular-cli", "angular2"]
+}
