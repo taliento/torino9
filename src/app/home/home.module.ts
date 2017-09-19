@@ -14,11 +14,10 @@ imports: [ NgbModule,
   CommonModule,
   FormsModule,
   HttpModule,
-  AgmCoreModule.forRoot(
-    //   {
-    //   apiKey: 'YOUR_KEY'
-    // }
-  ) ],
+  AgmCoreModule.forRoot({
+       apiKey: 'AIzaSyASuaWBN3f_K6IC9CA3qlUOS1Otm8BYMNs'
+     })
+  ],
   declarations: [
     MODULE_COMPONENTS,
     DTCarouselComponent
