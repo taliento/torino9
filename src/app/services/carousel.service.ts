@@ -1,19 +1,23 @@
 import { Injectable } from '@angular/core';
 import { Headers, Http } from '@angular/http';
 import 'rxjs/add/operator/toPromise';
+import { environment } from '../../environments/environment';
 
 import { DTCarousel } from '../models/dt-carousel.model';
-import { AppConfig } from '../app.config';
 
 @Injectable()
 export class CarouselService {
   private headers = new Headers({'Content-Type': 'application/json'});
 
-  constructor(private http: Http, private config: AppConfig) { }
+  apiUrl = '';
+
+  constructor(private http: Http) {
+    this.apiUrl = environment.apiUrl;
+  }
 
   getAll(): Promise<DTCarousel[]> {
     return this.http.
-      get('/carousel')
+      get(this.apiUrl+'/carousel')
       .toPromise()
       .then(response => response.json() as DTCarousel[])
       .catch(this.handleError);
@@ -21,17 +25,17 @@ export class CarouselService {
 
   getPaged(params: any) {
     const url = `/carousel/${params.limit}/${params.page}/${params.size}`;
-    return this.http.get(url);
+    return this.http.get(this.apiUrl+url);
   }
 
   count() {
-    return this.http.get(this.config.apiUrl + '/news/count');
+    return this.http.get(this.apiUrl+ '/news/count');
   }
 
   getById(_id: string): Promise<DTCarousel> {
     const url = `/carousel/${_id}`;
       return this.http.
-      get(url)
+      get(this.apiUrl+url)
       .toPromise()
       .then(response => response.json() as DTCarousel)
       .catch(this.handleError);

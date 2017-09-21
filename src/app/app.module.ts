@@ -1,12 +1,8 @@
 import { CommonModule } from '@angular/common';
 import { BrowserModule, Title } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
 import { AppComponent } from './app.component';
-
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-
-
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { NavbarModule } from './navbar/index';
@@ -16,7 +12,6 @@ import { NewsModule } from './news/index';
 import { AdminComponent } from './admin/index';
 import { AlertComponent } from './directives/index';
 import { routing } from './app.routing';
-import { AppConfig } from './app.config';
 import { AuthGuard } from './guards/index';
 import { AlertService, AuthenticationService, UserService, NewsService, NewsHeaderService, CarouselService } from './services/index';
 
@@ -41,7 +36,6 @@ import { AlertService, AuthenticationService, UserService, NewsService, NewsHead
     NgbModule.forRoot()
   ],
   providers: [
-    AppConfig,
     AuthGuard,
     AlertService,
     AuthenticationService,
