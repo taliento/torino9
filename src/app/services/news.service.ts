@@ -1,19 +1,22 @@
 import { Injectable } from '@angular/core';
 import { Headers, Http } from '@angular/http';
 import 'rxjs/add/operator/toPromise';
-
+import { environment } from '../../environments/environment';
 import { News } from '../models/news.model'
-import { AppConfig } from '../app.config';
 
 @Injectable()
 export class NewsService {
   private headers = new Headers({'Content-Type': 'application/json'});
 
-  constructor(private http: Http, private config: AppConfig) { }
+  apiUrl = '';
+
+  constructor(private http: Http) {
+    this.apiUrl = environment.apiUrl;
+  }
 
   getAll(): Promise<News[]> {
     return this.http.
-      get('/news')
+      get(this.apiUrl+'/news')
       .toPromise()
       .then(response => response.json() as News[])
       .catch(this.handleError);
@@ -21,17 +24,17 @@ export class NewsService {
 
   getPagedNews(params: any) {
     const url = `/news/${params.limit}/${params.page}/${params.size}`;
-    return this.http.get(url);
+    return this.http.get(this.apiUrl+url);
   }
 
   count() {
-    return this.http.get('/news/count');
+    return this.http.get(this.apiUrl+'/news/count');
   }
 
   getById(_id: string): Promise<News> {
     const url = `/news/${_id}`;
       return this.http.
-      get(url)
+      get(this.apiUrl+url)
       .toPromise()
       .then(response => response.json() as News)
       .catch(this.handleError);
