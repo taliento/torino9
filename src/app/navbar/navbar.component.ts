@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ROUTES } from './navbar-routes.config';
 import { MenuType } from './navbar.metadata';
+import { AuthenticationService } from '../services/index';
 
 @Component({
   moduleId: module.id,
@@ -14,8 +15,10 @@ export class NavbarComponent implements OnInit {
   isCollapsed = true;
   public user: any;
 
-  constructor() {
-    this.user = JSON.parse(localStorage.getItem('currentUser'));
+  constructor(private authenticationService: AuthenticationService) {
+    authenticationService.userValue.subscribe((nextValue) => {
+         this.user = nextValue;
+      })
   }
 
   ngOnInit() {
@@ -23,6 +26,11 @@ export class NavbarComponent implements OnInit {
 
     this.brandMenu = ROUTES.filter(menuItem => menuItem.menuType === MenuType.BRAND)[0];
   }
+
+  logout() {
+    this.authenticationService.logout();
+  }
+
 
   public getMenuItemClasses(menuItem: any) {
     return {

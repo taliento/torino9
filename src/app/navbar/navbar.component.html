@@ -21,14 +21,15 @@
 
     <button class="btn btn-outline-primary my-2 my-sm-0" type='button' [routerLink]="['login']" routerLinkActive="active" (click)="isCollapsed = true">Signin</button>
 
-    <span style="color:black;padding-left:10px;padding-right:10px;"> or </span>
+    <label class="mr-sm-2">&nbsp; or &nbsp;</label>
 
     <button class="btn btn-outline-primary my-2 my-sm-0" type='button' [routerLink]="['register']" routerLinkActive="active" (click)="isCollapsed = true">Signup</button>
 
   </form>
 
   <form class="form-inline" *ngIf="user">
-    <a class="nav-item nav-link" [routerLink]="['admin']" routerLinkActive="active">{{user.username}}</a>
+    <label class="mr-sm-2">Welcome back &nbsp;<a [routerLink]="['admin']" routerLinkActive="active">{{user.username}}</a>!&nbsp;</label>
+    <button class="btn btn-outline-secondary my-2 my-sm-0" type='button' (click)="logout()">Logout</button>
   </form>
 </div>
 
