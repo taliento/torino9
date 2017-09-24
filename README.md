@@ -9,14 +9,19 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 ## TODO
 
-- [] dynamic featurettes
-- [] admin module (crud for all contents)
-- [] insert contents
-- [] calendar
+- [x] login
+- [x] home page
+- [x] news page
+- [x] about page
+- [x] contact page
+- [ ] register
+- [ ] admin module (crud for all contents)
+- [ ] insert contents
+- [ ] calendar
 
 ## dev
 
-node and angular-cli is required
+node, angular-cli and mongodb are required
 
 for dev env
 
