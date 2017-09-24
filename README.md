@@ -9,10 +9,10 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 ## TODO
 
-[] dynamic featurettes
-[] admin module
-[] insert contents
-[] calendar
+- [] dynamic featurettes
+- [] admin module (crud for all contents)
+- [] insert contents
+- [] calendar
 
 ## dev
 
