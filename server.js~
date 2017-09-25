@@ -23,8 +23,7 @@ unless({ path: [
   '/users/register',
   /^\/news\/.*/, '/news',
   /^\/calendar\/.*/,'/calendar',
-  /^\/carousel\/.*/,'/carousel',
-  /^\/featurette\/.*/,'/featurette'
+  /^\/carousel\/.*/,'/carousel'
 ] }));
 
 // routes
