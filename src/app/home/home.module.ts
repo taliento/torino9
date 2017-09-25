@@ -7,6 +7,7 @@ import { RouterModule } from '@angular/router';
 import { MODULE_COMPONENTS, MODULE_ROUTES } from './home.routes';
 import { AgmCoreModule } from '@agm/core';
 import { DTCarouselComponent } from './dt-carousel/dt-carousel.component';
+import { FeaturetteComponent } from './featurette/featurette.component';
 
 @NgModule({
 imports: [ NgbModule,
@@ -20,7 +21,8 @@ imports: [ NgbModule,
   ],
   declarations: [
     MODULE_COMPONENTS,
-    DTCarouselComponent
+    DTCarouselComponent,
+    FeaturetteComponent
   ]
 })
 export class HomeModule {}

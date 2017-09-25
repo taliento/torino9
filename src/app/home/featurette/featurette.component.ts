@@ -4,6 +4,7 @@ import { FeaturetteService } from '../../services/index';
 
 @Component({
     moduleId: module.id,
+    selector: 'featurette',
     templateUrl: 'featurette.component.html',
     styleUrls: ['../home.component.css']
 })
