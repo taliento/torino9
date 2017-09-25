@@ -31,6 +31,7 @@ app.use('/users', require('./controllers/users.controller'));
 app.use('/news', require('./controllers/news.controller'));
 app.use('/calendar', require('./controllers/calendar.controller'));
 app.use('/carousel', require('./controllers/carousel.controller'));
+app.use('/featurette', require('./controllers/featurette.controller'));
 
 
 // Initialize the app.
