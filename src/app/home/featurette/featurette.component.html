@@ -1,0 +1,13 @@
+<div *ngFor="let featurette of featuretteList">
+  <hr class="featurette-divider">
+
+  <div class="row featurette">
+    <div class="col-md-7">
+      <h2 class="featurette-heading">featurette.title <span class="text-muted">featurette.subTitle</span></h2>
+      <p class="lead">featurette.text</p>
+    </div>
+    <div class="col-md-5">
+      <img class="featurette-image img-fluid mx-auto" [src]="featurette.imgPath" alt="Generic placeholder image">
+    </div>
+  </div>
+</div>

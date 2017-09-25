@@ -13,7 +13,7 @@ import { AdminComponent } from './admin/index';
 import { AlertComponent } from './directives/index';
 import { routing } from './app.routing';
 import { AuthGuard } from './guards/index';
-import { AlertService, AuthenticationService, UserService, NewsService, NewsHeaderService, CarouselService } from './services/index';
+import { AlertService, AuthenticationService, UserService, NewsService, NewsHeaderService, CarouselService, FeaturetteService } from './services/index';
 
 
 
@@ -43,7 +43,8 @@ import { AlertService, AuthenticationService, UserService, NewsService, NewsHead
     NewsService,
     Title,
     NewsHeaderService,
-    CarouselService
+    CarouselService,
+    FeaturetteService
   ],
   bootstrap: [AppComponent]
 })

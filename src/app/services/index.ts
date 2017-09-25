@@ -4,3 +4,4 @@ export { UserService } from './user.service';
 export { NewsService } from './news.service';
 export { NewsHeaderService } from './newsheader.service';
 export { CarouselService } from './carousel.service';
+export { FeaturetteService } from './featurette.service';
