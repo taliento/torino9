@@ -5,5 +5,6 @@ export class Featurette {
   title: string;
   subTitle: string;
   text: string;
+  alt: string;
   imgPath: string;
 }

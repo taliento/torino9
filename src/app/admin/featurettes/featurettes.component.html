@@ -1,1 +1,6 @@
-<ul><li *ngFor="let featurette of featuretteList">{{featurette | json}}</li></ul>
+
+<div class="row">
+  <div class="col-sm-6" *ngFor="let featurette of featuretteList">
+    <dt-featurette-detail [featurette]="featurette"></dt-featurette-detail>
+  </div>
+</div>
