@@ -1,1 +1,6 @@
-<ul><li *ngFor="let slide of slides">{{slide | json}}</li></ul>
+
+<div class="row">
+  <div class="col-sm-6" *ngFor="let slide of slides">
+    <dt-slide-detail [slide]="slide"></dt-slide-detail>
+  </div>
+</div>
