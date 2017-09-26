@@ -1,7 +1,25 @@
 <div class="jumbotron">
-     <div class="container">
-       <h1 class="display-3">Admin page</h1>
-       <p>insert,delete,update contents</p>
-     </div>
- </div>
- <router-outlet></router-outlet>
+  <div class="container">
+    <h1 class="display-3">Admin page</h1>
+    <p>insert,delete,update stuffs...</p>
+  </div>
+</div>
+<div class="container">
+  <ngb-tabset>
+    <ngb-tab title="Slides">
+      <ng-template ngbTabContent>
+        <dt-slides></dt-slides>
+      </ng-template>
+    </ngb-tab>
+    <ngb-tab title="Featurettes">
+      <ng-template ngbTabContent>
+        <dt-featurettes></dt-featurettes>
+      </ng-template>
+    </ngb-tab>
+    <ngb-tab title="Users">
+      <ng-template ngbTabContent>
+        <dt-users></dt-users>
+      </ng-template>
+    </ngb-tab>
+  </ngb-tabset>
+</div>

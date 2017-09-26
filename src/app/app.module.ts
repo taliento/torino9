@@ -8,8 +8,8 @@ import { HttpModule } from '@angular/http';
 import { NavbarModule } from './navbar/index';
 import { FooterModule } from './footer/index';
 import { HomeModule } from './home/index';
+import { AdminModule } from './admin/index';
 import { NewsModule } from './news/index';
-import { AdminComponent } from './admin/index';
 import { AlertComponent } from './directives/index';
 import { routing } from './app.routing';
 import { AuthGuard } from './guards/index';
@@ -20,8 +20,7 @@ import { AlertService, AuthenticationService, UserService, NewsService, NewsHead
 @NgModule({
   declarations: [
     AppComponent,
-    AlertComponent,
-    AdminComponent
+    AlertComponent
   ],
   imports: [
     CommonModule,
@@ -30,6 +29,7 @@ import { AlertService, AuthenticationService, UserService, NewsService, NewsHead
     NavbarModule,
     FooterModule,
     HomeModule,
+    AdminModule,
     NewsModule,
     routing,
     BrowserModule,
