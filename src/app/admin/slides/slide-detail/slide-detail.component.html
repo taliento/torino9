@@ -1,9 +1,10 @@
-<div class="card">
-  <img class="card-img-top" [src]="slide.imgPath" [alt]="slide.alt">
-  <div class="card-block">
-    <h4 class="card-title">{{slide.title}}</h4>
-    <p class="card-text">{{slide.text}}</p>
-    <button type="button" class="btn btn-primary">Update</button>
-    <button type="button" class="btn btn-danger">Delete</button>
-  </div>
+<img class="card-img-top" [src]="slide.imgPath" [alt]="slide.alt">
+<div class="card-body">
+  <h4 class="card-title">{{slide.title}}</h4>
+  <p class="card-text">{{slide.text}}</p>
+  <button type="button" class="btn btn-primary">Update</button>
+  <button type="button" class="btn btn-danger">Delete</button>
+</div>
+<div class="card-footer">
+  <small class="text-muted">{{slide.updateDate}}</small>
 </div>
