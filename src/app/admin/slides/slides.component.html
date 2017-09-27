@@ -1,6 +1,5 @@
-
-<div class="row">
-  <div class="col-sm-6" *ngFor="let slide of slides">
+<div class="card-deck">
+  <div class="card" *ngFor="let slide of slides">
     <dt-slide-detail [slide]="slide"></dt-slide-detail>
   </div>
 </div>

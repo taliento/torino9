@@ -1,10 +1,11 @@
-<div class="card">
-  <div class="card-block">
-    <h4 class="card-title">{{featurette.title}}</h4>
-    <p class="card-text"><small class="text-muted">{{featurette.subTitle}}</small></p>
-    <p class="card-text">{{featurette.text}}</p>
-    <button type="button" class="btn btn-primary">Update</button>
-    <button type="button" class="btn btn-danger">Delete</button>
-  </div>
-  <img class="card-img-bottom" [src]="featurette.imgPath" [alt]="featurette.alt">
+<img class="card-img-top" [src]="featurette.imgPath" [alt]="featurette.alt">
+<div class="card-body">
+  <h4 class="card-title">{{featurette.title}}</h4>
+  <p class="card-text"><small class="text-muted">{{featurette.subTitle}}</small></p>
+  <p class="card-text">{{featurette.text}}</p>
+  <button type="button" class="btn btn-primary">Update</button>
+  <button type="button" class="btn btn-danger">Delete</button>
+</div>
+<div class="card-footer">
+  <small class="text-muted">{{featurette.updateDate}}</small>
 </div>
