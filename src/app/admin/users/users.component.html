@@ -1,1 +1,5 @@
-<ul><li *ngFor="let user of users"><span>{{user.username}}</span><button type="button" class="btn btn-primary">Update</button><button type="button" class="btn btn-danger">Delete</button></li></ul>
+<div class="card-deck">
+  <div class="card" style="width: 20rem;" *ngFor="let user of users">
+    <dt-user-detail [user]="user"></dt-user-detail>
+  </div>
+</div>

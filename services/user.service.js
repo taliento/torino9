@@ -31,6 +31,7 @@ function authenticate(username, password) {
                 username: user.username,
                 firstName: user.firstName,
                 lastName: user.lastName,
+                avatar: user.avatar,
                 token: jwt.sign({ sub: user._id }, config.secret)
             });
         } else {
@@ -145,6 +146,7 @@ function update(_id, userParam) {
             firstName: userParam.firstName,
             lastName: userParam.lastName,
             username: userParam.username,
+            avatar: userParam.avatar,
             updateDate: new Date()
         };
 
