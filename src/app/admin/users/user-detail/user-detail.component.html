@@ -1,0 +1,59 @@
+<div class="row">
+  <div class="col-md-6">
+    <img class="card-img-bottom" [src]="user.avatar" alt="user avatar">
+  </div>
+  <div class="col-md-6">
+    <div class="card-body">
+      <h4 class="card-title">{{user.username}}</h4>
+      <p class="card-text">{{user.firstName}} {{user.lastName}}</p>
+    </div>
+  </div>
+</div>
+
+<div class="card-footer">
+  <button type="button" class="btn btn-primary btn-sm" (click)="modifyUser()">Modifica</button>
+  <button type="button" class="btn btn-danger btn-sm" (click)="deleteUser()">Elimina</button>
+</div>
+
+
+
+<ng-template #updateContent let-c="close" let-d="dismiss">
+  <div class="modal-header">
+    <h4 class="modal-title">Modifica {{user.username}}</h4>
+    <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form>
+        <div class="form-group">
+          <label for="updateEmail">Username</label>
+          <input type="email" class="form-control" id="updateEmail" name="username" [(ngModel)]="user.username" aria-describedby="emailHelp" placeholder="Username">
+          <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+        </div>
+        <div class="form-group">
+          <label for="updateName">Nome</label>
+          <input type="text" class="form-control" id="updateName" name="firstName" [(ngModel)]="user.firstName" placeholder="Nome">
+        </div>
+        <div class="form-group">
+          <label for="updateCognome">Cognome</label>
+          <input type="text" class="form-control" id="updateCognome" name="lastName" [(ngModel)]="user.lastName" placeholder="Cognome">
+        </div>
+        <div class="form-group">
+          <label for="updatePassword">Password</label>
+          <input type="password" class="form-control" id="updatePassword" name="password" [(ngModel)]="user.password" placeholder="Password">
+        </div>
+        <div class="form-check">
+          <label class="form-check-label">
+            <input type="checkbox" class="form-check-input" name="admin" [(ngModel)]="user.admin">
+            Utente admin
+          </label>
+        </div>
+      </form>
+
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-success" (click)="update();c('Close click');">Conferma</button>
+    <button type="button" class="btn btn-outline-dark" (click)="c('Close click')">Annulla</button>
+  </div>
+</ng-template>

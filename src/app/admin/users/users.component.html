@@ -1,1 +1,45 @@
-<ul><li *ngFor="let user of users"><span>{{user.username}}</span><button type="button" class="btn btn-primary">Update</button><button type="button" class="btn btn-danger">Delete</button></li></ul>
+<br>
+<p>
+  <button type="button" class="btn btn-outline-primary" (click)="isCollapsed = !isCollapsed" [attr.aria-expanded]="!isCollapsed" aria-controls="collapseExample">
+    Inserisci user
+  </button>
+</p>
+<div id="collapseExample" [ngbCollapse]="isCollapsed">
+  <div class="card">
+    <div class="card-body">
+      <form class="form-inline">
+        <label class="sr-only" for="insertUsername">Username</label>
+        <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+          <div class="input-group-addon">@</div>
+          <input type="text" class="form-control mb-2 mr-sm-2 mb-sm-0" id="insertUsername" name="username" placeholder="Username" [(ngModel)]="newUser.username">
+        </div>
+
+        <label class="sr-only" for="insertPassword">Password</label>
+        <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+          <span class="input-group-addon">
+            <i class="fa fa-key fa-fw"></i>
+          </span>
+          <input type="password" class="form-control" id="insertPassword" name="password" [(ngModel)]="newUser.password">
+        </div>
+
+        <div class="form-check mb-2 mr-sm-2 mb-sm-0">
+          <label class="form-check-label">
+            <input class="form-check-input" type="checkbox" [(ngModel)]="newUser.admin"> Utente admin
+          </label>
+        </div>
+
+        <button type="button" class="btn btn-primary" (click)="addUser()">Submit</button>
+      </form>
+    </div>
+  </div>
+</div>
+
+<br>
+<h3>Modify users</h3>
+<div class="card-deck">
+  <div class="card" *ngFor="let user of users">
+    <dt-user-detail [user]="user" (delete)="delete($event)"></dt-user-detail>
+  </div>
+</div>
+
+<confirm-dialog #confirmDialog [title]="confirmTitle" [text]="confirmText" (confirm)="deleteUser()"></confirm-dialog>

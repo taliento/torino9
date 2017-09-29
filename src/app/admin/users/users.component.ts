@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 
 import { User } from '../../models/index';
-import { UserService } from '../../services/index';
+import { UserService, AuthenticationService, AlertService } from '../../services/index';
 
 @Component({
   moduleId: module.id,
@@ -9,22 +9,48 @@ import { UserService } from '../../services/index';
   templateUrl: 'users.component.html'
 })
 export class UsersComponent implements OnInit{
-  currentUser: User;
+  currentUser: any;
   users: User[] = [];
+  newUser: User = new User();
+  isCollapsed = true;
 
-  constructor(private userService: UserService) {
-      this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
+   @ViewChild('confirmDialog') confirmDialog;
+   confirmTitle = 'Sicuro?';
+   confirmText = 'Stai elminando un utente...';
+   idDelete: string;
+
+  constructor(private userService: UserService, private authenticationService: AuthenticationService, private alertService: AlertService) {
+    authenticationService.userValue.subscribe((nextValue) => {
+      this.currentUser = nextValue;
+    })
   }
 
   ngOnInit() {
-      this.loadAllUsers();
+    this.loadAllUsers();
   }
 
-  deleteUser(_id: string) {
-      this.userService.delete(_id).subscribe(() => { this.loadAllUsers() });
+  delete(user) {
+    this.idDelete = user._id;
+    this.confirmDialog.open();
   }
 
-  private loadAllUsers() {
+  deleteUser() {
+    this.userService.delete(this.idDelete).subscribe(() => { this.loadAllUsers() });
+  }
+
+  addUser() {
+    this.userService.create(this.newUser)
+    .subscribe(
+      data => {
+        this.alertService.success(this.newUser.username+' benvenuto/a!', true);
+        this.loadAllUsers();
+      },
+      error => {
+        this.alertService.error(error._body);
+      });
+    }
+
+    private loadAllUsers() {
       this.userService.getAll().subscribe(users => { this.users = users; });
+    }
   }
-}
