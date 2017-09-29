@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Featurette } from '../../models/featurette.model';
-import { FeaturetteService } from '../../services/index';
+import { FeaturetteService, AlertService } from '../../services/index';
 
 @Component({
     moduleId: module.id,
@@ -9,14 +9,34 @@ import { FeaturetteService } from '../../services/index';
 })
 
 export class FeaturetteComponent implements OnInit{
-
+  isCollapsed = true;
   public featuretteList: Featurette[];
 
-  constructor(private featuretteService: FeaturetteService) {
+  newFeaturette: Featurette = new Featurette();
+
+
+
+  constructor(private featuretteService: FeaturetteService, private alertService: AlertService) {
 
   }
 
   ngOnInit(): void {
+    this.loadAllFeaturettes();
+  }
+
+  addFeaturette() {
+    this.featuretteService.insert(this.newFeaturette)
+    .subscribe(
+      data => {
+        this.alertService.success(this.newFeaturette.title+' inserita!', true);
+        this.loadAllFeaturettes();
+      },
+      error => {
+        this.alertService.error(error._body);
+      });
+  }
+
+  loadAllFeaturettes() {
     this.featuretteService.getAll().then(result => this.featuretteList = result);
   }
 }

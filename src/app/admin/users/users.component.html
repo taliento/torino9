@@ -28,14 +28,14 @@
           </label>
         </div>
 
-        <button type="button" class="btn btn-primary" (click)="addUser()">Submit</button>
+        <button type="button" class="btn btn-primary" (click)="addUser()">Salva</button>
       </form>
     </div>
   </div>
 </div>
 
 <br>
-<h3>Modify users</h3>
+<h3>Modifica users</h3>
 <div class="card-deck">
   <div class="card" *ngFor="let user of users">
     <dt-user-detail [user]="user" (delete)="delete($event)"></dt-user-detail>

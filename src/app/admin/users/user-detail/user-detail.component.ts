@@ -6,8 +6,7 @@ import { UserService, AlertService } from '../../../services/index';
 @Component({
   moduleId: module.id,
   selector: 'dt-user-detail',
-  templateUrl: 'user-detail.component.html',
-  styleUrls: ['./user-detail.component.css']
+  templateUrl: 'user-detail.component.html'
 })
 export class UserDetailComponent{
    @Input() user: User;

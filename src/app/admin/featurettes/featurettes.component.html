@@ -1,3 +1,41 @@
+<br>
+<p>
+  <button type="button" class="btn btn-outline-primary" (click)="isCollapsed = !isCollapsed" [attr.aria-expanded]="!isCollapsed" aria-controls="collapseExample">
+    Inserisci Featurette
+  </button>
+</p>
+<div id="collapseExample" [ngbCollapse]="isCollapsed">
+  <div class="card">
+    <div class="card-body">
+      <form>
+        <div class="form-group">
+          <label for="insertTitle">Titolo</label>
+          <input type="text" class="form-control" id="insertTitle" name="title" placeholder="Titolo featurette" [(ngModel)]="newFeaturette.title">
+        </div>
+
+        <div class="form-group">
+          <label for="insertSottoTitolo">Sotto Titolo</label>
+          <input type="text" class="form-control" id="insertSottoTitolo" name="subTitle" placeholder="Sottotitolo featurette" [(ngModel)]="newFeaturette.subTitle">
+        </div>
+
+        <div class="form-group">
+          <label for="insertText">Testo</label>
+          <input type="text" class="form-control" id="insertText" name="text" placeholder="Testo featurette" [(ngModel)]="newFeaturette.text">
+        </div>
+
+        <div class="form-group">
+          <label for="insertImgPath">Link immagine</label>
+          <input type="text" class="form-control" id="insertImgPath" name="imgPath" placeholder="Link immagine esterno" [(ngModel)]="newFeaturette.imgPath">
+        </div>
+
+        <button type="button" class="btn btn-primary" (click)="addFeaturette()">Salva</button>
+      </form>
+    </div>
+  </div>
+</div>
+
+<br>
+<h3>Modifica featurettes</h3>
 <div class="card-deck">
   <div class="card" *ngFor="let featurette of featuretteList">
     <dt-featurette-detail [featurette]="featurette"></dt-featurette-detail>

@@ -1,3 +1,46 @@
+<br>
+<p>
+  <button type="button" class="btn btn-outline-primary" (click)="isCollapsed = !isCollapsed" [attr.aria-expanded]="!isCollapsed" aria-controls="collapseExample">
+    Inserisci Slide
+  </button>
+</p>
+<div id="collapseExample" [ngbCollapse]="isCollapsed">
+  <div class="card">
+    <div class="card-body">
+      <form>
+        <div class="form-group">
+          <label for="insertTitle">Titolo</label>
+          <input type="text" class="form-control" id="insertTitle" name="title" placeholder="Titolo slide" [(ngModel)]="newSlide.title">
+        </div>
+
+        <div class="form-group">
+          <label for="insertText">Testo</label>
+          <input type="text" class="form-control" id="insertText" name="text" placeholder="Testo slide" [(ngModel)]="newSlide.text">
+        </div>
+
+        <div class="form-group">
+          <label for="insertImgPath">Link immagine</label>
+          <input type="text" class="form-control" id="insertImgPath" name="imgPath" placeholder="Link immagine esterno" [(ngModel)]="newSlide.imgPath">
+        </div>
+
+        <div class="form-group">
+        <label for="insertTestoBottone">Testo bottone</label>
+        <input type="text" class="form-control" id="insertTestoBottone" name="btnText" placeholder="Testo bottone slide" [(ngModel)]="newSlide.btnText">
+        </div>
+
+        <div class="form-group">
+          <label for="insertBtnHref">Link bottone</label>
+          <input type="text" class="form-control" id="insertBtnHref" name="btnHref" placeholder="Link Bottone slide" [(ngModel)]="newSlide.btnHref">
+        </div>
+
+        <button type="button" class="btn btn-primary" (click)="addSlide()">Salva</button>
+      </form>
+    </div>
+  </div>
+</div>
+
+<br>
+<h3>Modifica slides</h3>
 <div class="card-deck">
   <div class="card" *ngFor="let slide of slides">
     <dt-slide-detail [slide]="slide"></dt-slide-detail>
