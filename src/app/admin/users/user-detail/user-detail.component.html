@@ -1,8 +1,8 @@
 <div class="row">
-  <div class="col-md-6">
+  <div class="col-md-4">
     <img class="card-img-bottom" [src]="user.avatar" alt="user avatar">
   </div>
-  <div class="col-md-6">
+  <div class="col-md-8">
     <div class="card-body">
       <h4 class="card-title">{{user.username}}</h4>
       <p class="card-text">{{user.firstName}} {{user.lastName}}</p>
@@ -38,6 +38,10 @@
         <div class="form-group">
           <label for="updateCognome">Cognome</label>
           <input type="text" class="form-control" id="updateCognome" name="lastName" [(ngModel)]="user.lastName" placeholder="Cognome">
+        </div>
+        <div class="form-group">
+          <label for="updateAvatar">Avatar</label>
+          <input type="text" class="form-control" id="updateAvatar" name="avatar" [(ngModel)]="user.avatar" placeholder="Link immagine">
         </div>
         <div class="form-group">
           <label for="updatePassword">Password</label>
