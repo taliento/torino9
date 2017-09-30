@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NewsDetail } from './news-detail';
 import { NewsListComponent } from './news-list';
-import { NewsHeaderService, HeaderInfo} from '../services/newsheader.service';
+import { NewsHeaderService} from '../services/newsheader.service';
 @Component({
   moduleId: module.id,
   selector:'news-component',
@@ -10,14 +10,16 @@ import { NewsHeaderService, HeaderInfo} from '../services/newsheader.service';
 })
 export class NewsComponent implements OnInit{
 
-  info: HeaderInfo;
+  info: any;
 
   constructor(private headerService: NewsHeaderService) {
-    this.info = headerService.info;
+
+    this.headerService.info.subscribe((nextValue) => {
+      this.info = nextValue;
+    })
   }
 
   ngOnInit() {
-    this.headerService.reset();
+    this.headerService.change("Novità", "Le ultime novità","assets/images/news.png");
   }
-
 }

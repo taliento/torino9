@@ -22,7 +22,7 @@ export class UsersComponent implements OnInit{
   constructor(private userService: UserService, private authenticationService: AuthenticationService, private alertService: AlertService) {
     authenticationService.userValue.subscribe((nextValue) => {
       this.currentUser = nextValue;
-    })
+    });
   }
 
   ngOnInit() {

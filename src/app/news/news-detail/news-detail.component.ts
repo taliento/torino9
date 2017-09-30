@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { NewsService} from '../../services/news.service';
 import { News } from '../../models/news.model';
-import { NewsHeaderService, HeaderInfo} from '../../services/newsheader.service';
+import { NewsHeaderService } from '../../services/newsheader.service';
 import 'rxjs/add/operator/switchMap';
 @Component({
   moduleId: module.id,
@@ -26,7 +26,7 @@ export class NewsDetail implements OnInit {
 
 
   gotoNews() {
-    this.headerService.reset();
+    this.headerService.change("Novità", "Le ultime novità","assets/images/news.png");
     this.router.navigate(['/news']);
   }
 }

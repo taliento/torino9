@@ -1,0 +1,43 @@
+<br>
+<p>
+  <button type="button" class="btn btn-outline-primary" (click)="isCollapsed = !isCollapsed" [attr.aria-expanded]="!isCollapsed" aria-controls="collapseExample">
+    Inserisci News
+  </button>
+</p>
+<div id="collapseExample" [ngbCollapse]="isCollapsed">
+  <div class="card">
+    <div class="card-body">
+      <form>
+        <div class="form-group">
+          <label for="insertTitle">Titolo</label>
+          <input type="text" class="form-control" id="insertTitle" name="title" placeholder="Titolo news" [(ngModel)]="newNews.title">
+        </div>
+
+        <div class="form-group">
+          <label for="insertSottoTitolo">Sotto Titolo</label>
+          <input type="text" class="form-control" id="insertSottoTitolo" name="subTitle" placeholder="Sottotitolo news" [(ngModel)]="newNews.subTitle">
+        </div>
+
+        <div class="form-group">
+          <label for="insertText">Testo</label>
+          <input type="text" class="form-control" id="insertText" name="text" placeholder="Testo news" [(ngModel)]="newNews.text">
+        </div>
+
+        <div class="form-group">
+          <label for="insertImgPath">Link immagine</label>
+          <input type="text" class="form-control" id="insertImgPath" name="imgPath" placeholder="Link immagine esterno" [(ngModel)]="newNews.imgPath">
+        </div>
+
+        <button type="button" class="btn btn-primary" (click)="addNews()">Salva</button>
+      </form>
+    </div>
+  </div>
+</div>
+
+<br>
+<h3>Modifica news</h3>
+<div class="card-deck">
+  <div class="card" *ngFor="let news of newsList">
+    <dt-news-detail [news]="news"></dt-news-detail>
+  </div>
+</div>

@@ -8,6 +8,8 @@ import { SlideDetailComponent } from './slides/slide-detail/slide-detail.compone
 import { FeaturetteDetailComponent } from './featurettes/featurette-detail/featurette-detail.component';
 import { UserDetailComponent } from './users/user-detail/user-detail.component';
 import { ConfirmDialog } from '../confirm-dialog/confirm-dialog.component';
+import { NewsComponent} from './news/news.component';
+import { NewsDetailComponent } from './news/news-detail/news-detail.component';
 
 export const MODULE_ROUTES: Route[] = [
   { path: '', pathMatch: 'full' , component: AdminComponent }
@@ -21,5 +23,7 @@ export const MODULE_COMPONENTS = [
   SlideDetailComponent,
   FeaturetteDetailComponent,
   UserDetailComponent,
-  ConfirmDialog
+  ConfirmDialog,
+  NewsComponent,
+  NewsDetailComponent
 ]
