@@ -14,10 +14,10 @@ export class UsersComponent implements OnInit{
   newUser: User = new User();
   isCollapsed = true;
 
-   @ViewChild('confirmDialog') confirmDialog;
-   confirmTitle = 'Sicuro?';
-   confirmText = 'Stai elminando un utente...';
-   idDelete: string;
+  @ViewChild('confirmDialog') confirmDialog;
+  confirmTitle = 'Sicuro?';
+  confirmText = 'Stai elminando un utente...';
+  idDelete: string;
 
   constructor(private userService: UserService, private authenticationService: AuthenticationService, private alertService: AlertService) {
     authenticationService.userValue.subscribe((nextValue) => {
@@ -35,14 +35,10 @@ export class UsersComponent implements OnInit{
   }
 
   deleteUser() {
-    this.userService.delete(this.idDelete).subscribe(() => { this.loadAllUsers() });
-  }
-
-  addUser() {
-    this.userService.create(this.newUser)
-    .subscribe(
+    this.userService.delete(this.idDelete).
+    subscribe(
       data => {
-        this.alertService.success(this.newUser.username+' benvenuto/a!', true);
+        this.alertService.success('Utente eliminato', true);
         this.loadAllUsers();
       },
       error => {
@@ -50,7 +46,19 @@ export class UsersComponent implements OnInit{
       });
     }
 
-    private loadAllUsers() {
-      this.userService.getAll().subscribe(users => { this.users = users; });
+    addUser() {
+      this.userService.create(this.newUser)
+      .subscribe(
+        data => {
+          this.alertService.success(this.newUser.username+' benvenuto/a!', true);
+          this.loadAllUsers();
+        },
+        error => {
+          this.alertService.error(error._body);
+        });
+      }
+
+      loadAllUsers() {
+        this.userService.getAll().subscribe(users => { this.users = users; });
+      }
     }
-  }

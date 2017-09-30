@@ -46,3 +46,5 @@
     <dt-slide-detail [slide]="slide"></dt-slide-detail>
   </div>
 </div>
+
+<confirm-dialog #confirmDialog [title]="confirmTitle" [text]="confirmText" (confirm)="deleteSlide()"></confirm-dialog>

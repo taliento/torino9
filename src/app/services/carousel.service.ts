@@ -45,6 +45,14 @@ export class CarouselService {
     return this.http.post(this.apiUrl+'/carousel/insert',slide, this.jwt());
   }
 
+  delete(_id: string) {
+    return this.http.delete(this.apiUrl+'/carousel/' + _id, this.jwt());
+  }
+
+  update(slide: DTCarousel) {
+    return this.http.put(this.apiUrl+'/carousel/' + slide._id, slide, this.jwt());
+  }
+
   private handleError(error: any): Promise<any> {
     console.error('An error occurred', error); // for demo purposes only
     return Promise.reject(error.message || error);
