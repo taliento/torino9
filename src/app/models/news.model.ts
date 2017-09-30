@@ -5,5 +5,6 @@ export class News {
   title: string;
   subTitle: string;
   text: string;
+  alt: string;
   imgPath: string;
 }
