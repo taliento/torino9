@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
+import { debounceTime } from 'rxjs/operator/debounceTime';
 import { AlertService } from '../services/index';
 
 @Component({
@@ -15,6 +15,7 @@ export class AlertComponent {
     constructor(private alertService: AlertService) { }
 
     ngOnInit() {
-        this.alertService.getMessage().subscribe(message => { this.message = message; });
+        this.alertService.getMessage().subscribe((message) => this.message = message);
+        debounceTime.call(this.alertService.getMessage(), 5000).subscribe(() => this.message = null);
     }
 }

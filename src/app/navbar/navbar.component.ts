@@ -16,14 +16,11 @@ export class NavbarComponent implements OnInit {
   public user: any;
 
   constructor(private authenticationService: AuthenticationService) {
-    authenticationService.userValue.subscribe((nextValue) => {
-         this.user = nextValue;
-      })
+    this.user = this.authenticationService.getUser();
   }
 
   ngOnInit() {
     this.menuItems = ROUTES.filter(menuItem => menuItem.menuType !== MenuType.BRAND);
-
     this.brandMenu = ROUTES.filter(menuItem => menuItem.menuType === MenuType.BRAND)[0];
   }
 

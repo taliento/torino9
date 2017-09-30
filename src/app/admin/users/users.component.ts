@@ -38,7 +38,7 @@ export class UsersComponent implements OnInit{
     this.userService.delete(this.idDelete).
     subscribe(
       data => {
-        this.alertService.success('Utente eliminato', true);
+        this.alertService.success('Utente eliminato', false);
         this.loadAllUsers();
       },
       error => {
@@ -50,7 +50,8 @@ export class UsersComponent implements OnInit{
       this.userService.create(this.newUser)
       .subscribe(
         data => {
-          this.alertService.success(this.newUser.username+' benvenuto/a!', true);
+          this.alertService.success(this.newUser.username+' benvenuto/a!', false);
+          this.isCollapsed = true;
           this.loadAllUsers();
         },
         error => {

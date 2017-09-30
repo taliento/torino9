@@ -29,7 +29,8 @@ export class SlidesComponent implements OnInit{
     this.carouselService.insert(this.newSlide)
     .subscribe(
       data => {
-        this.alertService.success(this.newSlide.title+' inserita!', true);
+        this.alertService.success(this.newSlide.title+' inserita!', false);
+        this.isCollapsed = true;
         this.loadAllSlides();
       },
       error => {
@@ -46,7 +47,7 @@ export class SlidesComponent implements OnInit{
     this.carouselService.delete(this.idDelete).
     subscribe(
       data => {
-        this.alertService.success('Slide eliminata', true);
+        this.alertService.success('Slide eliminata', false);
         this.loadAllSlides();
       },
       error => {

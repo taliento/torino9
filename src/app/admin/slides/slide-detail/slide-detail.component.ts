@@ -26,7 +26,7 @@ export class SlideDetailComponent{
    update() {
      this.carouselService.update(this.slide).subscribe(
        data => {
-         this.alertService.success(this.slide.title+' modificato con successo!', true);
+         this.alertService.success(this.slide.title+' modificato con successo!', false);
        },
        error => {
          this.alertService.error(error._body);

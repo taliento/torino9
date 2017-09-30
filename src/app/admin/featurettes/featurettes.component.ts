@@ -28,7 +28,8 @@ export class FeaturetteComponent implements OnInit{
     this.featuretteService.insert(this.newFeaturette)
     .subscribe(
       data => {
-        this.alertService.success(this.newFeaturette.title+' inserita!', true);
+        this.alertService.success(this.newFeaturette.title+' inserita!', false);
+        this.isCollapsed = true;
         this.loadAllFeaturettes();
       },
       error => {

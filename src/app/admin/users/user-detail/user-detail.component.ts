@@ -26,7 +26,7 @@ export class UserDetailComponent{
    update() {
      this.userService.update(this.user).subscribe(
        data => {
-         this.alertService.success(this.user.username+' modificato con successo!', true);
+         this.alertService.success(this.user.username+' modificato con successo!', false);
        },
        error => {
          this.alertService.error(error._body);
