@@ -15,8 +15,6 @@
   <button type="button" class="btn btn-outline-danger btn-sm" (click)="deleteUser()">Elimina</button>
 </div>
 
-
-
 <ng-template #updateContent let-c="close" let-d="dismiss">
   <div class="modal-header">
     <h4 class="modal-title">Modifica {{user.username}}</h4>
@@ -27,9 +25,8 @@
   <div class="modal-body">
     <form>
         <div class="form-group">
-          <label for="updateEmail">Username</label>
-          <input type="email" class="form-control" id="updateEmail" name="username" [(ngModel)]="user.username" aria-describedby="emailHelp" placeholder="Username">
-          <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+          <label for="updateUsername">Username</label>
+          <input type="text" class="form-control" id="updateUsername" name="username" [(ngModel)]="user.username" placeholder="Username">
         </div>
         <div class="form-group">
           <label for="updateName">Nome</label>
@@ -54,7 +51,6 @@
           </label>
         </div>
       </form>
-
   </div>
   <div class="modal-footer">
     <button type="button" class="btn btn-outline-success" (click)="update();c('Close click');">Conferma</button>

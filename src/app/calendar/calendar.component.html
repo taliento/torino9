@@ -1,0 +1,32 @@
+<div class="jumbotron">
+  <div class="container">
+    <h1 class="display-3">Calendario</h1>
+    <hr class="my-4">
+    <p>eventi, feste...</p>
+  </div>
+</div>
+<div class="container">
+  <div class="row">
+    <div class="col-md-4">
+      <ngb-datepicker #dp [(ngModel)]="model" (navigate)="date = $event.next" [dayTemplate]="customDay"></ngb-datepicker>
+      <hr/>
+      <button class="btn btn-sm btn-outline-primary" (click)="selectToday()">Vai ad oggi</button>
+    </div>
+    <div class="col-md-8">
+      <pre>Eventi del {{ model.day }}/{{ model.month }}/{{ model.year }}</pre>
+      <!--tasklist -->
+    </div>
+  </div>
+
+</div>
+
+<ng-template #customDay let-date="date" let-currentMonth="currentMonth" let-selected="selected">
+  <div class="day btn-light"
+        [class.bg-primary]="selected"
+        [class.text-white]="selected"
+        [class.text-muted]="date.month !== currentMonth"
+        [class.has-task]="hasTask(date)"
+        (click)="showTasks(date)">
+    {{ date.day }}
+  </div>
+</ng-template>
