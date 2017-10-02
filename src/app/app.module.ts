@@ -10,7 +10,7 @@ import { FooterModule } from './footer/index';
 import { HomeModule } from './home/index';
 import { AdminModule } from './admin/index';
 import { NewsModule } from './news/index';
-import { AlertComponent } from './directives/index';
+import { AlertComponent } from './alert/index';
 import { routing } from './app.routing';
 import { AuthGuard } from './guards/index';
 import { AlertService, AuthenticationService, UserService, NewsService, NewsHeaderService, CarouselService, FeaturetteService } from './services/index';
