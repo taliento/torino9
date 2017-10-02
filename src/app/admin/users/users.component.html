@@ -22,14 +22,16 @@
       <form class="form-inline">
         <label class="sr-only" for="insertUsername">Username</label>
         <div class="input-group mb-2 mr-sm-2 mb-sm-0">
-          <div class="input-group-addon">@</div>
+          <span class="input-group-addon">
+            <i class="fa fa-user" aria-hidden="true"></i>
+          </span>
           <input type="text" class="form-control mb-2 mr-sm-2 mb-sm-0" id="insertUsername" name="username" placeholder="Username" [(ngModel)]="newUser.username">
         </div>
 
         <label class="sr-only" for="insertPassword">Password</label>
         <div class="input-group mb-2 mr-sm-2 mb-sm-0">
           <span class="input-group-addon">
-            <i class="fa fa-key fa-fw"></i>
+            <i class="fa fa-lock" aria-hidden="true"></i>
           </span>
           <input type="password" class="form-control" id="insertPassword" name="password" [(ngModel)]="newUser.password">
         </div>
