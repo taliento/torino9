@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Featurette } from '../../models/featurette.model';
 import { FeaturetteService, AlertService } from '../../services/index';
 
@@ -14,7 +14,10 @@ export class FeaturetteComponent implements OnInit{
 
   newFeaturette: Featurette = new Featurette();
 
-
+  @ViewChild('confirmDialog') confirmDialog;
+  confirmTitle = 'Sicuro?';
+  confirmText = 'Stai elminando una featurette...';
+  idDelete: string;
 
   constructor(private featuretteService: FeaturetteService, private alertService: AlertService) {
 
@@ -36,6 +39,23 @@ export class FeaturetteComponent implements OnInit{
         this.alertService.error(error._body);
       });
   }
+
+  delete(featurette) {
+    this.idDelete = featurette._id;
+    this.confirmDialog.open();
+  }
+
+  deleteFeaturette() {
+    this.featuretteService.delete(this.idDelete).
+    subscribe(
+      data => {
+        this.alertService.success('Featurette eliminata', false);
+        this.loadAllFeaturettes();
+      },
+      error => {
+        this.alertService.error(error._body);
+      });
+    }
 
   loadAllFeaturettes() {
     this.featuretteService.getAll().then(result => this.featuretteList = result);

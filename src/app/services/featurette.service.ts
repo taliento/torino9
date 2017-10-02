@@ -26,6 +26,14 @@ export class FeaturetteService {
     return this.http.post(this.apiUrl+'/featurette/insert',featurette, this.jwt());
   }
 
+  delete(_id: string) {
+    return this.http.delete(this.apiUrl+'/featurette/' + _id, this.jwt());
+  }
+
+  update(slide: Featurette) {
+    return this.http.put(this.apiUrl+'/featurette/' + slide._id, slide, this.jwt());
+  }
+
   private handleError(error: any): Promise<any> {
     console.error('An error occurred', error); // for demo purposes only
     return Promise.reject(error.message || error);

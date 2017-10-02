@@ -38,6 +38,8 @@
 <h3>Modifica featurettes</h3>
 <div class="card-deck">
   <div class="card" *ngFor="let featurette of featuretteList">
-    <dt-featurette-detail [featurette]="featurette"></dt-featurette-detail>
+    <dt-featurette-detail [featurette]="featurette" (delete)="delete($event)"></dt-featurette-detail>
   </div>
 </div>
+
+<confirm-dialog #confirmDialog [title]="confirmTitle" [text]="confirmText" (confirm)="deleteFeaturette()"></confirm-dialog>
