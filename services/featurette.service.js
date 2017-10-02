@@ -21,7 +21,7 @@ module.exports = service;
 function getAll() {
   var deferred = Q.defer();
 
-  db.featurette.find().sort({insertdate:1}).toArray(function (err, featuretteList) {
+  db.featurette.find().toArray(function (err, featuretteList) {
     if (err) deferred.reject(err.name + ': ' + err.message);
     deferred.resolve(featuretteList);
   });
@@ -47,7 +47,7 @@ function getPaged(_limit, _page, _size) {
 
   var _skip = _page * _limit;
 
-  db.featurette.find({}, null, {limit: _limit*1, skip: _skip}).toArray(function (err, featuretteList) {
+  db.featurette.find({}, null,{limit: _limit*1, skip: _skip, sort:[['insertDate',-1]]}).toArray(function (err, featuretteList) {
     if (err) deferred.reject(err.name + ': ' + err.message);
     deferred.resolve(featuretteList);
   });

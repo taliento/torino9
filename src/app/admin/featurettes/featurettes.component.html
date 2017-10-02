@@ -1,9 +1,22 @@
 <br>
-<p>
-  <button type="button" class="btn btn-outline-primary" (click)="isCollapsed = !isCollapsed" [attr.aria-expanded]="!isCollapsed" aria-controls="collapseExample">
-    Inserisci Featurette
-  </button>
-</p>
+<div class="card-deck">
+  <div class="card" *ngFor="let featurette of featuretteList">
+    <dt-featurette-detail [featurette]="featurette" (delete)="delete($event)"></dt-featurette-detail>
+  </div>
+</div>
+
+<br>
+<div class="row">
+  <div class="col-md-10" *ngIf="collectionSize > 0">
+    <ngb-pagination [pageSize]="pageSize" [collectionSize]="collectionSize" [(page)]="page" [rotate]="true" (pageChange)="loadPage($event)"></ngb-pagination>
+  </div>
+  <div class="col-md-2">
+    <button type="button" class="btn btn-outline-primary" (click)="isCollapsed = !isCollapsed" [attr.aria-expanded]="!isCollapsed" aria-controls="collapseExample">
+      Inserisci Featurette
+    </button>
+  </div>
+</div>
+
 <div id="collapseExample" [ngbCollapse]="isCollapsed">
   <div class="card">
     <div class="card-body">
@@ -28,17 +41,9 @@
           <input type="text" class="form-control" id="insertImgPath" name="imgPath" placeholder="Link immagine esterno" [(ngModel)]="newFeaturette.imgPath">
         </div>
 
-        <button type="button" class="btn btn-primary" (click)="addFeaturette()">Salva</button>
+        <button type="button" class="btn btn-outline-success" (click)="addFeaturette()">Inserisci</button>
       </form>
     </div>
-  </div>
-</div>
-
-<br>
-<h3>Modifica featurettes</h3>
-<div class="card-deck">
-  <div class="card" *ngFor="let featurette of featuretteList">
-    <dt-featurette-detail [featurette]="featurette" (delete)="delete($event)"></dt-featurette-detail>
   </div>
 </div>
 

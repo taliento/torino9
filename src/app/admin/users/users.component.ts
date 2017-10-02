@@ -19,6 +19,11 @@ export class UsersComponent implements OnInit{
   confirmText = 'Stai elminando un utente...';
   idDelete: string;
 
+  page = 1;
+  pageSize = 3;
+  collectionSize = 0;
+  previousPage: any;
+
   constructor(private userService: UserService, private authenticationService: AuthenticationService, private alertService: AlertService) {
     authenticationService.userValue.subscribe((nextValue) => {
       this.currentUser = nextValue;
@@ -26,7 +31,12 @@ export class UsersComponent implements OnInit{
   }
 
   ngOnInit() {
-    this.loadAllUsers();
+    this.userService.count().subscribe((res) => {
+      this.collectionSize = parseInt(res.json().count);
+      if(this.collectionSize > 0) {
+          this.loadData();
+      }
+    });
   }
 
   delete(user) {
@@ -39,7 +49,9 @@ export class UsersComponent implements OnInit{
     subscribe(
       data => {
         this.alertService.success('Utente eliminato', false);
-        this.loadAllUsers();
+        this.newUser = new User();
+        this.collectionSize--;
+        this.loadData();
       },
       error => {
         this.alertService.error(error._body);
@@ -52,14 +64,37 @@ export class UsersComponent implements OnInit{
         data => {
           this.alertService.success(this.newUser.username+' benvenuto/a!', false);
           this.isCollapsed = true;
-          this.loadAllUsers();
+          this.collectionSize++;
+          this.loadData();
         },
         error => {
           this.alertService.error(error._body);
         });
       }
 
-      loadAllUsers() {
-        this.userService.getAll().subscribe(users => { this.users = users; });
+      loadPage(page: number) {
+        if (page !== this.previousPage) {
+          this.previousPage = page;
+          this.loadData();
+        }
+      }
+
+      loadData() {
+        this.userService.getPaged({
+          limit: this.pageSize,
+          page: this.page - 1,
+          size: this.pageSize,
+        }).subscribe(
+          res  => this.onSuccess(res.json()),
+          (res: Response) => this.onError(res.json())
+        );
+      }
+
+      onSuccess (res) {
+        this.users = res;
+      }
+
+      onError (res) {
+        console.log("error:"+res);
       }
     }

@@ -29,7 +29,7 @@ export class CarouselService {
   }
 
   count() {
-    return this.http.get(this.apiUrl+ '/news/count');
+    return this.http.get(this.apiUrl+ '/carousel/count');
   }
 
   getById(_id: string): Promise<DTCarousel> {

@@ -2,8 +2,8 @@
   <h4 class="card-title">{{news.title}}</h4>
   <p class="card-text"><small class="text-muted">{{news.subTitle}}</small></p>
   <p class="card-text">{{news.text}}</p>
-  <button type="button" class="btn btn-primary btn-sm" (click)="modifyNews()">Update</button>
-  <button type="button" class="btn btn-danger btn-sm" (click)="deleteNews()">Delete</button>
+  <button type="button" class="btn btn-outline-primary btn-sm" (click)="modifyNews()">Update</button>
+  <button type="button" class="btn btn-outline-danger btn-sm" (click)="deleteNews()">Delete</button>
 </div>
 <img class="card-img-bottom" [src]="news.imgPath" [alt]="news.alt">
 <div class="card-footer">

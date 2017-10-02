@@ -47,7 +47,7 @@ function getPaged(_limit, _page, _size) {
 
   var _skip = _page * _limit;
 
-  db.news.find({}, null, {limit: _limit*1, skip: _skip}).sort({insertdate:1}).toArray(function (err, newsList) {
+  db.news.find({}, null, {limit: _limit*1, skip: _skip, sort:[['insertDate',-1]]}).toArray(function (err, newsList) {
     if (err) deferred.reject(err.name + ': ' + err.message);
     deferred.resolve(newsList);
   });

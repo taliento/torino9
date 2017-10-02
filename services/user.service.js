@@ -16,6 +16,9 @@ service.create = create;
 service.update = update;
 service.delete = _delete;
 
+service.getPaged = getPaged;
+service.count = count;
+
 module.exports = service;
 
 function authenticate(username, password) {
@@ -58,6 +61,32 @@ function getAll() {
     });
 
     return deferred.promise;
+}
+
+function count() {
+
+  var deferred = Q.defer();
+
+  db.users.count({}, function(err, _count) {
+    if (err) deferred.reject(err.name + ': ' + err.message);
+    deferred.resolve({'count':_count});
+  });
+
+  return deferred.promise;
+}
+
+function getPaged(_limit, _page, _size) {
+
+  var deferred = Q.defer();
+
+  var _skip = _page * _limit;
+
+  db.users.find({}, null, {limit: _limit*1, skip: _skip, sort:[['insertDate',-1]]}).toArray(function (err, users) {
+    if (err) deferred.reject(err.name + ': ' + err.message);
+    deferred.resolve(users);
+  });
+
+  return deferred.promise;
 }
 
 function getById(_id) {

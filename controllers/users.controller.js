@@ -8,8 +8,10 @@ var userService = require('services/user.service');
 // routes
 router.post('/authenticate', authenticate);
 router.post('/register', register);
+router.get('/count', count);
 router.get('/', getAll);
 router.get('/current', getCurrent);
+router.get('/:limit/:page/:size', getPaged);
 router.put('/:_id', update);
 router.delete('/:_id', _delete);
 
@@ -79,6 +81,26 @@ function _delete(req, res) {
     userService.delete(req.params._id)
         .then(function () {
             res.sendStatus(200);
+        })
+        .catch(function (err) {
+            res.status(400).send(err);
+        });
+}
+
+function count(req, res) {
+  userService.count()
+      .then(function (_count) {
+          res.send(_count);
+      })
+      .catch(function (err) {
+          res.status(400).send(err);
+      });
+}
+
+function getPaged(req, res) {
+  userService.getPaged(req.params.limit, req.params.page, req.params.size)
+        .then(function (_user) {
+            res.send(_user);
         })
         .catch(function (err) {
             res.status(400).send(err);

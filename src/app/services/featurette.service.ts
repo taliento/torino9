@@ -22,12 +22,21 @@ export class FeaturetteService {
       .catch(this.handleError);
   }
 
+  getPaged(params: any) {
+    const url = `/featurette/${params.limit}/${params.page}/${params.size}`;
+    return this.http.get(this.apiUrl+url);
+  }
+
   insert(featurette: Featurette) {
     return this.http.post(this.apiUrl+'/featurette/insert',featurette, this.jwt());
   }
 
   delete(_id: string) {
     return this.http.delete(this.apiUrl+'/featurette/' + _id, this.jwt());
+  }
+
+  count() {
+    return this.http.get(this.apiUrl+'/featurette/count');
   }
 
   update(slide: Featurette) {

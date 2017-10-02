@@ -19,12 +19,22 @@ export class FeaturetteComponent implements OnInit{
   confirmText = 'Stai elminando una featurette...';
   idDelete: string;
 
+  page = 1;
+  pageSize = 3;
+  collectionSize = 0;
+  previousPage: any;
+
   constructor(private featuretteService: FeaturetteService, private alertService: AlertService) {
 
   }
 
   ngOnInit(): void {
-    this.loadAllFeaturettes();
+    this.featuretteService.count().subscribe((res) => {
+      this.collectionSize = parseInt(res.json().count);
+      if(this.collectionSize > 0) {
+          this.loadData();
+      }
+    });
   }
 
   addFeaturette() {
@@ -33,7 +43,9 @@ export class FeaturetteComponent implements OnInit{
       data => {
         this.alertService.success(this.newFeaturette.title+' inserita!', false);
         this.isCollapsed = true;
-        this.loadAllFeaturettes();
+        this.collectionSize++;
+        this.newFeaturette = new Featurette();
+        this.loadData();
       },
       error => {
         this.alertService.error(error._body);
@@ -50,14 +62,38 @@ export class FeaturetteComponent implements OnInit{
     subscribe(
       data => {
         this.alertService.success('Featurette eliminata', false);
-        this.loadAllFeaturettes();
+        this.collectionSize--;
+        this.loadData();
       },
       error => {
         this.alertService.error(error._body);
       });
     }
 
-  loadAllFeaturettes() {
-    this.featuretteService.getAll().then(result => this.featuretteList = result);
+
+  loadPage(page: number) {
+    if (page !== this.previousPage) {
+      this.previousPage = page;
+      this.loadData();
+    }
+  }
+
+  loadData() {
+    this.featuretteService.getPaged({
+      limit: this.pageSize,
+      page: this.page - 1,
+      size: this.pageSize,
+    }).subscribe(
+      res  => this.onSuccess(res.json()),
+      (res: Response) => this.onError(res.json())
+    );
+  }
+
+  onSuccess (res) {
+    this.featuretteList = res;
+  }
+
+  onError (res) {
+    console.log("error:"+res);
   }
 }

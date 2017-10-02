@@ -21,7 +21,7 @@ module.exports = service;
 function getAll() {
   var deferred = Q.defer();
 
-  db.carousel.find().sort({insertdate:1}).toArray(function (err, carousel) {
+  db.carousel.find().sort({insertDate:-1}).toArray(function (err, carousel) {
     if (err) deferred.reject(err.name + ': ' + err.message);
     deferred.resolve(carousel);
   });
@@ -47,7 +47,7 @@ function getPaged(_limit, _page, _size) {
 
   var _skip = _page * _limit;
 
-  db.carousel.find({}, null, {limit: _limit*1, skip: _skip}).toArray(function (err, carousel) {
+  db.carousel.find({}, null, {limit: _limit*1, skip: _skip, sort:[['insertDate',-1]]}).toArray(function (err, carousel) {
     if (err) deferred.reject(err.name + ': ' + err.message);
     deferred.resolve(carousel);
   });

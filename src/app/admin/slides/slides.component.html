@@ -1,9 +1,22 @@
 <br>
-<p>
-  <button type="button" class="btn btn-outline-primary" (click)="isCollapsed = !isCollapsed" [attr.aria-expanded]="!isCollapsed" aria-controls="collapseExample">
-    Inserisci Slide
-  </button>
-</p>
+<div class="card-deck">
+  <div class="card" *ngFor="let slide of slides">
+    <dt-slide-detail [slide]="slide" (delete)="delete($event)"></dt-slide-detail>
+  </div>
+</div>
+
+<br>
+<div class="row">
+  <div class="col-md-10" *ngIf="collectionSize > 0">
+    <ngb-pagination [pageSize]="pageSize" [collectionSize]="collectionSize" [(page)]="page" [rotate]="true" (pageChange)="loadPage($event)"></ngb-pagination>
+  </div>
+  <div class="col-md-2">
+    <button type="button" class="btn btn-outline-primary" (click)="isCollapsed = !isCollapsed" [attr.aria-expanded]="!isCollapsed" aria-controls="collapseExample">
+      Inserisci Slide
+    </button>
+  </div>
+</div>
+
 <div id="collapseExample" [ngbCollapse]="isCollapsed">
   <div class="card">
     <div class="card-body">
@@ -33,17 +46,9 @@
           <input type="text" class="form-control" id="insertBtnHref" name="btnHref" placeholder="Link Bottone slide" [(ngModel)]="newSlide.btnHref">
         </div>
 
-        <button type="button" class="btn btn-primary" (click)="addSlide()">Salva</button>
+        <button type="button" class="btn btn-outline-success" (click)="addSlide()">Inserisci</button>
       </form>
     </div>
-  </div>
-</div>
-
-<br>
-<h3>Modifica slides</h3>
-<div class="card-deck">
-  <div class="card" *ngFor="let slide of slides">
-    <dt-slide-detail [slide]="slide" (delete)="delete($event)"></dt-slide-detail>
   </div>
 </div>
 

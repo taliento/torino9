@@ -13,11 +13,13 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 - [x] home page
 - [x] news page
 - [x] about page
+- [ ] about page crud
 - [x] contact page
-- [ ] register
-- [ ] admin module (crud for all contents)
-- [ ] insert contents
+- [ ] contact page crud
+- [x] admin module (crud for all contents)
 - [ ] calendar
+- [ ] search contents
+- [ ] register
 
 ## dev
 

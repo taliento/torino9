@@ -17,12 +17,22 @@ export class SlidesComponent implements OnInit{
   confirmText = 'Stai elminando una slide...';
   idDelete: string;
 
+  page = 1;
+  pageSize = 3;
+  collectionSize = 0;
+  previousPage: any;
+
   constructor(private carouselService: CarouselService, private alertService: AlertService) {
 
   }
 
   ngOnInit(): void {
-    this.loadAllSlides();
+    this.carouselService.count().subscribe((res) => {
+      this.collectionSize = parseInt(res.json().count);
+      if(this.collectionSize > 0) {
+          this.loadData();
+      }
+    });
   }
 
   addSlide() {
@@ -31,7 +41,9 @@ export class SlidesComponent implements OnInit{
       data => {
         this.alertService.success(this.newSlide.title+' inserita!', false);
         this.isCollapsed = true;
-        this.loadAllSlides();
+        this.newSlide = new DTCarousel();
+        this.collectionSize++;
+        this.loadData();
       },
       error => {
         this.alertService.error(error._body);
@@ -48,14 +60,37 @@ export class SlidesComponent implements OnInit{
     subscribe(
       data => {
         this.alertService.success('Slide eliminata', false);
-        this.loadAllSlides();
+        this.collectionSize--;
+        this.loadData();
       },
       error => {
         this.alertService.error(error._body);
       });
     }
 
-  loadAllSlides() {
-    this.carouselService.getAll().then(result => this.slides = result);
+  loadPage(page: number) {
+    if (page !== this.previousPage) {
+      this.previousPage = page;
+      this.loadData();
+    }
+  }
+
+  loadData() {
+    this.carouselService.getPaged({
+      limit: this.pageSize,
+      page: this.page - 1,
+      size: this.pageSize,
+    }).subscribe(
+      res  => this.onSuccess(res.json()),
+      (res: Response) => this.onError(res.json())
+    );
+  }
+
+  onSuccess (res) {
+    this.slides = res;
+  }
+
+  onError (res) {
+    console.log("error:"+res);
   }
 }

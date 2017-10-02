@@ -17,6 +17,15 @@ export class UserService {
     return this.http.get(this.apiUrl+'/users', this.jwt()).map((response: Response) => response.json());
   }
 
+  getPaged(params: any) {
+    const url = `/users/${params.limit}/${params.page}/${params.size}`;
+    return this.http.get(this.apiUrl+url,this.jwt());
+  }
+
+  count() {
+    return this.http.get(this.apiUrl+'/users/count',this.jwt());
+  }
+
   getById(_id: string) {
     return this.http.get(this.apiUrl+'/users/' + _id, this.jwt()).map((response: Response) => response.json());
   }

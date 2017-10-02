@@ -43,6 +43,7 @@ export class NewsComponent implements OnInit{
       data => {
         this.alertService.success(this.newNews.title+' inserita!', false);
         this.collectionSize++;
+        this.newNews = new News();//:D
         this.isCollapsed = true;
         this.loadData();
       },
