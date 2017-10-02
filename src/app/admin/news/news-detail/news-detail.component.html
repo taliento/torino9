@@ -2,10 +2,40 @@
   <h4 class="card-title">{{news.title}}</h4>
   <p class="card-text"><small class="text-muted">{{news.subTitle}}</small></p>
   <p class="card-text">{{news.text}}</p>
-  <button type="button" class="btn btn-primary btn-sm">Update</button>
-  <button type="button" class="btn btn-danger btn-sm">Delete</button>
+  <button type="button" class="btn btn-primary btn-sm" (click)="modifyNews()">Update</button>
+  <button type="button" class="btn btn-danger btn-sm" (click)="deleteNews()">Delete</button>
 </div>
 <img class="card-img-bottom" [src]="news.imgPath" [alt]="news.alt">
 <div class="card-footer">
   <small class="text-muted">{{news.updateDate}}</small>
 </div>
+
+<ng-template #updateContent let-c="close" let-d="dismiss">
+  <div class="modal-header">
+    <h4 class="modal-title">Modifica {{news.title}}</h4>
+    <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form>
+        <div class="form-group">
+          <label for="updateTitle">Titolo</label>
+          <input type="text" class="form-control" id="updateTitle" name="title" [(ngModel)]="news.title" placeholder="Titolo">
+        </div>
+        <div class="form-group">
+          <label for="updateTitle">Sottotitolo</label>
+          <input type="text" class="form-control" id="updateTitle" name="subTitle" [(ngModel)]="news.subTitle" placeholder="Sottotitolo">
+        </div>
+        <div class="form-group">
+          <label for="updateText">Testo</label>
+          <textarea rows="5" class="form-control" id="updateText" name="text" [(ngModel)]="news.text" placeholder="Testo"></textarea>
+        </div>
+      </form>
+
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-success" (click)="update();c('Close click');">Conferma</button>
+    <button type="button" class="btn btn-outline-dark" (click)="c('Close click')">Annulla</button>
+  </div>
+</ng-template>

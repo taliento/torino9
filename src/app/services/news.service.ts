@@ -44,6 +44,14 @@ export class NewsService {
     return this.http.post(this.apiUrl+'/news/insert',news, this.jwt());
   }
 
+  delete(_id: string) {
+    return this.http.delete(this.apiUrl+'/news/' + _id, this.jwt());
+  }
+
+  update(news: News) {
+    return this.http.put(this.apiUrl+'/news/' + news._id, news, this.jwt());
+  }
+
   // private helper methods
   private jwt() {
     // create authorization header with jwt token

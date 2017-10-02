@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { News } from '../../models/news.model';
 import { NewsService, AlertService } from '../../services/index';
 
@@ -14,12 +14,27 @@ export class NewsComponent implements OnInit{
 
   newNews: News = new News();//:D
 
+  @ViewChild('confirmDialog') confirmDialog;
+  confirmTitle = 'Sicuro?';
+  confirmText = 'Stai elminando una news...';
+  idDelete: string;
+
+  page = 1;
+  pageSize = 3;
+  collectionSize = 0;
+  previousPage: any;
+
   constructor(private newsService: NewsService, private alertService: AlertService) {
 
   }
 
   ngOnInit(): void {
-    this.loadAllNews();
+    this.newsService.count().subscribe((res) => {
+      this.collectionSize = parseInt(res.json().count);
+      if(this.collectionSize > 0) {
+          this.loadData();
+      }
+    });
   }
 
   addNews() {
@@ -27,15 +42,56 @@ export class NewsComponent implements OnInit{
     .subscribe(
       data => {
         this.alertService.success(this.newNews.title+' inserita!', false);
+        this.collectionSize++;
         this.isCollapsed = true;
-        this.loadAllNews();
+        this.loadData();
       },
       error => {
         this.alertService.error(error._body);
       });
   }
 
-  loadAllNews() {
-    this.newsService.getAll().then(result => this.newsList = result);
+  delete(news) {
+    this.idDelete = news._id;
+    this.confirmDialog.open();
+  }
+
+  deleteNews() {
+    this.newsService.delete(this.idDelete).
+    subscribe(
+      data => {
+        this.alertService.success('Featurette eliminata', false);
+        this.collectionSize--;
+        this.loadData();
+      },
+      error => {
+        this.alertService.error(error._body);
+      });
+    }
+
+  loadPage(page: number) {
+    if (page !== this.previousPage) {
+      this.previousPage = page;
+      this.loadData();
+    }
+  }
+
+  loadData() {
+    this.newsService.getPagedNews({
+      limit: this.pageSize,
+      page: this.page - 1,
+      size: this.pageSize,
+    }).subscribe(
+      res  => this.onSuccess(res.json()),
+      (res: Response) => this.onError(res.json())
+    );
+  }
+
+  onSuccess (res) {
+    this.newsList = res;
+  }
+
+  onError (res) {
+    console.log("error:"+res);
   }
 }

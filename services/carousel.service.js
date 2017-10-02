@@ -21,7 +21,7 @@ module.exports = service;
 function getAll() {
   var deferred = Q.defer();
 
-  db.carousel.find().toArray(function (err, carousel) {
+  db.carousel.find().sort({insertdate:1}).toArray(function (err, carousel) {
     if (err) deferred.reject(err.name + ': ' + err.message);
     deferred.resolve(carousel);
   });
