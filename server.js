@@ -22,8 +22,8 @@ unless({ path: [
   '/users/authenticate',
   '/users/register',
   /^\/news\/.*/, '/news',
-  /^\/calendar\/.*/,'/calendar',
   /^\/carousel\/.*/,'/carousel',
+  /^\/calendar\/.*/,'/calendar',
   /^\/featurette\/.*/,'/featurette'
 ] }));
 

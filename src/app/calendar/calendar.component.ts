@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
-Event
+import { Event } from '../models/event';
+import { CalendarService } from '../services/index';
+
 const now = new Date();
 
 @Component({
@@ -13,14 +15,21 @@ export class CalendarComponent implements OnInit{
   model: NgbDateStruct;
   date: {year: number, month: number, day: number};
 
-  constructor() { }
+  monthEvents: Event[];
+
+  constructor(private calendarService: CalendarService) { }
 
   ngOnInit() {
     this.selectToday();
+    this.loadMonthEvents();
   }
 
   selectToday() {
     this.model = {year: now.getFullYear(), month: now.getMonth() + 1, day: now.getDate()};
+  }
+
+  loadMonthEvents() {
+    // this.calendarService.
   }
 
   navigate(date) {
@@ -58,6 +67,6 @@ export class CalendarComponent implements OnInit{
     //   }
     // }
 
-    return true;
+    return false;
   }
 }
