@@ -32,14 +32,12 @@ export class CalendarComponent implements OnInit {
 
     this.calendarService.getMonthEvents(date).then(result => {
       this.monthEvents = result;
-      if(date.month == this.model.month && date.year == this.model.year) {
-          this.loadTasks(this.model);//load date tasks
-      }
-
+      this.loadTasks(this.model);//load day tasks
     });
   }
 
   navigate($event) {//called on year/month navigation
+    console.log("navigate ->"+JSON.stringify($event));
 
     this.date = $event.next;
 
