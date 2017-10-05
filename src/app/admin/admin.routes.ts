@@ -10,6 +10,8 @@ import { UserDetailComponent } from './users/user-detail/user-detail.component';
 import { ConfirmDialog } from '../confirm-dialog/confirm-dialog.component';
 import { NewsComponent} from './news/news.component';
 import { NewsDetailComponent } from './news/news-detail/news-detail.component';
+import { EventsComponent } from './events/events.component';
+import { EventDetailComponent } from './events/event-detail/event-detail.component';
 
 export const MODULE_ROUTES: Route[] = [
   { path: '', pathMatch: 'full' , component: AdminComponent }
@@ -25,5 +27,7 @@ export const MODULE_COMPONENTS = [
   UserDetailComponent,
   ConfirmDialog,
   NewsComponent,
-  NewsDetailComponent
+  NewsDetailComponent,
+  EventsComponent,
+  EventDetailComponent
 ]

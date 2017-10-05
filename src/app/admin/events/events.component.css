@@ -1,0 +1,13 @@
+.day {
+	text-align: center;
+	width: 2rem;
+	height: 2rem;
+	line-height: 2rem;
+	border-radius: 0.25rem;
+	background: transparent;
+}
+.btn-light:hover {
+	color: #111;
+	background-color: #e2e6ea;
+	border-color: #dae0e5;
+}

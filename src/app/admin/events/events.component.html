@@ -1,0 +1,75 @@
+<br>
+<div class="container">
+  <div class="row">
+    <div class="col-md-4">
+      <button class="btn btn-sm btn-outline-primary" (click)="selectToday();dp.navigateTo();">Vai ad oggi</button>
+      <hr/>
+      <ngb-datepicker #dp [(ngModel)]="model" (navigate)="navigate($event)" [dayTemplate]="customDay"></ngb-datepicker>
+      <div class="row">
+        <div class="col-md-2">
+          <small>Legenda:</small>
+        </div>
+        <div class="col-md-2">
+          <span class="badge badge-warning">Evento</span>
+        </div>
+        <div class="col-md-2">
+          <span class="badge badge-primary">Selezionato</span>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-8">
+      <ul class="list-group" title="Eventi del {{ model.day }}/{{ model.month }}/{{ model.year }}">
+        <div *ngIf="!tasks.length" class="list-group-item">Nessun evento nella data {{ model.day }}/{{ model.month }}/{{ model.year }}</div>
+        <event-detail *ngFor="let task of tasks" [task]="task" (selectEvent)="taskSelected($event)"></event-detail>
+      </ul>
+    </div>
+  </div>
+</div>
+<br>
+<div class="row">
+  <div class="col-md-2">
+    <button type="button" [disabled]="!model" class="btn btn-outline-primary" (click)="isCollapsed = !isCollapsed" [attr.aria-expanded]="!isCollapsed" aria-controls="collapseExample">
+      Inserisci Evento
+    </button>
+  </div>
+  <div class="col-md-2">
+    <button type="button" class="btn btn-outline-primary" [disabled]="selectedTasks.length > 1">
+      Modifica  Evento <span class="badge badge-danger">{{selectedTasks.length}}</span>
+    </button>
+  </div>
+  <div class="col-md-2">
+    <button type="button" class="btn btn-outline-danger">
+      Elimina  Evento <span class="badge badge-secondary">{{selectedTasks.length}}</span>
+    </button>
+  </div>
+</div>
+<br>
+<div id="collapseExample" [ngbCollapse]="isCollapsed">
+  <div class="card">
+    <div class="card-body">
+      <form title="Evento in data {{ model.day }}/{{ model.month }}/{{ model.year }}">
+        <label>Evento programmato in data {{ model.day }}/{{ model.month }}/{{ model.year }}</label>
+
+        <div class="form-group">
+          <label for="insertTitle">Titolo</label>
+          <input type="text" class="form-control" id="insertTitle" name="title" placeholder="Titolo Evento" [(ngModel)]="newEvent.title">
+        </div>
+
+        <div class="form-group">
+          <label for="insertText">Testo</label>
+          <textarea rows="5" class="form-control" id="insertText" name="text" placeholder="Testo Evento" [(ngModel)]="newEvent.text"></textarea>
+        </div>
+
+        <button type="button" class="btn btn-outline-success" (click)="addEvent()">Inserisci</button>
+      </form>
+    </div>
+  </div>
+</div>
+
+<ng-template #customDay let-date="date" let-currentMonth="currentMonth" let-selected="selected">
+  <div class="day btn-light"
+    [ngClass]="{'bg-primary': selected, 'text-white': selected, 'text-muted': date.month !== currentMonth, 'bg-warning': (!selected && hasTask(date)) }"
+   (click)="loadTasks(date)">
+    {{ date.day }}
+  </div>
+</ng-template>
