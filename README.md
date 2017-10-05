@@ -20,6 +20,7 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 - [ ] calendar
 - [ ] search contents
 - [ ] register
+- [ ] code cleanup
 
 ## dev
 

@@ -21,10 +21,15 @@ unless({ path: [
   '/',
   '/users/authenticate',
   '/users/register',
-  /^\/news\/.*/, '/news',
-  /^\/carousel\/.*/,'/carousel',
-  /^\/calendar\/.*/,'/calendar',
-  /^\/featurette\/.*/,'/featurette'
+  /^\/news\/.*/,
+   '/news',
+  /^\/carousel\/.*/,
+  '/carousel',
+  /^\/calendar\/.*/,
+  /^\/calendar\/month\/.*/,
+  '/calendar',
+  /^\/featurette\/.*/,
+  '/featurette'
 ] }));
 
 // routes

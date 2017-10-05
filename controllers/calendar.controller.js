@@ -7,6 +7,7 @@ var caledarService = require('services/calendar.service');
 
 // routes
 router.post('/insert', insert);
+router.get('/month/:month/:year', getMonthEvents);
 router.get('/', getAll);
 router.get('/date/:date', getByDate);
 router.get('/:_id', get);
@@ -28,6 +29,16 @@ function insert(req, res) {
 
 function getAll(req, res) {
     caledarService.getAll()
+        .then(function (events) {
+            res.send(events);
+        })
+        .catch(function (err) {
+            res.status(400).send(err);
+        });
+}
+
+function getMonthEvents(req, res) {
+    caledarService.getMonthEvents(req.params.month, req.params.year)
         .then(function (events) {
             res.send(events);
         })

@@ -11,20 +11,4 @@ module.exports = function(app) {
     .get(userController.get)
     .put(userController.update)
     .delete(userController.delete);
-
-
-  app.route('/news')
-    .get(newsController.getAll)
-    .post(newsController.insert);
-
-  app.route('/news/:id')
-    .get(newsController.get)
-    .put(newsController.update)
-    .delete(newsController.delete);
-
-  app.route('/news/:limit/:page/:size')
-    .get(newsController.getPaged):
-
-  app.route('/news/count')
-    .get(newsController.count);
 };

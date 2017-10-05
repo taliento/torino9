@@ -7,6 +7,7 @@ db.bind('calendar');
 var service = {};
 
 service.getAll = getAll;
+service.getMonthEvents = getMonthEvents;
 service.getByDate = getByDate;
 service.getById = getById;
 service.create = create;
@@ -22,6 +23,17 @@ function getAll() {
   db.calendar.find().toArray(function (err, events) {
     if (err) deferred.reject(err.name + ': ' + err.message);
     deferred.resolve(events);
+  });
+
+  return deferred.promise;
+}
+
+function getMonthEvents(_month,_year) {
+  var deferred = Q.defer();
+
+  db.calendar.find({'date.month':parseInt(_month), 'date.year':parseInt(_year)}).toArray(function (err, _events) {
+    if (err) deferred.reject(err.name + ': ' + err.message);
+    deferred.resolve(_events);
   });
 
   return deferred.promise;

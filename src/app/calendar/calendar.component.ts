@@ -11,61 +11,67 @@ const now = new Date();
   templateUrl: 'calendar.component.html',
   styleUrls: ['calendar.component.css']
 })
-export class CalendarComponent implements OnInit{
+export class CalendarComponent implements OnInit {
   model: NgbDateStruct;
   date: {year: number, month: number, day: number};
 
-  monthEvents: Event[];
+  monthEvents: Event[] = [];
+  tasks : Event[] = [];
 
   constructor(private calendarService: CalendarService) { }
 
   ngOnInit() {
     this.selectToday();
-    this.loadMonthEvents();
   }
 
   selectToday() {
     this.model = {year: now.getFullYear(), month: now.getMonth() + 1, day: now.getDate()};
   }
 
-  loadMonthEvents() {
-    // this.calendarService.
+  loadMonthEvents(date) {
+
+    this.calendarService.getMonthEvents(date).then(result => {
+      this.monthEvents = result;
+      if(date.month == this.model.month && date.year == this.model.year) {
+          this.loadTasks(this.model);//load date tasks
+      }
+
+    });
   }
 
-  navigate(date) {
-    //TODO
-  }
+  navigate($event) {//called on year/month navigation
 
-  isWeekend(date: NgbDateStruct) {
-    const d = new Date(date.year, date.month - 1, date.day);
-    return d.getDay() === 0 || d.getDay() === 6;
-  }
+    this.date = $event.next;
 
-  isDisabled(date: NgbDateStruct, current: {month: number}) {
-    return date.month !== current.month;
+    this.tasks = [];
+    this.monthEvents = [];
+
+    this.loadMonthEvents(this.date);
   }
 
   hasTask(date: NgbDateStruct) {
     return this.dateHasTask(date);
   }
 
-  showTasks(date: NgbDateStruct) {//TODO showtasks
-    // if (this.dateHasTask(date)){
-      // TODO show popup
-    // }
+  loadTasks(date: NgbDateStruct) {
+
+    this.tasks = [];//clear prev tasks
+
+    for(var i = 0 ; i < this.monthEvents.length ; i++) {
+      var taskDate: any = this.monthEvents[i].date;
+      if (taskDate.day === date.day && taskDate.month === date.month) {
+        this.tasks.push(this.monthEvents[i]);
+      }
+    }
   }
 
   dateHasTask(date: NgbDateStruct): boolean {
-    // for (var i = 0; i < this.userService.user.tasks.length; i++) {
-    //   var taskDate = new Date(this.userService.user.tasks[i].date);
-    //   var day: number = taskDate.getDate();
-    //   var month: number = taskDate.getMonth() + 1;
-    //   var year: number = taskDate.getFullYear();
-    //
-    //   if (day === date.day && month === date.month && year === date.year) {
-    //     return true;
-    //   }
-    // }
+    for(var i = 0 ; i < this.monthEvents.length ; i++) {
+      var taskDate: any = this.monthEvents[i].date;
+      if (taskDate.day === date.day && taskDate.month === date.month) {
+        return true;
+      }
+    }
 
     return false;
   }

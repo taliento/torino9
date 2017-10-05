@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 
 @Component({
@@ -8,5 +8,6 @@ import { Component } from '@angular/core';
   styleUrls: ['../calendar.component.css']
 })
 export class CalendarDetailComponent {
-
+  @Input() task: Event;
+  
 }

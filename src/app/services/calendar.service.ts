@@ -28,6 +28,14 @@ export class CalendarService {
     return this.http.get(this.apiUrl+url);
   }
 
+  getMonthEvents(date: any): Promise<Event[]> {
+    const url = `/calendar/month/${date.month}/${date.year}`;
+    return this.http.get(this.apiUrl+url)
+    .toPromise()
+    .then(response => response.json() as Event[])
+    .catch(this.handleError);
+  }
+
   count() {
     return this.http.get(this.apiUrl+ '/calendar/count');
   }
