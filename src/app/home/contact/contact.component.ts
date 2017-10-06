@@ -4,10 +4,7 @@ import { Component, OnInit } from '@angular/core';
   moduleId: module.id,
   selector: 'contact',
   templateUrl: 'contact.component.html',
-  styleUrls: [
-    'contact.component.css',
-    '../home.component.css'
-  ]
+  styleUrls: [ '../home.component.css']
 })
 export class ContactComponent implements OnInit {
   contacts: any[] = [];
