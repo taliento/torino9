@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-
+import { Event } from '../../models/event';
 
 @Component({
   moduleId: module.id,
@@ -9,5 +9,5 @@ import { Component, Input } from '@angular/core';
 })
 export class CalendarDetailComponent {
   @Input() task: Event;
-  
+
 }
