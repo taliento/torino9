@@ -14,7 +14,6 @@ export class EventDetailComponent {
 
   selected() {
     this.active = !this.active;
-
     this.selectEvent.emit(this.task);
   }
 

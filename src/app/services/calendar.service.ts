@@ -57,6 +57,10 @@ export class CalendarService {
     return this.http.delete(this.apiUrl+'/calendar/' + _id, this.jwt());
   }
 
+  deleteMany(_ids: any) {
+    return this.http.post(this.apiUrl+'/calendar/deleteMany',_ids, this.jwt());
+  }
+
   update(event: Event) {
     return this.http.put(this.apiUrl+'/calendar/' + event._id, event, this.jwt());
   }

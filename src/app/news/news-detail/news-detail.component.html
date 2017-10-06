@@ -7,7 +7,7 @@
 
         </div>
         <br>
-        <p class="post-meta">Posted by <a href="#">{{news.author}}</a> on {{news.insertDate | date:'short' }}</p>
+        <p class="post-meta">Inserito da <a href="#">{{news.author}}</a> nel {{news.insertDate | date:'dd/MM/yyyy' }}</p>
     </div>
 <article>
 
@@ -17,5 +17,5 @@
 
 <br>
 <div class="container" >
-  <div class="btn btn-secondary" (click)="gotoNews()">Back</div>
+  <div class="btn btn-outline-secondary" (click)="gotoNews()">Back</div>
 </div>

@@ -3,4 +3,6 @@ export class Event {
     title: string;
     text: string;
     date: any;
+    time: any;
+    insertDate: string;
 }

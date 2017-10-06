@@ -14,7 +14,6 @@ const now = new Date();
 export class CalendarComponent implements OnInit {
   model: NgbDateStruct;
   date: {year: number, month: number, day: number};
-
   monthEvents: Event[] = [];
   tasks : Event[] = [];
 
@@ -29,7 +28,6 @@ export class CalendarComponent implements OnInit {
   }
 
   loadMonthEvents(date) {
-
     this.calendarService.getMonthEvents(date).then(result => {
       this.monthEvents = result;
       this.loadTasks(this.model);//load day tasks
@@ -37,13 +35,9 @@ export class CalendarComponent implements OnInit {
   }
 
   navigate($event) {//called on year/month navigation
-    console.log("navigate ->"+JSON.stringify($event));
-
     this.date = $event.next;
-
     this.tasks = [];
     this.monthEvents = [];
-
     this.loadMonthEvents(this.date);
   }
 
@@ -52,9 +46,7 @@ export class CalendarComponent implements OnInit {
   }
 
   loadTasks(date: NgbDateStruct) {
-
     this.tasks = [];//clear prev tasks
-
     for(var i = 0 ; i < this.monthEvents.length ; i++) {
       var taskDate: any = this.monthEvents[i].date;
       if (taskDate.day === date.day && taskDate.month === date.month) {
@@ -70,7 +62,6 @@ export class CalendarComponent implements OnInit {
         return true;
       }
     }
-
     return false;
   }
 }
