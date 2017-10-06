@@ -6,13 +6,18 @@
     <div class="card-body">
       <h4 class="card-title">{{user.username}}</h4>
       <p class="card-text">{{user.firstName}} {{user.lastName}}</p>
+      <div class="row">
+        <div class="col-md-12">
+          <button type="button" class="btn btn-outline-primary btn-sm" (click)="modifyUser()">Modifica</button>
+          <button type="button" class="btn btn-outline-danger btn-sm" (click)="deleteUser()">Elimina</button>
+        </div>
+      </div>
     </div>
   </div>
 </div>
 
 <div class="card-footer">
-  <button type="button" class="btn btn-outline-primary btn-sm" (click)="modifyUser()">Modifica</button>
-  <button type="button" class="btn btn-outline-danger btn-sm" (click)="deleteUser()">Elimina</button>
+    <small class="text-muted">Inserito nel {{user.insertDate | date:'dd/MM/yyyy' }}</small>
 </div>
 
 <ng-template #updateContent let-c="close" let-d="dismiss">

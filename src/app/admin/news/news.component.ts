@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { News } from '../../models/news.model';
-import { NewsService, AlertService } from '../../services/index';
+import { NewsService, AlertService, AuthenticationService } from '../../services/index';
 
 @Component({
     moduleId: module.id,
@@ -24,7 +24,7 @@ export class NewsComponent implements OnInit{
   collectionSize = 0;
   previousPage: any;
 
-  constructor(private newsService: NewsService, private alertService: AlertService) {
+  constructor(private newsService: NewsService, private alertService: AlertService, private authenticationService: AuthenticationService) {
 
   }
 
@@ -38,6 +38,7 @@ export class NewsComponent implements OnInit{
   }
 
   addNews() {
+    this.newNews.author = this.authenticationService.getUser().username;
     this.newsService.insert(this.newNews)
     .subscribe(
       data => {

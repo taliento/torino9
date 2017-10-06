@@ -7,4 +7,5 @@ export class News {
   text: string;
   alt: string;
   imgPath: string;
+  author: string;
 }

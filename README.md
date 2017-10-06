@@ -17,7 +17,7 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 - [x] contact page
 - [ ] contact page crud
 - [x] admin module (crud for all contents)
-- [ ] calendar
+- [x] calendar
 - [ ] search contents
 - [ ] register
 - [ ] code cleanup

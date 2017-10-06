@@ -7,7 +7,7 @@
 </div>
 <img class="card-img-bottom" [src]="news.imgPath" [alt]="news.alt">
 <div class="card-footer">
-  <small class="text-muted">{{news.updateDate}}</small>
+  <small class="text-muted">Inserito da <span>{{news.author}}</span> nel {{news.insertDate | date:'dd/MM/yyyy' }}</small>
 </div>
 
 <ng-template #updateContent let-c="close" let-d="dismiss">

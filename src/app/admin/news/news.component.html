@@ -1,8 +1,6 @@
 <br>
-<div class="card-deck">
-  <div class="card" *ngFor="let news of newsList">
-    <dt-news-detail [news]="news" (delete)="delete($event)"></dt-news-detail>
-  </div>
+<div class="card" style="margin-bottom:10px" *ngFor="let news of newsList">
+  <dt-news-detail [news]="news" (delete)="delete($event)"></dt-news-detail>
 </div>
 
 <br>
