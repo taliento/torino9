@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
 import { Event } from '../../models/event';
-import { CalendarService } from '../../services/index';
+import { CalendarService, AlertService } from '../../services/index';
 
 const now = new Date();
 
@@ -18,22 +18,32 @@ export class EventsComponent implements OnInit {
 
   model: NgbDateStruct;
   date: {year: number, month: number, day: number};
-
   monthEvents: Event[] = [];
   tasks : Event[] = [];
-
   newEvent: Event = new Event();
-
   isCollapsed = true;
+  selectedTasks: any = [];
 
-  constructor(private calendarService: CalendarService) { }
+  constructor(private calendarService: CalendarService, private alertService: AlertService) { }
 
   ngOnInit() {
     this.selectToday();
   }
 
-  addEvent() {
+  addEvent() {//add event with selected date
+    this.newEvent.date = this.model;
+    this.calendarService.insert(this.newEvent)
+    .subscribe(
+        data => {
+          this.alertService.success(this.newEvent.title+' inserito!', false);
+          this.isCollapsed = true;
+          this.newEvent = new Event();
 
+          this.loadMonthEvents(this.model);//reload tasks
+        },
+        error => {
+          this.alertService.error(error._body);
+        });
   }
 
   selectToday() {
@@ -86,7 +96,7 @@ export class EventsComponent implements OnInit {
     return false;
   }
 
-  selectedTasks: any = [];
+
 
   taskSelected($event) {
 

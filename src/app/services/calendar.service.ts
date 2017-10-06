@@ -49,16 +49,16 @@ export class CalendarService {
       .catch(this.handleError);
   }
 
-  insert(slide: Event) {
-    return this.http.post(this.apiUrl+'/calendar/insert',slide, this.jwt());
+  insert(event: Event) {
+    return this.http.post(this.apiUrl+'/calendar/insert',event, this.jwt());
   }
 
   delete(_id: string) {
     return this.http.delete(this.apiUrl+'/calendar/' + _id, this.jwt());
   }
 
-  update(slide: Event) {
-    return this.http.put(this.apiUrl+'/calendar/' + slide._id, slide, this.jwt());
+  update(event: Event) {
+    return this.http.put(this.apiUrl+'/calendar/' + event._id, event, this.jwt());
   }
 
   private handleError(error: any): Promise<any> {
