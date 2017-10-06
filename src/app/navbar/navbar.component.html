@@ -19,7 +19,7 @@
   </ul>
 
   <ul class="navbar-nav">
-    <li ngbDropdown class="d-inline-block" *ngIf="user">
+    <li ngbDropdown class="d-inline-block" placement="bottom-right" *ngIf="user">
       <button class="btn btn-outline-primary" id="dropdownBasic1" ngbDropdownToggle>{{user.username}}</button>
       <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
         <button class="dropdown-item" [routerLink]="['admin']" routerLinkActive="active"><span><i class="fa fa-superpowers" aria-hidden="true"></i></span> Area Admin</button>
