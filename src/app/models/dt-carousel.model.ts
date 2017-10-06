@@ -1,6 +1,6 @@
 export class DTCarousel {
   _id: string;
-  insertdate: string;
+  insertDate: string;
   updateDate: string;
   title: string;
   text: string;
