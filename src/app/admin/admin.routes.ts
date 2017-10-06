@@ -12,6 +12,8 @@ import { NewsComponent} from './news/news.component';
 import { NewsDetailComponent } from './news/news-detail/news-detail.component';
 import { EventsComponent } from './events/events.component';
 import { EventDetailComponent } from './events/event-detail/event-detail.component';
+import { AboutComponent } from './about/about.component';
+import { ContactComponent } from './contact/contact.component';
 
 export const MODULE_ROUTES: Route[] = [
   { path: '', pathMatch: 'full' , component: AdminComponent }
@@ -29,5 +31,7 @@ export const MODULE_COMPONENTS = [
   NewsComponent,
   NewsDetailComponent,
   EventsComponent,
-  EventDetailComponent
+  EventDetailComponent,
+  AboutComponent,
+  ContactComponent
 ]

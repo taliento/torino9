@@ -5,7 +5,7 @@ import { AboutUsComponent } from './about/index';
 import { ContactComponent } from './contact/index';
 import { LoginComponent } from './login/index';
 import { RegisterComponent } from './register/index';
-import { MapComponent } from './about/index';
+import { MapComponent } from './about/map/map.component';
 
 export const MODULE_ROUTES: Route[] = [
   { path: '', pathMatch: 'full' , component: HomeComponent },

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component,Input } from '@angular/core';
 
 @Component({
   selector: 'map-component',
@@ -6,7 +6,7 @@ import { Component } from '@angular/core';
   styleUrls: ['map.component.css'],
 })
 export class MapComponent {
-  title: string = 'Siamo qui!';
-  lat: number = 45.1033206;
-  lng: number = 7.696940899999959;
+  @Input() title: string;
+  @Input() lat: number;
+  @Input() lng: number;
 }

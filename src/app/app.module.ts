@@ -14,7 +14,7 @@ import { CalendarModule } from './calendar/calendar.module';
 import { AlertComponent } from './alert/index';
 import { routing } from './app.routing';
 import { AuthGuard } from './guards/index';
-import { AlertService, AuthenticationService, UserService, NewsService, NewsHeaderService, CarouselService, FeaturetteService, CalendarService } from './services/index';
+import { AlertService, AuthenticationService, UserService, NewsService, NewsHeaderService, CarouselService, FeaturetteService, CalendarService, AboutPageService } from './services/index';
 
 
 @NgModule({
@@ -46,7 +46,8 @@ import { AlertService, AuthenticationService, UserService, NewsService, NewsHead
     NewsHeaderService,
     CarouselService,
     FeaturetteService,
-    CalendarService
+    CalendarService,
+    AboutPageService
   ],
   bootstrap: [AppComponent]
 })

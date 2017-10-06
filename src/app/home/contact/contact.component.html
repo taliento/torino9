@@ -1,13 +1,58 @@
 <div class="jumbotron">
-    <div class="container">
-      <h1 class="display-3">Contatti</h1>
-      <hr class="my-4">
-      <p>blabla</p>
-    </div>
+  <div class="container">
+    <h1 class="display-3">Contatti</h1>
+    <hr class="my-4">
+    <p>Come sarebbe stata diversa la storia di Romeo e Giulietta se avessero avuto un telefono!</p>
+    <small>(Isabel Allende)</small>
+  </div>
 </div>
 
 <div class="container">
-  <div class="row">
-
+  <div class="card-deck">
+    <div class="card" style="width: 20rem;" *ngFor="let contact of contacts">
+      <div class="card-body">
+        <h4 class="card-title">{{contact.name}}</h4>
+        <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
+      </div>
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item">
+          <div class="row">
+            <div class="col-md-2">
+              <span><i class="fa fa-envelope-o" aria-hidden="true"></i></span>
+            </div>
+            <div class="col-md-10">
+              <span>{{contact.email}}</span>
+            </div>
+          </div>
+        </li>
+        <li class="list-group-item">
+          <div class="row">
+            <div class="col-md-2">
+              <span><i class="fa fa-phone" aria-hidden="true"></i></span>
+            </div>
+            <div class="col-md-10">
+              <span>{{contact.tel}}</span>
+            </div>
+          </div>
+        </li>
+        <li class="list-group-item">
+          <div class="row">
+            <div class="col-md-2">
+              <span><i class="fa fa-mobile" aria-hidden="true"></i></span>
+            </div>
+            <div class="col-md-10">
+              <span>{{contact.mobile}}</span>
+            </div>
+          </div>
+        </li>
+      </ul>
+      <div class="card-body">
+        <a href="#" class="card-link">Card link</a>
+        <a href="#" class="card-link">Another link</a>
+      </div>
+      <div class="card-footer">
+        <small class="text-muted">Last updated 3 mins ago</small>
+      </div>
+    </div>
   </div>
 </div>

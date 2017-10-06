@@ -21,12 +21,12 @@ export class NewsDetail implements OnInit {
   ngOnInit() {
      this.current.params
     .switchMap((params: Params) => this.newsService.getById(params['id']))
-    .subscribe(news => {this.news = news;  this.headerService.change(news.title, news.subTitle, news.imgPath)});
+    .subscribe(news => {this.news = news;  this.headerService.change(news.title, news.subTitle, '(' + news.author + ')', news.imgPath)});
   }
 
 
   gotoNews() {
-    this.headerService.change("Novità", "Le ultime novità","assets/images/news.png");
+    this.headerService.change("Novità", "Nulla che sia del tutto nuovo è perfetto", "(Marco Tullio Cicerone)","assets/images/news.png");
     this.router.navigate(['/news']);
   }
 }

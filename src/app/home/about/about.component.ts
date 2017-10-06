@@ -1,14 +1,20 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { AboutPage } from '../../models/about-page.model';
+import { AboutPageService } from '../../services/index';
 
 @Component({
   moduleId: module.id,
   selector: 'about-us',
   templateUrl: 'about.component.html',
-  styleUrls: [
-    'about.component.css',
-    '../home.component.css'
-  ]
+  styleUrls: ['../home.component.css']
 })
-export class AboutUsComponent {
+export class AboutUsComponent implements OnInit{
 
+  aboutPage: AboutPage;
+
+  constructor(private aboutPageService: AboutPageService) {}
+
+  ngOnInit() {
+    this.aboutPage = this.aboutPageService.getPage();
+  }
 }

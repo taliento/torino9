@@ -6,3 +6,4 @@ export { NewsHeaderService } from './newsheader.service';
 export { CarouselService } from './carousel.service';
 export { FeaturetteService } from './featurette.service';
 export { CalendarService } from './calendar.service';
+export { AboutPageService } from './about-page.service';

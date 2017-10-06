@@ -7,8 +7,8 @@ export class NewsHeaderService{
   info = new Subject();
 
 
-  change(title: string, subTitle: string, imgPath: string){
-   this.info.next({title: title, subTitle: subTitle, imgPath: imgPath})
+  change(title: string, subTitle: string, cit:string, imgPath: string){
+   this.info.next({title: title, subTitle: subTitle, cit: cit, imgPath: imgPath})
   }
 
 
