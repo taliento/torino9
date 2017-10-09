@@ -30,9 +30,9 @@ export class UserService {
     return this.http.get(this.apiUrl+'/users/' + _id, this.jwt()).map((response: Response) => response.json());
   }
 
-  create(user: User) {
-    return this.http.post(this.apiUrl+'/users/register', user, this.jwt());
-  }
+  // create(user: User) {
+  //   return this.http.post(this.apiUrl+'/users/register', user, this.jwt());
+  // }
 
   update(user: User) {
     return this.http.put(this.apiUrl+'/users/' + user._id, user, this.jwt());
