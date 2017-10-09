@@ -17,6 +17,10 @@ export class ContactPageService{
     contacts.push({name:'test3',email:'test3@me.it',tel:'0114528',mobile:'3334528'});
     // contacts.push({name:'test4',email:'test4@me.it',tel:'0114528',mobile:'3334528'});
 
+    contactPage.mapTitle = 'Siamo qui!';
+    contactPage.mapLat = 45.1033206;
+    contactPage.mapLng  = 7.696940899999959;
+
     contactPage.contacts = contacts;
 
     return contactPage;

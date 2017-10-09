@@ -1,12 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { ContactPage } from '../../models/contact-page.model';
-import { ContactPageService } from '../../services/index';
+import { ContactPage } from '../models/contact-page.model';
+import { ContactPageService } from '../services/index';
 
 @Component({
   moduleId: module.id,
   selector: 'contact',
-  templateUrl: 'contact.component.html',
-  styleUrls: [ '../home.component.css']
+  templateUrl: 'contact.component.html'
 })
 export class ContactComponent implements OnInit {
 
@@ -18,6 +17,6 @@ export class ContactComponent implements OnInit {
   ngOnInit() {
     this.contactPage = this.contactPageService.getPage();
 
-    
+
   }
 }

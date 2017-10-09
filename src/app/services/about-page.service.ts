@@ -10,9 +10,7 @@ export class AboutPageService{
     aboutPage.title = "Siamo il gruppo scout di torino";
     aboutPage.subtitle = "ah yeah";
     aboutPage.text = "fondato nel ecc.. ecc...";
-    aboutPage.mapTitle = 'Siamo qui!';
-    aboutPage.mapLat = 45.1033206;
-    aboutPage.mapLng  = 7.696940899999959;
+
 
     let links = [];
     links.push({href:"#",text:"vai qui"});
