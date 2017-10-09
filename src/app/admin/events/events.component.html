@@ -4,7 +4,7 @@
     <div class="col-md-10">
       <ul class="list-group" title="Eventi del {{ model.day }}/{{ model.month }}/{{ model.year }}">
         <div *ngIf="!tasks.length" class="list-group-item">Nessun evento nella data {{ model.day }}/{{ model.month }}/{{ model.year }}</div>
-        <event-detail *ngFor="let task of tasks" [task]="task" (selectEvent)="taskSelected($event)"></event-detail>
+        <event-detail *ngFor="let task of tasks" [task]="task" (reload)="loadMonthEvents(model)"></event-detail>
       </ul>
     </div>
     <div class="col-md-2">
@@ -20,7 +20,6 @@
     </div>
   </div>
 </div>
-
 <!--calendar day template -->
 <ng-template #customDay let-date="date" let-currentMonth="currentMonth" let-selected="selected">
   <div class="day btn-light"
@@ -29,22 +28,14 @@
     {{ date.day }}
   </div>
 </ng-template>
-
 <br>
 <div class="row">
   <div class="col-md-8">
     <button type="button" [disabled]="!model" class="btn btn-outline-primary" (click)="isCollapsed = !isCollapsed" [attr.aria-expanded]="!isCollapsed" aria-controls="collapseExample">
       Inserisci Evento
     </button>
-    <button type="button" class="btn btn-outline-primary" [disabled]="!selectedTasks.length || selectedTasks.length > 1">
-      Modifica  Evento
-    </button>
-    <button type="button" class="btn btn-outline-danger" (click)="confirmDialog.open()" [disabled]="!selectedTasks.length">
-      Elimina  Evento <span class="badge badge-danger">{{selectedTasks.length}}</span>
-    </button>
   </div>
 </div>
-
 <br>
 <div id="collapseExample" [ngbCollapse]="isCollapsed"><!--insert form -->
   <div class="card">
@@ -52,25 +43,19 @@
       <h4 class="card-title">Evento programmato in data {{ model.day }}/{{ model.month }}/{{ model.year }}</h4>
       <form>
         <div class="form-group">
-          <label for="insertTime">Ora inizio</label>
-          <ngb-timepicker id="insertTime" name="time" [(ngModel)]="newEvent.time"></ngb-timepicker>
-        </div>
-
-        <div class="form-group">
           <label for="insertTitle">Titolo</label>
           <input type="text" class="form-control" id="insertTitle" name="title" placeholder="Titolo Evento" [(ngModel)]="newEvent.title">
         </div>
-
         <div class="form-group">
           <label for="insertText">Testo</label>
           <textarea rows="5" class="form-control" id="insertText" name="text" placeholder="Testo Evento" [(ngModel)]="newEvent.text"></textarea>
         </div>
-
+        <div class="form-group">
+          <label for="insertTime">Ora inizio</label>
+          <ngb-timepicker id="insertTime" name="time" [(ngModel)]="newEvent.time"></ngb-timepicker>
+        </div>
         <button type="button" class="btn btn-outline-success" (click)="addEvent()">Inserisci</button>
       </form>
     </div>
   </div>
 </div>
-
-<!--delete event confirm -->
-<confirm-dialog #confirmDialog [title]="confirmTitle" [text]="confirmText" (confirm)="deleteEvents()"></confirm-dialog>

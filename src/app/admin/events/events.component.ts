@@ -15,18 +15,12 @@ const now = new Date();
 })
 
 export class EventsComponent implements OnInit {
-
   model: NgbDateStruct;
   date: {year: number, month: number, day: number};
   monthEvents: Event[] = [];
   tasks : Event[] = [];
   newEvent: Event = new Event();
   isCollapsed = true;
-  selectedTasks: any = [];
-
-  @ViewChild('confirmDialog') confirmDialog;
-  confirmTitle = 'Sicuro?';
-  confirmText = '';
 
   constructor(private calendarService: CalendarService, private alertService: AlertService) { }
 
@@ -48,24 +42,6 @@ export class EventsComponent implements OnInit {
         error => {
           this.alertService.error(error._body);
         });
-  }
-
-  deleteEvents() {
-    var ids = [];
-
-    for(var i = 0 ; i < this.selectedTasks.length ; i++) {
-      ids.push(this.selectedTasks[i]._id);
-    }
-
-    this.calendarService.deleteMany(ids).
-    subscribe(
-      data => {
-        this.alertService.success('Evento eliminato', false);
-        this.loadMonthEvents(this.model);//reload tasks
-      },
-      error => {
-        this.alertService.error(error._body);
-      });
   }
 
   selectToday() {
@@ -92,7 +68,6 @@ export class EventsComponent implements OnInit {
 
   loadTasks(date: NgbDateStruct) {
     this.tasks = [];//clear prev tasks
-    this.selectedTasks = [];
 
     for(var i = 0 ; i < this.monthEvents.length ; i++) {
       var taskDate: any = this.monthEvents[i].date;
@@ -110,15 +85,5 @@ export class EventsComponent implements OnInit {
       }
     }
     return false;
-  }
-
-  taskSelected($event) {
-    let index = this.selectedTasks.indexOf($event);
-    if( index > -1) {
-      this.selectedTasks.splice(index, 1);
-    } else {
-        this.selectedTasks.push($event);
-    }
-    this.confirmText = 'Stai elminando '+ (this.selectedTasks.length > 1 ? this.selectedTasks.length + ' eventi!' : 'un evento!');
   }
 }

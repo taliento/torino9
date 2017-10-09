@@ -1,5 +1,7 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input, Output, EventEmitter,ViewChild } from '@angular/core';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Event } from '../../../models/event';
+import { CalendarService, AlertService } from '../../../services/index';
 
 @Component({
   moduleId: module.id,
@@ -8,13 +10,37 @@ import { Event } from '../../../models/event';
 })
 export class EventDetailComponent {
   @Input() task: Event;
-  @Output() selectEvent: EventEmitter<any> = new EventEmitter();
+  @Output() reload: EventEmitter<any> = new EventEmitter();
 
-  active = false;
+  @ViewChild('confirmDialog') confirmDialog;
+  confirmTitle = 'Sicuro?';
+  confirmText = 'Stai eliminando un evento...';
 
-  selected() {
-    this.active = !this.active;
-    this.selectEvent.emit(this.task);
+  constructor(private modalService: NgbModal, private calendarService: CalendarService, private alertService: AlertService) {}
+
+  update() {
+    this.calendarService.update(this.task).
+    subscribe(
+      data => {
+        this.alertService.success('Evento modificato', false);
+        this.reload.emit();//reload tasks
+      },
+      error => {
+        this.alertService.error(error._body);
+      });
   }
 
+  deleteEvent() {
+    var ids = [];
+
+    this.calendarService.delete(this.task._id).
+    subscribe(
+      data => {
+        this.alertService.success('Evento eliminato', false);
+        this.reload.emit();//reload tasks
+      },
+      error => {
+        this.alertService.error(error._body);
+      });
+  }
 }
