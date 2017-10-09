@@ -14,6 +14,8 @@ import { EventsComponent } from './events/events.component';
 import { EventDetailComponent } from './events/event-detail/event-detail.component';
 import { AboutComponent } from './about/about.component';
 import { ContactComponent } from './contact/contact.component';
+import { AboutLinkComponent } from './about/about-links/about-links.component';
+import { LinkDetailComponent } from './about/about-links/link-detail/link-detail.component';
 
 export const MODULE_ROUTES: Route[] = [
   { path: '', pathMatch: 'full' , component: AdminComponent }
@@ -33,5 +35,7 @@ export const MODULE_COMPONENTS = [
   EventsComponent,
   EventDetailComponent,
   AboutComponent,
-  ContactComponent
+  ContactComponent,
+  AboutLinkComponent,
+  LinkDetailComponent
 ]

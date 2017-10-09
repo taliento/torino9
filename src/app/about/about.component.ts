@@ -9,11 +9,11 @@ import { AboutPageService } from '../services/index';
 })
 export class AboutUsComponent implements OnInit{
 
-  aboutPage: AboutPage;
+  aboutPage: AboutPage = new AboutPage();
 
   constructor(private aboutPageService: AboutPageService) {}
 
   ngOnInit() {
-    this.aboutPage = this.aboutPageService.getPage();
+    this.aboutPageService.get().then(result => this.aboutPage = result);
   }
 }

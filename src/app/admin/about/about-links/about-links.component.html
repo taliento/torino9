@@ -1,0 +1,10 @@
+<div class="row">
+  <div class="col-md-10">
+    <div class="form-group" *ngFor="let link of links">
+      <dt-link-detail [link]="link"></dt-link-detail>
+    </div>
+  </div>
+  <div class="col-md-2">
+    <button class="btn btn-sm btn-outline-success" (click)="addLink()">Aggiungi link</button>
+  </div>
+</div>
