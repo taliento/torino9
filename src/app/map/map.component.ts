@@ -1,4 +1,4 @@
-import { Component,Input } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'map-component',
@@ -9,4 +9,6 @@ export class MapComponent {
   @Input() title: string;
   @Input() lat: number;
   @Input() lng: number;
+  @Input() zoom = 15;
+
 }

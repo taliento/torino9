@@ -18,7 +18,7 @@ import { AlertService, AuthenticationService, UserService,
   NewsService, NewsHeaderService, CarouselService,
   FeaturetteService, CalendarService, AboutPageService,
   ContactPageService } from './services/index';
-
+import { MapModule } from './map/map.module';
 
 @NgModule({
   declarations: [
@@ -37,6 +37,7 @@ import { AlertService, AuthenticationService, UserService,
     CalendarModule,
     routing,
     BrowserModule,
+    MapModule,
     NgbModule.forRoot()
   ],
   providers: [

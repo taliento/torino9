@@ -1,0 +1,21 @@
+<div class="container">
+  <ngb-tabset>
+    <ngb-tab title="Contatti">
+      <ng-template ngbTabContent>
+        <br>
+        <contact-list #contactList [contacts]="contactPage.contacts"></contact-list>
+      </ng-template>
+    </ngb-tab>
+    <ngb-tab title="Mappa">
+      <ng-template ngbTabContent>
+        <br>
+        <contact-map [mapTitle]="contactPage.mapTitle" [mapLat]="contactPage.mapLat" [mapLng]="contactPage.mapLng" (mapCenter)="mapCenter($event)"></contact-map>
+
+        <div class="container">
+            <p>Latitudine: {{contactPage.mapLat}} Longitudine: {{contactPage.mapLng}}</p>
+        </div>
+      </ng-template>
+    </ngb-tab>
+  </ngb-tabset>
+</div>
+<button class="btn btn-outlyne-success" (click)="save()">Salva tutto</button>

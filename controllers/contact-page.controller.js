@@ -3,7 +3,7 @@
 var config = require('config.json');
 var express = require('express');
 var router = express.Router();
-var aboutService = require('services/about-page.service');
+var contactService = require('services/contact-page.service');
 
 // routes
 router.post('/insert', insert);
@@ -14,7 +14,7 @@ module.exports = router;
 
 
 function insert(req, res) {
-    aboutService.create(req.body)
+    contactService.create(req.body)
         .then(function () {
             res.sendStatus(200);
         })
@@ -24,9 +24,9 @@ function insert(req, res) {
 }
 
 function get(req, res) {
-    aboutService.get()
-        .then(function (about) {
-            res.send(about);
+    contactService.get()
+        .then(function (contact) {
+            res.send(contact);
         })
         .catch(function (err) {
             res.status(400).send(err);
@@ -34,7 +34,7 @@ function get(req, res) {
 }
 
 function update(req, res) {
-    aboutService.update(req.params._id, req.body)
+    contactService.update(req.params._id, req.body)
         .then(function () {
             res.sendStatus(200);
         })

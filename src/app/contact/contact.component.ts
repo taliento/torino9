@@ -9,14 +9,13 @@ import { ContactPageService } from '../services/index';
 })
 export class ContactComponent implements OnInit {
 
-
-  contactPage: ContactPage;
+  contactPage: ContactPage = new ContactPage();
 
   constructor(private contactPageService: ContactPageService) {}
 
   ngOnInit() {
-    this.contactPage = this.contactPageService.getPage();
 
+    this.contactPageService.get().then(result => this.contactPage = result);
 
   }
 }

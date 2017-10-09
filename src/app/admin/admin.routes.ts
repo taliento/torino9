@@ -16,6 +16,10 @@ import { AboutComponent } from './about/about.component';
 import { ContactComponent } from './contact/contact.component';
 import { AboutLinkComponent } from './about/about-links/about-links.component';
 import { LinkDetailComponent } from './about/about-links/link-detail/link-detail.component';
+import { ContactListComponent } from './contact/contact-list/contact-list.component';
+import { ContactMapComponent } from './contact/contact-map/contact-map.component';
+import { ContactDetailComponent } from './contact/contact-detail/contact-detail.component';
+
 
 export const MODULE_ROUTES: Route[] = [
   { path: '', pathMatch: 'full' , component: AdminComponent }
@@ -37,5 +41,8 @@ export const MODULE_COMPONENTS = [
   AboutComponent,
   ContactComponent,
   AboutLinkComponent,
-  LinkDetailComponent
+  LinkDetailComponent,
+  ContactListComponent,
+  ContactMapComponent,
+  ContactDetailComponent
 ]

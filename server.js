@@ -30,7 +30,8 @@ unless({ path: [
   '/calendar',
   /^\/featurette\/.*/,
   '/featurette',
-  '/about'
+  '/about',
+  '/contact'
 ] }));
 
 // routes
@@ -40,6 +41,7 @@ app.use('/calendar', require('./controllers/calendar.controller'));
 app.use('/carousel', require('./controllers/carousel.controller'));
 app.use('/featurette', require('./controllers/featurette.controller'));
 app.use('/about', require('./controllers/about-page.controller'));
+app.use('/contact', require('./controllers/contact-page.controller'));
 
 
 // Initialize the app.

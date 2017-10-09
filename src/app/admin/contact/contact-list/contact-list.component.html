@@ -1,0 +1,12 @@
+<div class="row">
+  <div class="col-md-10">
+    <form>
+      <div *ngFor="let contact of contacts">
+        <contact-detail [contact]="contact"></contact-detail>
+      </div>
+    </form>
+  </div>
+  <div class="col-md-2">
+    <button class="btn btn-sm btn-outline-success" (click)="addContact()">Aggiungi contatto</button>
+  </div>
+</div>

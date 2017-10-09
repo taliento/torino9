@@ -1,0 +1,31 @@
+<div class="form-group">
+    <label for="inputName">Nome</label>
+    <input type="text" class="form-control" id="inputName" [(ngModel)]="contact.name" name="name" placeholder="Nome">
+</div>
+<div class="form-group">
+  <label for="inputEmail">Email address</label>
+  <div class="input-group">
+    <span class="input-group-addon">
+      <i class="fa fa-envelope-o" aria-hidden="true"></i>
+    </span>
+    <input type="email" class="form-control" id="inputEmail" [(ngModel)]="contact.email" name="email" placeholder="Email">
+  </div>
+</div>
+<div class="form-group">
+  <label for="inputTel">Telefono</label>
+  <div class="input-group">
+    <span class="input-group-addon">
+      <i class="fa fa-phone" aria-hidden="true"></i>
+    </span>
+    <input type="text" class="form-control" id="inputTel" [(ngModel)]="contact.tel" name="tel" placeholder="Telefono">
+  </div>
+</div>
+<div class="form-group">
+  <label for="inputMobile">Cellulare</label>
+  <div class="input-group">
+    <span class="input-group-addon">
+      <i class="fa fa-mobile" aria-hidden="true"></i>
+    </span>
+    <input type="text" class="form-control" id="inputMobile" [(ngModel)]="contact.mobile" name="mobile" placeholder="Cellulare">
+  </div>
+</div>

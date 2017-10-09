@@ -1,29 +1,45 @@
 import { Injectable } from '@angular/core';
 import { ContactPage } from '../models/contact-page.model';
+import { environment } from '../../environments/environment';
+import { Headers, Http, RequestOptions } from '@angular/http';
 
 @Injectable()
-export class ContactPageService{
+export class ContactPageService {
 
-  getPage() {
+  apiUrl = '';
 
-    let contactPage = new ContactPage()
-    contactPage.title = "Siamo il gruppo scout di torino";
-    contactPage.text = "fondato nel ecc.. ecc...";
+  constructor(private http: Http) {
+    this.apiUrl = environment.apiUrl;
+  }
+  get(): Promise<any> {
+    return this.http.
+      get(this.apiUrl+'/contact')
+      .toPromise()
+      .then(response => response.json())
+      .catch(this.handleError);
+  }
 
-    let contacts = [];
+  insert(contactPage: ContactPage) {
+    return this.http.post(this.apiUrl+'/contact/insert',contactPage, this.jwt());
+  }
 
-    contacts.push({name:'test',email:'test@me.it',tel:'011458127', mobile:'333458127'});
-    contacts.push({name:'test2',email:'test2@me.it',tel:'0114528',mobile:'3334528'});
-    contacts.push({name:'test3',email:'test3@me.it',tel:'0114528',mobile:'3334528'});
-    // contacts.push({name:'test4',email:'test4@me.it',tel:'0114528',mobile:'3334528'});
+  update(contactPage: ContactPage) {
+    return this.http.put(this.apiUrl+'/contact/' + contactPage._id, contactPage, this.jwt());
+  }
 
-    contactPage.mapTitle = 'Siamo qui!';
-    contactPage.mapLat = 45.1033206;
-    contactPage.mapLng  = 7.696940899999959;
+  private handleError(error: any): Promise<any> {
+    console.error('An error occurred', error); // for demo purposes only
+    return Promise.reject(error.message || error);
+  }
 
-    contactPage.contacts = contacts;
-
-    return contactPage;
+  // private helper methods
+  private jwt() {
+    // create authorization header with jwt token
+    let currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    if (currentUser && currentUser.token) {
+      let headers = new Headers({ 'Authorization': 'Bearer ' + currentUser.token });
+      return new RequestOptions({ headers: headers });
+    }
   }
 
 }
