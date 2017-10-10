@@ -16,6 +16,7 @@
     "@agm/core": "^1.0.0-beta.1",
     "@angular/animations": "^4.0.0",
     "@angular/cli": "1.2.6",
+    "@types/googlemaps": "^3.29.1",
     "@angular/common": "^4.0.0",
     "@angular/compiler": "^4.0.0",
     "@angular/compiler-cli": "^4.0.0",
