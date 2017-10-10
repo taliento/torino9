@@ -3,7 +3,6 @@ import { FormControl } from "@angular/forms";
 import { MapsAPILoader, AgmMap } from '@agm/core';
 import {} from '@types/googlemaps';
 
-declare var google: any;
 
 @Component({
     moduleId: module.id,
