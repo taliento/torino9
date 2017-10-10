@@ -6,6 +6,7 @@ export class DTCarousel {
   text: string;
   imgPath: string;
   alt: string;
+  position: string;
   btnText: string;
   btnHref: string;
 }

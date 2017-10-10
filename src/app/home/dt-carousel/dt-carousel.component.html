@@ -1,7 +1,7 @@
 <ngb-carousel>
-  <ng-template *ngFor="let carouselItem of carouselList" ngbSlide>
+  <ng-template *ngFor="let carouselItem of carouselList; index as i" ngbSlide>
     <img [src]="carouselItem.imgPath" [alt]="carouselItem.alt">
-    <div class="carousel-caption d-md-block text-left">
+    <div class="carousel-caption d-md-block" [class.text-center]="carouselItem.position == 'center'" [class.text-left]="carouselItem.position == 'left'" [class.text-right]="carouselItem.position == 'right'">
       <h1>{{carouselItem.title}}</h1>
       <p>{{carouselItem.text}}</p>
       <p><a class="btn btn-lg btn-primary" [href]="carouselItem.btnHref" role="button">{{carouselItem.btnText}}</a></p>

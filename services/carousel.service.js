@@ -97,6 +97,7 @@ function update(_id, carousel) {
     btnText: carousel.btnText,
     btnHref:carousel.btnHref,
     alt: carousel.alt,
+    position: carousel.position,
     updateDate: new Date()
   };
 

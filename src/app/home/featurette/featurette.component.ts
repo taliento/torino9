@@ -20,4 +20,8 @@ export class FeaturetteComponent {
   ngOnInit(): void {
     this.featuretteService.getAll().then(result => this.featuretteList = result);
   }
+
+  isOdd(n: number): boolean {
+     return n % 2 == 0;
+  }
 }

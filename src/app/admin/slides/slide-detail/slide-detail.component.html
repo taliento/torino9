@@ -26,6 +26,20 @@
           <label for="updateText">Testo</label>
           <textarea rows="5" class="form-control" id="updateText" name="text" [(ngModel)]="slide.text" placeholder="Testo"></textarea>
         </div>
+
+        <label for="updatePosition">Posizione testo</label>
+        <div class="btn-group" id="updatePosition" ngbRadioGroup name="position" [(ngModel)]="slide.position">
+          <label ngbButtonLabel class="btn-primary">
+            <input ngbButton type="radio" value="left"> Sinistra
+          </label>
+          <label ngbButtonLabel class="btn-primary">
+            <input ngbButton type="radio" value="center"> Centro
+          </label>
+          <label ngbButtonLabel class="btn-primary">
+            <input ngbButton type="radio" value="right"> Destra
+          </label>
+        </div>
+
         <div class="form-group">
           <label for="updateImg">Immagine</label>
           <input type="text" class="form-control" id="updateImg" name="imgPath" [(ngModel)]="slide.imgPath" placeholder="Link immagine">
@@ -39,7 +53,7 @@
           <input type="text" class="form-control" id="updateURLBottone" name="btnHref" [(ngModel)]="slide.btnHref" placeholder="Url Bottone">
         </div>
       </form>
-
+      {{slide | json}}
   </div>
   <div class="modal-footer">
     <button type="button" class="btn btn-outline-success" (click)="update();c('Close click');">Conferma</button>

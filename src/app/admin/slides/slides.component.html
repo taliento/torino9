@@ -31,6 +31,19 @@
           <textarea rows="5" class="form-control" id="insertText" name="text" placeholder="Testo slide" [(ngModel)]="newSlide.text"></textarea>
         </div>
 
+        <label for="insertPosition">Posizione testo</label>
+        <div class="btn-group" id="insertPosition" ngbRadioGroup name="position" [(ngModel)]="newSlide.position">
+          <label ngbButtonLabel class="btn-primary">
+            <input ngbButton type="radio" [value]="left"> Sinistra
+          </label>
+          <label ngbButtonLabel class="btn-primary">
+            <input ngbButton type="radio" [value]="center"> Centro
+          </label>
+          <label ngbButtonLabel class="btn-primary">
+            <input ngbButton type="radio" [value]="right"> Destra
+          </label>
+        </div>
+
         <div class="form-group">
           <label for="insertImgPath">Link immagine</label>
           <input type="text" class="form-control" id="insertImgPath" name="imgPath" placeholder="Link immagine esterno" [(ngModel)]="newSlide.imgPath">
