@@ -31,7 +31,8 @@ unless({ path: [
   /^\/featurette\/.*/,
   '/featurette',
   '/about',
-  '/contact'
+  '/contact',
+  /^\/branca\/.*/,'/branca'
 ] }));
 
 // routes
@@ -42,6 +43,7 @@ app.use('/carousel', require('./controllers/carousel.controller'));
 app.use('/featurette', require('./controllers/featurette.controller'));
 app.use('/about', require('./controllers/about-page.controller'));
 app.use('/contact', require('./controllers/contact-page.controller'));
+app.use('/branca', require('./controllers/branca.controller'));
 
 
 // Initialize the app.

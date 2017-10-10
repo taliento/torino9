@@ -8,3 +8,4 @@ export { FeaturetteService } from './featurette.service';
 export { CalendarService } from './calendar.service';
 export { AboutPageService } from './about-page.service';
 export { ContactPageService } from './contact-page.service';
+export { BrancaService } from './branca.service';

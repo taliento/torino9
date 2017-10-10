@@ -17,8 +17,9 @@ import { AuthGuard } from './guards/index';
 import { AlertService, AuthenticationService, UserService,
   NewsService, NewsHeaderService, CarouselService,
   FeaturetteService, CalendarService, AboutPageService,
-  ContactPageService } from './services/index';
+  ContactPageService, BrancaService } from './services/index';
 import { MapModule } from './map/map.module';
+import { BrancaModule } from './branca/branca.module';
 
 @NgModule({
   declarations: [
@@ -34,6 +35,7 @@ import { MapModule } from './map/map.module';
     HomeModule,
     AdminModule,
     NewsModule,
+    BrancaModule,
     CalendarModule,
     routing,
     BrowserModule,
@@ -52,7 +54,8 @@ import { MapModule } from './map/map.module';
     FeaturetteService,
     CalendarService,
     AboutPageService,
-    ContactPageService
+    ContactPageService,
+    BrancaService
   ],
   bootstrap: [AppComponent]
 })

@@ -12,8 +12,16 @@
 <div class="navbar-collapse" [ngClass]="{collapse: isCollapsed}">
 
   <ul class="navbar-nav mr-auto">
-    <li *ngFor="let menuItem of menuItems" class="nav-item">
-      <a class="nav-link" [routerLink]="[menuItem.path]" routerLinkActive="active" (click)="isCollapsed = true">{{menuItem.title}}</a>
+    <li *ngFor="let menuItem of menuItems; index as i;" class="nav-item">
+      <a *ngIf="!menuItem.dropdown" class="nav-link" [routerLink]="[menuItem.path]" routerLinkActive="active" (click)="isCollapsed = true">{{menuItem.title}}</a>
+      <ul class="navbar-nav" *ngIf="menuItem.dropdown">
+        <li  ngbDropdown class="d-inline-block" placement="bottom-right" ngbDropdown>
+          <a class="nav-link" id="dropdown{{i}}" ngbDropdownToggle>{{menuItem.title}}</a>
+          <div ngbDropdownMenu attr.aria-labelledby="dropdown{{i}}">
+            <button *ngFor="let leaf of menuItem.childs" class="dropdown-item" [routerLink]="[leaf.path,leaf.param]" routerLinkActive="active" (click)="isCollapsed = true">{{leaf.title}}</button>
+          </div>
+        </li>
+      </ul>
     </li>
 
   </ul>
@@ -22,7 +30,7 @@
     <li ngbDropdown class="d-inline-block" placement="bottom-right" *ngIf="user">
       <button class="btn btn-outline-primary" id="dropdownBasic1" ngbDropdownToggle>{{user.username}}</button>
       <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
-        <button class="dropdown-item" [routerLink]="['admin']" routerLinkActive="active"><span><i class="fa fa-superpowers" aria-hidden="true"></i></span> Area Admin</button>
+        <button class="dropdown-item" [routerLink]="['admin']" routerLinkActive="active" (click)="isCollapsed = true"><span><i class="fa fa-superpowers" aria-hidden="true"></i></span> Area Admin</button>
         <div role="separator" class="dropdown-divider"></div>
         <button class="dropdown-item" (click)="logout()"><span><i class="fa fa-power-off" aria-hidden="true"></i></span> Logout</button>
       </div>
