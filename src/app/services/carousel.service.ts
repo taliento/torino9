@@ -1,18 +1,15 @@
 import { Injectable } from '@angular/core';
-import { Headers, Http, RequestOptions } from '@angular/http';
+import { Http } from '@angular/http';
 import 'rxjs/add/operator/toPromise';
-import { environment } from '../../environments/environment';
+import { AService } from './a-service.service';
 
 import { DTCarousel } from '../models/dt-carousel.model';
 
 @Injectable()
-export class CarouselService {
-  private headers = new Headers({'Content-Type': 'application/json'});
+export class CarouselService extends AService {
 
-  apiUrl = '';
-
-  constructor(private http: Http) {
-    this.apiUrl = environment.apiUrl;
+  constructor(http: Http) {
+    super(http);
   }
 
   getAll(): Promise<DTCarousel[]> {
@@ -51,20 +48,5 @@ export class CarouselService {
 
   update(slide: DTCarousel) {
     return this.http.put(this.apiUrl+'/carousel/' + slide._id, slide, this.jwt());
-  }
-
-  private handleError(error: any): Promise<any> {
-    console.error('An error occurred', error); // for demo purposes only
-    return Promise.reject(error.message || error);
-  }
-
-  // private helper methods
-  private jwt() {
-    // create authorization header with jwt token
-    let currentUser = JSON.parse(localStorage.getItem('currentUser'));
-    if (currentUser && currentUser.token) {
-      let headers = new Headers({ 'Authorization': 'Bearer ' + currentUser.token });
-      return new RequestOptions({ headers: headers });
-    }
   }
 }
