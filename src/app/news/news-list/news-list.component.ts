@@ -30,10 +30,6 @@ export class NewsListComponent implements OnInit {
     });
   }
 
-  onSelect(news: News){
-    this.router.navigate(['news/detail', news._id]);
-  }
-
   loadPage(page: number) {
     if (page !== this.previousPage) {
       this.previousPage = page;
