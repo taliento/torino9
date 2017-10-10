@@ -1,6 +1,6 @@
 import { Component, ElementRef, NgZone, OnInit, ViewChild, Input, Output, EventEmitter } from '@angular/core';
 import { FormControl } from "@angular/forms";
-import { MapsAPILoader } from '@agm/core';
+import { MapsAPILoader, AgmMap } from '@agm/core';
 import {} from '@types/googlemaps';
 
 declare var google: any;
