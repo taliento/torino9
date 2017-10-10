@@ -2,7 +2,7 @@
   <div class="col-md-10">
     <form>
       <div *ngFor="let contact of contacts">
-        <contact-detail [contact]="contact"></contact-detail>
+        <contact-detail [contact]="contact" (deleteContact)="deleteContact($event)"></contact-detail>
       </div>
     </form>
   </div>

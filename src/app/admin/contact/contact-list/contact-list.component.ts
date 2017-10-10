@@ -20,4 +20,9 @@ export class ContactListComponent {
     return this.contacts;
   }
 
+  deleteContact($event) {
+    let index = this.contacts.indexOf($event);
+    this.contacts.splice(index,1);
+  }
+
 }
