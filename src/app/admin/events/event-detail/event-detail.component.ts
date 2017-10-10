@@ -16,6 +16,8 @@ export class EventDetailComponent {
   confirmTitle = 'Sicuro?';
   confirmText = 'Stai eliminando un evento...';
 
+  @ViewChild('updateEvent') updateEvent;
+
   constructor(private modalService: NgbModal, private calendarService: CalendarService, private alertService: AlertService) {}
 
   update() {
@@ -42,5 +44,9 @@ export class EventDetailComponent {
       error => {
         this.alertService.error(error._body);
       });
+  }
+
+  openUpdateModal() {
+    this.modalService.open(this.updateEvent);
   }
 }

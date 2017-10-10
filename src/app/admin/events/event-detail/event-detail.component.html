@@ -7,7 +7,7 @@
   <small *ngIf="task.insertDate">Inserito il {{task.insertDate | date:'dd/MM/yyyy'}}</small>
 
   <div class="pull-right">
-    <button type="button" class="btn btn-outline-primary btn-sm" (click)="modalService.open(updateEvent)">
+    <button type="button" class="btn btn-outline-primary btn-sm" (click)="openUpdateModal()">
       Modifica  Evento
     </button>
     <button type="button" class="btn btn-outline-danger btn-sm" (click)="confirmDialog.open()">
