@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ContactPage } from '../../models/contact-page.model';
 import { ContactPageService, AlertService } from '../../services/index';
+import { ContactListComponent } from './contact-list/contact-list.component';
 
 @Component({
     moduleId: module.id,
@@ -11,7 +12,7 @@ import { ContactPageService, AlertService } from '../../services/index';
 export class ContactComponent implements OnInit {
 
   contactPage: ContactPage = new ContactPage();
-  @ViewChild('contactList') contactList;
+  @ViewChild('contactList') contactList : ContactListComponent;
 
   constructor(private contactPageService: ContactPageService, private alertService: AlertService) {}
 
@@ -22,6 +23,7 @@ export class ContactComponent implements OnInit {
   mapCenter($event) {
     this.contactPage.mapLat = $event.lat;
     this.contactPage.mapLng = $event.lng;
+    this.contactPage.mapTitle = 'Ci trovi qui! '+ $event.title;
   }
 
   save() {

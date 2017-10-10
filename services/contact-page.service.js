@@ -48,7 +48,10 @@ function update(_id, contact) {
     title: contact.title,
     subtitle: contact.subtitle,
     text: contact.text,
-    links: contact.links,
+    contacts: contact.contacts,
+    mapLat:contact.mapLat,
+    mapLng:contact.mapLng,
+    mapTitle:contact.mapTitle,
     updateDate: new Date()
   };
 

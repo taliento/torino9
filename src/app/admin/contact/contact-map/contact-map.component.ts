@@ -17,7 +17,7 @@ export class ContactMapComponent {
 
   @Output() mapCenter: EventEmitter<any> = new EventEmitter();
 
-  zoom: number;
+  zoom = 15;
 
   public searchControl: FormControl;
 
@@ -33,10 +33,13 @@ export class ContactMapComponent {
   ) {}
 
   ngOnInit() {
-    //set google maps defaults -> Narni centro geografico Italia
-   this.zoom = 5;
-   this.mapLat = 42.5176022;
-   this.mapLng = 12.5156299;
+
+   if(this.mapLat == null || this.mapLng == null) {
+     //set google maps defaults -> Narni centro geografico Italia
+    this.zoom = 5;
+    this.mapLat = 42.5176022;
+    this.mapLng = 12.5156299;
+   }
 
     //create search FormControl
     this.searchControl = new FormControl();
@@ -62,9 +65,10 @@ export class ContactMapComponent {
           //set latitude, longitude and zoom
           this.mapLat = place.geometry.location.lat();
           this.mapLng = place.geometry.location.lng();
+          this.mapTitle = place.name;
           this.zoom = 15;
 
-          this.mapCenter.emit({lat:this.mapLat, lng:this.mapLng});
+          this.mapCenter.emit({lat:this.mapLat, lng:this.mapLng, title:this.mapTitle});
         });
       });
     });
