@@ -2,12 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { ROUTES } from './navbar-routes.config';
 import { MenuType } from './navbar.metadata';
 import { AuthenticationService } from '../services/index';
+import { Router } from '@angular/router';
 
 @Component({
   moduleId: module.id,
   selector: 'my-navbar',
-  templateUrl: 'navbar.component.html',
-  styleUrls: [ 'navbar.component.css' ]
+  templateUrl: 'navbar.component.html'
 })
 export class NavbarComponent implements OnInit {
   public menuItems: any[];
@@ -15,7 +15,7 @@ export class NavbarComponent implements OnInit {
   isCollapsed = true;
   public user: any;
 
-  constructor(private authenticationService: AuthenticationService) {
+  constructor(private authenticationService: AuthenticationService, private router: Router) {
     this.authenticationService.userValue.subscribe((nextValue) => {
       this.user = nextValue;
     });
@@ -28,6 +28,7 @@ export class NavbarComponent implements OnInit {
 
   logout() {
     this.authenticationService.logout();
+    this.router.navigate(['']);
   }
 
 
