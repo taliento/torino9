@@ -19,8 +19,8 @@ module.exports = router;
 
 function insert(req, res) {
     newsService.create(req.body)
-        .then(function () {
-            res.sendStatus(200);
+        .then(function (doc) {
+            res.send(doc);
         })
         .catch(function (err) {
             res.status(400).send(err);
