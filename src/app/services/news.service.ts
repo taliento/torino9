@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
 import 'rxjs/add/operator/toPromise';
 import { AService } from './a-service.service';
-import { News } from '../models/news.model'
+import { News } from '../models/news.model';
 
 @Injectable()
 export class NewsService extends AService {
@@ -19,7 +19,7 @@ export class NewsService extends AService {
       .catch(this.handleError);
   }
 
-  getPagedNews(params: any) {
+  getPaged(params: any) {
     const url = `/news/${params.limit}/${params.page}/${params.size}`;
     return this.http.get(this.apiUrl+url);
   }

@@ -8,4 +8,10 @@ export class News {
   alt: string;
   imgPath: string;
   author: string;
+
+  constructor(title: string, subTitle: string, text: string) {
+    this.title = title;
+    this.subTitle = subTitle;
+    this.text = text;
+  }
 }

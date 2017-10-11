@@ -13,7 +13,6 @@ router.get('/date/:date', getByDate);
 router.get('/:_id', get);
 router.put('/:_id', update);
 router.delete('/:_id', _delete);
-router.post('/deleteMany', deleteMany);
 
 module.exports = router;
 
@@ -81,17 +80,6 @@ function update(req, res) {
             res.status(400).send(err);
         });
 }
-
-function deleteMany(req, res) {
-    caledarService.deleteMany(req.body)
-        .then(function () {
-            res.sendStatus(200);
-        })
-        .catch(function (err) {
-            res.status(400).send(err);
-        });
-}
-
 
 function _delete(req, res) {
     caledarService.delete(req.params._id)

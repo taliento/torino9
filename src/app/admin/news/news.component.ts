@@ -12,7 +12,7 @@ export class NewsComponent implements OnInit{
   isCollapsed = true;
   public newsList: News[];
 
-  newNews: News = new News();//:D
+  newNews: News = new News(null,null,null);//:D
 
   @ViewChild('confirmDialog') confirmDialog;
   confirmTitle = 'Sicuro?';
@@ -44,7 +44,7 @@ export class NewsComponent implements OnInit{
       data => {
         this.alertService.success(this.newNews.title+' inserita!', false);
         this.collectionSize++;
-        this.newNews = new News();//:D
+        this.newNews = new News(null,null,null);//:D
         this.isCollapsed = true;
         this.loadData();
       },
@@ -79,7 +79,7 @@ export class NewsComponent implements OnInit{
   }
 
   loadData() {
-    this.newsService.getPagedNews({
+    this.newsService.getPaged({
       limit: this.pageSize,
       page: this.page - 1,
       size: this.pageSize,

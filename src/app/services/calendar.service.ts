@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
 import 'rxjs/add/operator/toPromise';
 import { AService } from './a-service.service';
-import { Event } from '../models/event';
+import { Event } from '../models/event.model';
 
 @Injectable()
 export class CalendarService extends AService {
@@ -19,21 +19,12 @@ export class CalendarService extends AService {
       .catch(this.handleError);
   }
 
-  getPaged(params: any) {
-    const url = `/calendar/${params.limit}/${params.page}/${params.size}`;
-    return this.http.get(this.apiUrl+url);
-  }
-
   getMonthEvents(date: any): Promise<Event[]> {
     const url = `/calendar/month/${date.month}/${date.year}`;
     return this.http.get(this.apiUrl+url)
     .toPromise()
     .then(response => response.json() as Event[])
     .catch(this.handleError);
-  }
-
-  count() {
-    return this.http.get(this.apiUrl+ '/calendar/count');
   }
 
   getById(_id: string): Promise<Event> {

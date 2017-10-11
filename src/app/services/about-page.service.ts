@@ -10,7 +10,7 @@ export class AboutPageService extends AService {
     super(http);
   }
 
-  get(): Promise<any> {
+  get(): Promise<AboutPage> {
     return this.http.
       get(this.apiUrl+'/about')
       .toPromise()

@@ -13,7 +13,6 @@ service.getById = getById;
 service.create = create;
 service.update = update;
 service.delete = _delete;
-service.deleteMany = deleteMany;
 module.exports = service;
 
 
@@ -109,24 +108,6 @@ function update(_id, calendarParam) {
     });
 
     return deferred.promise;
-}
-
-function deleteMany(_ids) {
-  var deferred = Q.defer();
-
-  var idObjects = [];
-  for(var i = 0 ; i < _ids.length ; i++) {
-    idObjects.push(mongo.helper.toObjectID(_ids[i]))
-  }
-
-  db.calendar.remove({'_id':{'$in':idObjects}},
-  function (err) {
-    if (err) deferred.reject(err.name + ': ' + err.message);
-
-    deferred.resolve();
-  });
-
-  return deferred.promise;
 }
 
 function _delete(_id) {

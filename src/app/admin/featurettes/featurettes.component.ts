@@ -12,7 +12,7 @@ export class FeaturetteComponent implements OnInit{
   isCollapsed = true;
   public featuretteList: Featurette[];
 
-  newFeaturette: Featurette = new Featurette();
+  newFeaturette: Featurette = new Featurette(null,null,null);
 
   @ViewChild('confirmDialog') confirmDialog;
   confirmTitle = 'Sicuro?';
@@ -44,7 +44,7 @@ export class FeaturetteComponent implements OnInit{
         this.alertService.success(this.newFeaturette.title+' inserita!', false);
         this.isCollapsed = true;
         this.collectionSize++;
-        this.newFeaturette = new Featurette();
+        this.newFeaturette = new Featurette(null,null,null);
         this.loadData();
       },
       error => {

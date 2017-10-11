@@ -38,7 +38,7 @@ export class NewsListComponent implements OnInit {
   }
 
   loadData() {
-    this.newsService.getPagedNews({
+    this.newsService.getPaged({
       limit: this.pageSize,
       page: this.page - 1,
       size: this.pageSize,
