@@ -5,7 +5,8 @@ var apiUrl = common.apiUrl;
 var user = common.user;
 var password = common.password;
 
-describe('carousel rest api', function() {
+
+describe('contacts page rest api', function() {
   var id;
 
   var token;
@@ -21,9 +22,9 @@ describe('carousel rest api', function() {
       });
   });
 
-  it('post slide', function(done){
-    superagent.post(apiUrl+'/carousel/insert')
-      .send({ title: 'test' , subtitle: 'test carousel' })
+  it('inser contacts page', function(done){
+    superagent.post(apiUrl+'/contact/insert')
+      .send({ title: 'test' , subtitle:'contact page sub',text:'about text' })
       .set('Authorization', 'Bearer ' + token)
       .end(function(e,res){
         expect(e).to.eql(null);
@@ -31,13 +32,13 @@ describe('carousel rest api', function() {
         expect(res.body.result.ok).to.eql(1);
         expect(res.body.insertedCount).to.eql(1);
         expect(res.body.insertedIds[0].length).to.be.equal(24);
-        id = res.body.ops[0]._id;
+        id = res.body.insertedIds[0];
         done();
       });
   });
 
-  it('retrieves a slide', function(done){
-    superagent.get(apiUrl+'/carousel/get/'+id)
+  it('retrieves contacts page', function(done){
+    superagent.get(apiUrl+'/contact/get/'+id)
       .end(function(e, res){
         expect(e).to.eql(null);
         expect(typeof res.body).to.eql('object');
@@ -47,50 +48,20 @@ describe('carousel rest api', function() {
       });
   });
 
-  it('retrieves a slide collection', function(done){
-    superagent.get(apiUrl+'/carousel')
-      .end(function(e, res){
-        expect(e).to.eql(null);
-        expect(res.body.length).to.be.above(0);
-        expect(res.body.map(function (item){return item._id})).to.contain(id);
-        done();
-      });
-  });
-
-  it('count slides', function(done){
-    superagent.get(apiUrl+'/carousel/count')
-      .end(function(e, res){
-        expect(e).to.eql(null);
-        expect(typeof res.body).to.eql('object');
-        expect(res.body.count).to.be.above(0);
-        done();
-      });
-  });
-
-  it('retrieves paged slides', function(done){
-    superagent.get(apiUrl+'/carousel/paged/2/1/2')
-      .end(function(e, res){
-        expect(e).to.eql(null);
-        expect(res.body.length).to.be.above(0);
-        // expect(res.body.map(function (item){return item._id})).to.contain(id);
-        done();
-      });
-  });
-
-  it('updates a slide', function(done){
-    superagent.put(apiUrl+'/carousel/'+id)
-      .send({ title: 'test' , subtitle: 'test carousel' })
+  it('updates contacts page', function(done){
+    superagent.post(apiUrl+'/contact/insert')
+      .send({ title: 'test' , subtitle:'contact page sub',text:'about text', _id: id })
       .set('Authorization', 'Bearer ' + token)
-      .set('Accept', 'application/json')
       .end(function(e, res) {
         expect(e).to.eql(null);
+        expect(typeof res.body).to.eql('object');
         expect(res.status).to.eql(200);
         done();
       });
   });
 
-  it('removes a slide', function(done){
-    superagent.del(apiUrl+'/carousel/'+id)
+  it('removes contacts page', function(done){
+    superagent.del(apiUrl+'/contact/'+id)
       .set('Authorization', 'Bearer ' + token)
       .set('Accept', 'application/json')
       .end(function(e, res){

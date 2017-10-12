@@ -17,7 +17,11 @@ export class ContactComponent implements OnInit {
   constructor(private contactPageService: ContactPageService, private alertService: AlertService) {}
 
   ngOnInit() {
-    this.contactPageService.get().then(result => this.contactPage = result);
+    this.contactPageService.get().then(result => {
+      if(result) {
+          this.contactPage = result;
+      }
+    });
   }
 
   mapCenter($event) {

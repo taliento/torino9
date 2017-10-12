@@ -22,8 +22,4 @@ export class AboutPageService extends AService {
     return this.http.post(this.apiUrl+'/about/insert',aboutPage, this.jwt());
   }
 
-  update(aboutPage: AboutPage) {
-    return this.http.put(this.apiUrl+'/about/' + aboutPage._id, aboutPage, this.jwt());
-  }
-
 }

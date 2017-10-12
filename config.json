@@ -1,5 +1,7 @@
 {
     "connectionString": "mongodb://localhost/torino9",
     "apiUrl": "http://localhost:3000",
-    "secret": "torino9scout"
+    "secret": "torino9scout",
+    "user":"dade",
+    "password":"asdasd"
 }

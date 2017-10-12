@@ -40,3 +40,13 @@ testem.log
 # System Files
 .DS_Store
 Thumbs.db
+
+#config.json test properties
+#{
+#    "connectionString": "your mongodb connection",
+#    "apiUrl": "your api",
+#    "secret": "your secret",
+#    "user":"your admin user",
+#    "password":"your admin password"
+#}
+config.json

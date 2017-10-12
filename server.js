@@ -41,7 +41,9 @@ unless({ path: [
   /^\/featurette\/get\/.*/,
   /^\/featurette\/paged\/.*/,
   '/about',
+  /^\/about\/get\/.*/,
   '/contact',
+  /^\/contact\/get\/.*/,
   // /^\/branca\/.*/,
   '/branca'
 ] }));

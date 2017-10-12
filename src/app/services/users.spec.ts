@@ -112,7 +112,7 @@ describe('Users Service', () => {
       connection.mockRespond(new Response(new ResponseOptions({status: 201})));
     });
 
-    let data = {username:'dade',pasword:'password'};
+    let data = {username:'test',pasword:'test'};
 
     userService.create(data).subscribe(
       (successResult) => {
@@ -129,7 +129,7 @@ describe('Users Service', () => {
       connection.mockRespond(new Response(new ResponseOptions({status: 204})));
     });
 
-    let data = {username:'dade',pasword:'password',_id: '10'};
+    let data = {username:'test',pasword:'test',_id: '10'};
 
     userService.update(data).subscribe(
       (successResult) => {

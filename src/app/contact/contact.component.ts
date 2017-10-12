@@ -14,8 +14,10 @@ export class ContactComponent implements OnInit {
   constructor(private contactPageService: ContactPageService) {}
 
   ngOnInit() {
-
-    this.contactPageService.get().then(result => this.contactPage = result);
-
+    this.contactPageService.get().then(result => {
+      if(result) {
+        this.contactPage = result
+      }
+    });
   }
 }

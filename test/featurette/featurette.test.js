@@ -2,6 +2,8 @@ var common = require("../common");
 var superagent = common.superagent;
 var expect = common.expect;
 var apiUrl = common.apiUrl;
+var user = common.user;
+var password = common.password;
 
 describe('featurette rest api', function() {
   var id;
@@ -10,7 +12,7 @@ describe('featurette rest api', function() {
 
   before(function(done) {
     superagent.post(apiUrl+'/users/authenticate')
-      .send({ username: 'dade', password: 'asdasd' })
+      .send({ username: user, password: password })
       .set('Accept', 'application/json')
       .end(function(err, res) {
         expect(err).to.eql(null);

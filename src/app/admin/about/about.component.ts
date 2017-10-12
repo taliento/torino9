@@ -17,31 +17,22 @@ export class AboutComponent implements OnInit {
   constructor(private aboutPageService: AboutPageService, private alertService: AlertService) { }
 
   ngOnInit() {
-    this.aboutPageService.get().then(result => this.aboutPage = result);
+    this.aboutPageService.get().then(result => {
+      if(result) {
+          this.aboutPage = result;
+      }
+    });
   }
 
   save() {
-
     this.aboutPage.links = this.aboutLinks.getLinks();//prendo i links aggiornati
-
-    if(this.aboutPage._id) {
-      this.aboutPageService.update(this.aboutPage)
-      .subscribe(
-        data => {
-          this.alertService.success('Pagina modificata', false);
-        },
-        error => {
-          this.alertService.error(error._body);
-        });
-    } else {
-      this.aboutPageService.insert(this.aboutPage)
-      .subscribe(
-        data => {
-          this.alertService.success('Pagina inserita', false);
-        },
-        error => {
-          this.alertService.error(error._body);
-        });
-    }
+    this.aboutPageService.insert(this.aboutPage)
+    .subscribe(
+      data => {
+        this.alertService.success('Pagina modificata', false);
+      },
+      error => {
+        this.alertService.error(error._body);
+      });
   }
 }

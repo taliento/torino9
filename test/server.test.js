@@ -15,9 +15,13 @@ describe("express rest api server", function () {
     //   // console.log("running something before each test");
     // });
 
+    importTest("about folder", './about/about.test.js');
+
     importTest("calendar folder", './calendar/calendar.test.js');
 
     importTest("carousel folder", './carousel/carousel.test.js');
+
+    importTest("contacts folder", './contacts/contacts.test.js');
 
     importTest("featurette folder", './featurette/featurette.test.js');
 

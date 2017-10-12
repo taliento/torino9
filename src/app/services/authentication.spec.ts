@@ -37,7 +37,7 @@ describe('Authentication Service', () => {
   it('should login user',
   inject([AuthenticationService, MockBackend], (authenticationService, mockBackend) => {
 
-    const mockResponse = {username: 'dade' , password:'test', token:'blabla'};
+    const mockResponse = {username: 'test' , password:'test', token:'blabla'};
 
     mockBackend.connections.subscribe((connection) => {
       connection.mockRespond(new Response(new ResponseOptions({
@@ -47,12 +47,12 @@ describe('Authentication Service', () => {
 
     authenticationService.userValue.subscribe((nextValue) => {
       expect(nextValue).toBeDefined();
-      expect(nextValue.username).toEqual('dade');
+      expect(nextValue.username).toEqual('test');
       expect(nextValue.password).toEqual('test');
       expect(nextValue.token).toEqual('blabla');
     });
 
-    authenticationService.login('dade','test').subscribe(response => {
+    authenticationService.login('test','test').subscribe(response => {
       expect(response).toBeUndefined();
     });
 
