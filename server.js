@@ -11,31 +11,26 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 // Create link to Angular build directory
-console.log(__dirname);
 var distDir = __dirname + "/dist/";
 app.use(express.static(distDir));
 
 // use JWT auth to secure the api
 app.use(expressJwt({ secret: config.secret }).
-unless({ path: [
+unless({ path: [//exclusions
   '/',
   '/users/authenticate',
   '/users/register',
-  // /^\/news\/.*/,
    '/news',
    '/news/count',
    /^\/news\/get\/.*/,
    /^\/news\/paged\/.*/,
-  // /^\/carousel\/.*/,
   '/carousel',
   '/carousel/count',
   /^\/carousel\/get\/.*/,
   /^\/carousel\/paged\/.*/,
-  // /^\/calendar\/.*/,
   '/calendar',
   /^\/calendar\/month\/.*/,
   /^\/calendar\/get\/.*/,
-  // /^\/featurette\/.*/,
   '/featurette',
   '/featurette/count',
   /^\/featurette\/get\/.*/,
@@ -44,8 +39,8 @@ unless({ path: [
   /^\/about\/get\/.*/,
   '/contact',
   /^\/contact\/get\/.*/,
-  // /^\/branca\/.*/,
-  '/branca'
+  '/branca',
+  /^\/branca\/get\/.*/
 ] }));
 
 // routes

@@ -6,15 +6,25 @@ var router = express.Router();
 var brancaService = require('services/branca.service');
 
 // routes
-router.get('/:_id', get);
+router.get('',getAll);
+router.get('/get/:_id', get);
 
 module.exports = router;
 
+function getAll(req, res) {
+  brancaService.getAll()
+      .then(function (doc) {
+          res.send(doc);
+      })
+      .catch(function (err) {
+          res.status(400).send(err);
+      });
+}
 
 function get(req, res) {
     brancaService.get(req.params._id)
-        .then(function (about) {
-            res.send(about);
+        .then(function (doc) {
+            res.send(doc);
         })
         .catch(function (err) {
             res.status(400).send(err);

@@ -6,7 +6,17 @@ db.bind('branca');
 
 var service = {};
 service.get = get;
+service.get = getAll;
 module.exports = service;
+
+
+function getAll() {
+  var deferred = Q.defer();
+
+  deferred.resolve([{text:"la branca LC"},{text:"la branca EG"},{text:"la branca RS"}]);
+
+  return deferred.promise;
+}
 
 function get(_id) {
   var deferred = Q.defer();
