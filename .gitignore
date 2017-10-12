@@ -46,6 +46,7 @@ Thumbs.db
 #    "connectionString": "your mongodb connection",
 #    "apiUrl": "your api",
 #    "secret": "your secret",
+#    "port":3000,
 #    "user":"your admin user",
 #    "password":"your admin password"
 #}

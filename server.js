@@ -15,7 +15,7 @@ var distDir = __dirname + "/dist/";
 app.use(express.static(distDir));
 
 // use JWT auth to secure the api
-app.use(expressJwt({ secret: config.secret }).
+app.use(expressJwt({ secret: (process.env.SECRET || config.secret) }).
 unless({ path: [//exclusions
   '/',
   '/users/authenticate',
@@ -55,7 +55,7 @@ app.use('/branca', require('./controllers/branca.controller'));
 
 
 // Initialize the app.
-var server = app.listen(process.env.PORT || 3000, function () {
+var server = app.listen(process.env.PORT || config.port, function () {
   var port = server.address().port;
   console.log("App now running on port", port);
 });
