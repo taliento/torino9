@@ -2,7 +2,7 @@ var common = require("../common");
 var superagent = common.superagent;
 var expect = common.expect;
 
-describe('news rest api', function() {
+describe('user rest api', function() {
   var id;
 
   var token;
@@ -18,9 +18,9 @@ describe('news rest api', function() {
       });
   });
 
-  it('post news', function(done){
-    superagent.post('http://localhost:3000/news/insert')
-      .send({ title: 'test' , subtitle: 'test news' })
+  it('user register', function(done){
+    superagent.post('http://localhost:3000/users/register')
+      .send({ username: 'test' , password: 'password' })
       .set('Authorization', 'Bearer ' + token)
       .end(function(e,res){
         expect(e).to.eql(null);
@@ -33,8 +33,9 @@ describe('news rest api', function() {
       });
   });
 
-  it('retrieves a news', function(done){
-    superagent.get('http://localhost:3000/news/get/'+id)
+  it('retrieves an user', function(done){
+    superagent.get('http://localhost:3000/users/'+id)
+      .set('Authorization', 'Bearer ' + token)
       .end(function(e, res){
         expect(e).to.eql(null);
         expect(typeof res.body).to.eql('object');
@@ -44,8 +45,9 @@ describe('news rest api', function() {
       });
   });
 
-  it('retrieves news collection', function(done){
-    superagent.get('http://localhost:3000/news')
+  it('retrieves user collection', function(done){
+    superagent.get('http://localhost:3000/users')
+      .set('Authorization', 'Bearer ' + token)
       .end(function(e, res){
         expect(e).to.eql(null);
         expect(res.body.length).to.be.above(0);
@@ -54,8 +56,9 @@ describe('news rest api', function() {
       });
   });
 
-  it('count news', function(done){
-    superagent.get('http://localhost:3000/news/count')
+  it('count users', function(done){
+    superagent.get('http://localhost:3000/users/count')
+      .set('Authorization', 'Bearer ' + token)
       .end(function(e, res){
         expect(e).to.eql(null);
         expect(typeof res.body).to.eql('object');
@@ -64,8 +67,9 @@ describe('news rest api', function() {
       });
   });
 
-  it('retrieves paged news', function(done){
-    superagent.get('http://localhost:3000/news/paged/2/1/2')
+  it('retrieves paged users', function(done){
+    superagent.get('http://localhost:3000/users/paged/2/1/2')
+      .set('Authorization', 'Bearer ' + token)
       .end(function(e, res){
         expect(e).to.eql(null);
         expect(res.body.length).to.be.above(0);
@@ -74,9 +78,9 @@ describe('news rest api', function() {
       });
   });
 
-  it('updates a news', function(done){
-    superagent.put('http://localhost:3000/news/'+id)
-      .send({ title: 'test' , subtitle: 'test news' })
+  it('updates an user', function(done){
+    superagent.put('http://localhost:3000/users/'+id)
+      .send({ username: 'test' , password: 'passwordnew' })
       .set('Authorization', 'Bearer ' + token)
       .set('Accept', 'application/json')
       .end(function(e, res) {
@@ -86,8 +90,8 @@ describe('news rest api', function() {
       });
   });
 
-  it('removes a news', function(done){
-    superagent.del('http://localhost:3000/news/'+id)
+  it('removes an user', function(done){
+    superagent.del('http://localhost:3000/users/'+id)
       .set('Authorization', 'Bearer ' + token)
       .set('Accept', 'application/json')
       .end(function(e, res){

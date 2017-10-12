@@ -80,7 +80,7 @@ function create(carousel) {
     function (err, doc) {
       if (err) deferred.reject(err.name + ': ' + err.message);
 
-      deferred.resolve();
+      deferred.resolve(doc);
     });
 
     return deferred.promise;

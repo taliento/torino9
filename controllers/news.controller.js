@@ -9,8 +9,8 @@ var newsService = require('services/news.service');
 router.post('/insert', insert);
 router.get('/', getAll);
 router.get('/count', count);
-router.get('/:_id', get);
-router.get('/:limit/:page/:size', getPaged);
+router.get('/get/:_id', get);
+router.get('/paged/:limit/:page/:size', getPaged);
 router.put('/:_id', update);
 router.delete('/:_id', _delete);
 

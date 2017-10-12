@@ -17,7 +17,7 @@ export class UserService extends AService {
   }
 
   getPaged(params: any) {
-    const url = `/users/${params.limit}/${params.page}/${params.size}`;
+    const url = `/users/paged/${params.limit}/${params.page}/${params.size}`;
     return this.http.get(this.apiUrl+url,this.jwt());
   }
 

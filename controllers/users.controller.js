@@ -10,9 +10,9 @@ router.post('/authenticate', authenticate);
 router.post('/register', register);
 router.get('/count', count);
 router.get('/', getAll);
-router.get('/current', getCurrent);
-router.get('/:limit/:page/:size', getPaged);
+router.get('/paged/:limit/:page/:size', getPaged);
 router.put('/:_id', update);
+router.get('/:_id', getById);
 router.delete('/:_id', _delete);
 
 module.exports = router;
@@ -35,8 +35,8 @@ function authenticate(req, res) {
 
 function register(req, res) {
     userService.create(req.body)
-        .then(function () {
-            res.sendStatus(200);
+        .then(function (doc) {
+            res.send(doc);
         })
         .catch(function (err) {
             res.status(400).send(err);
@@ -53,8 +53,8 @@ function getAll(req, res) {
         });
 }
 
-function getCurrent(req, res) {
-    userService.getById(req.user.sub)
+function getById(req, res) {
+    userService.getById(req.params._id)
         .then(function (user) {
             if (user) {
                 res.send(user);

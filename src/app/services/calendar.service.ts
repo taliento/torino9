@@ -28,7 +28,7 @@ export class CalendarService extends AService {
   }
 
   getById(_id: string): Promise<Event> {
-    const url = `/calendar/${_id}`;
+    const url = `/calendar/get/${_id}`;
       return this.http.
       get(this.apiUrl+url)
       .toPromise()
@@ -42,10 +42,6 @@ export class CalendarService extends AService {
 
   delete(_id: string) {
     return this.http.delete(this.apiUrl+'/calendar/' + _id, this.jwt());
-  }
-
-  deleteMany(_ids: any) {
-    return this.http.post(this.apiUrl+'/calendar/deleteMany',_ids, this.jwt());
   }
 
   update(event: Event) {

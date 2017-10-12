@@ -9,8 +9,8 @@ var carouselService = require('services/carousel.service');
 router.post('/insert', insert);
 router.get('/', getAll);
 router.get('/count', count);
-router.get('/:_id', get);
-router.get('/:limit/:page/:size', getPaged);
+router.get('/get/:_id', get);
+router.get('/paged/:limit/:page/:size', getPaged);
 router.put('/:_id', update);
 router.delete('/:_id', _delete);
 
@@ -19,8 +19,8 @@ module.exports = router;
 
 function insert(req, res) {
     carouselService.create(req.body)
-        .then(function () {
-            res.sendStatus(200);
+        .then(function (doc) {
+            res.send(doc);
         })
         .catch(function (err) {
             res.status(400).send(err);

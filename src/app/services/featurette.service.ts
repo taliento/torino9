@@ -19,8 +19,17 @@ export class FeaturetteService extends AService {
       .catch(this.handleError);
   }
 
+  getById(_id: string): Promise<Featurette> {
+    const url = `/featurette/get/${_id}`;
+      return this.http.
+      get(this.apiUrl+url)
+      .toPromise()
+      .then(response => response.json() as Featurette)
+      .catch(this.handleError);
+  }
+
   getPaged(params: any) {
-    const url = `/featurette/${params.limit}/${params.page}/${params.size}`;
+    const url = `/featurette/paged/${params.limit}/${params.page}/${params.size}`;
     return this.http.get(this.apiUrl+url);
   }
 

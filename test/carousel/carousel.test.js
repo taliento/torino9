@@ -2,7 +2,8 @@ var common = require("../common");
 var superagent = common.superagent;
 var expect = common.expect;
 
-describe('news rest api', function() {
+
+describe('carousel rest api', function() {
   var id;
 
   var token;
@@ -18,9 +19,9 @@ describe('news rest api', function() {
       });
   });
 
-  it('post news', function(done){
-    superagent.post('http://localhost:3000/news/insert')
-      .send({ title: 'test' , subtitle: 'test news' })
+  it('post slide', function(done){
+    superagent.post('http://localhost:3000/carousel/insert')
+      .send({ title: 'test' , subtitle: 'test carousel' })
       .set('Authorization', 'Bearer ' + token)
       .end(function(e,res){
         expect(e).to.eql(null);
@@ -33,8 +34,8 @@ describe('news rest api', function() {
       });
   });
 
-  it('retrieves a news', function(done){
-    superagent.get('http://localhost:3000/news/get/'+id)
+  it('retrieves a slide', function(done){
+    superagent.get('http://localhost:3000/carousel/get/'+id)
       .end(function(e, res){
         expect(e).to.eql(null);
         expect(typeof res.body).to.eql('object');
@@ -44,8 +45,8 @@ describe('news rest api', function() {
       });
   });
 
-  it('retrieves news collection', function(done){
-    superagent.get('http://localhost:3000/news')
+  it('retrieves a slide collection', function(done){
+    superagent.get('http://localhost:3000/carousel')
       .end(function(e, res){
         expect(e).to.eql(null);
         expect(res.body.length).to.be.above(0);
@@ -54,8 +55,8 @@ describe('news rest api', function() {
       });
   });
 
-  it('count news', function(done){
-    superagent.get('http://localhost:3000/news/count')
+  it('count slides', function(done){
+    superagent.get('http://localhost:3000/carousel/count')
       .end(function(e, res){
         expect(e).to.eql(null);
         expect(typeof res.body).to.eql('object');
@@ -64,8 +65,8 @@ describe('news rest api', function() {
       });
   });
 
-  it('retrieves paged news', function(done){
-    superagent.get('http://localhost:3000/news/paged/2/1/2')
+  it('retrieves paged slides', function(done){
+    superagent.get('http://localhost:3000/carousel/paged/2/1/2')
       .end(function(e, res){
         expect(e).to.eql(null);
         expect(res.body.length).to.be.above(0);
@@ -74,9 +75,9 @@ describe('news rest api', function() {
       });
   });
 
-  it('updates a news', function(done){
-    superagent.put('http://localhost:3000/news/'+id)
-      .send({ title: 'test' , subtitle: 'test news' })
+  it('updates a slide', function(done){
+    superagent.put('http://localhost:3000/carousel/'+id)
+      .send({ title: 'test' , subtitle: 'test carousel' })
       .set('Authorization', 'Bearer ' + token)
       .set('Accept', 'application/json')
       .end(function(e, res) {
@@ -86,8 +87,8 @@ describe('news rest api', function() {
       });
   });
 
-  it('removes a news', function(done){
-    superagent.del('http://localhost:3000/news/'+id)
+  it('removes a slide', function(done){
+    superagent.del('http://localhost:3000/carousel/'+id)
       .set('Authorization', 'Bearer ' + token)
       .set('Accept', 'application/json')
       .end(function(e, res){

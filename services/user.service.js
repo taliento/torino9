@@ -136,7 +136,7 @@ function create(userParam) {
             function (err, doc) {
                 if (err) deferred.reject(err.name + ': ' + err.message);
 
-                deferred.resolve();
+                deferred.resolve(doc);
             });
     }
 
@@ -146,9 +146,17 @@ function create(userParam) {
 function update(_id, userParam) {
     var deferred = Q.defer();
 
+    if(!userParam || !userParam.username) {
+      deferred.reject("no username param was found!");
+    }
+
     // validation
     db.users.findById(_id, function (err, user) {
         if (err) deferred.reject(err.name + ': ' + err.message);
+
+        if(!user || !user.username) {
+          deferred.reject("no username was found!");
+        }
 
         if (user.username !== userParam.username) {
             // username has changed so check if the new username is already taken

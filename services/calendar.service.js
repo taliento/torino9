@@ -8,7 +8,6 @@ var service = {};
 
 service.getAll = getAll;
 service.getMonthEvents = getMonthEvents;
-service.getByDate = getByDate;
 service.getById = getById;
 service.create = create;
 service.update = update;
@@ -55,23 +54,6 @@ function getById(_id) {
   return deferred.promise;
 }
 
-function getByDate(date) {
-  var deferred = Q.defer();
-
-  db.calendar.find({date:date}, function (err, calendar) {
-    if (err) deferred.reject(err.name + ': ' + err.message);
-
-    if (calendar) {
-      deferred.resolve(calendar);
-    } else {
-      // calendar not found
-      deferred.resolve();
-    }
-  });
-
-  return deferred.promise;
-}
-
 function create(calendarParam) {
   var deferred = Q.defer();
   calendarParam.insertDate = new Date();
@@ -80,7 +62,7 @@ function create(calendarParam) {
     function (err, doc) {
       if (err) deferred.reject(err.name + ': ' + err.message);
 
-      deferred.resolve();
+      deferred.resolve(doc);
     });
 
     return deferred.promise;

@@ -20,7 +20,7 @@ export class NewsService extends AService {
   }
 
   getPaged(params: any) {
-    const url = `/news/${params.limit}/${params.page}/${params.size}`;
+    const url = `/news/paged/${params.limit}/${params.page}/${params.size}`;
     return this.http.get(this.apiUrl+url);
   }
 
@@ -29,7 +29,7 @@ export class NewsService extends AService {
   }
 
   getById(_id: string): Promise<News> {
-    const url = `/news/${_id}`;
+    const url = `/news/get/${_id}`;
       return this.http.
       get(this.apiUrl+url)
       .toPromise()

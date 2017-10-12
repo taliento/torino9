@@ -21,7 +21,7 @@ export class CarouselService extends AService {
   }
 
   getPaged(params: any) {
-    const url = `/carousel/${params.limit}/${params.page}/${params.size}`;
+    const url = `/carousel/paged/${params.limit}/${params.page}/${params.size}`;
     return this.http.get(this.apiUrl+url);
   }
 
@@ -30,7 +30,7 @@ export class CarouselService extends AService {
   }
 
   getById(_id: string): Promise<DTCarousel> {
-    const url = `/carousel/${_id}`;
+    const url = `/carousel/get/${_id}`;
       return this.http.
       get(this.apiUrl+url)
       .toPromise()

@@ -1,11 +1,15 @@
 var common = require("../common");
+var main = require("../server.test");
 var superagent = common.superagent;
 var expect = common.expect;
 
-describe('news rest api', function() {
+
+describe('calendar rest api', function() {
   var id;
 
   var token;
+
+  var now = new Date();
 
   before(function(done) {
     superagent.post('http://localhost:3000/users/authenticate')
@@ -18,9 +22,9 @@ describe('news rest api', function() {
       });
   });
 
-  it('post news', function(done){
-    superagent.post('http://localhost:3000/news/insert')
-      .send({ title: 'test' , subtitle: 'test news' })
+  it('post event', function(done){
+    superagent.post('http://localhost:3000/calendar/insert')
+      .send({ title: 'test' , date: { year:now.getFullYear(), month:now.getMonth(), day:now.getDate() } })
       .set('Authorization', 'Bearer ' + token)
       .end(function(e,res){
         expect(e).to.eql(null);
@@ -33,8 +37,8 @@ describe('news rest api', function() {
       });
   });
 
-  it('retrieves a news', function(done){
-    superagent.get('http://localhost:3000/news/get/'+id)
+  it('retrieves an event', function(done){
+    superagent.get('http://localhost:3000/calendar/get/'+id)
       .end(function(e, res){
         expect(e).to.eql(null);
         expect(typeof res.body).to.eql('object');
@@ -44,8 +48,19 @@ describe('news rest api', function() {
       });
   });
 
-  it('retrieves news collection', function(done){
-    superagent.get('http://localhost:3000/news')
+  it('retrieves month events', function(done){
+    superagent.get('http://localhost:3000/calendar/month/'+now.getMonth()+'/'+now.getFullYear())
+      .end(function(e, res){
+        expect(e).to.eql(null);
+        expect(typeof res.body).to.eql('object');
+        expect(res.body.length).to.be.above(0);
+        expect(res.body.map(function (item){return item._id})).to.contain(id);
+        done();
+      });
+  });
+
+  it('retrieves event collection', function(done){
+    superagent.get('http://localhost:3000/calendar')
       .end(function(e, res){
         expect(e).to.eql(null);
         expect(res.body.length).to.be.above(0);
@@ -54,29 +69,9 @@ describe('news rest api', function() {
       });
   });
 
-  it('count news', function(done){
-    superagent.get('http://localhost:3000/news/count')
-      .end(function(e, res){
-        expect(e).to.eql(null);
-        expect(typeof res.body).to.eql('object');
-        expect(res.body.count).to.be.above(0);
-        done();
-      });
-  });
-
-  it('retrieves paged news', function(done){
-    superagent.get('http://localhost:3000/news/paged/2/1/2')
-      .end(function(e, res){
-        expect(e).to.eql(null);
-        expect(res.body.length).to.be.above(0);
-        // expect(res.body.map(function (item){return item._id})).to.contain(id);
-        done();
-      });
-  });
-
-  it('updates a news', function(done){
-    superagent.put('http://localhost:3000/news/'+id)
-      .send({ title: 'test' , subtitle: 'test news' })
+  it('updates an event', function(done){
+    superagent.put('http://localhost:3000/calendar/'+id)
+      .send({ title: 'test2' , date: { year:now.getFullYear(), month:now.getMonth(), day:now.getDate() } })
       .set('Authorization', 'Bearer ' + token)
       .set('Accept', 'application/json')
       .end(function(e, res) {
@@ -86,8 +81,8 @@ describe('news rest api', function() {
       });
   });
 
-  it('removes a news', function(done){
-    superagent.del('http://localhost:3000/news/'+id)
+  it('removes an event', function(done){
+    superagent.del('http://localhost:3000/calendar/'+id)
       .set('Authorization', 'Bearer ' + token)
       .set('Accept', 'application/json')
       .end(function(e, res){
