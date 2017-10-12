@@ -1,6 +1,7 @@
 var common = require("../common");
 var superagent = common.superagent;
 var expect = common.expect;
+var apiUrl = common.apiUrl;
 
 describe('news rest api', function() {
   var id;
@@ -8,7 +9,7 @@ describe('news rest api', function() {
   var token;
 
   before(function(done) {
-    superagent.post('http://localhost:3000/users/authenticate')
+    superagent.post(apiUrl+'/users/authenticate')
       .send({ username: 'dade', password: 'asdasd' })
       .set('Accept', 'application/json')
       .end(function(err, res) {
@@ -19,7 +20,7 @@ describe('news rest api', function() {
   });
 
   it('post news', function(done){
-    superagent.post('http://localhost:3000/news/insert')
+    superagent.post(apiUrl+'/news/insert')
       .send({ title: 'test' , subtitle: 'test news' })
       .set('Authorization', 'Bearer ' + token)
       .end(function(e,res){
@@ -34,7 +35,7 @@ describe('news rest api', function() {
   });
 
   it('retrieves a news', function(done){
-    superagent.get('http://localhost:3000/news/get/'+id)
+    superagent.get(apiUrl+'/news/get/'+id)
       .end(function(e, res){
         expect(e).to.eql(null);
         expect(typeof res.body).to.eql('object');
@@ -45,7 +46,7 @@ describe('news rest api', function() {
   });
 
   it('retrieves news collection', function(done){
-    superagent.get('http://localhost:3000/news')
+    superagent.get(apiUrl+'/news')
       .end(function(e, res){
         expect(e).to.eql(null);
         expect(res.body.length).to.be.above(0);
@@ -55,7 +56,7 @@ describe('news rest api', function() {
   });
 
   it('count news', function(done){
-    superagent.get('http://localhost:3000/news/count')
+    superagent.get(apiUrl+'/news/count')
       .end(function(e, res){
         expect(e).to.eql(null);
         expect(typeof res.body).to.eql('object');
@@ -65,7 +66,7 @@ describe('news rest api', function() {
   });
 
   it('retrieves paged news', function(done){
-    superagent.get('http://localhost:3000/news/paged/2/1/2')
+    superagent.get(apiUrl+'/news/paged/2/1/2')
       .end(function(e, res){
         expect(e).to.eql(null);
         expect(res.body.length).to.be.above(0);
@@ -75,7 +76,7 @@ describe('news rest api', function() {
   });
 
   it('updates a news', function(done){
-    superagent.put('http://localhost:3000/news/'+id)
+    superagent.put(apiUrl+'/news/'+id)
       .send({ title: 'test' , subtitle: 'test news' })
       .set('Authorization', 'Bearer ' + token)
       .set('Accept', 'application/json')
@@ -87,7 +88,7 @@ describe('news rest api', function() {
   });
 
   it('removes a news', function(done){
-    superagent.del('http://localhost:3000/news/'+id)
+    superagent.del(apiUrl+'/news/'+id)
       .set('Authorization', 'Bearer ' + token)
       .set('Accept', 'application/json')
       .end(function(e, res){

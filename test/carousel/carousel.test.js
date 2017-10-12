@@ -1,6 +1,7 @@
 var common = require("../common");
 var superagent = common.superagent;
 var expect = common.expect;
+var apiUrl = common.apiUrl;
 
 
 describe('carousel rest api', function() {
@@ -9,7 +10,7 @@ describe('carousel rest api', function() {
   var token;
 
   before(function(done) {
-    superagent.post('http://localhost:3000/users/authenticate')
+    superagent.post(apiUrl+'/users/authenticate')
       .send({ username: 'dade', password: 'asdasd' })
       .set('Accept', 'application/json')
       .end(function(err, res) {
@@ -20,7 +21,7 @@ describe('carousel rest api', function() {
   });
 
   it('post slide', function(done){
-    superagent.post('http://localhost:3000/carousel/insert')
+    superagent.post(apiUrl+'/carousel/insert')
       .send({ title: 'test' , subtitle: 'test carousel' })
       .set('Authorization', 'Bearer ' + token)
       .end(function(e,res){
@@ -35,7 +36,7 @@ describe('carousel rest api', function() {
   });
 
   it('retrieves a slide', function(done){
-    superagent.get('http://localhost:3000/carousel/get/'+id)
+    superagent.get(apiUrl+'/carousel/get/'+id)
       .end(function(e, res){
         expect(e).to.eql(null);
         expect(typeof res.body).to.eql('object');
@@ -46,7 +47,7 @@ describe('carousel rest api', function() {
   });
 
   it('retrieves a slide collection', function(done){
-    superagent.get('http://localhost:3000/carousel')
+    superagent.get(apiUrl+'/carousel')
       .end(function(e, res){
         expect(e).to.eql(null);
         expect(res.body.length).to.be.above(0);
@@ -56,7 +57,7 @@ describe('carousel rest api', function() {
   });
 
   it('count slides', function(done){
-    superagent.get('http://localhost:3000/carousel/count')
+    superagent.get(apiUrl+'/carousel/count')
       .end(function(e, res){
         expect(e).to.eql(null);
         expect(typeof res.body).to.eql('object');
@@ -66,7 +67,7 @@ describe('carousel rest api', function() {
   });
 
   it('retrieves paged slides', function(done){
-    superagent.get('http://localhost:3000/carousel/paged/2/1/2')
+    superagent.get(apiUrl+'/carousel/paged/2/1/2')
       .end(function(e, res){
         expect(e).to.eql(null);
         expect(res.body.length).to.be.above(0);
@@ -76,7 +77,7 @@ describe('carousel rest api', function() {
   });
 
   it('updates a slide', function(done){
-    superagent.put('http://localhost:3000/carousel/'+id)
+    superagent.put(apiUrl+'/carousel/'+id)
       .send({ title: 'test' , subtitle: 'test carousel' })
       .set('Authorization', 'Bearer ' + token)
       .set('Accept', 'application/json')
@@ -88,7 +89,7 @@ describe('carousel rest api', function() {
   });
 
   it('removes a slide', function(done){
-    superagent.del('http://localhost:3000/carousel/'+id)
+    superagent.del(apiUrl+'/carousel/'+id)
       .set('Authorization', 'Bearer ' + token)
       .set('Accept', 'application/json')
       .end(function(e, res){

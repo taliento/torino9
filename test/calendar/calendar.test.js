@@ -1,7 +1,7 @@
 var common = require("../common");
-var main = require("../server.test");
 var superagent = common.superagent;
 var expect = common.expect;
+var apiUrl = common.apiUrl;
 
 
 describe('calendar rest api', function() {
@@ -12,7 +12,7 @@ describe('calendar rest api', function() {
   var now = new Date();
 
   before(function(done) {
-    superagent.post('http://localhost:3000/users/authenticate')
+    superagent.post(apiUrl+'/users/authenticate')
       .send({ username: 'dade', password: 'asdasd' })
       .set('Accept', 'application/json')
       .end(function(err, res) {
@@ -23,7 +23,7 @@ describe('calendar rest api', function() {
   });
 
   it('post event', function(done){
-    superagent.post('http://localhost:3000/calendar/insert')
+    superagent.post(apiUrl+'/calendar/insert')
       .send({ title: 'test' , date: { year:now.getFullYear(), month:now.getMonth(), day:now.getDate() } })
       .set('Authorization', 'Bearer ' + token)
       .end(function(e,res){
@@ -38,7 +38,7 @@ describe('calendar rest api', function() {
   });
 
   it('retrieves an event', function(done){
-    superagent.get('http://localhost:3000/calendar/get/'+id)
+    superagent.get(apiUrl+'/calendar/get/'+id)
       .end(function(e, res){
         expect(e).to.eql(null);
         expect(typeof res.body).to.eql('object');
@@ -49,7 +49,7 @@ describe('calendar rest api', function() {
   });
 
   it('retrieves month events', function(done){
-    superagent.get('http://localhost:3000/calendar/month/'+now.getMonth()+'/'+now.getFullYear())
+    superagent.get(apiUrl+'/calendar/month/'+now.getMonth()+'/'+now.getFullYear())
       .end(function(e, res){
         expect(e).to.eql(null);
         expect(typeof res.body).to.eql('object');
@@ -60,7 +60,7 @@ describe('calendar rest api', function() {
   });
 
   it('retrieves event collection', function(done){
-    superagent.get('http://localhost:3000/calendar')
+    superagent.get(apiUrl+'/calendar')
       .end(function(e, res){
         expect(e).to.eql(null);
         expect(res.body.length).to.be.above(0);
@@ -70,7 +70,7 @@ describe('calendar rest api', function() {
   });
 
   it('updates an event', function(done){
-    superagent.put('http://localhost:3000/calendar/'+id)
+    superagent.put(apiUrl+'/calendar/'+id)
       .send({ title: 'test2' , date: { year:now.getFullYear(), month:now.getMonth(), day:now.getDate() } })
       .set('Authorization', 'Bearer ' + token)
       .set('Accept', 'application/json')
@@ -82,7 +82,7 @@ describe('calendar rest api', function() {
   });
 
   it('removes an event', function(done){
-    superagent.del('http://localhost:3000/calendar/'+id)
+    superagent.del(apiUrl+'/calendar/'+id)
       .set('Authorization', 'Bearer ' + token)
       .set('Accept', 'application/json')
       .end(function(e, res){

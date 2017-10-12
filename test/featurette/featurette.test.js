@@ -1,6 +1,7 @@
 var common = require("../common");
 var superagent = common.superagent;
 var expect = common.expect;
+var apiUrl = common.apiUrl;
 
 describe('featurette rest api', function() {
   var id;
@@ -8,7 +9,7 @@ describe('featurette rest api', function() {
   var token;
 
   before(function(done) {
-    superagent.post('http://localhost:3000/users/authenticate')
+    superagent.post(apiUrl+'/users/authenticate')
       .send({ username: 'dade', password: 'asdasd' })
       .set('Accept', 'application/json')
       .end(function(err, res) {
@@ -19,7 +20,7 @@ describe('featurette rest api', function() {
   });
 
   it('post featurette', function(done){
-    superagent.post('http://localhost:3000/featurette/insert')
+    superagent.post(apiUrl+'/featurette/insert')
       .send({ title: 'test' , subtitle: 'test featurette' })
       .set('Authorization', 'Bearer ' + token)
       .end(function(e,res){
@@ -34,7 +35,7 @@ describe('featurette rest api', function() {
   });
 
   it('retrieves a featurette', function(done){
-    superagent.get('http://localhost:3000/featurette/get/'+id)
+    superagent.get(apiUrl+'/featurette/get/'+id)
       .end(function(e, res){
         expect(e).to.eql(null);
         expect(typeof res.body).to.eql('object');
@@ -45,7 +46,7 @@ describe('featurette rest api', function() {
   });
 
   it('retrieves a featurette collection', function(done){
-    superagent.get('http://localhost:3000/featurette')
+    superagent.get(apiUrl+'/featurette')
       .end(function(e, res){
         expect(e).to.eql(null);
         expect(res.body.length).to.be.above(0);
@@ -55,7 +56,7 @@ describe('featurette rest api', function() {
   });
 
   it('count featurettes', function(done){
-    superagent.get('http://localhost:3000/featurette/count')
+    superagent.get(apiUrl+'/featurette/count')
       .end(function(e, res){
         expect(e).to.eql(null);
         expect(typeof res.body).to.eql('object');
@@ -65,7 +66,7 @@ describe('featurette rest api', function() {
   });
 
   it('retrieves paged featurettes', function(done){
-    superagent.get('http://localhost:3000/featurette/paged/2/1/2')
+    superagent.get(apiUrl+'/featurette/paged/2/1/2')
       .end(function(e, res){
         expect(e).to.eql(null);
         expect(res.body.length).to.be.above(0);
@@ -75,7 +76,7 @@ describe('featurette rest api', function() {
   });
 
   it('updates a featurette', function(done){
-    superagent.put('http://localhost:3000/featurette/'+id)
+    superagent.put(apiUrl+'/featurette/'+id)
       .send({ title: 'test' , subtitle: 'test featurette' })
       .set('Authorization', 'Bearer ' + token)
       .set('Accept', 'application/json')
@@ -87,7 +88,7 @@ describe('featurette rest api', function() {
   });
 
   it('removes a featurette', function(done){
-    superagent.del('http://localhost:3000/featurette/'+id)
+    superagent.del(apiUrl+'/featurette/'+id)
       .set('Authorization', 'Bearer ' + token)
       .set('Accept', 'application/json')
       .end(function(e, res){
