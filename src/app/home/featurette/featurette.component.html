@@ -1,12 +1,12 @@
 <div *ngFor="let featurette of featuretteList; index as i">
   <hr class="featurette-divider">
   <div class="row featurette">
-    <div class="col-md-7" [class.col-md-2]="!isOdd(i)">
+    <div class="col-md-7" [class.order-md-2]="!isOdd(i)">
       <h2 class="featurette-heading">{{featurette.title}} <span class="text-muted">{{featurette.subTitle}}</span></h2>
       <p class="lead">{{featurette.text}}</p>
     </div>
-    <div class="col.md-5" [class.col-md-1]="!isOdd(i)">
-      <img class="featurette-image img-fluid mx-auto" [src]="featurette.imgPath" alt="Generic placeholder image">
+    <div class="col.md-5" [class.order-md-1]="!isOdd(i)">
+      <img class="featurette-image img-fluid mx-auto" [src]="featurette.imgPath" alt="featurette image">
     </div>
   </div>
 </div>
