@@ -1,3 +1,16 @@
-<div class="container branca-container">
-  <p>hello branca {{branca | json}}</p>
+<div class="jumbotron dt-jumbotron" [style.background-image]="backgroundImg">
+</div>
+<div class="container dt-container">
+  <h1 class="display-3"><span><i class="fa fa-fire" aria-hidden="true"></i></span> {{branca.title}}</h1>
+  <hr class="my-4">
+  <p>{{branca.subtitle}}</p>
+  <small></small>
+</div>
+<br>
+<div class="container put-down">
+  <div class="row">
+      <div class="col-md-12">
+          <p>{{branca.text}}</p>
+      </div>
+  </div>
 </div>

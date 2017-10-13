@@ -1,0 +1,63 @@
+<br>
+<div class="card" style="margin-bottom:10px" *ngFor="let branca of branche">
+  <branca-detail [branca]="branca" (delete)="delete($event)" (update)="addBranca($event)"></branca-detail>
+</div>
+
+<br>
+<div class="row">
+  <div class="col-md-2">
+    <button [disabled]="branche.length >= 3" type="button" class="btn btn-outline-primary" (click)="isCollapsed = !isCollapsed" [attr.aria-expanded]="!isCollapsed" aria-controls="collapseExample">
+      Inserisci Branca
+    </button>
+  </div>
+</div>
+
+<div id="collapseExample" [ngbCollapse]="isCollapsed">
+  <div class="card">
+    <div class="card-body">
+      <form>
+        <div class="form-group">
+          <label for="brancaid">Branca</label>
+          <select class="form-control" id="brancaid" name="brancaid" [(ngModel)]="newBranca._id" required>
+            <option style="display:none;" disabled value="null">Seleziona una branca</option>
+            <option value="LC">
+              <h5>Lupetti</h5>
+              <p>(L/C) - bambini/e dai 8 ai 11/12 anni</p>
+            </option>
+            <option value="EG">
+              <h5>Esploratori e Guide</h5>
+              <p>(E/G) - ragazzi/e dai 11/12 ai 16 anni</p>
+            </option>
+            <option value="RS">
+              <h5>Rover e Scolte</h5>
+              <p>(R/S) - giovani dai 16 ai 20/21 anni</p>
+            </option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="insertTitle">Titolo</label>
+          <input type="text" class="form-control" id="insertTitle" name="title" placeholder="Titolo branca" [(ngModel)]="newBranca.title">
+        </div>
+
+        <div class="form-group">
+          <label for="insertSottoTitolo">Sotto Titolo</label>
+          <input type="text" class="form-control" id="insertSottoTitolo" name="subtitle" placeholder="Sottotitolo branca" [(ngModel)]="newBranca.subtitle">
+        </div>
+
+        <div class="form-group">
+          <label for="insertText">Testo</label>
+          <textarea rows="5" class="form-control" id="insertText" name="text" placeholder="Testo branca" [(ngModel)]="newBranca.text"></textarea>
+        </div>
+
+        <div class="form-group">
+          <label for="insertImgPath">Link immagine</label>
+          <input type="text" class="form-control" id="insertImgPath" name="imgPath" placeholder="Link immagine esterno" [(ngModel)]="newBranca.imgPath">
+        </div>
+
+        <button type="button" class="btn btn-outline-success" (click)="addBranca(newBranca)">Inserisci</button>
+      </form>
+    </div>
+  </div>
+</div>
+<confirm-dialog #confirmDialog [title]="confirmTitle" [text]="confirmText" (confirm)="deleteBranca()"></confirm-dialog>

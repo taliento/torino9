@@ -6,9 +6,7 @@ var user = common.user;
 var password = common.password;
 
 
-describe('about page rest api', function() {
-  var id;
-
+describe('branca page rest api', function() {
   var token;
 
   before(function(done) {
@@ -22,46 +20,45 @@ describe('about page rest api', function() {
       });
   });
 
-  it('insert about page', function(done){
-    superagent.post(apiUrl+'/about/insert')
-      .send({ title: 'test' , subtitle:'about page sub',text:'about text' })
+  it('insert branca page', function(done){
+    superagent.post(apiUrl+'/branca/insert')
+      .send({ title: 'test' , subtitle:'branca page sub',text:'about text',_id:'branca1' })
       .set('Authorization', 'Bearer ' + token)
       .end(function(e,res){
         expect(e).to.eql(null);
         expect(typeof res.body).to.eql('object');
-        expect(res.body.result.ok).to.eql(1);
-        expect(res.body.insertedCount).to.eql(1);
-        expect(res.body.insertedIds[0].length).to.be.equal(24);
-        id = res.body.insertedIds[0];
+        expect(res.body.ok).to.eql(1);
+        expect(res.body.nModified).to.eql(0);
+        expect(res.body.upserted[0]._id).to.eql('branca1');
         done();
       });
   });
 
-  it('retrieves about page', function(done){
-    superagent.get(apiUrl+'/about/get/'+id)
+  it('retrieves branca page', function(done){
+    superagent.get(apiUrl+'/branca/get/branca1')
       .end(function(e, res){
         expect(e).to.eql(null);
         expect(typeof res.body).to.eql('object');
-        expect(res.body._id.length).to.be.equal(24);
-        expect(res.body._id).to.eql(id);
+        expect(res.body._id).to.eql('branca1');
         done();
       });
   });
 
-  it('updates about page', function(done){
-    superagent.post(apiUrl+'/about/insert')
-      .send({ title: 'test' , subtitle:'about page sub',text:'about text', _id: id })
+  it('updates branca page', function(done){
+    superagent.post(apiUrl+'/branca/insert')
+      .send({ title: 'test' , subtitle:'about page sub',text:'about text', _id:'branca1' })
       .set('Authorization', 'Bearer ' + token)
       .end(function(e, res) {
         expect(e).to.eql(null);
         expect(typeof res.body).to.eql('object');
-        expect(res.status).to.eql(200);
+        expect(res.body.ok).to.eql(1);
+        expect(res.body.nModified).to.eql(1);
         done();
       });
   });
 
-  it('removes about page', function(done){
-    superagent.del(apiUrl+'/about/'+id)
+  it('removes branca page', function(done){
+    superagent.del(apiUrl+'/branca/branca1')
       .set('Authorization', 'Bearer ' + token)
       .set('Accept', 'application/json')
       .end(function(e, res){

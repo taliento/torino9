@@ -13,20 +13,19 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 - [x] home page
 - [x] news page
 - [x] about page
-- [ ] about page crud
 - [x] contact page
-- [ ] contact page crud
-- [x] admin module (crud for all contents)
+- [x] admin module
 - [x] calendar
+- [ ] custom pages
 - [ ] search contents
 - [ ] register
+- [ ] fix gmap css font bug
 - [ ] code cleanup
 
 ## dev
 
 node, angular-cli and mongodb are required
 
-for dev env
 
 ```
 npm install

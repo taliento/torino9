@@ -19,6 +19,8 @@ import { LinkDetailComponent } from './about/about-links/link-detail/link-detail
 import { ContactListComponent } from './contact/contact-list/contact-list.component';
 import { ContactMapComponent } from './contact/contact-map/contact-map.component';
 import { ContactDetailComponent } from './contact/contact-detail/contact-detail.component';
+import { BrancheComponent } from './branche/branche.component';
+import { BrancaDetailComponent } from './branche/branca-detail/branca-detail.component';
 
 
 export const MODULE_ROUTES: Route[] = [
@@ -44,5 +46,7 @@ export const MODULE_COMPONENTS = [
   LinkDetailComponent,
   ContactListComponent,
   ContactMapComponent,
-  ContactDetailComponent
+  ContactDetailComponent,
+  BrancheComponent,
+  BrancaDetailComponent
 ]

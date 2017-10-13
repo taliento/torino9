@@ -6,3 +6,4 @@ export { Contact } from './contact.model';
 export { DTCarousel } from './dt-carousel.model';
 export { Featurette } from './featurette.model';
 export { News } from './news.model';
+export { Branca } from './branca.model';

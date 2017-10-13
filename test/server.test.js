@@ -17,6 +17,8 @@ describe("express rest api server", function () {
 
     importTest("about folder", './about/about.test.js');
 
+    importTest("branca folder", './branca/branca.test.js');
+
     importTest("calendar folder", './calendar/calendar.test.js');
 
     importTest("carousel folder", './carousel/carousel.test.js');

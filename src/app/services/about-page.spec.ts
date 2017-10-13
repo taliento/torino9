@@ -68,6 +68,7 @@ describe('About Page Service', () => {
     let data = {title: 'About us' , subtitle:'we are cool' , text:'blablabla'};
     aboutPageService.insert(data).subscribe(
       (successResult) => {
+        console.log('should insert an about page: result'+successResult);
         expect(successResult).toBeDefined();
         expect(successResult.status).toBe(201);
       });
@@ -77,14 +78,15 @@ describe('About Page Service', () => {
   async(inject([AboutPageService, MockBackend], (aboutPageService, mockBackend) => {
     mockBackend.connections.subscribe(connection => {
       // is it the correct REST type for an update? (PUT)
-      expect(connection.request.method).toBe(RequestMethod.Put);
+      expect(connection.request.method).toBe(RequestMethod.Post);
       connection.mockRespond(new Response(new ResponseOptions({status: 204})));
     });
 
     let data = {title: 'About us' , subtitle:'we are cool' , text:'blablabla', _id:'10'};
 
-    aboutPageService.update(data).subscribe(
+    aboutPageService.insert(data).subscribe(
       (successResult) => {
+        console.log('should save updates to about page: result'+successResult);
         expect(successResult).toBeDefined();
         expect(successResult.status).toBe(204);
       });

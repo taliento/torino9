@@ -1,10 +1,9 @@
 <article *ngIf="news">
     <div class="container">
         <div class="row">
-            <div class="col-lg-8 offset-lg-2 col-md-10 offset-md-1">
-                {{news.text}}
+            <div class="col-md-12">
+                <p>{{news.text}}</p>
             </div>
-
         </div>
         <br>
         <p class="post-meta">Inserito da <span>{{news.author}}</span> nel {{news.insertDate | date:'dd/MM/yyyy' }}</p>
