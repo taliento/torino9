@@ -35,7 +35,7 @@ function authenticate(username, password) {
                 firstName: user.firstName,
                 lastName: user.lastName,
                 avatar: user.avatar,
-                token: jwt.sign({ sub: user._id }, config.secret)
+                token: jwt.sign({ sub: user._id }, (process.env.SECRET || config.secret))
             });
         } else {
             // authentication failed
