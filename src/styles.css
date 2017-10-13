@@ -28,6 +28,8 @@ ngb-carousel {
 .carousel-caption {
   z-index: 10;
   bottom: 3rem;
+  color: rgb(255, 255, 255);
+  text-shadow: 1px 1px rgb(104, 104, 104);
 }
 
 /* Declare heights because of positioning of img element */
@@ -40,6 +42,10 @@ ngb-carousel {
   top: 0;
   left: 0;
   min-width: 100%;
+  -webkit-filter: blur(2px); /* Safari 6.0 - 9.0 */
+  filter: blur(2.2px);
+  -webkit-transform: scale(1.1);
+  transform: scale(1.1);
 }
 
 /* MARKETING CONTENT
