@@ -18,7 +18,7 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 - [ ] html editor
 - [ ] search contents
 - [ ] register
-- [ ] fix gmap css font bug
+- [x] fix gmap css font bug
 - [ ] code cleanup
 
 ## dev
