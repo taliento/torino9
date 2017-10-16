@@ -6,6 +6,7 @@ import { ContactComponent } from '../contact/index';
 import { LoginComponent } from '../login/index';
 import { DTCarouselComponent } from './dt-carousel/dt-carousel.component';
 import { FeaturetteComponent } from './featurette/featurette.component';
+import { BrancheComponent } from './branche/branche.component';
 
 export const MODULE_ROUTES: Route[] = [
   { path: '', pathMatch: 'full' , component: HomeComponent },
@@ -20,5 +21,6 @@ export const MODULE_COMPONENTS = [
   ContactComponent,
   LoginComponent,
   DTCarouselComponent,
-  FeaturetteComponent
+  FeaturetteComponent,
+  BrancheComponent
 ]

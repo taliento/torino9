@@ -18,19 +18,11 @@
       <form>
         <div class="form-group">
           <label for="brancaid">Branca</label>
-          <select class="form-control" id="brancaid" name="brancaid" [(ngModel)]="newBranca._id" required>
+          <select class="form-control" id="brancaid" name="brancaid" [(ngModel)]="selectedBranca" (ngModelChange)="onChangeBrancaCombo($event)" required>
             <option style="display:none;" disabled value="null">Seleziona una branca</option>
-            <option value="LC">
-              <h5>Lupetti</h5>
-              <p>(L/C) - bambini/e dai 8 ai 11/12 anni</p>
-            </option>
-            <option value="EG">
-              <h5>Esploratori e Guide</h5>
-              <p>(E/G) - ragazzi/e dai 11/12 ai 16 anni</p>
-            </option>
-            <option value="RS">
-              <h5>Rover e Scolte</h5>
-              <p>(R/S) - giovani dai 16 ai 20/21 anni</p>
+            <option *ngFor="let opt of brancheCombo" [ngValue]="opt">
+              <h5>{{opt.title}}</h5>
+              <p>{{opt.subtitle}}</p>
             </option>
           </select>
         </div>

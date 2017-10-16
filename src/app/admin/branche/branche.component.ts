@@ -2,6 +2,12 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { BrancaService, AlertService } from '../../services/index';
 import { Branca } from '../../models';
 
+const BRANCHE_COMBO = [
+  {id: 'LC', title: 'Lupetti', subtitle: '(L/C) - bambini/e dai 8 ai 11/12 anni'},
+  {id: 'EG', title: 'Esploratori e Guide', subtitle: '(E/G) - ragazzi/e dai 11/12 ai 16 anni'},
+  {id: 'RS', title: 'Rover e Scolte', subtitle: '(R/S) - giovani dai 16 ai 20/21 anni'}
+];
+
 @Component({
     moduleId: module.id,
     selector: 'branche-component',
@@ -9,6 +15,10 @@ import { Branca } from '../../models';
 })
 
 export class BrancheComponent implements OnInit {
+  brancheCombo = BRANCHE_COMBO;//XXX
+
+  selectedBranca: any = null;
+
   isCollapsed = true
   branche: Branca[] = [];
   idDelete: string;
@@ -35,6 +45,12 @@ export class BrancheComponent implements OnInit {
       error => {
         this.alertService.error(error._body);
       });
+  }
+
+  onChangeBrancaCombo(branca) {
+    this.newBranca._id = branca.id;
+    this.newBranca.title = branca.title;
+    this.newBranca.subtitle = branca.subtitle;
   }
 
   delete(branca) {
