@@ -1,5 +1,6 @@
 # Torino9app
-https://travis-ci.org/taliento/torino9.svg?branch=master
+
+![alt text](https://travis-ci.org/taliento/torino9.svg?branch=master)
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.2.6.
 

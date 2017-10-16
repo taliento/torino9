@@ -24,7 +24,6 @@ describe('user rest api', function() {
   it('user register', function(done){
     superagent.post(apiUrl+'/users/register')
       .send({ username: 'test' , password: 'password' })
-      .set('Authorization', 'Bearer ' + token)
       .end(function(e,res){
         expect(e).to.eql(null);
         expect(typeof res.body).to.eql('object');
