@@ -1,7 +1,4 @@
 # Torino9app
-
-[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
-
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.2.6.
 
 
