@@ -7,3 +7,4 @@ exports.superagent = superagent;
 exports.expect = expect;
 exports.user = config.user;
 exports.password = config.password;
+exports.connectionString = config.connectionString;

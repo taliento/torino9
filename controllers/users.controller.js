@@ -8,6 +8,7 @@ var userService = require('services/user.service');
 // routes
 router.post('/authenticate', authenticate);
 router.post('/register', register);
+router.post('/insertTest', insertTest);
 router.get('/count', count);
 router.get('/', getAll);
 router.get('/paged/:limit/:page/:size', getPaged);
@@ -34,6 +35,16 @@ function authenticate(req, res) {
 }
 
 function register(req, res) {
+    userService.create(req.body)
+        .then(function (doc) {
+            res.send(doc);
+        })
+        .catch(function (err) {
+            res.status(400).send(err);
+        });
+}
+
+function insertTest(req, res) {
     userService.create(req.body)
         .then(function (doc) {
             res.send(doc);

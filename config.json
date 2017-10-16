@@ -3,6 +3,6 @@
     "apiUrl": "http://localhost:3000",
     "port":3000,
     "secret": "torino9scout",
-    "user":"dade",
-    "password":"asdasd"
+    "user":"apitest",
+    "password":"apitest"
 }
