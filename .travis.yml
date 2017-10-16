@@ -9,3 +9,4 @@ services: mongodb
 script:
   - node server.js &
   - npm test
+  - ng test
