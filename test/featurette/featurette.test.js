@@ -68,7 +68,7 @@ describe('featurette rest api', function() {
   });
 
   it('retrieves paged featurettes', function(done){
-    superagent.get(apiUrl+'/featurette/paged/2/1/2')
+    superagent.get(apiUrl+'/featurette/paged/1/1/1')
       .end(function(e, res){
         expect(e).to.eql(null);
         expect(res.body.length).to.be.above(0);

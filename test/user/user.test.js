@@ -71,7 +71,7 @@ describe('user rest api', function() {
   });
 
   it('retrieves paged users', function(done){
-    superagent.get(apiUrl+'/users/paged/2/1/2')
+    superagent.get(apiUrl+'/users/paged/1/1/1')
       .set('Authorization', 'Bearer ' + token)
       .end(function(e, res){
         expect(e).to.eql(null);
