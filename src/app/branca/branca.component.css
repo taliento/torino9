@@ -19,14 +19,47 @@
 }
 .dt-container {
   margin-top: 8rem;
+  left: 0;
+  right: 0;
   position: relative;
   color: rgb(255, 255, 255);
   text-shadow: 1px 1px rgb(104, 104, 104);
-
 }
 .put-down {
   margin-top: 7rem;
 }
 .my-4 {
   border-top: 1px solid rgb(255, 255, 255);
+}
+
+/* RESPONSIVE CSS
+-------------------------------------------------- */
+
+
+/* small devices (smartphone, 320px and up) */
+@media (min-width: 320px) {
+    .dt-container h1 {
+        font-size: 2em;
+    }
+}
+
+/* Small devices (tablets, 768px and up) */
+@media (min-width: 768px) {
+    .dt-container h1 {
+        font-size: 4em;
+    }
+}
+
+/* Medium devices (desktops, 992px and up) */
+@media (min-width: 992px) {
+    .dt-container h1r {
+        font-size: 6em;
+    }
+}
+
+/* Large devices (large desktops, 1200px and up) */
+@media (min-width: 1200px) {
+    .dt-container h1 {
+        font-size: 8em;
+    }
 }
