@@ -68,7 +68,7 @@ describe('carousel rest api', function() {
   });
 
   it('retrieves paged slides', function(done){
-    superagent.get(apiUrl+'/carousel/paged/1/1/1')
+    superagent.get(apiUrl+'/carousel/paged/1/0/1')
       .end(function(e, res){
         expect(e).to.eql(null);
         expect(res.body.length).to.be.above(0);

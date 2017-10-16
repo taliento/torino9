@@ -68,7 +68,7 @@ describe('news rest api', function() {
   });
 
   it('retrieves paged news', function(done){
-    superagent.get(apiUrl+'/news/paged/1/1/1')
+    superagent.get(apiUrl+'/news/paged/1/0/1')
       .end(function(e, res){
         expect(e).to.eql(null);
         expect(res.body.length).to.be.above(0);
