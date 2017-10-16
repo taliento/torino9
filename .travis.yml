@@ -6,8 +6,6 @@ deploy:
   api_key:
     secure: OMvqhDY1+Tanqc8tJs4+P5ZbTZjLYtzd2g4XBvxQYfAvziAu4HnI6lY5+oBWqrhbnhWNYLopHCms57df/KAvatv8Y2m/o3RxpHAMyYWj8IWhf6Wg45ll2OK4WwB2vxQc2otsJtwQlm7RbzGmq3hlaz89ygA+1dfkbEesIk5kd7s6uH2kRJUGePD9utHJXXDutW+LWqEFADCjYwCErwocHnOer/X/oIWrdk2PFTz+M2+rJHcZOetW0hqiqhPmgyGPyJ/qQdsqemV00U88xCZ1MkbauV2SJdOLaijWQgCiiBn1p4KiV+WBNwInoBeDhh+Y5lYVGzhqRghyb0nj3ZRGHIuN6wJ94IuPoMfgdAA6lh44QGUEPjC+EqwTThgO3zPip7upfkA7ASxdewNK+cOqLuZH5ZyQ+up/Fu2nKmnZlVKMapDBDZEOMJ6X3RS6L7BrNOfwJ3CLNtjWsaR02brnmjrQmMPFdXSxQ0cM+Hsgf80SN5w2Br6OC40EK7bL6Jmbs8/Bi0YfJEPMoMIORqRzMAXVVPB8DSvdvxuFgRd0fbnzUDV5BAcjjuW6bSCNyktrEFWBxKUE+aV+6nWLCfTwJXKJG/d6u9SupXkxDQzB3jmDLRyZULp33nWoORqyqnjoJ36WwLe440+sdSN4ypWTCS3rm3C4BkIsHCekX9lfcAQ=
 services: mongodb
-before_script:
-  - npm install
 script:
   - node server.js &
   - npm test
