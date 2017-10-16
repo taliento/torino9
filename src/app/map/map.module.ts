@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { MapComponent } from './map.component';
 import { AgmCoreModule } from '@agm/core';
+import { environment } from '../../environments/environment';
 
 @NgModule({
   imports: [
@@ -11,9 +12,9 @@ import { AgmCoreModule } from '@agm/core';
     CommonModule,
     FormsModule,
     AgmCoreModule.forRoot({
-    apiKey: 'AIzaSyASuaWBN3f_K6IC9CA3qlUOS1Otm8BYMNs',
+    apiKey: environment.apikey,
     libraries: ["places"],
-    language:'it-IT' //set whatever langs u want
+    language:'it-IT'
     })
   ],
   declarations: [ MapComponent ],

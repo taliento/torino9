@@ -53,13 +53,13 @@
 /* Medium devices (desktops, 992px and up) */
 @media (min-width: 992px) {
     .dt-container h1r {
-        font-size: 6em;
+        font-size: 5em;
     }
 }
 
 /* Large devices (large desktops, 1200px and up) */
 @media (min-width: 1200px) {
     .dt-container h1 {
-        font-size: 8em;
+        font-size: 6em;
     }
 }
