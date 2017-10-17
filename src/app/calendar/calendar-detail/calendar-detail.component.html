@@ -3,6 +3,6 @@
     <h5 class="mb-1">{{task.title}}</h5>
     <small>Il {{ task.date.day }}/{{ task.date.month }}/{{ task.date.year }} <span *ngIf="task.time">- {{ task.time.hour }}:{{ task.time.minute }}</span></small>
   </div>
-  <p class="mb-1">{{task.text}}</p>
+  <div class="mb-1" [froalaView]="task.text"></div>
   <small *ngIf="task.insertDate">Inserito il {{task.insertDate | date:'dd/MM/yyyy'}}</small>
 </div>

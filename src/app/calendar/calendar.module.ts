@@ -5,9 +5,10 @@ import { FormsModule } from '@angular/forms';
 import { Route, RouterModule } from '@angular/router';
 
 import { MODULE_COMPONENTS, MODULE_ROUTES } from './calendar.routes';
+import { FroalaEditorModule, FroalaViewModule } from 'angular-froala-wysiwyg';
 
 @NgModule({
-  imports: [ CommonModule, FormsModule, NgbModule, RouterModule.forChild(MODULE_ROUTES) ],
+  imports: [ CommonModule, FormsModule, NgbModule, FroalaEditorModule.forRoot(), FroalaViewModule.forRoot(),  RouterModule.forChild(MODULE_ROUTES) ],
   declarations: [ MODULE_COMPONENTS ]
 })
 export class CalendarModule {}

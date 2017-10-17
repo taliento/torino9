@@ -12,7 +12,7 @@ import { AdminModule } from './admin/index';
 import { NewsModule } from './news/index';
 import { CalendarModule } from './calendar/calendar.module';
 import { AlertComponent } from './alert/index';
-import { routing } from './app.routing';
+import { routing, MODULE_COMPONENTS } from './app.routing';
 import { AuthGuard } from './guards/index';
 import { AlertService, AuthenticationService, UserService,
   NewsService, NewsHeaderService, CarouselService,
@@ -20,13 +20,17 @@ import { AlertService, AuthenticationService, UserService,
   ContactPageService, BrancaService } from './services/index';
 import { MapModule } from './map/map.module';
 import { BrancaModule } from './branca/branca.module';
+import { FroalaEditorModule, FroalaViewModule } from 'angular-froala-wysiwyg';
 
 @NgModule({
   declarations: [
     AppComponent,
-    AlertComponent
+    AlertComponent,
+    MODULE_COMPONENTS
   ],
   imports: [
+    NgbModule.forRoot(),
+    FroalaEditorModule.forRoot(), FroalaViewModule.forRoot(),
     CommonModule,
     FormsModule,
     HttpModule,
@@ -39,8 +43,7 @@ import { BrancaModule } from './branca/branca.module';
     CalendarModule,
     routing,
     BrowserModule,
-    MapModule,
-    NgbModule.forRoot()
+    MapModule
   ],
   providers: [
     AuthGuard,

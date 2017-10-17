@@ -1,7 +1,7 @@
 <div class="card-body">
   <h4 class="card-title">{{branca.title}}</h4>
   <p class="card-text"><small class="text-muted">{{branca.subtitle}}</small></p>
-  <p class="card-text">{{branca.text}}</p>
+  <div class="card-text" [froalaView]="branca.text"></div>
   <button type="button" class="btn btn-outline-primary btn-sm" (click)="updateModal()">Modifica</button>
   <button type="button" class="btn btn-outline-danger btn-sm" (click)="deleteBranca()">Elimina</button>
 </div>
@@ -46,7 +46,8 @@
         </div>
         <div class="form-group">
           <label for="updateText">Testo</label>
-          <textarea rows="5" class="form-control" id="updateText" name="text" [(ngModel)]="branca.text" placeholder="Testo"></textarea>
+          <div [(froalaModel)]="branca.text" id="updateText" name="text" [froalaEditor]></div>
+          <!-- <textarea rows="5" class="form-control" id="updateText" name="text" [(ngModel)]="branca.text" placeholder="Testo"></textarea> -->
         </div>
         <div class="form-group">
           <label for="updateImgPath">Link immagine</label>
