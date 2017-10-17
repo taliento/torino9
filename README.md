@@ -7,7 +7,17 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
 
 
-## dev
+## TEST
+
+mocha tests and karma tests
+
+```
+npm install
+npm start
+npm test
+```
+
+## DEV
 
 ```
 npm install

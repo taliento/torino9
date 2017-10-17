@@ -5,8 +5,7 @@ import { BrancaService } from '../../services/index';
 @Component({
     moduleId: module.id,
     selector: 'branche',
-    templateUrl: 'branche.component.html',
-    styleUrls: ['../home.component.css']
+    templateUrl: 'branche.component.html'
 })
 
 export class BrancheComponent {

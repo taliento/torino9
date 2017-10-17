@@ -5,8 +5,7 @@ import { NewsHeaderService} from '../services/newsheader.service';
 @Component({
   moduleId: module.id,
   selector:'news-component',
-  templateUrl: 'news.component.html',
-  styleUrls: ['news.component.css']
+  templateUrl: 'news.component.html'
 })
 export class NewsComponent implements OnInit{
 

@@ -3,8 +3,7 @@ import { Component } from '@angular/core';
 
 @Component({
     moduleId: module.id,
-    templateUrl: 'home.component.html',
-    styleUrls: ['./home.component.css']
+    templateUrl: 'home.component.html'
 })
 
 export class HomeComponent {

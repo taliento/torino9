@@ -5,11 +5,7 @@ import { DTCarousel } from '../../models/dt-carousel.model';
 @Component({
   moduleId: module.id,
   selector: 'dt-carousel',
-  templateUrl: 'dt-carousel.component.html',
-  styleUrls: [
-    './dt-carousel.component.css',
-    '../home.component.css'
-  ]
+  templateUrl: 'dt-carousel.component.html'
 })
 export class DTCarouselComponent {
   public carouselList: DTCarousel[];
