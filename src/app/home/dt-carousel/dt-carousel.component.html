@@ -4,7 +4,7 @@
     <div class="carousel-caption d-md-block" [class.text-center]="carouselItem.position == 'center'" [class.text-left]="carouselItem.position == 'left'" [class.text-right]="carouselItem.position == 'right'">
       <h1>{{carouselItem.title}}</h1>
       <p>{{carouselItem.text}}</p>
-      <p><a class="btn btn-lg btn-primary" [href]="carouselItem.btnHref" role="button">{{carouselItem.btnText}}</a></p>
+      <button class="btn btn-lg btn-primary" [routerLink]="[carouselItem.btnHref]" routerLinkActive="active">{{carouselItem.btnText}}</button>
     </div>
   </ng-template>
 </ngb-carousel>
