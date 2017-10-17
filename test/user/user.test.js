@@ -9,6 +9,7 @@ describe('user rest api', function() {
   var id;
 
   var token;
+  var idApiUser;
 
   before(function(done) {
     superagent.post(apiUrl+'/users/authenticate')
@@ -17,6 +18,7 @@ describe('user rest api', function() {
       .end(function(err, res) {
         expect(err).to.eql(null);
         token = res.body.token;
+        idApiUser = res.body._id;
         done();
       });
   });
@@ -94,6 +96,17 @@ describe('user rest api', function() {
 
   it('removes an user', function(done){
     superagent.del(apiUrl+'/users/'+id)
+      .set('Authorization', 'Bearer ' + token)
+      .set('Accept', 'application/json')
+      .end(function(e, res){
+        expect(e).to.eql(null);
+        expect(res.status).to.eql(200);
+        done();
+      });
+  });
+
+  it('removes test api user', function(done){
+    superagent.del(apiUrl+'/users/'+idApiUser)
       .set('Authorization', 'Bearer ' + token)
       .set('Accept', 'application/json')
       .end(function(e, res){

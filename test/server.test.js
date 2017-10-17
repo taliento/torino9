@@ -15,7 +15,7 @@ var expect = common.expect;
 
 describe("express rest api server", function () {
 
-    importTest('register', './user/register.test.js')
+    importTest('register', './user/register.test.js');
 
     importTest("about folder", './about/about.test.js');
 
