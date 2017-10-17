@@ -18,12 +18,9 @@ before_install:
 
 before_script:
 - npm install -g @angular/cli
-- npm install -g karma
 
 script:
   - node server.js &
-  - npm test
-  - ng test
 
 deploy:
   provider: heroku
