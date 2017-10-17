@@ -7,6 +7,8 @@
     "start": "node server.js",
     "build": "ng build",
     "test": "mocha test/server.test.js && ./node_modules/.bin/karma start --single-run",
+    "cover": "istanbul cover _mocha",
+    "coveralls": "npm run cover -- --report lcovonly && cat ./coverage/lcov.info | coveralls",
     "lint": "ng lint",
     "e2e": "ng e2e",
     "postinstall": "ng build --prod --env=prod"
@@ -52,6 +54,7 @@
     "codelyzer": "~3.0.1",
     "coveralls": "^3.0.0",
     "expect.js": "^0.3.1",
+    "istanbul": "^0.4.5",
     "jasmine-core": "~2.6.2",
     "jasmine-spec-reporter": "~4.1.0",
     "karma": "~1.7.0",
