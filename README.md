@@ -4,6 +4,16 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.2.6.
 
+-[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
+
+
+## dev
+
+```
+npm install
+npm start
+ng serve
+```
 
 ## TODO
 
@@ -15,19 +25,8 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 - [x] admin module
 - [x] calendar
 - [ ] custom pages
-- [ ] html editor
+- [x] html editor
 - [ ] search contents
 - [ ] register
 - [x] fix gmap css font bug
 - [ ] code cleanup
-
-## dev
-
-node, angular-cli and mongodb are required
-
-
-```
-npm install
-npm start
-ng serve
-```

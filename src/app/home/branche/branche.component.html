@@ -3,6 +3,6 @@
     <img class="rounded-circle img-fluid" [src]="branca.imgPath" alt="Generic placeholder image" width="140" height="140">
     <h2>{{branca.title}}</h2>
     <p>{{branca.subtitle}}</p>
-    <p><a class="btn btn-secondary" [routerLink]="['branca',branca._id]" routerLinkActive="active" role="button">Dettagli &raquo;</a></p>
+    <button class="btn btn-secondary" [routerLink]="['/branca',branca._id]" routerLinkActive="active">Dettagli &raquo;</button>
   </div>
 </div>

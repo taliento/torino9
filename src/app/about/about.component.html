@@ -13,7 +13,8 @@
         <div class="card-body">
           <h4 class="card-title">{{aboutPage.title}}</h4>
           <h6 class="card-subtitle mb-2 text-muted">{{aboutPage.subtitle}}</h6>
-          <p class="card-text">{{aboutPage.text}}</p>
+          <!-- <div class="card-text" [innerHtml]="aboutPage.text"></div> -->
+          <div [froalaView]="aboutPage.text"></div>
           <a *ngFor="let link of aboutPage.links" [href]="link.href" class="card-link">{{link.text}}</a>
         </div>
       </div>
