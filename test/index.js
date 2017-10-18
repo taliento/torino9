@@ -1,13 +1,10 @@
+var userService = require('../services/user.service');
+var config = require('../config.json');
 var superagent = require('superagent')
 var expect = require('expect.js')
-var config = require('../config.json');
 var user = config.user;
 var apiUrl = config.apiUrl;
 var password = config.password;
-
-function importTest(path,token) {
-  require(path).init(token);
-}
 
 describe("express rest api server", function () {
 

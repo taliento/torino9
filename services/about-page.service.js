@@ -1,4 +1,4 @@
-var config = require('config.json');
+var config = require('../config.json');
 var Q = require('q');
 var mongo = require('mongoskin');
 var db = mongo.db(process.env.MONGODB_URI || config.connectionString, { native_parser: true });
