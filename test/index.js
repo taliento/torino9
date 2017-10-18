@@ -1,4 +1,3 @@
-var userService = require('../services/user.service');
 var config = require('../config.json');
 var superagent = require('superagent')
 var expect = require('expect.js')
