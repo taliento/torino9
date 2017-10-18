@@ -22,6 +22,7 @@ export class NavbarComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.user = this.authenticationService.getUser();
     this.menuItems = ROUTES.filter(menuItem => menuItem.menuType !== MenuType.BRAND);
     this.brandMenu = ROUTES.filter(menuItem => menuItem.menuType === MenuType.BRAND)[0];
   }

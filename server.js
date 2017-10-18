@@ -54,6 +54,31 @@ app.use('/contact', require('./controllers/contact-page.controller'));
 app.use('/branca', require('./controllers/branca.controller'));
 
 
+function logErrors (err, req, res, next) {
+  console.error(err.stack)
+  next(err)
+}
+function clientErrorHandler (err, req, res, next) {
+  if (req.xhr) {
+    res.status(500).send({ error: 'Something failed!' })
+  } else {
+    next(err)
+  }
+}
+function errorHandler (err, req, res, next) {
+  if (res.headersSent) {
+    return next(err)
+  }
+  res.status(500)
+  res.render('error', { error: err })
+}
+
+
+app.use(logErrors);
+app.use(clientErrorHandler);
+app.use(errorHandler);
+
+
 // Initialize the app.
 var server = app.listen(process.env.PORT || config.port, function () {
   var port = server.address().port;
