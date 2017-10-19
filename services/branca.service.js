@@ -30,7 +30,7 @@ function get(_id) {
   db.branca.findById(_id,function (err, branca) {
     if (err) deferred.reject(err.name + ': ' + err.message);
     if(branca == null) {
-      deferred.resolve({});
+      deferred.reject("Not found!");
     } else {
       deferred.resolve(branca);
     }

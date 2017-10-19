@@ -21,11 +21,15 @@ export class BrancaComponent implements OnInit {
   ngOnInit() {
      this.current.params
     .switchMap((params: Params) => this.brancaService.getById(params['id']))
-    .subscribe(branca => {
-      this.branca = branca;
-      if(this.branca.imgPath) {
-        this.backgroundImg = this.sanitizer.bypassSecurityTrustStyle('url('+this.branca.imgPath+')'); 
-      }
-    } );
+    .subscribe(
+      branca => {
+        this.branca = branca;
+        if(this.branca.imgPath) {
+          this.backgroundImg = this.sanitizer.bypassSecurityTrustStyle('url('+this.branca.imgPath+')');
+        }
+      },
+      error => {
+        this.router.navigate(['']);
+      });
   }
 }
