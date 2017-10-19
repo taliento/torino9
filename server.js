@@ -1,23 +1,20 @@
 require('rootpath')();
 var express = require('express');
-var app = express();
+var expressJwt = require('express-jwt');
 var cors = require('cors');
 var bodyParser = require('body-parser');
-var expressJwt = require('express-jwt');
 var config = require('config.json');
+
+var app = express();
 
 app.use(cors());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
-// Create link to Angular build directory
-var distDir = __dirname + "/dist/";
-app.use(express.static(distDir));
-
+//API location
 // use JWT auth to secure the api
 app.use(expressJwt({ secret: (process.env.SECRET || config.secret) }).
-unless({ path: [//exclusions
-  '/',
+unless({ path: [
   '/users/authenticate',
   '/users/register',
    '/news',
@@ -53,7 +50,7 @@ app.use('/about', require('./controllers/about-page.controller'));
 app.use('/contact', require('./controllers/contact-page.controller'));
 app.use('/branca', require('./controllers/branca.controller'));
 
-
+//error handling
 function logErrors (err, req, res, next) {
   console.error(err.stack)
   next(err)
@@ -73,10 +70,16 @@ function errorHandler (err, req, res, next) {
   res.render('error', { error: err })
 }
 
-
 app.use(logErrors);
 app.use(clientErrorHandler);
 app.use(errorHandler);
+
+// Create link to Angular build directory
+var distDir = __dirname + "/dist/";
+// app.use(express.static(distDir));
+app.get('*', function(req,res) {
+  res.sendFile(path.join(distDir));
+})
 
 
 // Initialize the app.
