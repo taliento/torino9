@@ -26,7 +26,7 @@ unless({ path: [
   '/contact',
   '/login',
   '/admin',
-  /^\/branca\/get\/.*/,
+  /^\/branca\/.*/,
 
   //public api routes
   '/api/users/authenticate',
@@ -64,34 +64,41 @@ app.use('/api/about', require('./controllers/about-page.controller'));
 app.use('/api/contact', require('./controllers/contact-page.controller'));
 app.use('/api/branca', require('./controllers/branca.controller'));
 
-// application -------------------------------------------------------------
-app.get('*', function (req, res) {
-    res.sendFile(distDir + '/index.html'); // load the single view file (angular will handle the page changes on the front-end)
-});
 
 //error handling
 function logErrors (err, req, res, next) {
-  console.error(err.stack)
-  next(err)
+  console.error(err.stack);
+  next(err);
 }
 function clientErrorHandler (err, req, res, next) {
   if (req.xhr) {
-    res.status(500).send({ error: 'Something failed!' })
+    res.status(500).send({ error: 'Something failed!' });
   } else {
-    next(err)
+    next(err);
   }
 }
 function errorHandler (err, req, res, next) {
-  if (res.headersSent) {
-    return next(err)
+  if (err.name === 'UnauthorizedError') {
+    res.redirect('/');
+    return;
   }
-  res.status(500)
-  res.render('error', { error: err })
+  if (res.headersSent) {
+    return next(err);
+  }
+  res.status(500);
+  res.render('error', { error: err });
 }
 
 app.use(logErrors);
 app.use(clientErrorHandler);
 app.use(errorHandler);
+
+
+// application -------------------------------------------------------------
+app.get('*', function (req, res) {
+    res.sendFile(distDir + '/index.html'); // load the single view file (angular will handle the page changes on the front-end)
+});
+
 
 // Initialize the app.
 var server = app.listen(process.env.PORT || config.port, function () {
