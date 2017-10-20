@@ -1,10 +1,11 @@
 'use strict';
-var config = require('config.json');
-var express = require('express');
+const config = require('config.json');
+const express = require('express');
 const fileUpload = require('express-fileupload');
-var router = express.Router();
-var carouselService = require('services/carousel.service');
-var path = require('path');
+const router = express.Router();
+const carouselService = require('services/carousel.service');
+const path = require('path');
+const fs = require('fs');
 
 // routes
 router.post('/insert', insert);
@@ -109,36 +110,33 @@ function update(req, res) {
 
 function updateUpload(req, res) {
 
-  //controllo se contiene fail
+  if(req.files.imgFile) {//controllo se contiene file
 
-  //elimino vecchio
+    fs.unlink(__dirname + '/..' + req.body.imgPath, function(err) {//elimino vecchio file
+      if (err) throw err;
+      // The name of the input field (i.e. "imgFile") is used to retrieve the uploaded file
+      let imgFile = req.files.imgFile;
+      const publicImgPath = '/public/img/';
 
-  //aggiungo nuovo
+      // Use the mv() method to place the file somewhere on your server
+      let imgPath = __dirname + '/..'+ publicImgPath + req.files.imgFile.name;
 
-  //aggiorno record
+      imgFile.mv(imgPath, function(err) {
+        if (err) {
+          return res.status(500).send(err);
+        }
 
-  // The name of the input field (i.e. "imgFile") is used to retrieve the uploaded file
-  let imgFile = req.files.imgFile;
-  const publicImgPath = '/public/img/';
+        req.body.imgPath = publicImgPath + req.files.imgFile.name;
+        //update slide
+        update(req, res);
+      });
 
-  // Use the mv() method to place the file somewhere on your server
-  let imgPath = __dirname + '/..'+ publicImgPath + req.files.imgFile.name;
+    });
 
-  imgFile.mv(imgPath, function(err) {
-    if (err) {
-      return res.status(500).send(err);
-    }
+  } else {
+    update(req, res);
+  }
 
-    req.body.imgPath = publicImgPath + req.files.imgFile.name;
-    //update slide
-    carouselService.update(req.params._id, req.body)
-        .then(function () {
-            res.sendStatus(200);
-        })
-        .catch(function (err) {
-            res.status(400).send(err);
-        });
-  });
 }
 
 function _delete(req, res) {

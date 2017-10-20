@@ -1,4 +1,4 @@
-import {Component, ElementRef, ViewChild, Inject, Output, EventEmitter, Input} from '@angular/core';
+import {Component, ElementRef, ViewChild, Inject, Output, EventEmitter, Input, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import { DTCarousel } from '../../../models/dt-carousel.model';
 
@@ -6,7 +6,7 @@ import { DTCarousel } from '../../../models/dt-carousel.model';
   selector: 'slide-upload',
   templateUrl: './slide-upload.component.html'
 })
-export class SlideUploadComponent {
+export class SlideUploadComponent implements OnInit {
   form: FormGroup;
   loading: boolean = false;
   @ViewChild('imgInput') imgInput: ElementRef;
@@ -14,27 +14,25 @@ export class SlideUploadComponent {
   @Input() slide: DTCarousel;
 
   constructor(@Inject(FormBuilder) fb: FormBuilder) {
-    if(this.slide)  {
-      this.form = fb.group({
-        title: [this.slide.title, Validators.required],
-        text: this.slide.text,
-        position: this.slide.position,
-        btnText: this.slide.btnText,
-        btnHref: this.slide.btnHref,
-        imgFile: this.slide.imgPath
-      });
-    } else {
-      this.form = fb.group({
-        title: ['', Validators.required],
-        text: null,
-        position: null,
-        btnText: null,
-        btnHref: null,
-        imgFile: null
-      });
+    this.form = fb.group({
+      title: ['', Validators.required],
+      text: null,
+      position: null,
+      btnText: null,
+      btnHref: null,
+      imgFile: null
+    });
+  }
+
+  ngOnInit() {
+    if(this.slide) {
+      this.form.get('title').setValue(this.slide.title);
+      this.form.get('text').setValue(this.slide.text);
+      this.form.get('position').setValue(this.slide.position);
+      this.form.get('btnText').setValue(this.slide.btnText);
+      this.form.get('btnHref').setValue(this.slide.btnHref);
+      this.form.get('imgFile').setValue(this.slide.imgPath);
     }
-
-
   }
 
   onFileChange(event) {
