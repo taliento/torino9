@@ -1,9 +1,9 @@
 'use strict';
 
-var config = require('config.json');
-var express = require('express');
-var router = express.Router();
-var caledarService = require('services/calendar.service');
+const config = require('config.json');
+const express = require('express');
+const router = express.Router();
+const caledarService = require('services/calendar.service');
 
 // routes
 router.post('/insert', insert);

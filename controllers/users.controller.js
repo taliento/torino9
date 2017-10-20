@@ -1,9 +1,9 @@
 'use strict';
 
-var config = require('config.json');
-var express = require('express');
-var router = express.Router();
-var userService = require('services/user.service');
+const config = require('config.json');
+const express = require('express');
+const router = express.Router();
+const userService = require('services/user.service');
 
 // routes
 router.post('/authenticate', authenticate);

@@ -5,7 +5,7 @@ const fileUpload = require('express-fileupload');
 const cors = require('cors');
 const bodyParser = require('body-parser');
 const config = require('config.json');
-var path = require('path');
+const path = require('path');
 
 const app = express();
 

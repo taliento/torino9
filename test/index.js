@@ -1,9 +1,9 @@
-var config = require('../config.json');
-var superagent = require('superagent')
-var expect = require('expect.js')
-var user = config.user;
-var apiUrl = config.apiUrl;
-var password = config.password;
+const config = require('../config.json');
+const superagent = require('superagent')
+const expect = require('expect.js')
+const user = config.user;
+const apiUrl = config.apiUrl;
+const password = config.password;
 
 describe("express rest api server", function () {
 

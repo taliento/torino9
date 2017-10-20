@@ -1,9 +1,9 @@
 'use strict';
 
-var config = require('config.json');
-var express = require('express');
-var router = express.Router();
-var newsService = require('services/news.service');
+const config = require('config.json');
+const express = require('express');
+const router = express.Router();
+const newsService = require('services/news.service');
 
 // routes
 router.post('/insert', insert);

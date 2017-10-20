@@ -1,10 +1,10 @@
-var config = require('../config.json');
-var _ = require('lodash');
-var jwt = require('jsonwebtoken');
-var bcrypt = require('bcryptjs');
-var Q = require('q');
-var mongo = require('mongoskin');
-var db = mongo.db(process.env.MONGODB_URI || config.connectionString, { native_parser: true });
+const config = require('../config.json');
+const _ = require('lodash');
+const jwt = require('jsonwebtoken');
+const bcrypt = require('bcryptjs');
+const Q = require('q');
+const mongo = require('mongoskin');
+const db = mongo.db(process.env.MONGODB_URI || config.connectionString, { native_parser: true });
 db.bind('users');
 
 var service = {};

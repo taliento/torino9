@@ -1,9 +1,9 @@
 'use strict';
 
-var config = require('config.json');
-var express = require('express');
-var router = express.Router();
-var brancaService = require('services/branca.service');
+const config = require('config.json');
+const express = require('express');
+const router = express.Router();
+const brancaService = require('services/branca.service');
 
 // routes
 router.get('',getAll);

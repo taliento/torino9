@@ -1,7 +1,7 @@
-var config = require('../config.json');
-var Q = require('q');
-var mongo = require('mongoskin');
-var db = mongo.db(process.env.MONGODB_URI || config.connectionString, { native_parser: true });
+const config = require('../config.json');
+const Q = require('q');
+const mongo = require('mongoskin');
+const db = mongo.db(process.env.MONGODB_URI || config.connectionString, { native_parser: true });
 db.bind('news');
 
 var service = {};
