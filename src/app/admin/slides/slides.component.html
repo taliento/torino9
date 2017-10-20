@@ -20,47 +20,7 @@
 <div id="collapseExample" [ngbCollapse]="isCollapsed">
   <div class="card">
     <div class="card-body">
-      <form>
-        <div class="form-group">
-          <label for="insertTitle">Titolo</label>
-          <input type="text" class="form-control" id="insertTitle" name="title" placeholder="Titolo slide" [(ngModel)]="newSlide.title">
-        </div>
-
-        <div class="form-group">
-          <label for="insertText">Testo</label>
-          <textarea rows="5" class="form-control" id="insertText" name="text" placeholder="Testo slide" [(ngModel)]="newSlide.text"></textarea>
-        </div>
-
-        <label for="insertPosition">Posizione testo</label>
-        <div class="btn-group" id="insertPosition" ngbRadioGroup name="position" [(ngModel)]="newSlide.position">
-          <label ngbButtonLabel class="btn-primary">
-            <input ngbButton type="radio" value="left"> Sinistra
-          </label>
-          <label ngbButtonLabel class="btn-primary">
-            <input ngbButton type="radio" value="center"> Centro
-          </label>
-          <label ngbButtonLabel class="btn-primary">
-            <input ngbButton type="radio" value="right"> Destra
-          </label>
-        </div>
-
-        <div class="form-group">
-          <label for="insertImgPath">Link immagine</label>
-          <input type="text" class="form-control" id="insertImgPath" name="imgPath" placeholder="Link immagine esterno" [(ngModel)]="newSlide.imgPath">
-        </div>
-
-        <div class="form-group">
-        <label for="insertTestoBottone">Testo bottone</label>
-        <input type="text" class="form-control" id="insertTestoBottone" name="btnText" placeholder="Testo bottone slide" [(ngModel)]="newSlide.btnText">
-        </div>
-
-        <div class="form-group">
-          <label for="insertBtnHref">Link bottone</label>
-          <input type="text" class="form-control" id="insertBtnHref" name="btnHref" placeholder="Link Bottone slide" [(ngModel)]="newSlide.btnHref">
-        </div>
-
-        <button type="button" class="btn btn-outline-success" (click)="addSlide()">Inserisci</button>
-      </form>
+      <slide-upload #insertForm (formSubmit)="addSlide($event)"></slide-upload>
     </div>
   </div>
 </div>

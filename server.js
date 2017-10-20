@@ -1,19 +1,28 @@
 require('rootpath')();
-var express = require('express');
-var expressJwt = require('express-jwt');
-var cors = require('cors');
-var bodyParser = require('body-parser');
-var config = require('config.json');
+const express = require('express');
+const expressJwt = require('express-jwt');
+const fileUpload = require('express-fileupload');
+const cors = require('cors');
+const bodyParser = require('body-parser');
+const config = require('config.json');
+var path = require('path');
 
-var app = express();
+const app = express();
+
 
 app.use(cors());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
+// file upload with default options
+app.use(fileUpload());
+
 // Create link to Angular build directory
-var distDir = __dirname + "/dist/";
+const distDir = __dirname + "/dist/";
 app.use(express.static(distDir));
+
+//public img file path
+app.use('/public/img/',express.static(path.join(__dirname, 'public/img')));
 
 //API location
 // use JWT auth to secure the api
@@ -27,6 +36,9 @@ unless({ path: [
   '/login',
   '/admin',
   /^\/branca\/.*/,
+
+  //public res folder
+  /^\/public\/img\/.*/,
 
   //public api routes
   '/api/users/authenticate',
@@ -93,12 +105,10 @@ app.use(logErrors);
 app.use(clientErrorHandler);
 app.use(errorHandler);
 
-
-// application -------------------------------------------------------------
+// // application -------------------------------------------------------------
 app.get('*', function (req, res) {
     res.sendFile(distDir + '/index.html'); // load the single view file (angular will handle the page changes on the front-end)
 });
-
 
 // Initialize the app.
 var server = app.listen(process.env.PORT || config.port, function () {

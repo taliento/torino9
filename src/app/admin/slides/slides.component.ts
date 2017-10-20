@@ -9,8 +9,9 @@ import { CarouselService, AlertService } from '../../services/index';
 })
 export class SlidesComponent implements OnInit{
   public slides: DTCarousel[];
-  newSlide: DTCarousel = new DTCarousel();
   isCollapsed = true;
+
+  @ViewChild('insertForm') insertForm;
 
   @ViewChild('confirmDialog') confirmDialog;
   confirmTitle = 'Sicuro?';
@@ -22,9 +23,7 @@ export class SlidesComponent implements OnInit{
   collectionSize = 0;
   previousPage: any;
 
-  constructor(private carouselService: CarouselService, private alertService: AlertService) {
-
-  }
+  constructor(private carouselService: CarouselService, private alertService: AlertService) { }
 
   ngOnInit(): void {
     this.carouselService.count().subscribe((res) => {
@@ -35,13 +34,13 @@ export class SlidesComponent implements OnInit{
     });
   }
 
-  addSlide() {
-    this.carouselService.insert(this.newSlide)
+  addSlide($event) {
+    this.carouselService.insertUpload($event)
     .subscribe(
       data => {
-        this.alertService.success(this.newSlide.title+' inserita!', false);
+        this.alertService.success('Inserito!', false);
+        this.insertForm.setLoading(false);
         this.isCollapsed = true;
-        this.newSlide = new DTCarousel();
         this.collectionSize++;
         this.loadData();
       },

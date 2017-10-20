@@ -13,7 +13,8 @@ export class SlideDetailComponent{
 
    @Output() delete: EventEmitter<any> = new EventEmitter();
 
-   @ViewChild('updateContent') updateContent;
+   @ViewChild('updateContent') updateContent;//MODAL VIEW
+   @ViewChild('updateForm') updateForm;
 
    constructor(private modalService: NgbModal, private carouselService: CarouselService,  private alertService: AlertService) {
 
@@ -23,10 +24,11 @@ export class SlideDetailComponent{
      this.delete.emit(this.slide);
    }
 
-   update() {
-     this.carouselService.update(this.slide).subscribe(
+   update($event) {
+     $event._id = this.slide._id;//XXX
+     this.carouselService.update($event).subscribe(
        data => {
-         this.alertService.success(this.slide.title+' modificato con successo!', false);
+         this.alertService.success($event.title+' modificato con successo!', false);
        },
        error => {
          this.alertService.error(error._body);
