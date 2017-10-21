@@ -9,7 +9,6 @@ const path = require('path');
 
 const app = express();
 
-
 app.use(cors());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
@@ -36,10 +35,8 @@ unless({ path: [
   '/login',
   '/admin',
   /^\/branca\/.*/,
-
   //public res folder
   /^\/public\/img\/.*/,
-
   //public api routes
   '/api/users/authenticate',
   '/api/users/register',
@@ -75,7 +72,6 @@ app.use('/api/featurette', require('./controllers/featurette.controller'));
 app.use('/api/about', require('./controllers/about-page.controller'));
 app.use('/api/contact', require('./controllers/contact-page.controller'));
 app.use('/api/branca', require('./controllers/branca.controller'));
-
 
 //error handling
 function logErrors (err, req, res, next) {
