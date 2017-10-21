@@ -42,4 +42,4 @@ testem.log
 Thumbs.db
 
 #public static files
-/public/img/*
+/public/img/**/*

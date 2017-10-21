@@ -31,7 +31,6 @@ export class SlideUploadComponent implements OnInit {
       this.form.get('position').setValue(this.slide.position);
       this.form.get('btnText').setValue(this.slide.btnText);
       this.form.get('btnHref').setValue(this.slide.btnHref);
-      this.form.get('imgFile').setValue(this.slide.imgPath);
     }
   }
 
