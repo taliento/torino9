@@ -111,17 +111,17 @@ function updateUpload(req, res) {
     if (fs.existsSync(imageDir)) {
       fs.unlink(__dirname + '/..' + req.body.imgPath, function(err) {
         if (err) throw err;
-        updateFile(imgFile, imgPath);
+        updateFile(imgFile, imgPath, req, res);
       });
     } else {
-      updateFile(imgFile, imgPath);
+      updateFile(imgFile, imgPath, req, res);
     }
   } else {
     update(req, res);
   }
 }
 
-function updateFile(imgFile, imgPath) {
+function updateFile(imgFile, imgPath, req, res) {
   imgFile.mv(imgPath, function(err) {
     if (err) {
       return res.status(500).send(err);
