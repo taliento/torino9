@@ -1,13 +1,10 @@
 'use strict';
 
-const config = require('config.json');
-const express = require('express');
-const fileUpload = require('express-fileupload');
-const router = express.Router();
 const carouselService = require('services/carousel.service');
-const path = require('path');
-const fs = require('fs');
-const publicImgPath = '/public/img/';
+const uploadService = require('services/upload.service');
+const express = require('express');
+const router = express.Router();
+
 
 // routes
 router.post('/insert', insert);
@@ -33,15 +30,13 @@ function insert(req, res) {
 }
 
 function insertUpload(req, res) {
-  if(req.files.imgFile) {
-    let imgFile = req.files.imgFile;
-    let imgPath = __dirname + '/..'+ publicImgPath + req.files.imgFile.name;
-    imgFile.mv(imgPath, function(err) {
-      if (err) {
-        return res.status(500).send(err);
-      }
-      req.body.imgPath = publicImgPath + req.files.imgFile.name;
+  if(req.files && req.files.imgFile) {
+    uploadService.insert(req.files.imgFile).then(function (newImage) {
+      req.body.imgPath = newImage;
       insert(req, res);
+    })
+    .catch(function (err) {
+      res.status(400).send(err);
     });
   } else {
     insert(req, res);
@@ -104,46 +99,29 @@ function update(req, res) {
 
 function updateUpload(req, res) {
   req.params._id = req.body._id;//XXX
-  if(req.files.imgFile) {
-    var imageDir = __dirname + '/..' + req.body.imgPath;
-    var imgFile = req.files.imgFile;
-    var imgPath = __dirname + '/..'+ publicImgPath + req.files.imgFile.name;
-    if (fs.existsSync(imageDir)) {
-      fs.unlink(__dirname + '/..' + req.body.imgPath, function(err) {
-        if (err) throw err;
-        updateFile(imgFile, imgPath, req, res);
-      });
-    } else {
-      updateFile(imgFile, imgPath, req, res);
-    }
+  if(req.files && req.files.imgFile) {
+    uploadService.update(req.files.imgFile, req.body.imgPath).then(function (newImage) {
+      req.body.imgPath = newImage;
+      update(req, res);
+    })
+    .catch(function (err) {
+      res.status(400).send(err);
+    });
   } else {
     update(req, res);
   }
-}
-
-function updateFile(imgFile, imgPath, req, res) {
-  imgFile.mv(imgPath, function(err) {
-    if (err) {
-      return res.status(500).send(err);
-    }
-    req.body.imgPath = publicImgPath + req.files.imgFile.name;
-    update(req, res);
-  });
 }
 
 function _delete(req, res) {
   carouselService.getById(req.params._id)
   .then(function (_carouselItem) {
     if (_carouselItem) {
-      var imageDir = __dirname + '/..'+ _carouselItem.imgPath;
-      if (fs.existsSync(imageDir)) {
-        fs.unlink(imageDir, function(err) {
-          if (err) console.log(err);
-          _deleteSlide(req,res);
-        });
-      } else {
+      uploadService._delete(__dirname + '/..'+ _carouselItem.imgPath).then(function () {
         _deleteSlide(req,res);
-      }
+      })
+      .catch(function (err) {
+        res.status(400).send(err);
+      });
     } else {
       res.sendStatus(404);
     }

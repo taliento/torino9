@@ -19,6 +19,6 @@ export class NewsComponent implements OnInit{
   }
 
   ngOnInit() {
-    this.headerService.change("Novità", "Nulla che sia del tutto nuovo è perfetto", "(Marco Tullio Cicerone)","assets/images/news.png");
+    this.headerService.reset();
   }
 }

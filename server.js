@@ -35,7 +35,7 @@ unless({ path: [
   '/login',
   '/admin',
   /^\/branca\/.*/,
-  //public res folder
+  //public img folder
   /^\/public\/img\/.*/,
   //public api routes
   '/api/users/authenticate',
