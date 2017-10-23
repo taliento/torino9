@@ -139,7 +139,7 @@ function _delete(req, res) {
   .then(function (_carouselItem) {
     if (_carouselItem) {
       fs.unlink(__dirname + '/..'+ _carouselItem.imgPath, function(err) {//rimuovo immagine
-        if (err) throw err;
+        if (err) console.log(err);
         _deleteSlide(req,res);
       });
     } else {
