@@ -5,7 +5,6 @@
   <button type="button" class="btn btn-outline-primary btn-sm" (click)="modifyNews()">Update</button>
   <button type="button" class="btn btn-outline-danger btn-sm" (click)="deleteNews()">Delete</button>
 </div>
-<img class="card-img-bottom" [src]="news.imgPath" [alt]="news.alt">
 <div class="card-footer">
   <small class="text-muted">Inserito da <span>{{news.author}}</span> nel {{news.insertDate | date:'dd/MM/yyyy' }}</small>
 </div>

@@ -5,8 +5,6 @@ export class News {
   title: string;
   subTitle: string;
   text: string;
-  alt: string;
-  imgPath: string;
   author: string;
 
   constructor(title: string, subTitle: string, text: string) {
