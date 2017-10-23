@@ -1,7 +1,7 @@
 <br>
 <div class="card-deck">
   <div class="card" *ngFor="let slide of slides">
-    <dt-slide-detail [slide]="slide" (delete)="delete($event)"></dt-slide-detail>
+    <dt-slide-detail [slide]="slide" (updated)="loadData()"  (delete)="delete($event)"></dt-slide-detail>
   </div>
 </div>
 

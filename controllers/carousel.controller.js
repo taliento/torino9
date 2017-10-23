@@ -16,6 +16,7 @@ router.get('/count', count);
 router.get('/get/:_id', get);
 router.get('/paged/:limit/:page/:size', getPaged);
 router.put('/:_id', update);
+router.post('/carouselUpload', updateUpload);
 router.delete('/:_id', _delete);
 
 module.exports = router;
@@ -109,36 +110,48 @@ function update(req, res) {
 }
 
 function updateUpload(req, res) {
+  req.params._id = req.body._id;//XXX
 
   if(req.files.imgFile) {//controllo se contiene file
-
     fs.unlink(__dirname + '/..' + req.body.imgPath, function(err) {//elimino vecchio file
       if (err) throw err;
 
       let imgFile = req.files.imgFile;
       const publicImgPath = '/public/img/';
-
       let imgPath = __dirname + '/..'+ publicImgPath + req.files.imgFile.name;
 
       imgFile.mv(imgPath, function(err) {
         if (err) {
           return res.status(500).send(err);
         }
-
         req.body.imgPath = publicImgPath + req.files.imgFile.name;
         //update slide
         update(req, res);
       });
-
     });
-
   } else {
     update(req, res);
   }
-
 }
 
 function _delete(req, res) {
+  carouselService.getById(req.params._id)
+  .then(function (_carouselItem) {
+    if (_carouselItem) {
+      fs.unlink(__dirname + '/..'+ _carouselItem.imgPath, function(err) {//rimuovo immagine
+        if (err) throw err;
+        _deleteSlide(req,res);
+      });
+    } else {
+      res.sendStatus(404);
+    }
+  })
+  .catch(function (err) {
+    res.status(400).send(err);
+  })
+}
+
+function _deleteSlide(req, res) {
   carouselService.delete(req.params._id)
   .then(function () {
     res.sendStatus(200);

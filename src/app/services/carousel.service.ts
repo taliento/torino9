@@ -53,4 +53,9 @@ export class CarouselService extends AService {
   update(slide: DTCarousel) {
     return this.http.put(this.apiUrl+'/carousel/' + slide._id, slide, this.jwt());
   }
+
+  updateUpload(formData: FormData) {
+    return this.http.post(this.apiUrl+'/carousel/carouselUpload/',formData, this.jwt());
+  }
+
 }
