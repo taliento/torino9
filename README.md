@@ -34,9 +34,10 @@ ng serve
 - [x] contact page
 - [x] admin module
 - [x] calendar
-- [ ] custom pages
-- [x] html editor
-- [ ] search contents
-- [ ] register
+- [x] html editor (trial) 
 - [x] fix gmap css font bug
+- [ ] upload images
 - [ ] code cleanup
+- [ ] search contents
+- [ ] custom pages
+- [ ] register

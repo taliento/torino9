@@ -17,45 +17,10 @@
     </button>
   </div>
   <div class="modal-body">
-    <form>
-        <div class="form-group">
-          <label for="updateTitle">Titolo</label>
-          <input type="text" class="form-control" id="updateTitle" name="title" [(ngModel)]="slide.title" placeholder="Titolo">
-        </div>
-        <div class="form-group">
-          <label for="updateText">Testo</label>
-          <textarea rows="5" class="form-control" id="updateText" name="text" [(ngModel)]="slide.text" placeholder="Testo"></textarea>
-        </div>
-
-        <label for="updatePosition">Posizione testo</label>
-        <div class="btn-group" id="updatePosition" ngbRadioGroup name="position" [(ngModel)]="slide.position">
-          <label ngbButtonLabel class="btn-primary">
-            <input ngbButton type="radio" value="left"> Sinistra
-          </label>
-          <label ngbButtonLabel class="btn-primary">
-            <input ngbButton type="radio" value="center"> Centro
-          </label>
-          <label ngbButtonLabel class="btn-primary">
-            <input ngbButton type="radio" value="right"> Destra
-          </label>
-        </div>
-
-        <div class="form-group">
-          <label for="updateImg">Immagine</label>
-          <input type="text" class="form-control" id="updateImg" name="imgPath" [(ngModel)]="slide.imgPath" placeholder="Link immagine">
-        </div>
-        <div class="form-group">
-          <label for="updateBtnText">Testo bottone</label>
-          <input type="text" class="form-control" id="updateBtnText" name="btnText" [(ngModel)]="slide.btnText" placeholder="Testo bottone">
-        </div>
-        <div class="form-group">
-          <label for="updateURLBottone">Url bottone</label>
-          <input type="text" class="form-control" id="updateURLBottone" name="btnHref" [(ngModel)]="slide.btnHref" placeholder="Url Bottone">
-        </div>
-      </form>
+    <slide-upload #updateForm [slide]="slide" (formSubmit)="update($event)"></slide-upload>
   </div>
   <div class="modal-footer">
-    <button type="button" class="btn btn-outline-success" (click)="update();c('Close click');">Conferma</button>
+    <!-- <button type="button" class="btn btn-outline-success" (click)="update();c('Close click');">Conferma</button> -->
     <button type="button" class="btn btn-outline-dark" (click)="c('Close click')">Annulla</button>
   </div>
 </ng-template>

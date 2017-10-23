@@ -42,6 +42,10 @@ export class CarouselService extends AService {
     return this.http.post(this.apiUrl+'/carousel/insert',slide, this.jwt());
   }
 
+  insertUpload(formData: FormData) {
+    return this.http.post(this.apiUrl+'/carousel/insertUpload',formData, this.jwt());
+  }
+
   delete(_id: string) {
     return this.http.delete(this.apiUrl+'/carousel/' + _id, this.jwt());
   }
@@ -49,4 +53,9 @@ export class CarouselService extends AService {
   update(slide: DTCarousel) {
     return this.http.put(this.apiUrl+'/carousel/' + slide._id, slide, this.jwt());
   }
+
+  updateUpload(formData: FormData) {
+    return this.http.post(this.apiUrl+'/carousel/carouselUpload/',formData, this.jwt());
+  }
+
 }

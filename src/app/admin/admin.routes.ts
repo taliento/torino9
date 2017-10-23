@@ -21,7 +21,7 @@ import { ContactMapComponent } from './contact/contact-map/contact-map.component
 import { ContactDetailComponent } from './contact/contact-detail/contact-detail.component';
 import { BrancheComponent } from './branche/branche.component';
 import { BrancaDetailComponent } from './branche/branca-detail/branca-detail.component';
-
+import { SlideUploadComponent} from './slides/slide-upload/slide-upload.component';
 
 export const MODULE_ROUTES: Route[] = [
   { path: '', pathMatch: 'full' , component: AdminComponent }
@@ -48,5 +48,6 @@ export const MODULE_COMPONENTS = [
   ContactMapComponent,
   ContactDetailComponent,
   BrancheComponent,
-  BrancaDetailComponent
+  BrancaDetailComponent,
+  SlideUploadComponent
 ]

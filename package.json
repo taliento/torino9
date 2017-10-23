@@ -34,6 +34,7 @@
     "core-js": "^2.4.1",
     "cors": "^2.8.3",
     "express": "^4.15.2",
+    "express-fileupload": "^0.3.0",
     "express-jwt": "^5.1.0",
     "font-awesome": "^4.7.0",
     "lodash": "^4.17.4",
