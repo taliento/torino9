@@ -114,14 +114,14 @@ function updateUpload(req, res) {
         updateFile(imgFile, imgPath);
       });
     } else {
-      updateFile(imgFile, imgPath);
+      updateFile(imgFile, imgPath, req, res);
     }
   } else {
     update(req, res);
   }
 }
 
-function updateFile(imgFile, imgPath) {
+function updateFile(imgFile, imgPath, req, res) {
   imgFile.mv(imgPath, function(err) {
     if (err) {
       return res.status(500).send(err);
