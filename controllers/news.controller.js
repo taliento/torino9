@@ -1,6 +1,5 @@
 'use strict';
 
-const config = require('config.json');
 const express = require('express');
 const router = express.Router();
 const newsService = require('services/news.service');

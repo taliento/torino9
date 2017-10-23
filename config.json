@@ -4,5 +4,6 @@
     "port":3000,
     "secret": "torino9scout",
     "user":"apitest",
-    "password":"apitest"
+    "password":"apitest",
+    "publicImgPath":"/public/img/"
 }
