@@ -14,10 +14,11 @@ module.exports = service;
 
 function insert(imgFile) {
   var deferred = Q.defer();
-  let imgPath = __dirname + '/..'+ publicImgPath + new Date().getTime() +imgFile.name ;//timestamp name
+  var fileName = new Date().getTime() +imgFile.name;
+  var imgPath = __dirname + '/..'+ publicImgPath + fileName ;//timestamp name
   imgFile.mv(imgPath, function(err) {
     if (err) deferred.reject(err.name + ': ' + err.message);
-    deferred.resolve(publicImgPath + imgFile.name);
+    deferred.resolve(publicImgPath + fileName);
   });
   return deferred.promise;
 }
