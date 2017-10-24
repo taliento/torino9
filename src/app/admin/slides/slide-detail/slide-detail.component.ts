@@ -13,7 +13,6 @@ export class SlideDetailComponent{
    @Output() delete: EventEmitter<any> = new EventEmitter();
    @Output() updated: EventEmitter<any> = new EventEmitter();
    @ViewChild('updateContent') updateContent;//MODAL VIEW
-   @ViewChild('updateForm') updateForm;
    modalRef: NgbModalRef;
 
    constructor(private modalService: NgbModal, private carouselService: CarouselService,  private alertService: AlertService) { }
