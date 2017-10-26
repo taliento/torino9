@@ -11,17 +11,17 @@ import {
 } from "@angular/http";
 import { TestBed, fakeAsync, tick, inject, async } from '@angular/core/testing';
 import { MockBackend,MockConnection } from "@angular/http/testing";
-import { CalendarService } from './index';
-import { Event } from '../models/event.model';
+import { CarouselService } from '../services/index';
+import { DTCarousel } from '../models/dt-carousel.model';
 
-describe('Calendar Service', () => {
+describe('Carousel Service', () => {
 
   beforeEach(() => {
 
     TestBed.configureTestingModule({
       imports: [HttpModule],
       providers: [
-        CalendarService,
+        CarouselService,
         MockBackend,
         BaseRequestOptions,
         {
@@ -35,12 +35,12 @@ describe('Calendar Service', () => {
     });
   });
 
-  it('should return all events',
-  inject([CalendarService, MockBackend], (calendarService, mockBackend) => {
+  it('should return all slide',
+  inject([CarouselService, MockBackend], (carouselService, mockBackend) => {
 
     const mockResponse = [
-      { title: 'primo', text :'primo evento' , date: new Date()},
-      { title: 'secondo', text :'secondo evento' , date: new Date() }
+      { id: 0, title: 'primo' },
+      { id: 1, title: 'secondo' }
     ];
 
     mockBackend.connections.subscribe((connection) => {
@@ -49,7 +49,7 @@ describe('Calendar Service', () => {
       })));
     });
 
-    calendarService.getAll().then((news) => {
+    carouselService.getAll().then((news) => {
       expect(news).toBeTruthy();
       expect(news.length).toBeGreaterThan(1);
       expect(news[0].title).toEqual('primo');
@@ -58,12 +58,12 @@ describe('Calendar Service', () => {
 
   }));
 
-  it('should return all events by date',
-  inject([CalendarService, MockBackend], (calendarService, mockBackend) => {
+  it('should return paged slide',
+  inject([CarouselService, MockBackend], (carouselService, mockBackend) => {
 
     const mockResponse = [
-      { title: 'primo', text :'primo evento' , date: new Date()},
-      { title: 'secondo', text :'secondo evento' , date: new Date() }
+      { id: 0, title: 'primo' },
+      { id: 1, title: 'secondo' }
     ];
 
     mockBackend.connections.subscribe((connection) => {
@@ -72,9 +72,10 @@ describe('Calendar Service', () => {
       })));
     });
 
-    let date = {month:5,year:1987};
+    let params = {limit:3,page:1,size:3};
 
-    calendarService.getMonthEvents(date).then((news) => {
+    carouselService.getPaged(params).subscribe((res) => {
+      let news = res.json();
       expect(news).toBeTruthy();
       expect(news.length).toBeGreaterThan(1);
       expect(news[0].title).toEqual('primo');
@@ -83,8 +84,26 @@ describe('Calendar Service', () => {
 
   }));
 
-  it('should insert a event',
-  async(inject([CalendarService, MockBackend], (calendarService, mockBackend) => {
+  it('should count slide',
+  inject([CarouselService, MockBackend], (carouselService, mockBackend) => {
+
+    const mockResponse = {'count':3};
+
+    mockBackend.connections.subscribe((connection) => {
+      connection.mockRespond(new Response(new ResponseOptions({
+        body: JSON.stringify(mockResponse)
+      })));
+    });
+
+    carouselService.count().subscribe((res) => {
+      let count = res.json().count;
+      expect(count).toEqual(3)
+    });
+
+  }));
+
+  it('should insert a slide',
+  async(inject([CarouselService, MockBackend], (carouselService, mockBackend) => {
 
     mockBackend.connections.subscribe((connection: MockConnection) => {
       // is it the correct REST type for an insert? (POST)
@@ -93,39 +112,40 @@ describe('Calendar Service', () => {
       connection.mockRespond(new Response(new ResponseOptions({status: 201})));
     });
 
-    let data = { title: 'primo', text :'primo evento' , date: new Date()};
-    calendarService.insert(data).subscribe(
+    let data = {title:'slide1' , text:'the first slide'};
+
+    carouselService.insert(data).subscribe(
       (successResult) => {
         expect(successResult).toBeDefined();
         expect(successResult.status).toBe(201);
       });
     })));
 
-  it('should save updates to an existing event',
-  async(inject([CalendarService, MockBackend], (calendarService, mockBackend) => {
+  it('should save updates to an existing slide',
+  async(inject([CarouselService, MockBackend], (carouselService, mockBackend) => {
     mockBackend.connections.subscribe(connection => {
       // is it the correct REST type for an update? (PUT)
       expect(connection.request.method).toBe(RequestMethod.Put);
       connection.mockRespond(new Response(new ResponseOptions({status: 204})));
     });
 
-    let data = { title: 'primo', text :'primo evento' , date: new Date(), _id: '10'};
+    let data = {title:'slide1' , text:'the first slide', _id:'10'};
 
-    calendarService.update(data).subscribe(
+    carouselService.update(data).subscribe(
       (successResult) => {
         expect(successResult).toBeDefined();
         expect(successResult.status).toBe(204);
       });
     })));
 
-  it('should delete an existing event',
-  async(inject([CalendarService, MockBackend], (calendarService, mockBackend) => {
+  it('should delete an existing slide',
+  async(inject([CarouselService, MockBackend], (carouselService, mockBackend) => {
     mockBackend.connections.subscribe(connection => {
       expect(connection.request.method).toBe(RequestMethod.Delete);
       connection.mockRespond(new ResponseOptions({status: 204}));
     });
 
-    calendarService.delete('23').subscribe(
+    carouselService.delete('23').subscribe(
       (successResult) => {
         expect(successResult).toBeDefined();
         expect(successResult.status).toBe(204);

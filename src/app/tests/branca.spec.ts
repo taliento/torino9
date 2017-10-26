@@ -11,7 +11,7 @@ import {
 } from "@angular/http";
 import { TestBed, fakeAsync, tick, inject, async } from '@angular/core/testing';
 import { MockBackend,MockConnection } from "@angular/http/testing";
-import { BrancaService } from './index';
+import { BrancaService } from '../services/index';
 import { Branca } from '../models/';
 
 describe('Branca page Service', () => {

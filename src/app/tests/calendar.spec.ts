@@ -11,17 +11,17 @@ import {
 } from "@angular/http";
 import { TestBed, fakeAsync, tick, inject, async } from '@angular/core/testing';
 import { MockBackend,MockConnection } from "@angular/http/testing";
-import { NewsService } from './news.service';
-import { News } from '../models/news.model';
+import { CalendarService } from '../services/index';
+import { Event } from '../models/event.model';
 
-describe('News Service', () => {
+describe('Calendar Service', () => {
 
   beforeEach(() => {
 
     TestBed.configureTestingModule({
       imports: [HttpModule],
       providers: [
-        NewsService,
+        CalendarService,
         MockBackend,
         BaseRequestOptions,
         {
@@ -35,12 +35,12 @@ describe('News Service', () => {
     });
   });
 
-  it('should return all news',
-  inject([NewsService, MockBackend], (newsService, mockBackend) => {
+  it('should return all events',
+  inject([CalendarService, MockBackend], (calendarService, mockBackend) => {
 
     const mockResponse = [
-      { id: 0, title: 'primo' },
-      { id: 1, title: 'secondo' }
+      { title: 'primo', text :'primo evento' , date: new Date()},
+      { title: 'secondo', text :'secondo evento' , date: new Date() }
     ];
 
     mockBackend.connections.subscribe((connection) => {
@@ -49,7 +49,7 @@ describe('News Service', () => {
       })));
     });
 
-    newsService.getAll().then((news) => {
+    calendarService.getAll().then((news) => {
       expect(news).toBeTruthy();
       expect(news.length).toBeGreaterThan(1);
       expect(news[0].title).toEqual('primo');
@@ -58,12 +58,12 @@ describe('News Service', () => {
 
   }));
 
-  it('should return paged news',
-  inject([NewsService, MockBackend], (newsService, mockBackend) => {
+  it('should return all events by date',
+  inject([CalendarService, MockBackend], (calendarService, mockBackend) => {
 
     const mockResponse = [
-      { id: 0, title: 'primo' },
-      { id: 1, title: 'secondo' }
+      { title: 'primo', text :'primo evento' , date: new Date()},
+      { title: 'secondo', text :'secondo evento' , date: new Date() }
     ];
 
     mockBackend.connections.subscribe((connection) => {
@@ -72,10 +72,9 @@ describe('News Service', () => {
       })));
     });
 
-    let params = {limit:3,page:1,size:3};
+    let date = {month:5,year:1987};
 
-    newsService.getPaged(params).subscribe((res) => {
-      let news = res.json();
+    calendarService.getMonthEvents(date).then((news) => {
       expect(news).toBeTruthy();
       expect(news.length).toBeGreaterThan(1);
       expect(news[0].title).toEqual('primo');
@@ -84,26 +83,8 @@ describe('News Service', () => {
 
   }));
 
-  it('should count news',
-  inject([NewsService, MockBackend], (newsService, mockBackend) => {
-
-    const mockResponse = {'count':3};
-
-    mockBackend.connections.subscribe((connection) => {
-      connection.mockRespond(new Response(new ResponseOptions({
-        body: JSON.stringify(mockResponse)
-      })));
-    });
-
-    newsService.count().subscribe((res) => {
-      let count = res.json().count;
-      expect(count).toEqual(3)
-    });
-
-  }));
-
-  it('should insert a news',
-  async(inject([NewsService, MockBackend], (newsService, mockBackend) => {
+  it('should insert a event',
+  async(inject([CalendarService, MockBackend], (calendarService, mockBackend) => {
 
     mockBackend.connections.subscribe((connection: MockConnection) => {
       // is it the correct REST type for an insert? (POST)
@@ -112,40 +93,39 @@ describe('News Service', () => {
       connection.mockRespond(new Response(new ResponseOptions({status: 201})));
     });
 
-    let data: News = new News('News', 'the latest news', 'blablablabla');
-    newsService.insert(data).subscribe(
+    let data = { title: 'primo', text :'primo evento' , date: new Date()};
+    calendarService.insert(data).subscribe(
       (successResult) => {
         expect(successResult).toBeDefined();
         expect(successResult.status).toBe(201);
       });
     })));
 
-  it('should save updates to an existing news',
-  async(inject([NewsService, MockBackend], (newsService, mockBackend) => {
+  it('should save updates to an existing event',
+  async(inject([CalendarService, MockBackend], (calendarService, mockBackend) => {
     mockBackend.connections.subscribe(connection => {
       // is it the correct REST type for an update? (PUT)
       expect(connection.request.method).toBe(RequestMethod.Put);
       connection.mockRespond(new Response(new ResponseOptions({status: 204})));
     });
 
-    let data: News = new News('News', 'the latest news', 'blablablabla');
-    data._id = '10';
+    let data = { title: 'primo', text :'primo evento' , date: new Date(), _id: '10'};
 
-    newsService.update(data).subscribe(
+    calendarService.update(data).subscribe(
       (successResult) => {
         expect(successResult).toBeDefined();
         expect(successResult.status).toBe(204);
       });
     })));
 
-  it('should delete an existing news',
-  async(inject([NewsService, MockBackend], (newsService, mockBackend) => {
+  it('should delete an existing event',
+  async(inject([CalendarService, MockBackend], (calendarService, mockBackend) => {
     mockBackend.connections.subscribe(connection => {
       expect(connection.request.method).toBe(RequestMethod.Delete);
       connection.mockRespond(new ResponseOptions({status: 204}));
     });
 
-    newsService.delete('23').subscribe(
+    calendarService.delete('23').subscribe(
       (successResult) => {
         expect(successResult).toBeDefined();
         expect(successResult.status).toBe(204);

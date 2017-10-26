@@ -11,17 +11,17 @@ import {
 } from "@angular/http";
 import { TestBed, fakeAsync, tick, inject, async } from '@angular/core/testing';
 import { MockBackend,MockConnection } from "@angular/http/testing";
-import { UserService } from './index';
-import { User } from '../models/user.model';
+import { NewsService } from '../services/news.service';
+import { News } from '../models';
 
-describe('Users Service', () => {
+describe('News Service', () => {
 
   beforeEach(() => {
 
     TestBed.configureTestingModule({
       imports: [HttpModule],
       providers: [
-        UserService,
+        NewsService,
         MockBackend,
         BaseRequestOptions,
         {
@@ -35,8 +35,8 @@ describe('Users Service', () => {
     });
   });
 
-  it('should return all user',
-  inject([UserService, MockBackend], (userService, mockBackend) => {
+  it('should return all news',
+  inject([NewsService, MockBackend], (newsService, mockBackend) => {
 
     const mockResponse = [
       { id: 0, title: 'primo' },
@@ -49,17 +49,17 @@ describe('Users Service', () => {
       })));
     });
 
-    userService.getAll().subscribe((user) => {
-      expect(user).toBeTruthy();
-      expect(user.length).toBeGreaterThan(1);
-      expect(user[0].title).toEqual('primo');
-      expect(user[1].title).toEqual('secondo');
+    newsService.getAll().then((news) => {
+      expect(news).toBeTruthy();
+      expect(news.length).toBeGreaterThan(1);
+      expect(news[0].title).toEqual('primo');
+      expect(news[1].title).toEqual('secondo');
     });
 
   }));
 
-  it('should return paged user',
-  inject([UserService, MockBackend], (userService, mockBackend) => {
+  it('should return paged news',
+  inject([NewsService, MockBackend], (newsService, mockBackend) => {
 
     const mockResponse = [
       { id: 0, title: 'primo' },
@@ -74,18 +74,18 @@ describe('Users Service', () => {
 
     let params = {limit:3,page:1,size:3};
 
-    userService.getPaged(params).subscribe((res) => {
-      let user = res.json();
-      expect(user).toBeTruthy();
-      expect(user.length).toBeGreaterThan(1);
-      expect(user[0].title).toEqual('primo');
-      expect(user[1].title).toEqual('secondo');
+    newsService.getPaged(params).subscribe((res) => {
+      let news = res.json();
+      expect(news).toBeTruthy();
+      expect(news.length).toBeGreaterThan(1);
+      expect(news[0].title).toEqual('primo');
+      expect(news[1].title).toEqual('secondo');
     });
 
   }));
 
-  it('should count user',
-  inject([UserService, MockBackend], (userService, mockBackend) => {
+  it('should count news',
+  inject([NewsService, MockBackend], (newsService, mockBackend) => {
 
     const mockResponse = {'count':3};
 
@@ -95,15 +95,15 @@ describe('Users Service', () => {
       })));
     });
 
-    userService.count().subscribe((res) => {
+    newsService.count().subscribe((res) => {
       let count = res.json().count;
       expect(count).toEqual(3)
     });
 
   }));
 
-  it('should insert a user',
-  async(inject([UserService, MockBackend], (userService, mockBackend) => {
+  it('should insert a news',
+  async(inject([NewsService, MockBackend], (newsService, mockBackend) => {
 
     mockBackend.connections.subscribe((connection: MockConnection) => {
       // is it the correct REST type for an insert? (POST)
@@ -112,40 +112,40 @@ describe('Users Service', () => {
       connection.mockRespond(new Response(new ResponseOptions({status: 201})));
     });
 
-    let data = {username:'test',pasword:'test'};
-
-    userService.create(data).subscribe(
+    let data: News = new News('News', 'the latest news', 'blablablabla');
+    newsService.insert(data).subscribe(
       (successResult) => {
         expect(successResult).toBeDefined();
         expect(successResult.status).toBe(201);
       });
     })));
 
-  it('should save updates to an existing user',
-  async(inject([UserService, MockBackend], (userService, mockBackend) => {
+  it('should save updates to an existing news',
+  async(inject([NewsService, MockBackend], (newsService, mockBackend) => {
     mockBackend.connections.subscribe(connection => {
       // is it the correct REST type for an update? (PUT)
       expect(connection.request.method).toBe(RequestMethod.Put);
       connection.mockRespond(new Response(new ResponseOptions({status: 204})));
     });
 
-    let data = {username:'test',pasword:'test',_id: '10'};
+    let data: News = new News('News', 'the latest news', 'blablablabla');
+    data._id = '10';
 
-    userService.update(data).subscribe(
+    newsService.update(data).subscribe(
       (successResult) => {
         expect(successResult).toBeDefined();
         expect(successResult.status).toBe(204);
       });
     })));
 
-  it('should delete an existing user',
-  async(inject([UserService, MockBackend], (userService, mockBackend) => {
+  it('should delete an existing news',
+  async(inject([NewsService, MockBackend], (newsService, mockBackend) => {
     mockBackend.connections.subscribe(connection => {
       expect(connection.request.method).toBe(RequestMethod.Delete);
       connection.mockRespond(new ResponseOptions({status: 204}));
     });
 
-    userService.delete('23').subscribe(
+    newsService.delete('23').subscribe(
       (successResult) => {
         expect(successResult).toBeDefined();
         expect(successResult.status).toBe(204);

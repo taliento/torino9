@@ -11,7 +11,7 @@ import {
 } from "@angular/http";
 import { TestBed, fakeAsync, tick, inject, async } from '@angular/core/testing';
 import { MockBackend,MockConnection } from "@angular/http/testing";
-import { AboutPageService } from './index';
+import { AboutPageService } from '../services/index';
 import { AboutPage } from '../models/';
 
 describe('About Page Service', () => {
