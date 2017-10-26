@@ -188,7 +188,7 @@ function update(_id, userParam) {
         };
 
         // update password if it was entered
-        if (userParam.password) {
+        if (userParam.password && userParam.password != '') {
             set.hash = bcrypt.hashSync(userParam.password, 10);
         }
 
