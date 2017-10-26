@@ -13,7 +13,6 @@ export class SlideDetailComponent{
    @Output() delete: EventEmitter<any> = new EventEmitter();
    @Output() updated: EventEmitter<any> = new EventEmitter();
    @ViewChild('updateContent') updateContent;//MODAL VIEW
-   @ViewChild('updateForm') updateForm;
    modalRef: NgbModalRef;
 
    constructor(private modalService: NgbModal, private carouselService: CarouselService,  private alertService: AlertService) { }
@@ -23,10 +22,8 @@ export class SlideDetailComponent{
    }
 
    update($event) {
-
      $event.append('_id', this.slide._id);
      $event.append('imgPath', this.slide.imgPath);
-
      this.carouselService.updateUpload($event).subscribe(
        data => {
          this.alertService.success($event.title+' modificato con successo!', false);

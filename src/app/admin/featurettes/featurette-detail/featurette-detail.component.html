@@ -1,4 +1,4 @@
-<img class="card-img-top" [src]="featurette.imgPath" [alt]="featurette.alt">
+<img class="card-img-top" height="200px" [src]="featurette.imgPath" [alt]="featurette.alt">
 <div class="card-body">
   <h4 class="card-title">{{featurette.title}}</h4>
   <p class="card-text"><small class="text-muted">{{featurette.subTitle}}</small></p>
@@ -9,7 +9,6 @@
 <div class="card-footer">
   <small class="text-muted">Inserita nel {{featurette.insertDate | date:'dd/MM/yyyy' }}</small>
 </div>
-
 <ng-template #updateContent let-c="close" let-d="dismiss">
   <div class="modal-header">
     <h4 class="modal-title">Modifica {{featurette.title}}</h4>
@@ -18,28 +17,9 @@
     </button>
   </div>
   <div class="modal-body">
-    <form>
-        <div class="form-group">
-          <label for="updateTitle">Titolo</label>
-          <input type="text" class="form-control" id="updateTitle" name="title" [(ngModel)]="featurette.title" placeholder="Titolo">
-        </div>
-        <div class="form-group">
-          <label for="updateTitle">Sottotitolo</label>
-          <input type="text" class="form-control" id="updateTitle" name="subTitle" [(ngModel)]="featurette.subTitle" placeholder="Sottotitolo">
-        </div>
-        <div class="form-group">
-          <label for="updateText">Testo</label>
-          <textarea rows="5" class="form-control" id="updateText" name="text" [(ngModel)]="featurette.text" placeholder="Testo"></textarea>
-        </div>
-        <div class="form-group">
-          <label for="updateImg">Immagine</label>
-          <input type="text" class="form-control" id="updateImg" name="imgPath" [(ngModel)]="featurette.imgPath" placeholder="Link immagine">
-        </div>
-      </form>
-
+    <featurette-upload #updateForm [featurette]="featurette" (formSubmit)="update($event)"></featurette-upload>
   </div>
   <div class="modal-footer">
-    <button type="button" class="btn btn-outline-success" (click)="update();c('Close click');">Conferma</button>
     <button type="button" class="btn btn-outline-dark" (click)="c('Close click')">Annulla</button>
   </div>
 </ng-template>

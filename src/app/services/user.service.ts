@@ -33,8 +33,16 @@ export class UserService extends AService {
     return this.http.post(this.apiUrl+'/users/register', user, this.jwt());
   }
 
+  insertUpload(formData: FormData) {
+    return this.http.post(this.apiUrl+'/users/insertUpload',formData, this.jwt());
+  }
+
   update(user: User) {
     return this.http.put(this.apiUrl+'/users/' + user._id, user, this.jwt());
+  }
+
+  updateUpload(formData: FormData) {
+    return this.http.post(this.apiUrl+'/users/updateUpload/',formData, this.jwt());
   }
 
   delete(_id: string) {

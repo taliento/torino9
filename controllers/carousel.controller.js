@@ -5,7 +5,6 @@ const uploadService = require('services/upload.service');
 const express = require('express');
 const router = express.Router();
 
-
 // routes
 router.post('/insert', insert);
 router.post('/insertUpload', insertUpload);
@@ -14,9 +13,8 @@ router.get('/count', count);
 router.get('/get/:_id', get);
 router.get('/paged/:limit/:page/:size', getPaged);
 router.put('/:_id', update);
-router.post('/carouselUpload', updateUpload);
+router.post('/updateUpload', updateUpload);
 router.delete('/:_id', _delete);
-
 module.exports = router;
 
 function insert(req, res) {

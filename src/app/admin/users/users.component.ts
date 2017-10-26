@@ -11,9 +11,8 @@ import { UserService, AuthenticationService, AlertService } from '../../services
 export class UsersComponent implements OnInit{
   currentUser: any;
   users: User[] = [];
-  newUser: User = new User();
   isCollapsed = true;
-
+  @ViewChild('insertForm') insertForm;
   @ViewChild('confirmDialog') confirmDialog;
   confirmTitle = 'Sicuro?';
   confirmText = 'Stai elminando un utente...';
@@ -49,7 +48,6 @@ export class UsersComponent implements OnInit{
     subscribe(
       data => {
         this.alertService.success('Utente eliminato', false);
-        this.newUser = new User();
         this.collectionSize--;
         this.loadData();
       },
@@ -58,11 +56,12 @@ export class UsersComponent implements OnInit{
       });
     }
 
-    addUser() {
-      this.userService.create(this.newUser)
+    addUser($event) {
+      this.userService.insertUpload($event)
       .subscribe(
         data => {
-          this.alertService.success(this.newUser.username+' benvenuto/a!', false);
+          this.alertService.success($event.username+' benvenuto/a!', false);
+          this.insertForm.setLoading(false);
           this.isCollapsed = true;
           this.collectionSize++;
           this.loadData();

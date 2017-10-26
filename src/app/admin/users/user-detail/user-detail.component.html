@@ -1,6 +1,6 @@
 <div class="row">
   <div class="col-md-4">
-    <img class="card-img-bottom" [src]="user.avatar" alt="user avatar">
+    <img class="card-img-bottom" [src]="user.imgPath" alt="user avatar">
   </div>
   <div class="col-md-8">
     <div class="card-body">
@@ -15,7 +15,6 @@
     </div>
   </div>
 </div>
-
 <div class="card-footer">
     <small class="text-muted">Inserito nel {{user.insertDate | date:'dd/MM/yyyy' }}</small>
 </div>
@@ -28,37 +27,9 @@
     </button>
   </div>
   <div class="modal-body">
-    <form>
-        <div class="form-group">
-          <label for="updateUsername">Username</label>
-          <input type="text" class="form-control" id="updateUsername" name="username" [(ngModel)]="user.username" placeholder="Username">
-        </div>
-        <div class="form-group">
-          <label for="updateName">Nome</label>
-          <input type="text" class="form-control" id="updateName" name="firstName" [(ngModel)]="user.firstName" placeholder="Nome">
-        </div>
-        <div class="form-group">
-          <label for="updateCognome">Cognome</label>
-          <input type="text" class="form-control" id="updateCognome" name="lastName" [(ngModel)]="user.lastName" placeholder="Cognome">
-        </div>
-        <div class="form-group">
-          <label for="updateAvatar">Avatar</label>
-          <input type="text" class="form-control" id="updateAvatar" name="avatar" [(ngModel)]="user.avatar" placeholder="Link immagine">
-        </div>
-        <div class="form-group">
-          <label for="updatePassword">Password</label>
-          <input type="password" class="form-control" id="updatePassword" name="password" [(ngModel)]="user.password" placeholder="Password">
-        </div>
-        <div class="form-check">
-          <label class="form-check-label">
-            <input type="checkbox" class="form-check-input" name="admin" [(ngModel)]="user.admin">
-            Utente admin
-          </label>
-        </div>
-      </form>
+    <user-upload #updateForm [user]="user" (formSubmit)="update($event)"></user-upload>
   </div>
   <div class="modal-footer">
-    <button type="button" class="btn btn-outline-success" (click)="update();c('Close click');">Conferma</button>
     <button type="button" class="btn btn-outline-dark" (click)="c('Close click')">Annulla</button>
   </div>
 </ng-template>

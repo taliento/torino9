@@ -34,7 +34,7 @@ function authenticate(username, password) {
                 username: user.username,
                 firstName: user.firstName,
                 lastName: user.lastName,
-                avatar: user.avatar,
+                imgPath: user.imgPath,
                 token: jwt.sign({ sub: user._id }, (process.env.SECRET || config.secret))
             });
         } else {
@@ -183,7 +183,7 @@ function update(_id, userParam) {
             firstName: userParam.firstName,
             lastName: userParam.lastName,
             username: userParam.username,
-            avatar: userParam.avatar,
+            imgPath: userParam.imgPath,
             updateDate: new Date()
         };
 

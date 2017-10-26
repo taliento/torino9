@@ -5,7 +5,7 @@
   <button type="button" class="btn btn-outline-primary btn-sm" (click)="updateModal()">Modifica</button>
   <button type="button" class="btn btn-outline-danger btn-sm" (click)="deleteBranca()">Elimina</button>
 </div>
-<img class="card-img-bottom" [src]="branca.imgPath" alt="Branca img">
+<img class="card-img-bottom" [src]="branca.imgPath" height="200px" alt="Branca img">
 <!-- <div class="card-footer">
   <small class="text-muted">Inserito da <span>{{news.author}}</span> nel {{news.insertDate | date:'dd/MM/yyyy' }}</small>
 </div> -->
@@ -17,47 +17,9 @@
     </button>
   </div>
   <div class="modal-body">
-    <form>
-        <div class="form-group">
-          <label for="brancaid">Branca</label>
-          <select class="form-control" id="brancaid" name="brancaid" [(ngModel)]="branca._id" disabled>
-            <option value="LC">
-              <h5>Lupetti</h5>
-              <p>(L/C) - bambini/e dai 8 ai 11/12 anni</p>
-            </option>
-            <option value="EG">
-              <h5>Esploratori e Guide</h5>
-              <p>(E/G) - ragazzi/e dai 11/12 ai 16 anni</p>
-            </option>
-            <option value="RS">
-              <h5>Rover e Scolte</h5>
-              <p>(R/S) - giovani dai 16 ai 20/21 anni</p>
-            </option>
-          </select>
-        </div>
-
-        <div class="form-group">
-          <label for="updateTitle">Titolo</label>
-          <input type="text" class="form-control" id="updateTitle" name="title" [(ngModel)]="branca.title" placeholder="Titolo">
-        </div>
-        <div class="form-group">
-          <label for="updateTitle">Sottotitolo</label>
-          <input type="text" class="form-control" id="updateTitle" name="subtitle" [(ngModel)]="branca.subtitle" placeholder="Sottotitolo">
-        </div>
-        <div class="form-group">
-          <label for="updateText">Testo</label>
-          <div [(froalaModel)]="branca.text" id="updateText" name="text" [froalaEditor]></div>
-          <!-- <textarea rows="5" class="form-control" id="updateText" name="text" [(ngModel)]="branca.text" placeholder="Testo"></textarea> -->
-        </div>
-        <div class="form-group">
-          <label for="updateImgPath">Link immagine</label>
-          <input type="text" class="form-control" id="updateImgPath" name="imgPath" placeholder="Link immagine esterno" [(ngModel)]="branca.imgPath">
-        </div>
-      </form>
-
+    <branca-upload #updateForm [branca]="branca" (formSubmit)="updateBranca($event)"></branca-upload>
   </div>
   <div class="modal-footer">
-    <button type="button" class="btn btn-outline-success" (click)="updateBranca();c('Close click');">Conferma</button>
     <button type="button" class="btn btn-outline-dark" (click)="c('Close click')">Annulla</button>
   </div>
 </ng-template>

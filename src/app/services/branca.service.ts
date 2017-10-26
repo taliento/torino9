@@ -31,6 +31,10 @@ export class BrancaService extends AService {
     return this.http.post(this.apiUrl+'/branca/insert',branca, this.jwt());
   }
 
+  insertUpload(formData: FormData) {
+    return this.http.post(this.apiUrl+'/branca/insertUpload',formData, this.jwt());
+  }
+
   delete(_id: string) {
     return this.http.delete(this.apiUrl+'/branca/' + _id, this.jwt());
   }

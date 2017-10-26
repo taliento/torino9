@@ -1,5 +1,5 @@
 import { Component, Input, Output, EventEmitter, ViewChild } from '@angular/core';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { Branca } from '../../../models';
 import { BrancaService, AlertService } from '../../../services/index';
 
@@ -15,20 +15,20 @@ export class BrancaDetailComponent {
    @Output() update: EventEmitter<any> = new EventEmitter();
 
    @ViewChild('updateContent') updateContent;
+   modalRef: NgbModalRef;
 
-   constructor(private modalService: NgbModal, private alertService: AlertService, private brancaService: BrancaService) {
-
-   }
+   constructor(private modalService: NgbModal, private alertService: AlertService, private brancaService: BrancaService) { }
 
    deleteBranca() {
      this.delete.emit(this.branca);
    }
 
-   updateBranca() {
-     this.update.emit(this.branca);
+   updateBranca($event) {
+     this.update.emit($event);
+     this.modalRef.close();
    }
 
    updateModal() {
-     this.modalService.open(this.updateContent);
+     this.modalRef = this.modalService.open(this.updateContent);
    }
 }

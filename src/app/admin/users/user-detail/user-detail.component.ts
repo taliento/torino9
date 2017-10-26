@@ -1,5 +1,5 @@
 import { Component, Input, Output, EventEmitter, ViewChild } from '@angular/core';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { User } from '../../../models/index';
 import { UserService, AlertService } from '../../../services/index';
 
@@ -10,23 +10,25 @@ import { UserService, AlertService } from '../../../services/index';
 })
 export class UserDetailComponent{
    @Input() user: User;
-
    @Output() delete: EventEmitter<any> = new EventEmitter();
-
+   @Output() updated: EventEmitter<any> = new EventEmitter();
    @ViewChild('updateContent') updateContent;
+   modalRef: NgbModalRef;
 
-   constructor(private modalService: NgbModal, private userService: UserService,  private alertService: AlertService) {
-
-   }
+   constructor(private modalService: NgbModal, private userService: UserService,  private alertService: AlertService) { }
 
    deleteUser() {
      this.delete.emit(this.user);
    }
 
-   update() {
-     this.userService.update(this.user).subscribe(
+   update($event) {
+     $event.append('_id', this.user._id);
+     $event.append('imgPath', this.user.imgPath);
+     this.userService.updateUpload($event).subscribe(
        data => {
-         this.alertService.success(this.user.username+' modificato con successo!', false);
+         this.alertService.success($event.username+' modificato con successo!', false);
+         this.modalRef.close();
+         this.updated.emit();
        },
        error => {
          this.alertService.error(error._body);
@@ -34,6 +36,6 @@ export class UserDetailComponent{
    }
 
    modifyUser() {
-     this.modalService.open(this.updateContent);
+     this.modalRef = this.modalService.open(this.updateContent);
    }
 }
