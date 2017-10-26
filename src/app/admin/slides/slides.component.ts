@@ -10,10 +10,8 @@ import { CarouselService, AlertService } from '../../services/index';
 export class SlidesComponent implements OnInit{
   public slides: DTCarousel[];
   isCollapsed = true;
-
-  @ViewChild('insertForm') insertForm;
-
-  @ViewChild('confirmDialog') confirmDialog;
+  @ViewChild('insertForm') insertForm: any;
+  @ViewChild('confirmDialog') confirmDialog: any;
   confirmTitle = 'Sicuro?';
   confirmText = 'Stai elminando una slide...';
   idDelete: string;
@@ -34,7 +32,7 @@ export class SlidesComponent implements OnInit{
     });
   }
 
-  addSlide($event) {
+  addSlide($event: any) {
     this.carouselService.insertUpload($event)
     .subscribe(
       data => {
@@ -49,7 +47,7 @@ export class SlidesComponent implements OnInit{
       });
   }
 
-  delete(slide) {
+  delete(slide: any) {
     this.idDelete = slide._id;
     this.confirmDialog.open();
   }
@@ -85,11 +83,11 @@ export class SlidesComponent implements OnInit{
     );
   }
 
-  onSuccess (res) {
+  onSuccess (res: any) {
     this.slides = res;
   }
 
-  onError (res) {
+  onError (res : any) {
     console.log("error:"+res);
   }
 }

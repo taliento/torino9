@@ -32,7 +32,7 @@ export class AuthenticationService extends AService {
     this.userValue.next(null);
   }
 
-  setUser(value) {
+  setUser(value: any) {
     localStorage.setItem('currentUser', JSON.stringify(value));
     this.userValue.next(value); // this will make sure to tell every subscriber about the change.
 

@@ -9,7 +9,7 @@
     "test": "mocha && ./node_modules/.bin/karma start --single-run",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "postinstall": "ng build --prod --env=prod"
+    "postinstall": "ng build --prod"
   },
   "private": true,
   "dependencies": {
@@ -18,12 +18,13 @@
     "@angular/cli": "1.2.6",
     "@angular/common": "^4.0.0",
     "@angular/compiler": "^4.0.0",
-    "@angular/compiler-cli": "^4.0.0",
+    "@angular/compiler-cli": "^4.4.6",
     "@angular/core": "^4.0.0",
     "@angular/forms": "^4.0.0",
     "@angular/http": "^4.0.0",
     "@angular/platform-browser": "^4.0.0",
     "@angular/platform-browser-dynamic": "^4.0.0",
+    "@angular/platform-server": "^4.4.6",
     "@angular/router": "^4.0.0",
     "@ng-bootstrap/ng-bootstrap": "^1.0.0-beta.3",
     "@types/googlemaps": "^3.29.1",

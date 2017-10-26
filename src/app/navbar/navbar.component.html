@@ -27,7 +27,7 @@
 
     <ul class="navbar-nav">
       <li ngbDropdown class="d-inline-block" placement="bottom-right" *ngIf="user">
-        <button class="btn btn-outline-light" role="button" id="dropdownBasic1" ngbDropdownToggle>
+        <button class="btn btn-outline-dark" role="button" id="dropdownBasic1" ngbDropdownToggle>
           {{user.username}}
           <img *ngIf="user.imgPath" [src]="user.imgPath" width="30" height="30" class="rounded-circle" alt="">
         </button>
