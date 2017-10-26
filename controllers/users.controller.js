@@ -1,17 +1,20 @@
 'use strict';
 
+const userService = require('services/user.service');
+const uploadService = require('services/upload.service');
 const express = require('express');
 const router = express.Router();
-const userService = require('services/user.service');
 
 // routes
 router.post('/authenticate', authenticate);
 router.post('/register', register);
+router.post('/insertUpload', insertUpload);
 router.post('/insertTest', insertTest);
 router.get('/count', count);
 router.get('/', getAll);
 router.get('/paged/:limit/:page/:size', getPaged);
 router.put('/:_id', update);
+router.post('/updateUpload', updateUpload);
 router.get('/:_id', getById);
 router.delete('/:_id', _delete);
 module.exports = router;
@@ -40,6 +43,20 @@ function register(req, res) {
   .catch(function (err) {
     res.status(400).send(err);
   });
+}
+
+function insertUpload(req, res) {
+  if(req.files && req.files.imgFile) {
+    uploadService.insert(req.files.imgFile).then(function (newImage) {
+      req.body.imgPath = newImage;
+      register(req, res);
+    })
+    .catch(function (err) {
+      res.status(400).send(err);
+    });
+  } else {
+    register(req, res);
+  }
 }
 
 function insertTest(req, res) {
@@ -84,6 +101,21 @@ function update(req, res) {
   .catch(function (err) {
     res.status(400).send(err);
   });
+}
+
+function updateUpload(req, res) {
+  req.params._id = req.body._id;//XXX
+  if(req.files && req.files.imgFile) {
+    uploadService.update(req.files.imgFile, req.body.imgPath).then(function (newImage) {
+      req.body.imgPath = newImage;
+      update(req, res);
+    })
+    .catch(function (err) {
+      res.status(400).send(err);
+    });
+  } else {
+    update(req, res);
+  }
 }
 
 function _delete(req, res) {

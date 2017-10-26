@@ -43,3 +43,4 @@ Thumbs.db
 
 #public static files
 /public/img/*.jpg
+/public/img/*.png
