@@ -14,7 +14,7 @@
     <ul class="navbar-nav mr-auto">
       <li *ngFor="let menuItem of menuItems; index as i;" class="nav-item">
         <a *ngIf="!menuItem.dropdown" class="nav-link" [routerLink]="[menuItem.path]" routerLinkActive="active" (click)="isCollapsed = true">{{menuItem.title}}</a>
-        <ul class="navbar-nav mr-auto" *ngIf="menuItem.dropdown">
+        <ul class="navbar-nav" *ngIf="menuItem.dropdown">
           <li ngbDropdown class="d-inline-block" placement="bottom-right" ngbDropdown>
             <a class="btn nav-link" role="button" attr.id="dropdown{{i}}" ngbDropdownToggle>{{menuItem.title}}</a>
             <div ngbDropdownMenu attr.aria-labelledby="dropdown{{i}}">
@@ -27,10 +27,10 @@
 
     <ul class="navbar-nav">
       <li ngbDropdown class="d-inline-block" placement="bottom-right" *ngIf="user">
-        <a class="navbar-brand" role="button" id="dropdownBasic1" ngbDropdownToggle>
-          <img *ngIf="user.imgPath" [src]="user.imgPath" width="30" height="30" class="d-inline-block align-top rounded-circle" alt="">
+        <button class="btn btn-outline-dark" role="button" id="dropdownBasic1" ngbDropdownToggle>
           {{user.username}}
-        </a>
+          <img *ngIf="user.imgPath" [src]="user.imgPath" width="30" height="30" class="rounded-circle" alt="">
+        </button>
         <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
           <a class="dropdown-item" [routerLink]="['admin']" routerLinkActive="active" (click)="isCollapsed = true"><span><i class="fa fa-superpowers" aria-hidden="true"></i></span> Area Admin</a>
           <div role="separator" class="dropdown-divider"></div>
@@ -38,7 +38,7 @@
         </div>
       </li>
       <li class="nav-item" *ngIf="!user">
-        <a class="btn btn-outline-primary" role="button" [routerLink]="['login']" routerLinkActive="active" (click)="isCollapsed = true">Signin</a>
+        <button class="btn btn-outline-primary" role="button" [routerLink]="['login']" routerLinkActive="active" (click)="isCollapsed = true">Signin</button>
       </li>
     </ul>
 
