@@ -120,30 +120,16 @@ ngb-carousel {
   }
 }
 
-/* small devices (smartphone, 320px and up) */
+ /*small devices (smartphone, 320px and up)*/
 @media (min-width: 320px) {
-    .jumbotron h1 {
+    .jumbotron h3 {
         font-size: 2em;
     }
 }
 
 /* Small devices (tablets, 768px and up) */
 @media (min-width: 768px) {
-    .jumbotron h1 {
+    .jumbotron h3 {
         font-size: 4em;
-    }
-}
-
-/* Medium devices (desktops, 992px and up) */
-@media (min-width: 992px) {
-    .jumbotron h1r {
-        font-size: 6em;
-    }
-}
-
-/* Large devices (large desktops, 1200px and up) */
-@media (min-width: 1200px) {
-    .jumbotron h1 {
-        font-size: 8em;
     }
 }
