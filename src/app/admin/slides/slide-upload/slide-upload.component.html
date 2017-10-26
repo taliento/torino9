@@ -3,12 +3,10 @@
     <label for="insertTitle">Titolo</label>
     <input type="text" class="form-control" id="title" formControlName="title" placeholder="Titolo slide">
   </div>
-
   <div class="form-group">
     <label for="insertText">Testo</label>
     <textarea rows="5" class="form-control" id="text" formControlName="text"  placeholder="Testo slide"></textarea>
   </div>
-
   <div class="form-group">
     <label for="insertPosition">Posizione testo</label>
     <div class="btn-group" id="position" formControlName="position" ngbRadioGroup>
@@ -23,22 +21,18 @@
       </label>
     </div>
   </div>
-
   <div class="form-group">
     <label for="imgFile">Immagine</label>
     <input type="file" id="imgFile" formControlName="imgFile" #imgInput (change)="onFileChange($event)"/>
     <button type="button" class="btn btn-sm btn-outline-secondary" (click)="clearFile()">Elimina file</button>
   </div>
-
   <div class="form-group">
     <label for="insertTestoBottone">Testo bottone</label>
     <input type="text" class="form-control" formControlName="btnText" id="btnText" placeholder="Testo bottone slide">
   </div>
-
   <div class="form-group">
     <label for="insertBtnHref">Link bottone</label>
     <input type="text" class="form-control" formControlName="btnHref" id="btnHref" placeholder="Link Bottone slide">
   </div>
-
   <button type="submit" class="btn btn-outline-success">Salva <i class="fa fa-spinner fa-spin fa-fw" *ngIf="loading"></i></button>
 </form>

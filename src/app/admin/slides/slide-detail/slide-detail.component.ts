@@ -22,10 +22,8 @@ export class SlideDetailComponent{
    }
 
    update($event) {
-
      $event.append('_id', this.slide._id);
      $event.append('imgPath', this.slide.imgPath);
-
      this.carouselService.updateUpload($event).subscribe(
        data => {
          this.alertService.success($event.title+' modificato con successo!', false);

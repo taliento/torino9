@@ -11,22 +11,17 @@ import { FeaturetteService, AlertService } from '../../services/index';
 export class FeaturetteComponent implements OnInit{
   isCollapsed = true;
   public featuretteList: Featurette[];
-
-  newFeaturette: Featurette = new Featurette(null,null,null);
-
+  @ViewChild('insertForm') insertForm;
   @ViewChild('confirmDialog') confirmDialog;
   confirmTitle = 'Sicuro?';
   confirmText = 'Stai elminando una featurette...';
   idDelete: string;
-
   page = 1;
   pageSize = 3;
   collectionSize = 0;
   previousPage: any;
 
-  constructor(private featuretteService: FeaturetteService, private alertService: AlertService) {
-
-  }
+  constructor(private featuretteService: FeaturetteService, private alertService: AlertService) { }
 
   ngOnInit(): void {
     this.featuretteService.count().subscribe((res) => {
@@ -37,14 +32,14 @@ export class FeaturetteComponent implements OnInit{
     });
   }
 
-  addFeaturette() {
-    this.featuretteService.insert(this.newFeaturette)
+  addFeaturette($event) {
+    this.featuretteService.insertUpload($event)
     .subscribe(
       data => {
-        this.alertService.success(this.newFeaturette.title+' inserita!', false);
+        this.alertService.success($event.title+' inserita!', false);
+        this.insertForm.setLoading(false);
         this.isCollapsed = true;
         this.collectionSize++;
-        this.newFeaturette = new Featurette(null,null,null);
         this.loadData();
       },
       error => {

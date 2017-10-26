@@ -1,7 +1,7 @@
 <br>
 <div class="card-deck">
   <div class="card" *ngFor="let featurette of featuretteList">
-    <dt-featurette-detail [featurette]="featurette" (delete)="delete($event)"></dt-featurette-detail>
+    <dt-featurette-detail [featurette]="featurette" (updated)="loadData()" (delete)="delete($event)"></dt-featurette-detail>
   </div>
 </div>
 
@@ -20,29 +20,7 @@
 <div id="collapseExample" [ngbCollapse]="isCollapsed">
   <div class="card">
     <div class="card-body">
-      <form>
-        <div class="form-group">
-          <label for="insertTitle">Titolo</label>
-          <input type="text" class="form-control" id="insertTitle" name="title" placeholder="Titolo featurette" [(ngModel)]="newFeaturette.title">
-        </div>
-
-        <div class="form-group">
-          <label for="insertSottoTitolo">Sotto Titolo</label>
-          <input type="text" class="form-control" id="insertSottoTitolo" name="subTitle" placeholder="Sottotitolo featurette" [(ngModel)]="newFeaturette.subTitle">
-        </div>
-
-        <div class="form-group">
-          <label for="insertText">Testo</label>
-          <textarea rows="5" class="form-control" id="insertText" name="text" placeholder="Testo featurette" [(ngModel)]="newFeaturette.text"></textarea>
-        </div>
-
-        <div class="form-group">
-          <label for="insertImgPath">Link immagine</label>
-          <input type="text" class="form-control" id="insertImgPath" name="imgPath" placeholder="Link immagine esterno" [(ngModel)]="newFeaturette.imgPath">
-        </div>
-
-        <button type="button" class="btn btn-outline-success" (click)="addFeaturette()">Inserisci</button>
-      </form>
+      <featurette-upload #insertForm (formSubmit)="addFeaturette($event)"></featurette-upload>
     </div>
   </div>
 </div>

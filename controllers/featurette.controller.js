@@ -1,16 +1,19 @@
 'use strict';
 
+const featuretteService = require('services/featurette.service');
+const uploadService = require('services/upload.service');
 const express = require('express');
 const router = express.Router();
-const featuretteService = require('services/featurette.service');
 
 // routes
 router.post('/insert', insert);
+router.post('/insertUpload', insertUpload);
 router.get('/', getAll);
 router.get('/count', count);
 router.get('/get/:_id', get);
 router.get('/paged/:limit/:page/:size', getPaged);
 router.put('/:_id', update);
+router.post('/updateUpload', updateUpload);
 router.delete('/:_id', _delete);
 module.exports = router;
 
@@ -22,6 +25,20 @@ function insert(req, res) {
   .catch(function (err) {
     res.status(400).send(err);
   });
+}
+
+function insertUpload(req, res) {
+  if(req.files && req.files.imgFile) {
+    uploadService.insert(req.files.imgFile).then(function (newImage) {
+      req.body.imgPath = newImage;
+      insert(req, res);
+    })
+    .catch(function (err) {
+      res.status(400).send(err);
+    });
+  } else {
+    insert(req, res);
+  }
 }
 
 function getAll(req, res) {
@@ -76,6 +93,21 @@ function update(req, res) {
   .catch(function (err) {
     res.status(400).send(err);
   });
+}
+
+function updateUpload(req, res) {
+  req.params._id = req.body._id;//XXX
+  if(req.files && req.files.imgFile) {
+    uploadService.update(req.files.imgFile, req.body.imgPath).then(function (newImage) {
+      req.body.imgPath = newImage;
+      update(req, res);
+    })
+    .catch(function (err) {
+      res.status(400).send(err);
+    });
+  } else {
+    update(req, res);
+  }
 }
 
 function _delete(req, res) {

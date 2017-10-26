@@ -1,5 +1,5 @@
 import { Component, Input, Output, EventEmitter, ViewChild } from '@angular/core';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { Featurette } from '../../../models/featurette.model';
 import { FeaturetteService, AlertService } from '../../../services/index';
 
@@ -10,23 +10,25 @@ import { FeaturetteService, AlertService } from '../../../services/index';
 })
 export class FeaturetteDetailComponent{
    @Input() featurette: Featurette;
-
    @Output() delete: EventEmitter<any> = new EventEmitter();
-
+   @Output() updated: EventEmitter<any> = new EventEmitter();
    @ViewChild('updateContent') updateContent;
+   modalRef: NgbModalRef;
 
-   constructor(private modalService: NgbModal, private featuretteService: FeaturetteService,  private alertService: AlertService) {
-
-   }
+   constructor(private modalService: NgbModal, private featuretteService: FeaturetteService,  private alertService: AlertService) { }
 
    deleteFeaturette() {
      this.delete.emit(this.featurette);
    }
 
-   update() {
-     this.featuretteService.update(this.featurette).subscribe(
+   update($event) {
+     $event.append('_id', this.featurette._id);
+     $event.append('imgPath', this.featurette.imgPath);
+     this.featuretteService.updateUpload($event).subscribe(
        data => {
-         this.alertService.success(this.featurette.title+' modificato con successo!', false);
+         this.alertService.success($event.title+' modificato con successo!', false);
+         this.modalRef.close();
+         this.updated.emit();
        },
        error => {
          this.alertService.error(error._body);
@@ -34,7 +36,7 @@ export class FeaturetteDetailComponent{
    }
 
    modifyFeaturette() {
-     this.modalService.open(this.updateContent);
+     this.modalRef = this.modalService.open(this.updateContent);
    }
 
 }

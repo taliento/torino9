@@ -37,6 +37,10 @@ export class FeaturetteService extends AService {
     return this.http.post(this.apiUrl+'/featurette/insert',featurette, this.jwt());
   }
 
+  insertUpload(formData: FormData) {
+    return this.http.post(this.apiUrl+'/featurette/insertUpload',formData, this.jwt());
+  }
+
   delete(_id: string) {
     return this.http.delete(this.apiUrl+'/featurette/' + _id, this.jwt());
   }
@@ -47,5 +51,9 @@ export class FeaturetteService extends AService {
 
   update(slide: Featurette) {
     return this.http.put(this.apiUrl+'/featurette/' + slide._id, slide, this.jwt());
+  }
+
+  updateUpload(formData: FormData) {
+    return this.http.post(this.apiUrl+'/featurette/updateUpload/',formData, this.jwt());
   }
 }

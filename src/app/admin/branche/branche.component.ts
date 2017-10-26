@@ -12,7 +12,6 @@ import { Branca } from '../../models';
 export class BrancheComponent implements OnInit {
 
   @ViewChild('insertForm') insertForm;
-
   isCollapsed = true
   branche: Branca[] = [];
   idDelete: string;
@@ -31,8 +30,8 @@ export class BrancheComponent implements OnInit {
     .subscribe(
       data => {
         this.alertService.success($event.title+' inserita!', false);
-        this.isCollapsed = true;
         this.insertForm.setLoading(false);
+        this.isCollapsed = true;
         this.loadData();
       },
       error => {

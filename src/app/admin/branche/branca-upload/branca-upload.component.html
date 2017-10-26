@@ -1,5 +1,4 @@
 <form [formGroup]="form" (ngSubmit)="onSubmit()">
-
   <div class="form-group">
     <label for="_id">Branca</label>
     <select class="form-control" id="_id" formControlName="_id">
@@ -10,28 +9,23 @@
       </option>
     </select>
   </div>
-
   <div class="form-group">
     <label for="title">Titolo</label>
     <input type="text" class="form-control" id="title" formControlName="title" placeholder="Titolo slide">
   </div>
-
   <div class="form-group">
     <label for="subtitle">Sotto Titolo</label>
     <input type="text" class="form-control" id="subtitle" formControlName="subtitle" placeholder="Sottotitolo branca">
   </div>
-
   <div class="form-group">
     <label for="text">Testo</label>
     <div id="text" formControlName="text" [froalaEditor]></div><!-- [(froalaModel)]="newBranca.text"  -->
     <!-- <textarea rows="5" class="form-control" id="text" formControlName="text"  placeholder="Testo slide"></textarea> -->
   </div>
-
   <div class="form-group">
     <label for="imgFile">Immagine</label>
     <input type="file" id="imgFile" formControlName="imgFile" #imgInput (change)="onFileChange($event)"/>
     <button type="button" class="btn btn-sm btn-outline-secondary" (click)="clearFile()">Elimina file</button>
   </div>
-
   <button type="submit" class="btn btn-outline-success">Salva <i class="fa fa-spinner fa-spin fa-fw" *ngIf="loading"></i></button>
 </form>

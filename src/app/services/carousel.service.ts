@@ -55,7 +55,7 @@ export class CarouselService extends AService {
   }
 
   updateUpload(formData: FormData) {
-    return this.http.post(this.apiUrl+'/carousel/carouselUpload/',formData, this.jwt());
+    return this.http.post(this.apiUrl+'/carousel/updateUpload/',formData, this.jwt());
   }
 
 }
