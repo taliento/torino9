@@ -45,8 +45,5 @@ Thumbs.db
 /public/img/*.jpg
 /public/img/*.png
 
-#env file
-.env
-
 #so sad joe
 DEADJOE
