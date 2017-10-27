@@ -11,9 +11,6 @@ apt:
   packages:
     - google-chrome-stable
 
-before_install:
-  - npm install -g foreman
-
 before_script:
   - export CHROME_BIN=chromium-browser
   - export DISPLAY=:99.0
