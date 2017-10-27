@@ -1,4 +1,5 @@
 {
     "user":"apitest",
-    "password":"apitest"
+    "password":"apitest",
+    "apiUrl":"http://localhost:3000/api"
 }
