@@ -1,11 +1,10 @@
 'use strict';
 
 const fileUpload = require('express-fileupload');
-const config = require('config.json');
 const path = require('path');
 const fs = require('fs');
 const Q = require('q');
-const publicImgPath = config.publicImgPath;
+const publicImgPath = '/public/img';
 
 var service = {};
 service.insert = insert;

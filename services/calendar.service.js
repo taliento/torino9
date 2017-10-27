@@ -1,7 +1,6 @@
-const config = require('../config.json');
 const Q = require('q');
 const mongo = require('mongoskin');
-const db = mongo.db(process.env.MONGODB_URI || config.connectionString, { native_parser: true });
+const db = mongo.db(process.env.MONGODB_URI, { native_parser: true });
 db.bind('calendar');
 
 var service = {};

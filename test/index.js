@@ -1,4 +1,4 @@
-const config = require('../config.json');
+const config = require('config.json');
 const superagent = require('superagent')
 const expect = require('expect.js')
 const user = config.user;

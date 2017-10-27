@@ -1,10 +1,9 @@
-const config = require('../config.json');
 const _ = require('lodash');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
 const Q = require('q');
 const mongo = require('mongoskin');
-const db = mongo.db(process.env.MONGODB_URI || config.connectionString, { native_parser: true });
+const db = mongo.db(process.env.MONGODB_URI, { native_parser: true });
 db.bind('users');
 
 var service = {};
@@ -35,7 +34,7 @@ function authenticate(username, password) {
                 firstName: user.firstName,
                 lastName: user.lastName,
                 imgPath: user.imgPath,
-                token: jwt.sign({ sub: user._id }, (process.env.SECRET || config.secret))
+                token: jwt.sign({ sub: user._id }, process.env.SECRET)
             });
         } else {
             // authentication failed
