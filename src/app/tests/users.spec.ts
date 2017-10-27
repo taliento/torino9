@@ -8,9 +8,9 @@ import {
   Http,
   XHRBackend,
   RequestMethod
-} from "@angular/http";
+} from '@angular/http';
 import { TestBed, fakeAsync, tick, inject, async } from '@angular/core/testing';
-import { MockBackend,MockConnection } from "@angular/http/testing";
+import { MockBackend, MockConnection } from '@angular/http/testing';
 import { UserService } from '../services/index';
 import { User } from '../models';
 
@@ -72,10 +72,14 @@ describe('Users Service', () => {
       })));
     });
 
-    let params = {limit:3,page:1,size:3};
+    const params = {
+      limit: 3,
+      page: 1,
+      size: 3
+    };
 
     userService.getPaged(params).subscribe((res) => {
-      let user = res.json();
+      const user = res.json();
       expect(user).toBeTruthy();
       expect(user.length).toBeGreaterThan(1);
       expect(user[0].title).toEqual('primo');
@@ -87,7 +91,7 @@ describe('Users Service', () => {
   it('should count user',
   inject([UserService, MockBackend], (userService, mockBackend) => {
 
-    const mockResponse = {'count':3};
+    const mockResponse = { 'count': 3 };
 
     mockBackend.connections.subscribe((connection) => {
       connection.mockRespond(new Response(new ResponseOptions({
@@ -96,8 +100,7 @@ describe('Users Service', () => {
     });
 
     userService.count().subscribe((res) => {
-      let count = res.json().count;
-      expect(count).toEqual(3)
+      expect(res.json().count).toEqual(3);
     });
 
   }));
@@ -112,7 +115,10 @@ describe('Users Service', () => {
       connection.mockRespond(new Response(new ResponseOptions({status: 201})));
     });
 
-    let data = {username:'test',pasword:'test'};
+    const data = {
+      username: 'test',
+      pasword: 'test'
+    };
 
     userService.create(data).subscribe(
       (successResult) => {
@@ -129,7 +135,11 @@ describe('Users Service', () => {
       connection.mockRespond(new Response(new ResponseOptions({status: 204})));
     });
 
-    let data = {username:'test',pasword:'test',_id: '10'};
+    const data = {
+      username: 'test',
+      pasword: 'test',
+      _id: '10'
+    };
 
     userService.update(data).subscribe(
       (successResult) => {
