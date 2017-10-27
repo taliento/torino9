@@ -1,7 +1,7 @@
 <br>
 <div class="card-deck">
   <div class="card" *ngFor="let slide of slides">
-    <dt-slide-detail [slide]="slide" (updated)="loadData()"  (delete)="delete($event)"></dt-slide-detail>
+    <app-slide-detail [slide]="slide" (updated)="loadData()"  (delete)="delete($event)"></app-slide-detail>
   </div>
 </div>
 
@@ -21,9 +21,9 @@
 <div id="collapseExample" [ngbCollapse]="isCollapsed">
   <div class="card">
     <div class="card-body">
-      <slide-upload #insertForm (formSubmit)="addSlide($event)"></slide-upload>
+      <app-slide-upload #insertForm (formSubmit)="addSlide($event)"></app-slide-upload>
     </div>
   </div>
 </div>
 
-<confirm-dialog #confirmDialog [title]="confirmTitle" [text]="confirmText" (confirm)="deleteSlide()"></confirm-dialog>
+<app-confirm-dialog #confirmDialog [title]="confirmTitle" [text]="confirmText" (confirm)="deleteSlide()"></app-confirm-dialog>

@@ -15,7 +15,7 @@ module.exports = service;
 
 function getAll() {
   var deferred = Q.defer();
-  db.news.find().toArray(function (err, newsList) {
+  db.news.find().toArray(function(err, newsList) {
     if (err) deferred.reject(err.name + ': ' + err.message);
     deferred.resolve(newsList);
   });
@@ -26,7 +26,7 @@ function count() {
   var deferred = Q.defer();
   db.news.count({}, function(err, _count) {
     if (err) deferred.reject(err.name + ': ' + err.message);
-    deferred.resolve({'count':_count});
+    deferred.resolve({'count': _count});
   });
   return deferred.promise;
 }
@@ -34,7 +34,7 @@ function count() {
 function getPaged(_limit, _page, _size) {
   var deferred = Q.defer();
   var _skip = _page * _limit;
-  db.news.find({}, null, {limit: _limit*1, skip: _skip, sort:[['insertDate',-1]]}).toArray(function (err, newsList) {
+  db.news.find({}, null, {limit: _limit * 1, skip: _skip, sort: [['insertDate', -1]]}).toArray(function(err, newsList) {
     if (err) deferred.reject(err.name + ': ' + err.message);
     deferred.resolve(newsList);
   });
@@ -43,7 +43,7 @@ function getPaged(_limit, _page, _size) {
 
 function getById(_id) {
   var deferred = Q.defer();
-  db.news.findById(_id, function (err, news) {
+  db.news.findById(_id, function(err, news) {
     if (err) deferred.reject(err.name + ': ' + err.message);
     if (news) {
       deferred.resolve(news);
@@ -60,7 +60,7 @@ function create(newsParam) {
   newsParam.insertDate = new Date();
   db.news.insert(
     newsParam,
-    function (err, doc) {
+    function(err, doc) {
       if (err) deferred.reject(err.name + ': ' + err.message);
       deferred.resolve(doc);
     });
@@ -80,7 +80,7 @@ function update(_id, newsParam) {
   db.news.update(
     { _id: mongo.helper.toObjectID(_id) },
     { $set: set },
-    function (err, doc) {
+    function(err, doc) {
       if (err) deferred.reject(err.name + ': ' + err.message);
       deferred.resolve();
     });
@@ -91,7 +91,7 @@ function _delete(_id) {
   var deferred = Q.defer();
   db.news.remove(
     { _id: mongo.helper.toObjectID(_id) },
-    function (err) {
+    function(err) {
       if (err) deferred.reject(err.name + ': ' + err.message);
       deferred.resolve();
     });

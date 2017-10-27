@@ -23,7 +23,7 @@ module.exports = service;
 function authenticate(username, password) {
     var deferred = Q.defer();
 
-    db.users.findOne({ username: username }, function (err, user) {
+    db.users.findOne({ username: username }, function(err, user) {
         if (err) deferred.reject(err.name + ': ' + err.message);
 
         if (user && bcrypt.compareSync(password, user.hash)) {
@@ -48,11 +48,11 @@ function authenticate(username, password) {
 function getAll() {
     var deferred = Q.defer();
 
-    db.users.find().sort({username:1}).toArray(function (err, users) {
+    db.users.find().sort({username: 1}).toArray(function(err, users) {
         if (err) deferred.reject(err.name + ': ' + err.message);
 
         // return users (without hashed passwords)
-        users = _.map(users, function (user) {
+        users = _.map(users, function(user) {
             return _.omit(user, 'hash');
         });
 
@@ -68,7 +68,7 @@ function count() {
 
   db.users.count({}, function(err, _count) {
     if (err) deferred.reject(err.name + ': ' + err.message);
-    deferred.resolve({'count':_count});
+    deferred.resolve({'count': _count});
   });
 
   return deferred.promise;
@@ -80,7 +80,7 @@ function getPaged(_limit, _page, _size) {
 
   var _skip = _page * _limit;
 
-  db.users.find({}, null, {limit: _limit*1, skip: _skip, sort:[['insertDate',-1]]}).toArray(function (err, users) {
+  db.users.find({}, null, {limit: _limit * 1, skip: _skip, sort: [['insertDate', -1]]}).toArray(function(err, users) {
     if (err) deferred.reject(err.name + ': ' + err.message);
     deferred.resolve(users);
   });
@@ -91,7 +91,7 @@ function getPaged(_limit, _page, _size) {
 function getById(_id) {
     var deferred = Q.defer();
 
-    db.users.findById(_id, function (err, user) {
+    db.users.findById(_id, function(err, user) {
         if (err) deferred.reject(err.name + ': ' + err.message);
 
         if (user) {
@@ -112,7 +112,7 @@ function create(userParam) {
     // validation
     db.users.findOne(
         { username: userParam.username },
-        function (err, user) {
+        function(err, user) {
             if (err) deferred.reject(err.name + ': ' + err.message);
 
             if (user) {
@@ -132,7 +132,7 @@ function create(userParam) {
 
         db.users.insert(
             user,
-            function (err, doc) {
+            function(err, doc) {
                 if (err) deferred.reject(err.name + ': ' + err.message);
 
                 deferred.resolve(doc);
@@ -145,28 +145,28 @@ function create(userParam) {
 function update(_id, userParam) {
     var deferred = Q.defer();
 
-    if(!userParam || !userParam.username) {
-      deferred.reject("no username param was found!");
+    if (!userParam || !userParam.username) {
+      deferred.reject('no username param was found!');
     }
 
     // validation
-    db.users.findById(_id, function (err, user) {
+    db.users.findById(_id, function(err, user) {
         if (err) deferred.reject(err.name + ': ' + err.message);
 
-        if(!user || !user.username) {
-          deferred.reject("no username was found!");
+        if (!user || !user.username) {
+          deferred.reject('no username was found!');
         }
 
         if (user.username !== userParam.username) {
             // username has changed so check if the new username is already taken
             db.users.findOne(
                 { username: userParam.username },
-                function (err, user) {
+                function(err, user) {
                     if (err) deferred.reject(err.name + ': ' + err.message);
 
                     if (user) {
                         // username already exists
-                        deferred.reject('Username "' + req.body.username + '" is already taken')
+                        deferred.reject('Username "' + req.body.username + '" is already taken');
                     } else {
                         updateUser();
                     }
@@ -194,7 +194,7 @@ function update(_id, userParam) {
         db.users.update(
             { _id: mongo.helper.toObjectID(_id) },
             { $set: set },
-            function (err, doc) {
+            function(err, doc) {
                 if (err) deferred.reject(err.name + ': ' + err.message);
 
                 deferred.resolve();
@@ -209,7 +209,7 @@ function _delete(_id) {
 
     db.users.remove(
         { _id: mongo.helper.toObjectID(_id) },
-        function (err) {
+        function(err) {
             if (err) deferred.reject(err.name + ': ' + err.message);
 
             deferred.resolve();

@@ -13,8 +13,8 @@ import { environment } from '../../environments/environment';
     FormsModule,
     AgmCoreModule.forRoot({
     apiKey: environment.apikey,
-    libraries: ["places"],
-    language:'it-IT'
+    libraries: ['places'],
+    language: 'it-IT'
     })
   ],
   declarations: [ MapComponent ],

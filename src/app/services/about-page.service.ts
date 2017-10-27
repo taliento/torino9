@@ -12,14 +12,14 @@ export class AboutPageService extends AService {
 
   get(): Promise<AboutPage> {
     return this.http.
-      get(this.apiUrl+'/about')
+      get(this.apiUrl + '/about')
       .toPromise()
       .then(response => response.json())
       .catch(this.handleError);
   }
 
   insert(aboutPage: AboutPage) {
-    return this.http.post(this.apiUrl+'/about/insert',aboutPage, this.jwt());
+    return this.http.post(this.apiUrl + '/about/insert', aboutPage, this.jwt());
   }
 
 }

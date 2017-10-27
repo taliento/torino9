@@ -3,10 +3,10 @@ import {Component, Input, Output, EventEmitter, ViewChild} from '@angular/core';
 import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
-  selector: 'confirm-dialog',
+  selector: 'app-confirm-dialog',
   templateUrl: './confirm-dialog.component.html'
 })
-export class ConfirmDialog {
+export class ConfirmDialogComponent {
   closeResult: string;
 
   @Input() title: string;

@@ -17,7 +17,7 @@
     </button>
   </div>
   <div class="modal-body">
-    <slide-upload #updateForm [slide]="slide" (formSubmit)="update($event)"></slide-upload>
+    <app-slide-upload #updateForm [slide]="slide" (formSubmit)="update($event)"></app-slide-upload>
   </div>
   <div class="modal-footer">
     <button type="button" class="btn btn-outline-dark" (click)="c('Close click')">Annulla</button>

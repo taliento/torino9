@@ -8,9 +8,9 @@ import {
   Http,
   XHRBackend,
   RequestMethod
-} from "@angular/http";
+} from '@angular/http';
 import { TestBed, fakeAsync, tick, inject, async } from '@angular/core/testing';
-import { MockBackend,MockConnection } from "@angular/http/testing";
+import { MockBackend, MockConnection } from '@angular/http/testing';
 import { CarouselService } from '../services/index';
 import { DTCarousel } from '../models/dt-carousel.model';
 
@@ -72,10 +72,10 @@ describe('Carousel Service', () => {
       })));
     });
 
-    let params = {limit:3,page:1,size:3};
+    const params = {limit: 3, page: 1, size: 3};
 
     carouselService.getPaged(params).subscribe((res) => {
-      let news = res.json();
+      const news = res.json();
       expect(news).toBeTruthy();
       expect(news.length).toBeGreaterThan(1);
       expect(news[0].title).toEqual('primo');
@@ -87,7 +87,7 @@ describe('Carousel Service', () => {
   it('should count slide',
   inject([CarouselService, MockBackend], (carouselService, mockBackend) => {
 
-    const mockResponse = {'count':3};
+    const mockResponse = {'count': 3};
 
     mockBackend.connections.subscribe((connection) => {
       connection.mockRespond(new Response(new ResponseOptions({
@@ -96,8 +96,8 @@ describe('Carousel Service', () => {
     });
 
     carouselService.count().subscribe((res) => {
-      let count = res.json().count;
-      expect(count).toEqual(3)
+      const count = res.json().count;
+      expect(count).toEqual(3);
     });
 
   }));
@@ -112,7 +112,7 @@ describe('Carousel Service', () => {
       connection.mockRespond(new Response(new ResponseOptions({status: 201})));
     });
 
-    let data = {title:'slide1' , text:'the first slide'};
+    const data = {title: 'slide1' , text: 'the first slide'};
 
     carouselService.insert(data).subscribe(
       (successResult) => {
@@ -129,7 +129,7 @@ describe('Carousel Service', () => {
       connection.mockRespond(new Response(new ResponseOptions({status: 204})));
     });
 
-    let data = {title:'slide1' , text:'the first slide', _id:'10'};
+    const data = {title: 'slide1' , text: 'the first slide', _id: '10'};
 
     carouselService.update(data).subscribe(
       (successResult) => {

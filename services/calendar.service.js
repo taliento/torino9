@@ -14,16 +14,16 @@ module.exports = service;
 
 function getAll() {
   var deferred = Q.defer();
-  db.calendar.find().toArray(function (err, events) {
+  db.calendar.find().toArray(function(err, events) {
     if (err) deferred.reject(err.name + ': ' + err.message);
     deferred.resolve(events);
   });
   return deferred.promise;
 }
 
-function getMonthEvents(_month,_year) {
+function getMonthEvents(_month, _year) {
   var deferred = Q.defer();
-  db.calendar.find({'date.month':parseInt(_month), 'date.year':parseInt(_year)}).toArray(function (err, _events) {
+  db.calendar.find({'date.month': parseInt(_month, 10), 'date.year': parseInt(_year, 10)}).toArray(function(err, _events) {
     if (err) deferred.reject(err.name + ': ' + err.message);
     deferred.resolve(_events);
   });
@@ -32,7 +32,7 @@ function getMonthEvents(_month,_year) {
 
 function getById(_id) {
   var deferred = Q.defer();
-  db.calendar.findById(_id, function (err, calendar) {
+  db.calendar.findById(_id, function(err, calendar) {
     if (err) deferred.reject(err.name + ': ' + err.message);
     if (calendar) {
       deferred.resolve(calendar);
@@ -49,7 +49,7 @@ function create(calendarParam) {
   calendarParam.insertDate = new Date();
   db.calendar.insert(
     calendarParam,
-    function (err, doc) {
+    function(err, doc) {
       if (err) deferred.reject(err.name + ': ' + err.message);
       deferred.resolve(doc);
     });
@@ -69,7 +69,7 @@ function create(calendarParam) {
     db.calendar.update(
       { _id: mongo.helper.toObjectID(_id) },
       { $set: set },
-      function (err, doc) {
+      function(err, doc) {
         if (err) deferred.reject(err.name + ': ' + err.message);
         deferred.resolve();
       });
@@ -80,7 +80,7 @@ function create(calendarParam) {
       var deferred = Q.defer();
       db.calendar.remove(
         { _id: mongo.helper.toObjectID(_id) },
-        function (err) {
+        function(err) {
           if (err) deferred.reject(err.name + ': ' + err.message);
           deferred.resolve();
         });

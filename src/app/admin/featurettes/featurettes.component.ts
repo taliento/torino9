@@ -4,11 +4,11 @@ import { FeaturetteService, AlertService } from '../../services/index';
 
 @Component({
     moduleId: module.id,
-    selector: 'dt-featurettes',
+    selector: 'app-featurettes',
     templateUrl: 'featurettes.component.html'
 })
 
-export class FeaturetteComponent implements OnInit{
+export class FeaturetteComponent implements OnInit {
   isCollapsed = true;
   public featuretteList: Featurette[];
   @ViewChild('insertForm') insertForm;
@@ -25,8 +25,8 @@ export class FeaturetteComponent implements OnInit{
 
   ngOnInit(): void {
     this.featuretteService.count().subscribe((res) => {
-      this.collectionSize = parseInt(res.json().count);
-      if(this.collectionSize > 0) {
+      this.collectionSize = parseInt(res.json().count, 10);
+      if (this.collectionSize > 0) {
           this.loadData();
       }
     });
@@ -36,7 +36,7 @@ export class FeaturetteComponent implements OnInit{
     this.featuretteService.insertUpload($event)
     .subscribe(
       data => {
-        this.alertService.success($event.title+' inserita!', false);
+        this.alertService.success($event.title + ' inserita!', false);
         this.insertForm.setLoading(false);
         this.isCollapsed = true;
         this.collectionSize++;
@@ -89,6 +89,6 @@ export class FeaturetteComponent implements OnInit{
   }
 
   onError (res) {
-    console.log("error:"+res);
+    console.log('error:' + res);
   }
 }

@@ -12,9 +12,9 @@ module.exports = service;
 
 function get() {
   var deferred = Q.defer();
-  db.contact.findOne({},function (err, contact) {
+  db.contact.findOne({},function(err, contact) {
     if (err) deferred.reject(err.name + ': ' + err.message);
-    if(contact == null) {
+    if (contact == null) {
       deferred.resolve();
     } else {
       deferred.resolve(contact);
@@ -25,9 +25,9 @@ function get() {
 
 function getById(_id) {
   var deferred = Q.defer();
-  db.contact.findById(_id,function (err, contact) {
+  db.contact.findById(_id, function(err, contact) {
     if (err) deferred.reject(err.name + ': ' + err.message);
-    if(contact == null) {
+    if (contact == null) {
       deferred.resolve();
     } else {
       deferred.resolve(contact);
@@ -38,13 +38,13 @@ function getById(_id) {
 
 function create(contact) {
   var deferred = Q.defer();
-  if(contact._id) {
-    return update(contact._id,contact);
+  if (contact._id) {
+    return update(contact._id, contact);
   }
   contact.insertDate = new Date();
   db.contact.insert(
     contact,
-    function (err, doc) {
+    function(err, doc) {
       if (err) deferred.reject(err.name + ': ' + err.message);
       deferred.resolve(doc);
     });
@@ -59,15 +59,15 @@ function create(contact) {
       subtitle: contact.subtitle,
       text: contact.text,
       contacts: contact.contacts,
-      mapLat:contact.mapLat,
-      mapLng:contact.mapLng,
-      mapTitle:contact.mapTitle,
+      mapLat: contact.mapLat,
+      mapLng: contact.mapLng,
+      mapTitle: contact.mapTitle,
       updateDate: new Date()
     };
     db.contact.update(
       { _id: mongo.helper.toObjectID(_id) },
       { $set: set },
-      function (err, doc) {
+      function(err, doc) {
         if (err) deferred.reject(err.name + ': ' + err.message);
         deferred.resolve(doc);
       });
@@ -78,7 +78,7 @@ function create(contact) {
       var deferred = Q.defer();
       db.contact.remove(
         { _id: mongo.helper.toObjectID(_id) },
-        function (err) {
+        function(err) {
           if (err) deferred.reject(err.name + ': ' + err.message);
 
           deferred.resolve();

@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
 
 @Component({
-  selector: 'map-component',
+  selector: 'app-map',
   templateUrl: 'map.component.html',
   styleUrls: ['map.component.css'],
 })

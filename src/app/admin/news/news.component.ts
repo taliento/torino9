@@ -4,15 +4,15 @@ import { NewsService, AlertService, AuthenticationService } from '../../services
 
 @Component({
     moduleId: module.id,
-    selector: 'dt-news',
+    selector: 'app-news',
     templateUrl: 'news.component.html'
 })
 
-export class NewsComponent implements OnInit{
+export class NewsComponent implements OnInit {
   isCollapsed = true;
   public newsList: News[];
 
-  newNews: News = new News(null,null,null);//:D
+  newNews: News = new News(null, null, null); // :D
 
   @ViewChild('confirmDialog') confirmDialog;
   confirmTitle = 'Sicuro?';
@@ -30,8 +30,8 @@ export class NewsComponent implements OnInit{
 
   ngOnInit(): void {
     this.newsService.count().subscribe((res) => {
-      this.collectionSize = parseInt(res.json().count);
-      if(this.collectionSize > 0) {
+      this.collectionSize = parseInt(res.json().count, 10);
+      if (this.collectionSize > 0) {
           this.loadData();
       }
     });
@@ -42,9 +42,9 @@ export class NewsComponent implements OnInit{
     this.newsService.insert(this.newNews)
     .subscribe(
       data => {
-        this.alertService.success(this.newNews.title+' inserita!', false);
+        this.alertService.success(this.newNews.title + ' inserita!', false);
         this.collectionSize++;
-        this.newNews = new News(null,null,null);//:D
+        this.newNews = new News(null, null, null); // :D
         this.isCollapsed = true;
         this.loadData();
       },
@@ -94,6 +94,6 @@ export class NewsComponent implements OnInit{
   }
 
   onError (res) {
-    console.log("error:"+res);
+    console.log('error:' + res);
   }
 }

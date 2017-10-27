@@ -17,7 +17,7 @@
     </button>
   </div>
   <div class="modal-body">
-    <featurette-upload #updateForm [featurette]="featurette" (formSubmit)="update($event)"></featurette-upload>
+    <app-featurette-upload #updateForm [featurette]="featurette" (formSubmit)="update($event)"></app-featurette-upload>
   </div>
   <div class="modal-footer">
     <button type="button" class="btn btn-outline-dark" (click)="c('Close click')">Annulla</button>

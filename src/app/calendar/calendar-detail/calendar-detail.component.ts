@@ -3,7 +3,7 @@ import { Event } from '../../models/event.model';
 
 @Component({
   moduleId: module.id,
-  selector:'calendar-detail',
+  selector: 'app-calendar-detail',
   templateUrl: 'calendar-detail.component.html',
   styleUrls: ['../calendar.component.css']
 })

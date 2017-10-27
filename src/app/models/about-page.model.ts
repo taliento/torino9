@@ -6,7 +6,7 @@ class AboutLink {
 export class AboutPage {
   _id: string;
   title: string;
-  subtitle:string;
+  subtitle: string;
   text: string;
   links: AboutLink[];
 }

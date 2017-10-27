@@ -2,7 +2,7 @@ import { Component, Input } from '@angular/core';
 
 @Component({
     moduleId: module.id,
-    selector: 'dt-link-detail',
+    selector: 'app-link-detail',
     templateUrl: 'link-detail.component.html'
 })
 

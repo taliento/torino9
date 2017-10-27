@@ -1,14 +1,14 @@
 import {Component, ElementRef, ViewChild, Inject, Output, EventEmitter, Input, OnInit} from '@angular/core';
-import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import { DTCarousel } from '../../../models/dt-carousel.model';
 
 @Component({
-  selector: 'slide-upload',
+  selector: 'app-slide-upload',
   templateUrl: './slide-upload.component.html'
 })
 export class SlideUploadComponent implements OnInit {
   form: FormGroup;
-  loading: boolean = false;
+  loading = false;
   @ViewChild('imgInput') imgInput: ElementRef;
   @Output() formSubmit: EventEmitter<any> = new EventEmitter();
   @Input() slide: DTCarousel;
@@ -25,7 +25,7 @@ export class SlideUploadComponent implements OnInit {
   }
 
   ngOnInit() {
-    if(this.slide) {
+    if (this.slide) {
       this.form.get('title').setValue(this.slide.title);
       this.form.get('text').setValue(this.slide.text);
       this.form.get('position').setValue(this.slide.position);
@@ -35,14 +35,14 @@ export class SlideUploadComponent implements OnInit {
   }
 
   onFileChange(event) {
-    if(event.target.files.length > 0) {
-      let file = event.target.files[0];
+    if (event.target.files.length > 0) {
+      const file = event.target.files[0];
       this.form.get('imgFile').setValue(file);
     }
   }
 
   private prepareSave(): any {
-    let input = new FormData();
+    const input = new FormData();
     input.append('title', this.form.get('title').value);
     input.append('text', this.form.get('text').value);
     input.append('position', this.form.get('position').value);

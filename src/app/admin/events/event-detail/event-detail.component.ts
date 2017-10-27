@@ -1,11 +1,11 @@
-import { Component, Input, Output, EventEmitter,ViewChild } from '@angular/core';
+import { Component, Input, Output, EventEmitter, ViewChild } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Event } from '../../../models/event.model';
 import { CalendarService, AlertService } from '../../../services/index';
 
 @Component({
   moduleId: module.id,
-  selector:'event-detail',
+  selector: 'app-event-detail',
   templateUrl: 'event-detail.component.html'
 })
 export class EventDetailComponent {
@@ -25,7 +25,7 @@ export class EventDetailComponent {
     subscribe(
       data => {
         this.alertService.success('Evento modificato', false);
-        this.reload.emit();//reload tasks
+        this.reload.emit(); // reload tasks
       },
       error => {
         this.alertService.error(error._body);
@@ -33,13 +33,13 @@ export class EventDetailComponent {
   }
 
   deleteEvent() {
-    var ids = [];
+    const ids = [];
 
     this.calendarService.delete(this.task._id).
     subscribe(
       data => {
         this.alertService.success('Evento eliminato', false);
-        this.reload.emit();//reload tasks
+        this.reload.emit(); // reload tasks
       },
       error => {
         this.alertService.error(error._body);

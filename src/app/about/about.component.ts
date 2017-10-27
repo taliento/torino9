@@ -4,10 +4,10 @@ import { AboutPageService } from '../services/index';
 
 @Component({
   moduleId: module.id,
-  selector: 'about-us',
+  selector: 'app-about',
   templateUrl: 'about.component.html'
 })
-export class AboutUsComponent implements OnInit{
+export class AboutUsComponent implements OnInit {
 
   aboutPage: AboutPage = new AboutPage();
 
@@ -15,7 +15,7 @@ export class AboutUsComponent implements OnInit{
 
   ngOnInit() {
     this.aboutPageService.get().then(result => {
-      if(result) {
+      if (result) {
         this.aboutPage = result;
       }
     });

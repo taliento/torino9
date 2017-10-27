@@ -7,6 +7,6 @@ throng({
   lifetime: Infinity
 }, start);
 
-function start () {
+function start() {
   require('./server');
 }

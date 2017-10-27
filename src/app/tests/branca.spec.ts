@@ -8,9 +8,9 @@ import {
   Http,
   XHRBackend,
   RequestMethod
-} from "@angular/http";
+} from '@angular/http';
 import { TestBed, fakeAsync, tick, inject, async } from '@angular/core/testing';
-import { MockBackend,MockConnection } from "@angular/http/testing";
+import { MockBackend, MockConnection } from '@angular/http/testing';
 import { BrancaService } from '../services/index';
 import { Branca } from '../models/';
 
@@ -38,7 +38,7 @@ describe('Branca page Service', () => {
   it('should return branca',
   inject([BrancaService, MockBackend], (brancaService, mockBackend) => {
 
-    const mockResponse = {title: 'branca 1' , subtitle:'we are cool' , text:'blablabla', _id:'branca1'};
+    const mockResponse = {title: 'branca 1' , subtitle: 'we are cool' , text: 'blablabla', _id: 'branca1'};
 
     mockBackend.connections.subscribe((connection) => {
       connection.mockRespond(new Response(new ResponseOptions({
@@ -66,7 +66,7 @@ describe('Branca page Service', () => {
       connection.mockRespond(new Response(new ResponseOptions({status: 201})));
     });
 
-    let data = {title: 'branca 1' , subtitle:'we are cool' , text:'blablabla' , _id:"branca1"};
+    const data = {title: 'branca 1' , subtitle: 'we are cool' , text: 'blablabla' , _id: 'branca1'};
     brancaService.insert(data).subscribe(
       (successResult) => {
         expect(successResult).toBeDefined();
@@ -82,7 +82,7 @@ describe('Branca page Service', () => {
         connection.mockRespond(new Response(new ResponseOptions({status: 204})));
       });
 
-      let data = {title: 'branca 1' , subtitle:'we are cool' , text:'blablabla', _id:'branca1'};
+      const data = {title: 'branca 1' , subtitle: 'we are cool' , text: 'blablabla', _id: 'branca1'};
 
       brancaService.insert(data).subscribe(
         (successResult) => {

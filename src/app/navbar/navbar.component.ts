@@ -6,7 +6,7 @@ import { Router } from '@angular/router';
 
 @Component({
   moduleId: module.id,
-  selector: 'my-navbar',
+  selector: 'app-navbar',
   templateUrl: 'navbar.component.html'
 })
 export class NavbarComponent implements OnInit {

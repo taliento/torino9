@@ -4,7 +4,7 @@ import { ContactPageService } from '../services/index';
 
 @Component({
   moduleId: module.id,
-  selector: 'contact',
+  selector: 'app-contact',
   templateUrl: 'contact.component.html'
 })
 export class ContactComponent implements OnInit {
@@ -15,8 +15,8 @@ export class ContactComponent implements OnInit {
 
   ngOnInit() {
     this.contactPageService.get().then(result => {
-      if(result) {
-        this.contactPage = result
+      if (result) {
+        this.contactPage = result;
       }
     });
   }

@@ -5,14 +5,14 @@ import { Branca } from '../../models';
 
 @Component({
     moduleId: module.id,
-    selector: 'branche-component',
+    selector: 'app-branche',
     templateUrl: 'branche.component.html'
 })
 
 export class BrancheComponent implements OnInit {
 
   @ViewChild('insertForm') insertForm;
-  isCollapsed = true
+  isCollapsed = true;
   branche: Branca[] = [];
   idDelete: string;
   @ViewChild('confirmDialog') confirmDialog;
@@ -29,7 +29,7 @@ export class BrancheComponent implements OnInit {
     this.brancheService.insertUpload($event)
     .subscribe(
       data => {
-        this.alertService.success($event.title+' inserita!', false);
+        this.alertService.success($event.title + ' inserita!', false);
         this.insertForm.setLoading(false);
         this.isCollapsed = true;
         this.loadData();
@@ -57,6 +57,6 @@ export class BrancheComponent implements OnInit {
     }
 
   loadData() {
-    this.brancheService.getAll().then(result =>  this.branche = result );//3
+    this.brancheService.getAll().then(result =>  this.branche = result ); // 3
   }
 }

@@ -5,14 +5,14 @@ import { CarouselService, AlertService } from '../../../services/index';
 
 @Component({
   moduleId: module.id,
-  selector: 'dt-slide-detail',
+  selector: 'app-slide-detail',
   templateUrl: 'slide-detail.component.html'
 })
-export class SlideDetailComponent{
+export class SlideDetailComponent {
    @Input() slide: DTCarousel;
    @Output() delete: EventEmitter<any> = new EventEmitter();
    @Output() updated: EventEmitter<any> = new EventEmitter();
-   @ViewChild('updateContent') updateContent;//MODAL VIEW
+   @ViewChild('updateContent') updateContent;
    modalRef: NgbModalRef;
 
    constructor(private modalService: NgbModal, private carouselService: CarouselService,  private alertService: AlertService) { }
@@ -26,7 +26,7 @@ export class SlideDetailComponent{
      $event.append('imgPath', this.slide.imgPath);
      this.carouselService.updateUpload($event).subscribe(
        data => {
-         this.alertService.success($event.title+' modificato con successo!', false);
+         this.alertService.success($event.title + ' modificato con successo!', false);
          this.modalRef.close();
          this.updated.emit();
        },

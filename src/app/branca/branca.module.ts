@@ -11,7 +11,8 @@ import { FroalaEditorModule, FroalaViewModule } from 'angular-froala-wysiwyg';
   imports: [
     CommonModule,
      NgbModule,
-     FroalaEditorModule.forRoot(), FroalaViewModule.forRoot(), 
+     FroalaEditorModule.forRoot(),
+     FroalaViewModule.forRoot(),
      RouterModule.forChild(MODULE_ROUTES)
    ],
   declarations: [ MODULE_COMPONENTS ]

@@ -7,11 +7,11 @@ export class NewsHeaderService {
   info = new Subject();
 
   reset () {
-    this.change("Novità", "Nulla che sia del tutto nuovo è perfetto", "(Marco Tullio Cicerone)");
+    this.change('Novità', 'Nulla che sia del tutto nuovo è perfetto', '(Marco Tullio Cicerone)');
   }
 
-  change(title: string, subTitle: string, cit:string){
-   this.info.next({title: title, subTitle: subTitle, cit: cit})
+  change(title: string, subTitle: string, cit: string) {
+   this.info.next({title: title, subTitle: subTitle, cit: cit});
   }
 
 }

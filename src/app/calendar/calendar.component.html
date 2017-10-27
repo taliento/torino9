@@ -11,7 +11,7 @@
     <div class="col-md-10">
       <ul class="list-group" title="Eventi del {{ model.day }}/{{ model.month }}/{{ model.year }}">
         <div *ngIf="!tasks.length" class="list-group-item">Nessun evento nella data {{ model.day }}/{{ model.month }}/{{ model.year }}</div>
-        <calendar-detail *ngFor="let task of tasks" [task]="task"></calendar-detail>
+        <app-calendar-detail *ngFor="let task of tasks" [task]="task"></app-calendar-detail>
       </ul>
     </div>
     <div class="col-md-2">

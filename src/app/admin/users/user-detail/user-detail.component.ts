@@ -5,10 +5,10 @@ import { UserService, AlertService } from '../../../services/index';
 
 @Component({
   moduleId: module.id,
-  selector: 'dt-user-detail',
+  selector: 'app-user-detail',
   templateUrl: 'user-detail.component.html'
 })
-export class UserDetailComponent{
+export class UserDetailComponent {
    @Input() user: User;
    @Output() delete: EventEmitter<any> = new EventEmitter();
    @Output() updated: EventEmitter<any> = new EventEmitter();
@@ -26,7 +26,7 @@ export class UserDetailComponent{
      $event.append('imgPath', this.user.imgPath);
      this.userService.updateUpload($event).subscribe(
        data => {
-         this.alertService.success($event.username+' modificato con successo!', false);
+         this.alertService.success($event.username + ' modificato con successo!', false);
          this.modalRef.close();
          this.updated.emit();
        },

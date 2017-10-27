@@ -8,9 +8,9 @@ import {
   Http,
   XHRBackend,
   RequestMethod
-} from "@angular/http";
+} from '@angular/http';
 import { TestBed, fakeAsync, tick, inject, async } from '@angular/core/testing';
-import { MockBackend,MockConnection } from "@angular/http/testing";
+import { MockBackend, MockConnection } from '@angular/http/testing';
 import { NewsService } from '../services/news.service';
 import { News } from '../models';
 
@@ -72,10 +72,14 @@ describe('News Service', () => {
       })));
     });
 
-    let params = {limit:3,page:1,size:3};
+    const params = {
+      limit: 3,
+      page: 1,
+      size: 3
+    };
 
     newsService.getPaged(params).subscribe((res) => {
-      let news = res.json();
+      const news = res.json();
       expect(news).toBeTruthy();
       expect(news.length).toBeGreaterThan(1);
       expect(news[0].title).toEqual('primo');
@@ -87,7 +91,7 @@ describe('News Service', () => {
   it('should count news',
   inject([NewsService, MockBackend], (newsService, mockBackend) => {
 
-    const mockResponse = {'count':3};
+    const mockResponse = {count: 3};
 
     mockBackend.connections.subscribe((connection) => {
       connection.mockRespond(new Response(new ResponseOptions({
@@ -96,8 +100,8 @@ describe('News Service', () => {
     });
 
     newsService.count().subscribe((res) => {
-      let count = res.json().count;
-      expect(count).toEqual(3)
+      const count = res.json().count;
+      expect(count).toEqual(3);
     });
 
   }));
@@ -112,7 +116,7 @@ describe('News Service', () => {
       connection.mockRespond(new Response(new ResponseOptions({status: 201})));
     });
 
-    let data: News = new News('News', 'the latest news', 'blablablabla');
+    const data: News = new News('News', 'the latest news', 'blablablabla');
     newsService.insert(data).subscribe(
       (successResult) => {
         expect(successResult).toBeDefined();
@@ -128,7 +132,7 @@ describe('News Service', () => {
       connection.mockRespond(new Response(new ResponseOptions({status: 204})));
     });
 
-    let data: News = new News('News', 'the latest news', 'blablablabla');
+    const data: News = new News('News', 'the latest news', 'blablablabla');
     data._id = '10';
 
     newsService.update(data).subscribe(

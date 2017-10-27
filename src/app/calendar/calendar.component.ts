@@ -7,7 +7,7 @@ const now = new Date();
 
 @Component({
   moduleId: module.id,
-  selector:'calendar-component',
+  selector: 'app-calendar',
   templateUrl: 'calendar.component.html',
   styleUrls: ['calendar.component.css']
 })
@@ -15,7 +15,7 @@ export class CalendarComponent implements OnInit {
   model: NgbDateStruct;
   date: {year: number, month: number, day: number};
   monthEvents: Event[] = [];
-  tasks : Event[] = [];
+  tasks: Event[] = [];
 
   constructor(private calendarService: CalendarService) { }
 
@@ -30,11 +30,11 @@ export class CalendarComponent implements OnInit {
   loadMonthEvents(date) {
     this.calendarService.getMonthEvents(date).then(result => {
       this.monthEvents = result;
-      this.loadTasks(this.model);//load day tasks
+      this.loadTasks(this.model); // load day tasks
     });
   }
 
-  navigate($event) {//called on year/month navigation
+  navigate($event) {// called on year/month navigation
     this.date = $event.next;
     this.tasks = [];
     this.monthEvents = [];
@@ -46,9 +46,9 @@ export class CalendarComponent implements OnInit {
   }
 
   loadTasks(date: NgbDateStruct) {
-    this.tasks = [];//clear prev tasks
-    for(var i = 0 ; i < this.monthEvents.length ; i++) {
-      var taskDate: any = this.monthEvents[i].date;
+    this.tasks = []; // clear prev tasks
+    for (let i = 0 ; i < this.monthEvents.length ; i++) {
+      const taskDate: any = this.monthEvents[i].date;
       if (taskDate.day === date.day && taskDate.month === date.month) {
         this.tasks.push(this.monthEvents[i]);
       }
@@ -56,8 +56,8 @@ export class CalendarComponent implements OnInit {
   }
 
   dateHasTask(date: NgbDateStruct): boolean {
-    for(var i = 0 ; i < this.monthEvents.length ; i++) {
-      var taskDate: any = this.monthEvents[i].date;
+    for (let i = 0 ; i < this.monthEvents.length ; i++) {
+      const taskDate: any = this.monthEvents[i].date;
       if (taskDate.day === date.day && taskDate.month === date.month) {
         return true;
       }

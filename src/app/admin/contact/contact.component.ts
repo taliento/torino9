@@ -5,20 +5,20 @@ import { ContactListComponent } from './contact-list/contact-list.component';
 
 @Component({
     moduleId: module.id,
-    selector: 'dt-contact',
+    selector: 'app-contact',
     templateUrl: './contact.component.html'
 })
 
 export class ContactComponent implements OnInit {
 
   contactPage: ContactPage = new ContactPage();
-  @ViewChild('contactList') contactList : ContactListComponent;
+  @ViewChild('contactList') contactList: ContactListComponent;
 
   constructor(private contactPageService: ContactPageService, private alertService: AlertService) {}
 
   ngOnInit() {
     this.contactPageService.get().then(result => {
-      if(result) {
+      if (result) {
           this.contactPage = result;
       }
     });
@@ -27,13 +27,13 @@ export class ContactComponent implements OnInit {
   mapCenter($event) {
     this.contactPage.mapLat = $event.lat;
     this.contactPage.mapLng = $event.lng;
-    this.contactPage.mapTitle = 'Ci trovi qui! '+ $event.title;
+    this.contactPage.mapTitle = 'Ci trovi qui! ' + $event.title;
   }
 
   save() {
     this.contactPage.contacts = this.contactList.getContacts();
 
-    if(this.contactPage._id) {
+    if (this.contactPage._id) {
       this.contactPageService.update(this.contactPage)
       .subscribe(
         data => {

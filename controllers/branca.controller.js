@@ -6,7 +6,7 @@ const express = require('express');
 const router = express.Router();
 
 // routes
-router.get('',getAll);
+router.get('', getAll);
 router.post('/insert', insert);
 router.post('/insertUpload', insertUpload);
 router.get('/get/:_id', get);
@@ -15,41 +15,41 @@ module.exports = router;
 
 function getAll(req, res) {
   brancaService.getAll()
-  .then(function (doc) {
+  .then(function(doc) {
     res.send(doc);
   })
-  .catch(function (err) {
+  .catch(function(err) {
     res.status(400).send(err);
   });
 }
 
 function get(req, res) {
   brancaService.get(req.params._id)
-  .then(function (doc) {
+  .then(function(doc) {
     res.send(doc);
   })
-  .catch(function (err) {
+  .catch(function(err) {
     res.status(400).send(err);
   });
 }
 
 function insert(req, res) {
   brancaService.create(req.body)
-  .then(function (doc) {
+  .then(function(doc) {
     res.send(doc);
   })
-  .catch(function (err) {
+  .catch(function(err) {
     res.status(400).send(err);
   });
 }
 
 function insertUpload(req, res) {
-  if(req.files && req.files.imgFile) {
-    uploadService.insert(req.files.imgFile).then(function (newImage) {
+  if (req.files && req.files.imgFile) {
+    uploadService.insert(req.files.imgFile).then(function(newImage) {
       req.body.imgPath = newImage;
       insert(req, res);
     })
-    .catch(function (err) {
+    .catch(function(err) {
       res.status(400).send(err);
     });
   } else {
@@ -59,10 +59,10 @@ function insertUpload(req, res) {
 
 function _delete(req, res) {
   brancaService.delete(req.params._id)
-  .then(function () {
+  .then(function() {
     res.sendStatus(200);
   })
-  .catch(function (err) {
+  .catch(function(err) {
     res.status(400).send(err);
   });
 }

@@ -12,18 +12,18 @@ export class ContactPageService extends AService {
 
   get(): Promise<any> {
     return this.http.
-      get(this.apiUrl+'/contact')
+      get(this.apiUrl + '/contact')
       .toPromise()
       .then(response => response.json())
       .catch(this.handleError);
   }
 
   insert(contactPage: ContactPage) {
-    return this.http.post(this.apiUrl+'/contact/insert',contactPage, this.jwt());
+    return this.http.post(this.apiUrl + '/contact/insert', contactPage, this.jwt());
   }
 
   update(contactPage: ContactPage) {
-    return this.http.put(this.apiUrl+'/contact/' + contactPage._id, contactPage, this.jwt());
+    return this.http.put(this.apiUrl + '/contact/' + contactPage._id, contactPage, this.jwt());
   }
 
 }

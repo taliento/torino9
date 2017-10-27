@@ -12,7 +12,7 @@ module.exports = service;
 
 function getAll() {
   var deferred = Q.defer();
-  db.branca.find().toArray(function (err, branca) {
+  db.branca.find().toArray(function(err, branca) {
     if (err) deferred.reject(err.name + ': ' + err.message);
     deferred.resolve(branca);
   });
@@ -21,10 +21,10 @@ function getAll() {
 
 function get(_id) {
   var deferred = Q.defer();
-  db.branca.findById(_id,function (err, branca) {
+  db.branca.findById(_id, function(err, branca) {
     if (err) deferred.reject(err.name + ': ' + err.message);
-    if(branca == null) {
-      deferred.reject("Not found!");
+    if (branca == null) {
+      deferred.reject('Not found!');
     } else {
       deferred.resolve(branca);
     }
@@ -34,10 +34,10 @@ function get(_id) {
 
 function create(branca) {
   var deferred = Q.defer();
-  if(branca._id) {
-    return update(branca._id,branca);
+  if (branca._id) {
+    return update(branca._id, branca);
   }
-  deferred.reject("no id found");
+  deferred.reject('no id found');
   return deferred.promise;
 }
 
@@ -54,8 +54,8 @@ function update(_id, branca) {
   db.branca.update(
     { _id: mongo.helper.toObjectID(_id) },
     { $set: set },
-    {upsert:true},
-    function (err, doc) {
+    {upsert: true},
+    function(err, doc) {
       if (err) deferred.reject(err.name + ': ' + err.message);
       deferred.resolve(doc);
     });
@@ -66,7 +66,7 @@ function update(_id, branca) {
     var deferred = Q.defer();
     db.branca.remove(
       { _id: mongo.helper.toObjectID(_id) },
-      function (err) {
+      function(err) {
         if (err) deferred.reject(err.name + ': ' + err.message);
         deferred.resolve();
       });

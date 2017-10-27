@@ -1,13 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import { NewsDetail } from './news-detail';
+import { NewsDetailComponent } from './news-detail';
 import { NewsListComponent } from './news-list';
 import { NewsHeaderService} from '../services/newsheader.service';
 @Component({
   moduleId: module.id,
-  selector:'news-component',
+  selector: 'app-news',
   templateUrl: 'news.component.html'
 })
-export class NewsComponent implements OnInit{
+export class NewsComponent implements OnInit {
 
   info: any;
 
@@ -15,7 +15,7 @@ export class NewsComponent implements OnInit{
 
     this.headerService.info.subscribe((nextValue) => {
       this.info = nextValue;
-    })
+    });
   }
 
   ngOnInit() {

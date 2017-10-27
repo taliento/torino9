@@ -8,9 +8,9 @@ import {
   Http,
   XHRBackend,
   RequestMethod
-} from "@angular/http";
+} from '@angular/http';
 import { TestBed, fakeAsync, tick, inject, async } from '@angular/core/testing';
-import { MockBackend,MockConnection } from "@angular/http/testing";
+import { MockBackend, MockConnection } from '@angular/http/testing';
 import { ContactPageService } from '../services/index';
 import { ContactPage } from '../models/';
 
@@ -38,7 +38,7 @@ describe('Contact Page Service', () => {
   it('should return contact page',
   inject([ContactPageService, MockBackend], (contactPageService, mockBackend) => {
 
-    const mockResponse = {title: 'Contact us' , subtitle:'we are waiting for you' , text:'blablabla'};
+    const mockResponse = {title: 'Contact us' , subtitle: 'we are waiting for you' , text: 'blablabla'};
 
     mockBackend.connections.subscribe((connection) => {
       connection.mockRespond(new Response(new ResponseOptions({
@@ -65,7 +65,7 @@ describe('Contact Page Service', () => {
       connection.mockRespond(new Response(new ResponseOptions({status: 201})));
     });
 
-    let data = {title: 'Contact us' , subtitle:'we are waiting for you' , text:'blablabla'};
+    const data = {title: 'Contact us' , subtitle: 'we are waiting for you' , text: 'blablabla'};
     contactPageService.insert(data).subscribe(
       (successResult) => {
         expect(successResult).toBeDefined();
@@ -81,7 +81,7 @@ describe('Contact Page Service', () => {
       connection.mockRespond(new Response(new ResponseOptions({status: 204})));
     });
 
-    let data = {title: 'Contact us' , subtitle:'we are waiting for you' , text:'blablabla', _id:'10'};
+    const data = {title: 'Contact us' , subtitle: 'we are waiting for you' , text: 'blablabla', _id: '10'};
 
     contactPageService.update(data).subscribe(
       (successResult) => {

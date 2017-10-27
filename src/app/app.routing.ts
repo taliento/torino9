@@ -20,4 +20,4 @@ export const MODULE_COMPONENTS = [
   AboutUsComponent,
   ContactComponent,
   LoginComponent
-]
+];

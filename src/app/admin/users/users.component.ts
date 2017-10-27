@@ -5,10 +5,10 @@ import { UserService, AuthenticationService, AlertService } from '../../services
 
 @Component({
   moduleId: module.id,
-  selector: 'dt-users',
+  selector: 'app-users',
   templateUrl: 'users.component.html'
 })
-export class UsersComponent implements OnInit{
+export class UsersComponent implements OnInit {
   currentUser: any;
   users: User[] = [];
   isCollapsed = true;
@@ -31,8 +31,8 @@ export class UsersComponent implements OnInit{
 
   ngOnInit() {
     this.userService.count().subscribe((res) => {
-      this.collectionSize = parseInt(res.json().count);
-      if(this.collectionSize > 0) {
+      this.collectionSize = parseInt(res.json().count, 10);
+      if (this.collectionSize > 0) {
           this.loadData();
       }
     });
@@ -60,7 +60,7 @@ export class UsersComponent implements OnInit{
       this.userService.insertUpload($event)
       .subscribe(
         data => {
-          this.alertService.success($event.username+' benvenuto/a!', false);
+          this.alertService.success($event.username + ' benvenuto/a!', false);
           this.insertForm.setLoading(false);
           this.isCollapsed = true;
           this.collectionSize++;
@@ -94,6 +94,6 @@ export class UsersComponent implements OnInit{
       }
 
       onError (res) {
-        console.log("error:"+res);
+        console.log('error:' + res);
       }
     }

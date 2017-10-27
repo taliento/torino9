@@ -2,7 +2,7 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
     moduleId: module.id,
-    selector: 'contact-detail',
+    selector: 'app-contact-detail',
     templateUrl: './contact-detail.component.html'
 })
 

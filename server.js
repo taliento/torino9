@@ -16,11 +16,11 @@ app.use(bodyParser.json());
 app.use(fileUpload());
 
 // Create link to Angular build directory
-const distDir = __dirname + "/dist/";
+const distDir = __dirname + '/dist/';
 app.use(express.static(distDir));
 
 //public img file path
-app.use('/public/img/',express.static(path.join(__dirname, 'public/img')));
+app.use('/public/img/', express.static(path.join(__dirname, 'public/img')));
 
 //API location
 // use JWT auth to secure the api
@@ -73,18 +73,18 @@ app.use('/api/contact', require('./controllers/contact-page.controller'));
 app.use('/api/branca', require('./controllers/branca.controller'));
 
 //error handling
-function logErrors (err, req, res, next) {
+function logErrors(err, req, res, next) {
   console.error(err.stack);
   next(err);
 }
-function clientErrorHandler (err, req, res, next) {
+function clientErrorHandler(err, req, res, next) {
   if (req.xhr) {
     res.status(500).send({ error: 'Something failed!' });
   } else {
     next(err);
   }
 }
-function errorHandler (err, req, res, next) {
+function errorHandler(err, req, res, next) {
   if (err.name === 'UnauthorizedError') {
     res.redirect('/');
     return;
@@ -101,12 +101,12 @@ app.use(clientErrorHandler);
 app.use(errorHandler);
 
 // // application -------------------------------------------------------------
-app.get('*', function (req, res) {
+app.get('*', function(req, res) {
   res.sendFile(distDir + '/index.html'); // load the single view file (angular will handle the page changes on the front-end)
 });
 
 // Initialize the app.
-var server = app.listen(process.env.PORT || 3000, function () {
+var server = app.listen(process.env.PORT || 3000, function() {
   var port = server.address().port;
-  console.log("App now running on port", port);
+  console.log('App now running on port', port);
 });

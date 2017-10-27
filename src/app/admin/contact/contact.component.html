@@ -2,7 +2,7 @@
   <br>
   <div class="row">
     <div class="col-md-12">
-      <contact-map [mapTitle]="contactPage.mapTitle" [mapLat]="contactPage.mapLat" [mapLng]="contactPage.mapLng" (mapCenter)="mapCenter($event)"></contact-map>
+      <app-contact-map [mapTitle]="contactPage.mapTitle" [mapLat]="contactPage.mapLat" [mapLng]="contactPage.mapLng" (mapCenter)="mapCenter($event)"></app-contact-map>
       <br>
       <div class="container">
           <p>Latitudine: {{contactPage.mapLat}} Longitudine: {{contactPage.mapLng}}</p>
@@ -12,7 +12,7 @@
   <br>
   <div class="row">
     <div class="col-md-12">
-      <contact-list #contactList [contacts]="contactPage.contacts"></contact-list>
+      <app-contact-list #contactList [contacts]="contactPage.contacts"></app-contact-list>
     </div>
   </div>
   <br>
