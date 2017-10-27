@@ -13,40 +13,40 @@ module.exports = router;
 
 function insert(req, res) {
   aboutService.create(req.body)
-  .then(function (doc) {
+  .then(function(doc) {
     res.send(doc);
   })
-  .catch(function (err) {
+  .catch(function(err) {
     res.status(400).send(err);
   });
 }
 
 function get(req, res) {
   aboutService.get()
-  .then(function (about) {
+  .then(function(about) {
     res.send(about);
   })
-  .catch(function (err) {
+  .catch(function(err) {
     res.status(400).send(err);
   });
 }
 
 function getById(req, res) {
   aboutService.getById(req.params._id)
-  .then(function (about) {
+  .then(function(about) {
     res.send(about);
   })
-  .catch(function (err) {
+  .catch(function(err) {
     res.status(400).send(err);
   });
 }
 
 function _delete(req, res) {
   aboutService.delete(req.params._id)
-  .then(function () {
+  .then(function() {
     res.sendStatus(200);
   })
-  .catch(function (err) {
+  .catch(function(err) {
     res.status(400).send(err);
   });
 }

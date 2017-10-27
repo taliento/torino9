@@ -4,10 +4,10 @@ import { CarouselService, AlertService } from '../../services/index';
 
 @Component({
   moduleId: module.id,
-  selector: 'dt-slides',
+  selector: 'app-slides',
   templateUrl: 'slides.component.html'
 })
-export class SlidesComponent implements OnInit{
+export class SlidesComponent implements OnInit {
   public slides: DTCarousel[];
   isCollapsed = true;
   @ViewChild('insertForm') insertForm: any;
@@ -25,8 +25,8 @@ export class SlidesComponent implements OnInit{
 
   ngOnInit(): void {
     this.carouselService.count().subscribe((res) => {
-      this.collectionSize = parseInt(res.json().count);
-      if(this.collectionSize > 0) {
+      this.collectionSize = parseInt(res.json().count, 10);
+      if (this.collectionSize > 0) {
           this.loadData();
       }
     });
@@ -87,7 +87,7 @@ export class SlidesComponent implements OnInit{
     this.slides = res;
   }
 
-  onError (res : any) {
-    console.log("error:"+res);
+  onError (res: any) {
+    console.log('error:' + res);
   }
 }

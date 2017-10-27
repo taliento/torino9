@@ -14,8 +14,8 @@ module.exports = service;
 
 function insert(imgFile) {
   var deferred = Q.defer();
-  var fileName = new Date().getTime() +imgFile.name;
-  var imgPath = __dirname + '/..'+ publicImgPath + fileName ;//timestamp name
+  var fileName = new Date().getTime() + imgFile.name;
+  var imgPath = __dirname + '/..' + publicImgPath + fileName;//timestamp name
   imgFile.mv(imgPath, function(err) {
     if (err) deferred.reject(err.name + ': ' + err.message);
     deferred.resolve(publicImgPath + fileName);
@@ -26,14 +26,14 @@ function insert(imgFile) {
 function update(imgFile, imagePath) {
   var deferred = Q.defer();
   var oldPath = __dirname + '/..' + imagePath;
-  _delete(oldPath).then(function () {
+  _delete(oldPath).then(function() {
     insert(imgFile).then(function(path) {
       deferred.resolve(path);
-    }).catch(function (err) {
+    }).catch(function(err) {
       res.status(400).send(err);
     });
   })
-  .catch(function (err) {
+  .catch(function(err) {
     res.status(400).send(err);
   });
   return deferred.promise;

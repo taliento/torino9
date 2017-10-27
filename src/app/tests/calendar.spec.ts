@@ -8,9 +8,9 @@ import {
   Http,
   XHRBackend,
   RequestMethod
-} from "@angular/http";
+} from '@angular/http';
 import { TestBed, fakeAsync, tick, inject, async } from '@angular/core/testing';
-import { MockBackend,MockConnection } from "@angular/http/testing";
+import { MockBackend, MockConnection } from '@angular/http/testing';
 import { CalendarService } from '../services/index';
 import { Event } from '../models/event.model';
 
@@ -39,8 +39,8 @@ describe('Calendar Service', () => {
   inject([CalendarService, MockBackend], (calendarService, mockBackend) => {
 
     const mockResponse = [
-      { title: 'primo', text :'primo evento' , date: new Date()},
-      { title: 'secondo', text :'secondo evento' , date: new Date() }
+      { title: 'primo', text : 'primo evento' , date: new Date()},
+      { title: 'secondo', text : 'secondo evento' , date: new Date() }
     ];
 
     mockBackend.connections.subscribe((connection) => {
@@ -62,8 +62,8 @@ describe('Calendar Service', () => {
   inject([CalendarService, MockBackend], (calendarService, mockBackend) => {
 
     const mockResponse = [
-      { title: 'primo', text :'primo evento' , date: new Date()},
-      { title: 'secondo', text :'secondo evento' , date: new Date() }
+      { title: 'primo', text : 'primo evento' , date: new Date()},
+      { title: 'secondo', text : 'secondo evento' , date: new Date() }
     ];
 
     mockBackend.connections.subscribe((connection) => {
@@ -72,7 +72,7 @@ describe('Calendar Service', () => {
       })));
     });
 
-    let date = {month:5,year:1987};
+    const date = {month: 5, year: 1987};
 
     calendarService.getMonthEvents(date).then((news) => {
       expect(news).toBeTruthy();
@@ -93,7 +93,7 @@ describe('Calendar Service', () => {
       connection.mockRespond(new Response(new ResponseOptions({status: 201})));
     });
 
-    let data = { title: 'primo', text :'primo evento' , date: new Date()};
+    const data = { title: 'primo', text : 'primo evento' , date: new Date()};
     calendarService.insert(data).subscribe(
       (successResult) => {
         expect(successResult).toBeDefined();
@@ -109,7 +109,7 @@ describe('Calendar Service', () => {
       connection.mockRespond(new Response(new ResponseOptions({status: 204})));
     });
 
-    let data = { title: 'primo', text :'primo evento' , date: new Date(), _id: '10'};
+    const data = { title: 'primo', text : 'primo evento' , date: new Date(), _id: '10'};
 
     calendarService.update(data).subscribe(
       (successResult) => {

@@ -13,7 +13,7 @@ export class CalendarService extends AService {
 
   getAll(): Promise<Event[]> {
     return this.http.
-      get(this.apiUrl+'/calendar')
+      get(this.apiUrl + '/calendar')
       .toPromise()
       .then(response => response.json() as Event[])
       .catch(this.handleError);
@@ -21,7 +21,7 @@ export class CalendarService extends AService {
 
   getMonthEvents(date: any): Promise<Event[]> {
     const url = `/calendar/month/${date.month}/${date.year}`;
-    return this.http.get(this.apiUrl+url)
+    return this.http.get(this.apiUrl + url)
     .toPromise()
     .then(response => response.json() as Event[])
     .catch(this.handleError);
@@ -30,21 +30,21 @@ export class CalendarService extends AService {
   getById(_id: string): Promise<Event> {
     const url = `/calendar/get/${_id}`;
       return this.http.
-      get(this.apiUrl+url)
+      get(this.apiUrl + url)
       .toPromise()
       .then(response => response.json() as Event)
       .catch(this.handleError);
   }
 
   insert(event: Event) {
-    return this.http.post(this.apiUrl+'/calendar/insert',event, this.jwt());
+    return this.http.post(this.apiUrl + '/calendar/insert', event, this.jwt());
   }
 
   delete(_id: string) {
-    return this.http.delete(this.apiUrl+'/calendar/' + _id, this.jwt());
+    return this.http.delete(this.apiUrl + '/calendar/' + _id, this.jwt());
   }
 
   update(event: Event) {
-    return this.http.put(this.apiUrl+'/calendar/' + event._id, event, this.jwt());
+    return this.http.put(this.apiUrl + '/calendar/' + event._id, event, this.jwt());
   }
 }

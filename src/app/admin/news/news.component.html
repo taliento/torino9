@@ -1,6 +1,6 @@
 <br>
 <div class="card" style="margin-bottom:10px" *ngFor="let news of newsList">
-  <dt-news-detail [news]="news" (delete)="delete($event)"></dt-news-detail>
+  <app-news-detail [news]="news" (delete)="delete($event)"></app-news-detail>
 </div>
 
 <br>
@@ -42,4 +42,4 @@
 </div>
 
 
-<confirm-dialog #confirmDialog [title]="confirmTitle" [text]="confirmText" (confirm)="deleteNews()"></confirm-dialog>
+<app-confirm-dialog #confirmDialog [title]="confirmTitle" [text]="confirmText" (confirm)="deleteNews()"></app-confirm-dialog>

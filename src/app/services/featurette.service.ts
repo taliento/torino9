@@ -13,7 +13,7 @@ export class FeaturetteService extends AService {
 
   getAll(): Promise<Featurette[]> {
     return this.http.
-      get(this.apiUrl+'/featurette')
+      get(this.apiUrl + '/featurette')
       .toPromise()
       .then(response => response.json() as Featurette[])
       .catch(this.handleError);
@@ -22,7 +22,7 @@ export class FeaturetteService extends AService {
   getById(_id: string): Promise<Featurette> {
     const url = `/featurette/get/${_id}`;
       return this.http.
-      get(this.apiUrl+url)
+      get(this.apiUrl + url)
       .toPromise()
       .then(response => response.json() as Featurette)
       .catch(this.handleError);
@@ -30,30 +30,30 @@ export class FeaturetteService extends AService {
 
   getPaged(params: any) {
     const url = `/featurette/paged/${params.limit}/${params.page}/${params.size}`;
-    return this.http.get(this.apiUrl+url);
+    return this.http.get(this.apiUrl + url);
   }
 
   insert(featurette: Featurette) {
-    return this.http.post(this.apiUrl+'/featurette/insert',featurette, this.jwt());
+    return this.http.post(this.apiUrl + '/featurette/insert', featurette, this.jwt());
   }
 
   insertUpload(formData: FormData) {
-    return this.http.post(this.apiUrl+'/featurette/insertUpload',formData, this.jwt());
+    return this.http.post(this.apiUrl + '/featurette/insertUpload', formData, this.jwt());
   }
 
   delete(_id: string) {
-    return this.http.delete(this.apiUrl+'/featurette/' + _id, this.jwt());
+    return this.http.delete(this.apiUrl + '/featurette/' + _id, this.jwt());
   }
 
   count() {
-    return this.http.get(this.apiUrl+'/featurette/count');
+    return this.http.get(this.apiUrl + '/featurette/count');
   }
 
   update(slide: Featurette) {
-    return this.http.put(this.apiUrl+'/featurette/' + slide._id, slide, this.jwt());
+    return this.http.put(this.apiUrl + '/featurette/' + slide._id, slide, this.jwt());
   }
 
   updateUpload(formData: FormData) {
-    return this.http.post(this.apiUrl+'/featurette/updateUpload/',formData, this.jwt());
+    return this.http.post(this.apiUrl + '/featurette/updateUpload/', formData, this.jwt());
   }
 }

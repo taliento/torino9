@@ -1,7 +1,7 @@
 <br>
 <div class="card-deck">
   <div class="card" *ngFor="let featurette of featuretteList">
-    <dt-featurette-detail [featurette]="featurette" (updated)="loadData()" (delete)="delete($event)"></dt-featurette-detail>
+    <app-featurette-detail [featurette]="featurette" (updated)="loadData()" (delete)="delete($event)"></app-featurette-detail>
   </div>
 </div>
 
@@ -21,9 +21,9 @@
 <div id="collapseExample" [ngbCollapse]="isCollapsed">
   <div class="card">
     <div class="card-body">
-      <featurette-upload #insertForm (formSubmit)="addFeaturette($event)"></featurette-upload>
+      <app-featurette-upload #insertForm (formSubmit)="addFeaturette($event)"></app-featurette-upload>
     </div>
   </div>
 </div>
 
-<confirm-dialog #confirmDialog [title]="confirmTitle" [text]="confirmText" (confirm)="deleteFeaturette()"></confirm-dialog>
+<app-confirm-dialog #confirmDialog [title]="confirmTitle" [text]="confirmText" (confirm)="deleteFeaturette()"></app-confirm-dialog>

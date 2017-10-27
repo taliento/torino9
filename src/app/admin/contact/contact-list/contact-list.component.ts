@@ -2,7 +2,7 @@ import { Component, Input } from '@angular/core';
 
 @Component({
     moduleId: module.id,
-    selector: 'contact-list',
+    selector: 'app-contact-list',
     templateUrl: './contact-list.component.html'
 })
 
@@ -10,10 +10,10 @@ export class ContactListComponent {
   @Input() contacts: any[];
 
   addContact() {
-    if(!this.contacts) {
+    if (!this.contacts) {
       this.contacts = [];
     }
-    this.contacts.push({name:'',email:'',tel:'',mobile:''})
+    this.contacts.push({name: '', email: '', tel: '', mobile: ''});
   }
 
   getContacts () {
@@ -21,8 +21,8 @@ export class ContactListComponent {
   }
 
   deleteContact($event) {
-    let index = this.contacts.indexOf($event);
-    this.contacts.splice(index,1);
+    const index = this.contacts.indexOf($event);
+    this.contacts.splice(index, 1);
   }
 
 }

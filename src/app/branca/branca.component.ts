@@ -7,7 +7,7 @@ import { Branca } from '../models/';
 
 @Component({
   moduleId: module.id,
-  selector:'branca-component',
+  selector: 'app-branca',
   templateUrl: 'branca.component.html',
   styleUrls: ['./branca.component.css']
 })
@@ -16,7 +16,8 @@ export class BrancaComponent implements OnInit {
   backgroundImg: any;
   branca: Branca = new Branca();
 
-  constructor(private current: ActivatedRoute, private router : Router, private brancaService : BrancaService, private sanitizer: DomSanitizer) { }
+  constructor(private current: ActivatedRoute, private router: Router,
+    private brancaService: BrancaService, private sanitizer: DomSanitizer) { }
 
   ngOnInit() {
      this.current.params
@@ -24,8 +25,8 @@ export class BrancaComponent implements OnInit {
     .subscribe(
       branca => {
         this.branca = branca;
-        if(this.branca.imgPath) {
-          this.backgroundImg = this.sanitizer.bypassSecurityTrustStyle('url('+this.branca.imgPath+')');
+        if (this.branca.imgPath) {
+          this.backgroundImg = this.sanitizer.bypassSecurityTrustStyle('url(' + this.branca.imgPath + ')');
         }
       },
       error => {

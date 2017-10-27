@@ -15,7 +15,7 @@ module.exports = service;
 
 function getAll() {
   var deferred = Q.defer();
-  db.featurette.find().toArray(function (err, featuretteList) {
+  db.featurette.find().toArray(function(err, featuretteList) {
     if (err) deferred.reject(err.name + ': ' + err.message);
     deferred.resolve(featuretteList);
   });
@@ -26,7 +26,7 @@ function count() {
   var deferred = Q.defer();
   db.featurette.count({}, function(err, _count) {
     if (err) deferred.reject(err.name + ': ' + err.message);
-    deferred.resolve({'count':_count});
+    deferred.resolve({'count': _count});
   });
   return deferred.promise;
 }
@@ -34,7 +34,7 @@ function count() {
 function getPaged(_limit, _page, _size) {
   var deferred = Q.defer();
   var _skip = _page * _limit;
-  db.featurette.find({}, null,{limit: _limit*1, skip: _skip, sort:[['insertDate',-1]]}).toArray(function (err, featuretteList) {
+  db.featurette.find({}, null, {limit: _limit * 1, skip: _skip, sort: [['insertDate', -1]]}).toArray(function(err, featuretteList) {
     if (err) deferred.reject(err.name + ': ' + err.message);
     deferred.resolve(featuretteList);
   });
@@ -43,7 +43,7 @@ function getPaged(_limit, _page, _size) {
 
 function getById(_id) {
   var deferred = Q.defer();
-  db.featurette.findById(_id, function (err, featurette) {
+  db.featurette.findById(_id, function(err, featurette) {
     if (err) deferred.reject(err.name + ': ' + err.message);
     if (featurette) {
       deferred.resolve(featurette);
@@ -60,7 +60,7 @@ function create(featuretteParam) {
   featuretteParam.insertDate = new Date();
   db.featurette.insert(
     featuretteParam,
-    function (err, doc) {
+    function(err, doc) {
       if (err) deferred.reject(err.name + ': ' + err.message);
       deferred.resolve(doc);
     });
@@ -80,7 +80,7 @@ function update(_id, featuretteParam) {
   db.featurette.update(
     { _id: mongo.helper.toObjectID(_id) },
     { $set: set },
-    function (err, doc) {
+    function(err, doc) {
       if (err) deferred.reject(err.name + ': ' + err.message);
       deferred.resolve();
     });
@@ -91,7 +91,7 @@ function _delete(_id) {
   var deferred = Q.defer();
   db.featurette.remove(
     { _id: mongo.helper.toObjectID(_id) },
-    function (err) {
+    function(err) {
       if (err) deferred.reject(err.name + ': ' + err.message);
       deferred.resolve();
     });

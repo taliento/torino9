@@ -5,19 +5,17 @@ import { NewsService, AlertService } from '../../../services/index';
 
 @Component({
   moduleId: module.id,
-  selector: 'dt-news-detail',
+  selector: 'app-news-detail',
   templateUrl: 'news-detail.component.html'
 })
-export class NewsDetailComponent{
+export class NewsDetailComponent {
    @Input() news: News;
-
    @Output() delete: EventEmitter<any> = new EventEmitter();
-
    @ViewChild('updateContent') updateContent;
 
-   constructor(private modalService: NgbModal, private newsService: NewsService,  private alertService: AlertService) {
-
-   }
+   constructor(private modalService: NgbModal,
+     private newsService: NewsService,
+     private alertService: AlertService) { }
 
    deleteNews() {
      this.delete.emit(this.news);
@@ -26,7 +24,7 @@ export class NewsDetailComponent{
    update() {
      this.newsService.update(this.news).subscribe(
        data => {
-         this.alertService.success(this.news.title+' modificato con successo!', false);
+         this.alertService.success(this.news.title + ' modificato con successo!', false);
        },
        error => {
          this.alertService.error(error._body);

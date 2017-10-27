@@ -4,23 +4,21 @@ import { FeaturetteService } from '../../services/index';
 
 @Component({
     moduleId: module.id,
-    selector: 'featurette',
+    selector: 'app-featurette',
     templateUrl: 'featurette.component.html'
 })
 
-export class FeaturetteComponent {
+export class FeaturetteComponent implements OnInit {
 
   public featuretteList: Featurette[];
 
-  constructor(private featuretteService: FeaturetteService) {
-
-  }
+  constructor(private featuretteService: FeaturetteService) { }
 
   ngOnInit(): void {
     this.featuretteService.getAll().then(result => this.featuretteList = result);
   }
 
   isOdd(n: number): boolean {
-     return n % 2 == 0;
+     return n % 2 === 0;
   }
 }

@@ -8,9 +8,9 @@ import {
   Http,
   XHRBackend,
   RequestMethod
-} from "@angular/http";
+} from '@angular/http';
 import { TestBed, fakeAsync, tick, inject, async } from '@angular/core/testing';
-import { MockBackend,MockConnection } from "@angular/http/testing";
+import { MockBackend, MockConnection } from '@angular/http/testing';
 import { AuthenticationService } from '../services/index';
 
 describe('Authentication Service', () => {
@@ -37,7 +37,7 @@ describe('Authentication Service', () => {
   it('should login user',
   inject([AuthenticationService, MockBackend], (authenticationService, mockBackend) => {
 
-    const mockResponse = {username: 'test' , password:'test', token:'blabla'};
+    const mockResponse = {username: 'test' , password: 'test', token: 'blabla'};
 
     mockBackend.connections.subscribe((connection) => {
       connection.mockRespond(new Response(new ResponseOptions({
@@ -52,7 +52,7 @@ describe('Authentication Service', () => {
       expect(nextValue.token).toEqual('blabla');
     });
 
-    authenticationService.login('test','test').subscribe(response => {
+    authenticationService.login('test', 'test').subscribe(response => {
       expect(response).toBeUndefined();
     });
 

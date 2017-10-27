@@ -9,7 +9,7 @@ import { FroalaEditorModule, FroalaViewModule } from 'angular-froala-wysiwyg';
 
 @NgModule({
   imports: [
-    FroalaEditorModule.forRoot(), FroalaViewModule.forRoot(), 
+    FroalaEditorModule.forRoot(), FroalaViewModule.forRoot(),
     CommonModule,
     NgbModule,
      RouterModule.forChild(MODULE_ROUTES) ],

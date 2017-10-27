@@ -13,9 +13,9 @@ module.exports = service;
 
 function get() {
   var deferred = Q.defer();
-  db.about.findOne({},function (err, about) {
+  db.about.findOne({},function(err, about) {
     if (err) deferred.reject(err.name + ': ' + err.message);
-    if(about == null) {
+    if (about == null) {
       deferred.resolve();
     } else {
       deferred.resolve(about);
@@ -26,9 +26,9 @@ function get() {
 
 function getById(_id) {
   var deferred = Q.defer();
-  db.about.findById(_id,function (err, about) {
+  db.about.findById(_id, function(err, about) {
     if (err) deferred.reject(err.name + ': ' + err.message);
-    if(about == null) {
+    if (about == null) {
       deferred.resolve();
     } else {
       deferred.resolve(about);
@@ -39,13 +39,13 @@ function getById(_id) {
 
 function create(about) {
   var deferred = Q.defer();
-  if(about._id) {
-    return update(about._id,about);
+  if (about._id) {
+    return update(about._id, about);
   }
   about.insertDate = new Date();
   db.about.insert(
     about,
-    function (err, doc) {
+    function(err, doc) {
       if (err) deferred.reject(err.name + ': ' + err.message);
       deferred.resolve(doc);
     });
@@ -65,7 +65,7 @@ function update(_id, about) {
   db.about.update(
     { _id: mongo.helper.toObjectID(_id) },
     { $set: set },
-    function (err, doc) {
+    function(err, doc) {
       if (err) deferred.reject(err.name + ': ' + err.message);
       deferred.resolve(doc);
     });
@@ -76,7 +76,7 @@ function _delete(_id) {
   var deferred = Q.defer();
   db.about.remove(
     { _id: mongo.helper.toObjectID(_id) },
-    function (err) {
+    function(err) {
       if (err) deferred.reject(err.name + ': ' + err.message);
       deferred.resolve();
     });

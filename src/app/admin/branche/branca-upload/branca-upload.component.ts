@@ -1,5 +1,5 @@
 import {Component, ElementRef, ViewChild, Inject, Output, EventEmitter, Input, OnInit} from '@angular/core';
-import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import { Branca } from '../../../models';
 
 const BRANCHE_COMBO = [
@@ -9,14 +9,14 @@ const BRANCHE_COMBO = [
 ];
 
 @Component({
-  selector: 'branca-upload',
+  selector: 'app-branca-upload',
   templateUrl: './branca-upload.component.html'
 })
 export class BrancaUploadComponent implements OnInit {
-  brancheCombo = BRANCHE_COMBO;//XXX
+  brancheCombo = BRANCHE_COMBO; // XXX
 
   form: FormGroup;
-  loading: boolean = false;
+  loading = false;
   @ViewChild('imgInput') imgInput: ElementRef;
   @Output() formSubmit: EventEmitter<any> = new EventEmitter();
   @Input() branca: Branca;
@@ -32,7 +32,7 @@ export class BrancaUploadComponent implements OnInit {
   }
 
   ngOnInit() {
-    if(this.branca) {
+    if (this.branca) {
       this.form.get('_id').setValue(this.getOptBranca(this.branca._id));
       this.form.get('_id').disable();
       this.form.get('title').setValue(this.branca.title);
@@ -43,8 +43,8 @@ export class BrancaUploadComponent implements OnInit {
   }
 
   getOptBranca(_id) {
-    for(var i = 0 ; i < this.brancheCombo.length ; i++) {
-      if(this.brancheCombo[i].id === _id) {
+    for (let i = 0 ; i < this.brancheCombo.length ; i++) {
+      if (this.brancheCombo[i].id === _id) {
         return this.brancheCombo[i];
       }
     }
@@ -59,15 +59,15 @@ export class BrancaUploadComponent implements OnInit {
   }
 
   onFileChange(event) {
-    if(event.target.files.length > 0) {
-      let file = event.target.files[0];
+    if (event.target.files.length > 0) {
+      const file = event.target.files[0];
       this.form.get('imgFile').setValue(file);
     }
   }
 
   private prepareSave(): any {
-    let input = new FormData();
-    input.append('_id', this.form.get('_id').value.id);//id of the opt
+    const input = new FormData();
+    input.append('_id', this.form.get('_id').value.id); // id of the opt
     input.append('title', this.form.get('title').value);
     input.append('subtitle', this.form.get('subtitle').value);
     input.append('text', this.form.get('text').value);

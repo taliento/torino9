@@ -9,8 +9,8 @@ const CHILD_ROUTES: Route[] = [
 
 export const MODULE_ROUTES: Route[] = [
   { path: 'calendar', component: CalendarComponent, children: [ ...CHILD_ROUTES ] }
-]
+];
 
 export const MODULE_COMPONENTS = [
   CalendarComponent, CalendarDetailComponent
-]
+];

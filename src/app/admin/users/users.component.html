@@ -1,6 +1,6 @@
 <div class="card-deck">
   <div class="card" *ngFor="let user of users">
-    <dt-user-detail [user]="user" (updated)="loadData()" (delete)="delete($event)"></dt-user-detail>
+    <app-user-detail [user]="user" (updated)="loadData()" (delete)="delete($event)"></app-user-detail>
   </div>
 </div>
 
@@ -20,9 +20,9 @@
 <div id="collapseExample" [ngbCollapse]="isCollapsed">
   <div class="card">
     <div class="card-body">
-      <user-upload #insertForm (formSubmit)="addUser($event)"></user-upload>
+      <app-user-upload #insertForm (formSubmit)="addUser($event)"></app-user-upload>
     </div>
   </div>
 </div>
 
-<confirm-dialog #confirmDialog [title]="confirmTitle" [text]="confirmText" (confirm)="deleteUser()"></confirm-dialog>
+<app-confirm-dialog #confirmDialog [title]="confirmTitle" [text]="confirmText" (confirm)="deleteUser()"></app-confirm-dialog>

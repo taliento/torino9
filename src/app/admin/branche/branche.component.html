@@ -1,7 +1,7 @@
 <br>
 <div class="card-deck">
   <div class="card" *ngFor="let branca of branche">
-    <branca-detail [branca]="branca" (delete)="delete($event)" (update)="addBranca($event)"></branca-detail>
+    <app-branca-detail [branca]="branca" (delete)="delete($event)" (update)="addBranca($event)"></app-branca-detail>
   </div>
 </div>
 
@@ -18,9 +18,9 @@
 <div id="collapseExample" [ngbCollapse]="isCollapsed">
   <div class="card">
     <div class="card-body">
-      <branca-upload #insertForm (formSubmit)="addBranca($event)"></branca-upload>
+      <app-branca-upload #insertForm (formSubmit)="addBranca($event)"></app-branca-upload>
     </div>
   </div>
 </div>
 
-<confirm-dialog #confirmDialog [title]="confirmTitle" [text]="confirmText" (confirm)="deleteBranca()"></confirm-dialog>
+<app-confirm-dialog #confirmDialog [title]="confirmTitle" [text]="confirmText" (confirm)="deleteBranca()"></app-confirm-dialog>

@@ -4,7 +4,7 @@ import { AboutPage } from '../../models/about-page.model';
 
 @Component({
     moduleId: module.id,
-    selector: 'dt-about',
+    selector: 'app-about',
     templateUrl: 'about.component.html'
 })
 
@@ -18,14 +18,14 @@ export class AboutComponent implements OnInit {
 
   ngOnInit() {
     this.aboutPageService.get().then(result => {
-      if(result) {
+      if (result) {
           this.aboutPage = result;
       }
     });
   }
 
   save() {
-    this.aboutPage.links = this.aboutLinks.getLinks();//prendo i links aggiornati
+    this.aboutPage.links = this.aboutLinks.getLinks(); // prendo i links aggiornati
     this.aboutPageService.insert(this.aboutPage)
     .subscribe(
       data => {

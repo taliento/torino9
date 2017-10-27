@@ -5,10 +5,10 @@ import { FeaturetteService, AlertService } from '../../../services/index';
 
 @Component({
   moduleId: module.id,
-  selector: 'dt-featurette-detail',
+  selector: 'app-featurette-detail',
   templateUrl: 'featurette-detail.component.html'
 })
-export class FeaturetteDetailComponent{
+export class FeaturetteDetailComponent {
    @Input() featurette: Featurette;
    @Output() delete: EventEmitter<any> = new EventEmitter();
    @Output() updated: EventEmitter<any> = new EventEmitter();
@@ -26,7 +26,7 @@ export class FeaturetteDetailComponent{
      $event.append('imgPath', this.featurette.imgPath);
      this.featuretteService.updateUpload($event).subscribe(
        data => {
-         this.alertService.success($event.title+' modificato con successo!', false);
+         this.alertService.success($event.title + ' modificato con successo!', false);
          this.modalRef.close();
          this.updated.emit();
        },

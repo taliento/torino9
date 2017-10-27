@@ -1,14 +1,14 @@
 import {Component, ElementRef, ViewChild, Inject, Output, EventEmitter, Input, OnInit} from '@angular/core';
-import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import { Featurette } from '../../../models';
 
 @Component({
-  selector: 'featurette-upload',
+  selector: 'app-featurette-upload',
   templateUrl: './featurette-upload.component.html'
 })
 export class FeaturetteUploadComponent implements OnInit {
   form: FormGroup;
-  loading: boolean = false;
+  loading = false;
   @ViewChild('imgInput') imgInput: ElementRef;
   @Output() formSubmit: EventEmitter<any> = new EventEmitter();
   @Input() featurette: Featurette;
@@ -23,7 +23,7 @@ export class FeaturetteUploadComponent implements OnInit {
   }
 
   ngOnInit() {
-    if(this.featurette) {
+    if (this.featurette) {
       this.form.get('title').setValue(this.featurette.title);
       this.form.get('text').setValue(this.featurette.text);
       this.form.get('subTitle').setValue(this.featurette.subTitle);
@@ -31,14 +31,14 @@ export class FeaturetteUploadComponent implements OnInit {
   }
 
   onFileChange(event) {
-    if(event.target.files.length > 0) {
-      let file = event.target.files[0];
+    if (event.target.files.length > 0) {
+      const file = event.target.files[0];
       this.form.get('imgFile').setValue(file);
     }
   }
 
   private prepareSave(): any {
-    let input = new FormData();
+    const input = new FormData();
     input.append('title', this.form.get('title').value);
     input.append('text', this.form.get('text').value);
     input.append('subTitle', this.form.get('subTitle').value);

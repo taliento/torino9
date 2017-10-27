@@ -4,17 +4,15 @@ import { BrancaService } from '../../services/index';
 
 @Component({
     moduleId: module.id,
-    selector: 'branche',
+    selector: 'app-branche',
     templateUrl: 'branche.component.html'
 })
 
-export class BrancheComponent {
+export class BrancheComponent implements OnInit {
 
   public brancheList: Branca[];
 
-  constructor(private brancaService: BrancaService) {
-
-  }
+  constructor(private brancaService: BrancaService) { }
 
   ngOnInit(): void {
     this.brancaService.getAll().then(result => this.brancheList = result);

@@ -27,7 +27,7 @@
     </button>
   </div>
   <div class="modal-body">
-    <user-upload #updateForm [user]="user" (formSubmit)="update($event)"></user-upload>
+    <app-user-upload #updateForm [user]="user" (formSubmit)="update($event)"></app-user-upload>
   </div>
   <div class="modal-footer">
     <button type="button" class="btn btn-outline-dark" (click)="c('Close click')">Annulla</button>

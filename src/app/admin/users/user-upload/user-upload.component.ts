@@ -1,14 +1,14 @@
 import {Component, ElementRef, ViewChild, Inject, Output, EventEmitter, Input, OnInit} from '@angular/core';
-import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import { User } from '../../../models';
 
 @Component({
-  selector: 'user-upload',
+  selector: 'app-user-upload',
   templateUrl: './user-upload.component.html'
 })
 export class UserUploadComponent implements OnInit {
   form: FormGroup;
-  loading: boolean = false;
+  loading = false;
   @ViewChild('imgInput') imgInput: ElementRef;
   @Output() formSubmit: EventEmitter<any> = new EventEmitter();
   @Input() user: User;
@@ -24,7 +24,7 @@ export class UserUploadComponent implements OnInit {
   }
 
   ngOnInit() {
-    if(this.user) {
+    if (this.user) {
       this.form.get('username').setValue(this.user.username);
       this.form.get('password').setValue(this.user.password);
       this.form.get('firstName').setValue(this.user.firstName);
@@ -33,14 +33,14 @@ export class UserUploadComponent implements OnInit {
   }
 
   onFileChange(event) {
-    if(event.target.files.length > 0) {
-      let file = event.target.files[0];
+    if (event.target.files.length > 0) {
+      const file = event.target.files[0];
       this.form.get('imgFile').setValue(file);
     }
   }
 
   private prepareSave(): any {
-    let input = new FormData();
+    const input = new FormData();
     input.append('username', this.form.get('username').value);
     input.append('password', this.form.get('password').value);
     input.append('firstName', this.form.get('firstName').value);

@@ -5,7 +5,7 @@ import { Router } from '@angular/router';
 
 @Component({
   moduleId: module.id,
-  selector: 'news-list',
+  selector: 'app-news-list',
   templateUrl: 'news-list.component.html',
   styleUrls: ['news-list.component.css']
 })
@@ -23,8 +23,8 @@ export class NewsListComponent implements OnInit {
 
   ngOnInit(): void {
     this.newsService.count().subscribe((res) => {
-      this.collectionSize = parseInt(res.json().count);
-      if(this.collectionSize > 0) {
+      this.collectionSize = parseInt(res.json().count, 10);
+      if (this.collectionSize > 0) {
           this.loadData();
       }
     });
@@ -53,6 +53,6 @@ export class NewsListComponent implements OnInit {
   }
 
   onError (res) {
-    console.log("error:"+res);
+    console.log('error:' + res);
   }
 }

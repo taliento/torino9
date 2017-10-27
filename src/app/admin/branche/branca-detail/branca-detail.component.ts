@@ -5,7 +5,7 @@ import { BrancaService, AlertService } from '../../../services/index';
 
 @Component({
   moduleId: module.id,
-  selector: 'branca-detail',
+  selector: 'app-branca-detail',
   templateUrl: 'branca-detail.component.html'
 })
 export class BrancaDetailComponent {

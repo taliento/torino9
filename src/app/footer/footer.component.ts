@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 
 @Component({
     moduleId: module.id,
-    selector: 'stick-footer',
+    selector: 'app-footer',
     templateUrl: 'footer.component.html'
 })
 

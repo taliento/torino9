@@ -8,9 +8,9 @@ import {
   Http,
   XHRBackend,
   RequestMethod
-} from "@angular/http";
+} from '@angular/http';
 import { TestBed, fakeAsync, tick, inject, async } from '@angular/core/testing';
-import { MockBackend,MockConnection } from "@angular/http/testing";
+import { MockBackend, MockConnection } from '@angular/http/testing';
 import { AboutPageService } from '../services/index';
 import { AboutPage } from '../models/';
 
@@ -38,7 +38,7 @@ describe('About Page Service', () => {
   it('should return about page',
   inject([AboutPageService, MockBackend], (aboutPageService, mockBackend) => {
 
-    const mockResponse = {title: 'About us' , subtitle:'we are cool' , text:'blablabla'};
+    const mockResponse = {title: 'About us' , subtitle: 'we are cool' , text: 'blablabla'};
 
     mockBackend.connections.subscribe((connection) => {
       connection.mockRespond(new Response(new ResponseOptions({
@@ -65,10 +65,10 @@ describe('About Page Service', () => {
       connection.mockRespond(new Response(new ResponseOptions({status: 201})));
     });
 
-    let data = {title: 'About us' , subtitle:'we are cool' , text:'blablabla'};
+    const data = {title: 'About us' , subtitle: 'we are cool' , text: 'blablabla'};
     aboutPageService.insert(data).subscribe(
       (successResult) => {
-        console.log('should insert an about page: result'+successResult);
+        console.log('should insert an about page: result' + successResult);
         expect(successResult).toBeDefined();
         expect(successResult.status).toBe(201);
       });
@@ -82,11 +82,11 @@ describe('About Page Service', () => {
       connection.mockRespond(new Response(new ResponseOptions({status: 204})));
     });
 
-    let data = {title: 'About us' , subtitle:'we are cool' , text:'blablabla', _id:'10'};
+    const data = {title: 'About us' , subtitle: 'we are cool' , text: 'blablabla', _id: '10'};
 
     aboutPageService.insert(data).subscribe(
       (successResult) => {
-        console.log('should save updates to about page: result'+successResult);
+        console.log('should save updates to about page: result' + successResult);
         expect(successResult).toBeDefined();
         expect(successResult.status).toBe(204);
       });
