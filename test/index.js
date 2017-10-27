@@ -2,10 +2,12 @@ const config = require('./config.json');
 const superagent = require('superagent')
 const expect = require('expect.js')
 const user = config.user;
-const apiUrl = config.apiUrl;
+
 const password = config.password;
 
 describe("express rest api server", function () {
+
+  const apiUrl = 'localhost:'+ process.env.PORT + '/api';
 
   var idApitest;
   var token;
