@@ -4,7 +4,7 @@ const fileUpload = require('express-fileupload');
 const path = require('path');
 const fs = require('fs');
 const Q = require('q');
-const publicImgPath = '/public/img';
+const publicImgPath = '/public/img/';
 
 var service = {};
 service.insert = insert;
