@@ -14,7 +14,9 @@ export class AboutComponent implements OnInit {
 
   aboutPage: AboutPage = new AboutPage();
 
-  constructor(private aboutPageService: AboutPageService, private alertService: AlertService) { }
+  constructor(
+    private aboutPageService: AboutPageService,
+    private alertService: AlertService) { }
 
   ngOnInit() {
     this.aboutPageService.get().then(result => {
