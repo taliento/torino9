@@ -24,9 +24,10 @@ export class NewsComponent implements OnInit {
   collectionSize = 0;
   previousPage: any;
 
-  constructor(private newsService: NewsService, private alertService: AlertService, private authenticationService: AuthenticationService) {
-
-  }
+  constructor(
+    private newsService: NewsService,
+    private alertService: AlertService,
+    private authenticationService: AuthenticationService) { }
 
   ngOnInit(): void {
     this.newsService.count().subscribe((res) => {
