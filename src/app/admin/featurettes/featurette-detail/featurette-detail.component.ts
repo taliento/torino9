@@ -26,7 +26,7 @@ export class FeaturetteDetailComponent {
      $event.append('imgPath', this.featurette.imgPath);
      this.featuretteService.updateUpload($event).subscribe(
        data => {
-         this.alertService.success($event.title + ' modificato con successo!', false);
+         this.alertService.success('Modificato!', false);
          this.modalRef.close();
          this.updated.emit();
        },

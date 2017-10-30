@@ -36,7 +36,7 @@ export class FeaturetteComponent implements OnInit {
     this.featuretteService.insertUpload($event)
     .subscribe(
       data => {
-        this.alertService.success($event.title + ' inserita!', false);
+        this.alertService.success('Inserito!', false);
         this.insertForm.setLoading(false);
         this.isCollapsed = true;
         this.collectionSize++;

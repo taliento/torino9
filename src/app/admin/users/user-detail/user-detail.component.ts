@@ -26,7 +26,7 @@ export class UserDetailComponent {
      $event.append('imgPath', this.user.imgPath);
      this.userService.updateUpload($event).subscribe(
        data => {
-         this.alertService.success($event.username + ' modificato con successo!', false);
+         this.alertService.success('Modificato!', false);
          this.modalRef.close();
          this.updated.emit();
        },

@@ -60,7 +60,7 @@ export class UsersComponent implements OnInit {
       this.userService.insertUpload($event)
       .subscribe(
         data => {
-          this.alertService.success($event.username + ' benvenuto/a!', false);
+          this.alertService.success('Inserito!', false);
           this.insertForm.setLoading(false);
           this.isCollapsed = true;
           this.collectionSize++;

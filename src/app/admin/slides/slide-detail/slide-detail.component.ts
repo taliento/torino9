@@ -26,7 +26,7 @@ export class SlideDetailComponent {
      $event.append('imgPath', this.slide.imgPath);
      this.carouselService.updateUpload($event).subscribe(
        data => {
-         this.alertService.success($event.title + ' modificato con successo!', false);
+         this.alertService.success('Modificato!' , false);
          this.modalRef.close();
          this.updated.emit();
        },

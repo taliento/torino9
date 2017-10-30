@@ -29,7 +29,7 @@ export class BrancheComponent implements OnInit {
     this.brancheService.insertUpload($event)
     .subscribe(
       data => {
-        this.alertService.success($event.title + ' inserita!', false);
+        this.alertService.success('Inserito!', false);
         this.insertForm.setLoading(false);
         this.isCollapsed = true;
         this.loadData();
