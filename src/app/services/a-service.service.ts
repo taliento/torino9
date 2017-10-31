@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Headers, Http, RequestOptions } from '@angular/http';
+import { Headers, Http, RequestOptions, ResponseContentType } from '@angular/http';
 import { environment } from '../../environments/environment';
 
 @Injectable()
@@ -18,6 +18,14 @@ export class AService {
     if (currentUser && currentUser.token) {
       const headers = new Headers({ 'Authorization': 'Bearer ' + currentUser.token });
       return new RequestOptions({ headers: headers });
+    }
+  }
+
+  protected jwtBlob() {
+    const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    if (currentUser && currentUser.token) {
+      const headers = new Headers({ 'Authorization': 'Bearer ' + currentUser.token });
+      return new RequestOptions({ headers: headers, responseType: ResponseContentType.Blob });
     }
   }
 

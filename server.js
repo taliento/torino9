@@ -34,7 +34,8 @@ unless({ path: [
   '/login',
   '/admin',
   /^\/branca\/.*/,
-  //public img folder
+  //public folders
+  /^\/public\/.*/,
   /^\/public\/img\/.*/,
   //public api routes
   '/api/users/authenticate',
@@ -71,6 +72,7 @@ app.use('/api/featurette', require('./controllers/featurette.controller'));
 app.use('/api/about', require('./controllers/about-page.controller'));
 app.use('/api/contact', require('./controllers/contact-page.controller'));
 app.use('/api/branca', require('./controllers/branca.controller'));
+app.use('/api/download', require('./controllers/download.controller'));
 
 //error handling
 function logErrors(err, req, res, next) {

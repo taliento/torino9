@@ -1,0 +1,8 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+  <div class="form-group">
+    <label for="imgFile">Carica immagini</label>
+    <input type="file" id="imgFile" formControlName="imgFile" #imgInput (change)="onFileChange($event)"/>
+    <button type="button" class="btn btn-sm btn-outline-secondary" (click)="clearFile()">Elimina file</button>
+  </div>
+  <button type="submit" class="btn btn-outline-success">Salva <i class="fa fa-spinner fa-spin fa-fw" *ngIf="loading"></i></button>
+</form>

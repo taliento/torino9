@@ -48,5 +48,8 @@ Thumbs.db
 #env var file
 .env
 
+#zip files
+*.zip
+
 #so sad joe
 DEADJOE
