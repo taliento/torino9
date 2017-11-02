@@ -12,10 +12,10 @@ export class DownloadService extends AService {
   }
 
   downloadAll() {
-    this.http.get(this.apiUrl + '/download/downloadAll',this.jwtBlob())
-    .map((response: Response)=> response.blob())
+    this.http.get(this.apiUrl + '/download/downloadAll', this.jwtBlob())
+    .map((response: Response) => response.blob())
     .subscribe(data => {
-        saveAs(data, "images.zip");
+        saveAs(data, 'images.zip');
       }
     );
   }

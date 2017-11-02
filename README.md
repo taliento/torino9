@@ -38,6 +38,3 @@ ng serve
 - [x] fix gmap css font bug
 - [x] upload images
 - [ ] code cleanup
-- [ ] search contents
-- [ ] custom pages
-- [ ] register

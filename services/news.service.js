@@ -73,7 +73,6 @@ function update(_id, newsParam) {
   var set = {
     title: newsParam.title,
     subTitle: newsParam.title,
-    imgPath: newsParam.imgPath,
     text: newsParam.text,
     updateDate: new Date()
   };
