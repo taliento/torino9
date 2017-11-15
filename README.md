@@ -1,6 +1,6 @@
 # Torino9app
 
-Per adesso è un sito ma diventerà una piattaforma per la creazione disiti scout
+Per adesso è un sito ma diventerà una piattaforma per la creazione di siti scout
 
 
 [![Build Status](https://travis-ci.org/taliento/torino9.svg?branch=master)](https://travis-ci.org/taliento/torino9)
