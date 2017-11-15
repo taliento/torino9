@@ -12,13 +12,15 @@ service.update = update;
 service._delete = _delete;
 module.exports = service;
 
+
+
 function insert(imgFile) {
   var deferred = Q.defer();
   var fileName = new Date().getTime() + imgFile.name;
   var imgPath = __dirname + '/..' + publicImgPath + fileName;//timestamp name
-  imgFile.mv(imgPath, function(err) {
+  imgFile.mv(imgPath, function(err) {//save file in filesystem
     if (err) deferred.reject(err.name + ': ' + err.message);
-    deferred.resolve(publicImgPath + fileName);
+    deferred.resolve(imgPath);
   });
   return deferred.promise;
 }

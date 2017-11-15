@@ -2,6 +2,7 @@
 
 const userService = require('services/user.service');
 const uploadService = require('services/upload.service');
+const imgurService = require('services/imgur.service');
 const express = require('express');
 const router = express.Router();
 
@@ -48,10 +49,16 @@ function register(req, res) {
 function insertUpload(req, res) {
   if (req.files && req.files.imgFile) {
     uploadService.insert(req.files.imgFile).then(function(newImage) {
-      req.body.imgPath = newImage;
-      register(req, res);
+      imgurService.upload(newImage).then(function(_imgPath) {//upload to imgur
+        req.body.imgPath = _imgPath;
+        insert(req, res);
+      }).catch(function(err) {
+        console.log("imgurService.upload error " + err.message);
+        res.status(400).send(err);
+      });
     })
     .catch(function(err) {
+      console.error("uploadService error: " + err.message);
       res.status(400).send(err);
     });
   } else {
@@ -104,13 +111,22 @@ function update(req, res) {
 }
 
 function updateUpload(req, res) {
+
   req.params._id = req.body._id;//XXX
   if (req.files && req.files.imgFile) {
     uploadService.update(req.files.imgFile, req.body.imgPath).then(function(newImage) {
-      req.body.imgPath = newImage;
-      update(req, res);
+
+      imgurService.upload(newImage).then(function(_imgPath) {//upload to imgur
+        req.body.imgPath = _imgPath;
+        update(req, res);
+      }).catch(function(err) {
+        console.log("imgurService.upload error " + err.message);
+        res.status(400).send(err);
+      });
+
     })
     .catch(function(err) {
+      console.log("uploadService.update error " + err.message);
       res.status(400).send(err);
     });
   } else {

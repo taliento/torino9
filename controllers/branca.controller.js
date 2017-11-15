@@ -46,8 +46,13 @@ function insert(req, res) {
 function insertUpload(req, res) {
   if (req.files && req.files.imgFile) {
     uploadService.insert(req.files.imgFile).then(function(newImage) {
-      req.body.imgPath = newImage;
-      insert(req, res);
+      imgurService.upload(newImage).then(function(_imgPath) {//upload to imgur
+        req.body.imgPath = _imgPath;
+        insert(req, res);
+      }).catch(function(err) {
+        console.log("imgurService.upload error " + err.message);
+        res.status(400).send(err);
+      });
     })
     .catch(function(err) {
       res.status(400).send(err);
