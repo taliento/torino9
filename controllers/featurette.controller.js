@@ -1,6 +1,7 @@
 'use strict';
 
 const featuretteService = require('services/featurette.service');
+const imgurService = require('services/imgur.service');
 const uploadService = require('services/upload.service');
 const express = require('express');
 const router = express.Router();

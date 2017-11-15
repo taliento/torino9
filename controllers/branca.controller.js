@@ -2,6 +2,7 @@
 
 const brancaService = require('services/branca.service');
 const uploadService = require('services/upload.service');
+const imgurService = require('services/imgur.service');
 const express = require('express');
 const router = express.Router();
 

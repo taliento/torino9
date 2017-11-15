@@ -1,6 +1,7 @@
 'use strict';
 
 const carouselService = require('services/carousel.service');
+const imgurService = require('services/imgur.service');
 const uploadService = require('services/upload.service');
 const express = require('express');
 const router = express.Router();
@@ -113,6 +114,7 @@ function updateUpload(req, res) {
       });
     })
     .catch(function(err) {
+      console.log("uploadService.upload error " + err.message);
       res.status(400).send(err);
     });
   } else {
