@@ -34,6 +34,7 @@ unless({ path: [
   '/login',
   '/admin',
   /^\/branca\/.*/,
+
   //public folders
   /^\/public\/.*/,
   /^\/public\/img\/.*/,
@@ -60,7 +61,8 @@ unless({ path: [
   '/api/contact',
   /^\/api\/contact\/get\/.*/,
   '/api/branca',
-  /^\/api\/branca\/get\/.*/
+  /^\/api\/branca\/get\/.*/,
+  '/api/config'
 ] }));
 
 // routes
@@ -73,6 +75,7 @@ app.use('/api/about', require('./controllers/about-page.controller'));
 app.use('/api/contact', require('./controllers/contact-page.controller'));
 app.use('/api/branca', require('./controllers/branca.controller'));
 app.use('/api/download', require('./controllers/download.controller'));
+app.use('/api/config', require('./controllers/app-config.controller'));
 
 //error handling
 function logErrors(err, req, res, next) {

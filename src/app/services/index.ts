@@ -10,3 +10,4 @@ export { AboutPageService } from './about-page.service';
 export { ContactPageService } from './contact-page.service';
 export { BrancaService } from './branca.service';
 export { DownloadService } from './download.service';
+export { AppConfigService } from './app-config.service';

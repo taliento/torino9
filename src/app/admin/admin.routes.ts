@@ -27,6 +27,7 @@ import { FeaturetteUploadComponent } from './featurettes/featurette-upload/featu
 import { UserUploadComponent } from './users/user-upload/user-upload.component';
 import { DownloadsComponent } from './downloads/downloads.component';
 import {ImagesUploadComponent} from './downloads/upload-images/upload-images.component';
+import {AppConfigComponent} from './config/app-config.component';
 
 export const MODULE_ROUTES: Route[] = [
   { path: '', pathMatch: 'full' , component: AdminComponent }
@@ -59,5 +60,6 @@ export const MODULE_COMPONENTS = [
   FeaturetteUploadComponent,
   UserUploadComponent,
   DownloadsComponent,
-  ImagesUploadComponent
+  ImagesUploadComponent,
+  AppConfigComponent
 ];

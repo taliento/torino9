@@ -17,7 +17,7 @@ import { AuthGuard } from './guards/index';
 import { AlertService, AuthenticationService, UserService,
   NewsService, NewsHeaderService, CarouselService,
   FeaturetteService, CalendarService, AboutPageService,
-  ContactPageService, BrancaService, DownloadService } from './services/index';
+  ContactPageService, BrancaService, DownloadService, AppConfigService } from './services/index';
 import { MapModule } from './map/map.module';
 import { BrancaModule } from './branca/branca.module';
 import { FroalaEditorModule, FroalaViewModule } from 'angular-froala-wysiwyg';
@@ -59,7 +59,8 @@ import { FroalaEditorModule, FroalaViewModule } from 'angular-froala-wysiwyg';
     AboutPageService,
     ContactPageService,
     BrancaService,
-    DownloadService
+    DownloadService,
+    AppConfigService
   ],
   bootstrap: [AppComponent]
 })
