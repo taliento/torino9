@@ -72,7 +72,7 @@ function update(_id, featuretteParam) {
   // fields to update
   var set = {
     title: featuretteParam.title,
-    subTitle: featuretteParam.title,
+    subTitle: featuretteParam.subTitle,
     imgPath: featuretteParam.imgPath,
     text: featuretteParam.text,
     updateDate: new Date()
