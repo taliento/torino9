@@ -1,6 +1,6 @@
 # Torino9app
 
-Per adesso è un sito ma diventerà una piattaforma per la creazione di siti scout
+scout sites
 
 
 [![Build Status](https://travis-ci.org/taliento/torino9.svg?branch=master)](https://travis-ci.org/taliento/torino9)
@@ -23,12 +23,15 @@ npm test
 ## DEV
 
 you need an .env file with that params
-
+```
 SECRET=<SECRET>
 MONGODB_URI=<MONGODB_URI>
 PORT=<PORT>
 WEB_CONCURRENCY=<WEB_CONCURRENCY>
 IMGUR_CLIENTID=<IMGUR_CLIENTID>
+```
+
+and then
 
 ```
 npm install
@@ -48,5 +51,5 @@ ng serve
 - [x] html editor (trial)
 - [x] fix gmap css font bug
 - [x] upload images to imgur
-- [ ] gruppo scout customizzazione
+- [ ] sites
 - [ ] code cleanup
