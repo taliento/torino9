@@ -22,6 +22,14 @@ npm test
 
 ## DEV
 
+you need an .env file with that params
+
+SECRET=<SECRET>
+MONGODB_URI=<MONGODB_URI>
+PORT=<PORT>
+WEB_CONCURRENCY=<WEB_CONCURRENCY>
+IMGUR_CLIENTID=<IMGUR_CLIENTID>
+
 ```
 npm install
 npm start

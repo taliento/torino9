@@ -12,7 +12,7 @@
     <div class="card" style="width: 20rem;" *ngFor="let contact of contactPage.contacts">
       <div class="card-body">
         <h4 class="card-title" [innerText]="contact.name"></h4>
-        <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
+        <h6 class="card-subtitle mb-2 text-muted" [innerText]="contact.nickname"></h6>
       </div>
       <ul class="list-group list-group-flush">
         <li class="list-group-item">
