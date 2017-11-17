@@ -1,17 +1,17 @@
 <img class="card-img-top" height="200px" [src]="slide.imgPath" [alt]="slide.alt">
 <div class="card-body">
-  <h4 class="card-title">{{slide.title}}</h4>
-  <p class="card-text">{{slide.text}}</p>
+  <h4 class="card-title" [innerText]="slide.title"></h4>
+  <p class="card-text" [innerText]="slide.text"></p>
   <button type="button" class="btn btn-outline-primary btn-sm" (click)="modifySlide()">Update</button>
   <button type="button" class="btn btn-outline-danger btn-sm" (click)="deleteSlide()">Delete</button>
 </div>
 <div class="card-footer">
-  <small class="text-muted">Inserita nel {{slide.insertDate | date:'dd/MM/yyyy' }}</small>
+  <small class="text-muted">Inserita nel <span [innerText]="slide.insertDate | date:'dd/MM/yyyy'"></span></small>
 </div>
 
 <ng-template #updateContent let-c="close" let-d="dismiss">
   <div class="modal-header">
-    <h4 class="modal-title">Modifica {{slide.title}}</h4>
+    <h4 class="modal-title">Modifica <span [innerText]="slide.title"></span></h4>
     <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
       <span aria-hidden="true">&times;</span>
     </button>

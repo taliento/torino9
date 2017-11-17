@@ -4,14 +4,10 @@
       <div *ngFor="let news of newsList">
         <div class="post-preview" >
           <a class="btn" role="button" [routerLink]="['/news/detail',news._id]" routerLinkActive="active">
-            <h2 class="post-title">
-              {{news.title}}
-            </h2>
-            <h3 class="post-subtitle">
-              {{news.subtitle}}
-            </h3>
+            <h2 class="post-title"><span [innerText]="news.title"></span></h2>
+            <h3 class="post-subtitle"><span [innerText]="news.subTitle"></span></h3>
           </a>
-          <p class="post-meta">Inserito da <span>{{news.author}}</span> nel {{news.insertDate | date:'dd/MM/yyyy' }}</p>
+          <p class="post-meta">Inserito da <span [innerText]="news.author"></span> nel <span [innerText]="news.insertDate | date:'dd/MM/yyyy'"></span></p>
         </div>
         <hr>
       </div>

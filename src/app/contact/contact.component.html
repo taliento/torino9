@@ -11,7 +11,7 @@
   <div class="card-deck">
     <div class="card" style="width: 20rem;" *ngFor="let contact of contactPage.contacts">
       <div class="card-body">
-        <h4 class="card-title">{{contact.name}}</h4>
+        <h4 class="card-title" [innerText]="contact.name"></h4>
         <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
       </div>
       <ul class="list-group list-group-flush">
@@ -21,7 +21,7 @@
               <span><i class="fa fa-envelope-o" aria-hidden="true"></i></span>
             </div>
             <div class="col-md-10">
-              <span>{{contact.email}}</span>
+              <span [innerText]="contact.email"></span>
             </div>
           </div>
         </li>
@@ -31,7 +31,7 @@
               <span><i class="fa fa-phone" aria-hidden="true"></i></span>
             </div>
             <div class="col-md-10">
-              <span>{{contact.tel}}</span>
+              <span [innerText]="contact.tel"></span>
             </div>
           </div>
         </li>
@@ -41,7 +41,7 @@
               <span><i class="fa fa-mobile" aria-hidden="true"></i></span>
             </div>
             <div class="col-md-10">
-              <span>{{contact.mobile}}</span>
+              <span [innerText]="contact.mobile"></span>
             </div>
           </div>
         </li>

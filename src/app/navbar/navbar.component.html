@@ -2,7 +2,7 @@
 
   <a class="navbar-brand" [routerLink]="[brandMenu.path]" (click)="isCollapsed = true">
     <img src="assets/images/logo.svg" width="30" height="30" class="d-inline-block align-top" alt="">
-    {{brandMenu.title}}
+    <span [innerText]="brandMenu.title"></span>
   </a>
 
   <button class="navbar-toggler" type="button" (click)="isCollapsed = !isCollapsed">
@@ -13,12 +13,12 @@
 
     <ul class="navbar-nav mr-auto">
       <li *ngFor="let menuItem of menuItems; index as i;" class="nav-item">
-        <a *ngIf="!menuItem.dropdown" class="nav-link" [routerLink]="[menuItem.path]" routerLinkActive="active" (click)="isCollapsed = true">{{menuItem.title}}</a>
+        <a *ngIf="!menuItem.dropdown" class="nav-link" [routerLink]="[menuItem.path]" routerLinkActive="active" (click)="isCollapsed = true" [innerText]="menuItem.title"></a>
         <ul class="navbar-nav" *ngIf="menuItem.dropdown">
           <li ngbDropdown class="d-inline-block" placement="bottom-right" ngbDropdown>
-            <a class="btn nav-link" role="button" attr.id="dropdown{{i}}" ngbDropdownToggle>{{menuItem.title}}</a>
+            <a class="btn nav-link" role="button" attr.id="dropdown{{i}}" ngbDropdownToggle [innerText]="menuItem.title"></a>
             <div ngbDropdownMenu attr.aria-labelledby="dropdown{{i}}">
-              <a *ngFor="let leaf of menuItem.childs" class="dropdown-item" [routerLink]="[leaf.path,leaf.param]" routerLinkActive="active" (click)="isCollapsed = true">{{leaf.title}}</a>
+              <a *ngFor="let leaf of menuItem.childs" class="dropdown-item" [routerLink]="[leaf.path,leaf.param]" routerLinkActive="active" (click)="isCollapsed = true" [innerText]="leaf.title"></a>
             </div>
           </li>
         </ul>
@@ -33,7 +33,7 @@
     <ul class="navbar-nav">
       <li ngbDropdown class="d-inline-block" placement="bottom-right" *ngIf="user">
         <button class="btn btn-outline-dark" role="button" id="dropdownBasic1" ngbDropdownToggle>
-          {{user.username}}
+          <span [innerText]="user.username"></span>
           <img *ngIf="user.imgPath" [src]="user.imgPath" width="30" height="30" class="rounded-circle" alt="">
         </button>
         <div ngbDropdownMenu aria-labelledby="dropdownBasic1">

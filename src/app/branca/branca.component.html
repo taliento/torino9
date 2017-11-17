@@ -1,9 +1,9 @@
 <div class="jumbotron dt-jumbotron" [style.background-image]="backgroundImg">
 </div>
 <div class="container dt-container">
-  <h3 class="display-3"><span><i class="fa fa-fire" aria-hidden="true"></i></span> {{branca.title}}</h3>
+  <h3 class="display-3"><span><i class="fa fa-fire" aria-hidden="true"></i></span> <span [innerText]="branca.title"></span></h3>
   <hr class="my-4">
-  <p>{{branca.subtitle}}</p>
+  <p [innerText]="branca.subtitle"></p>
   <small></small>
 </div>
 <br>

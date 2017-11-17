@@ -1,17 +1,17 @@
 <div class="card-body">
-  <h4 class="card-title">{{news.title}}</h4>
-  <p class="card-text"><small class="text-muted">{{news.subTitle}}</small></p>
+  <h4 class="card-title" [innerText]="news.title"></h4>
+  <p class="card-text"><small class="text-muted" [innerText]="news.subTitle"></small></p>
   <div class="card-text" [froalaView]="news.text"></div>
   <button type="button" class="btn btn-outline-primary btn-sm" (click)="modifyNews()">Update</button>
   <button type="button" class="btn btn-outline-danger btn-sm" (click)="deleteNews()">Delete</button>
 </div>
 <div class="card-footer">
-  <small class="text-muted">Inserito da <span>{{news.author}}</span> nel {{news.insertDate | date:'dd/MM/yyyy' }}</small>
+  <small class="text-muted">Inserito da <span [innerText]="news.author"></span> nel <span [innerText]="news.insertDate | date:'dd/MM/yyyy'"></span></small>
 </div>
 
 <ng-template #updateContent let-c="close" let-d="dismiss">
   <div class="modal-header">
-    <h4 class="modal-title">Modifica {{news.title}}</h4>
+    <h4 class="modal-title">Modifica <span [innerText]="news.title"></span></h4>
     <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
       <span aria-hidden="true">&times;</span>
     </button>

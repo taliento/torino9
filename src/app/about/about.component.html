@@ -11,10 +11,10 @@
     <div class="col-md-12">
       <div class="card">
         <div class="card-body">
-          <h4 class="card-title">{{aboutPage.title}}</h4>
-          <h6 class="card-subtitle mb-2 text-muted">{{aboutPage.subtitle}}</h6>
+          <h4 class="card-title" [innerText]="aboutPage.title"></h4>
+          <h6 class="card-subtitle mb-2 text-muted" [innerText]="aboutPage.subtitle"></h6>
           <div class="card-text" [froalaView]="aboutPage.text"></div>
-          <a *ngFor="let link of aboutPage.links" [href]="link.href" class="card-link">{{link.text}}</a>
+          <a *ngFor="let link of aboutPage.links" [href]="link.href" class="card-link" [innerText]="link.text"></a>
         </div>
       </div>
     </div>

@@ -1,12 +1,12 @@
 <ng-template #content let-c="close" let-d="dismiss">
   <div class="modal-header">
-    <h4 class="modal-title">{{title}}</h4>
+    <h4 class="modal-title" [innerText]="title"></h4>
     <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
       <span aria-hidden="true">&times;</span>
     </button>
   </div>
   <div class="modal-body">
-    <p>{{text}}</p>
+    <p [innerText]="text"></p>
   </div>
   <div class="modal-footer">
     <button type="button" class="btn btn-outline-success" (click)="ok();c('Close click');">Conferma</button>

@@ -1,9 +1,9 @@
 <div class="jumbotron">
   <div class="container">
-    <h3 class="display-3"><span><i class="fa fa-newspaper-o" aria-hidden="true"></i></span> {{info.title}}</h3>
+    <h3 class="display-3"><span><i class="fa fa-newspaper-o" aria-hidden="true"></i></span> <span [innerText]="info.title"></span></h3>
     <hr class="my-4">
-    <p>{{info.subTitle}}</p>
-    <small>{{info.cit}}</small>
+    <p [innerText]="info.subTitle"></p>
+    <small [innerText]="info.cit"></small>
   </div>
 </div>
 <router-outlet></router-outlet>

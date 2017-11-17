@@ -1,17 +1,17 @@
 <img class="card-img-top" height="200px" [src]="featurette.imgPath" [alt]="featurette.alt">
 <div class="card-body">
-  <h4 class="card-title">{{featurette.title}}</h4>
-  <p class="card-text"><small class="text-muted">{{featurette.subTitle}}</small></p>
-  <p class="card-text">{{featurette.text}}</p>
+  <h4 class="card-title" [innerText]="featurette.title"></h4>
+  <p class="card-text"><small class="text-muted" [innerText]="featurette.subTitle"></small></p>
+  <p class="card-text" [innerText]="featurette.text"></p>
   <button type="button" class="btn btn-outline-primary btn-sm" (click)="modifyFeaturette()">Update</button>
   <button type="button" class="btn btn-outline-danger btn-sm" (click)="deleteFeaturette()">Delete</button>
 </div>
 <div class="card-footer">
-  <small class="text-muted">Inserita nel {{featurette.insertDate | date:'dd/MM/yyyy' }}</small>
+  <small class="text-muted">Inserita nel <span [innerText]="featurette.insertDate | date:'dd/MM/yyyy'"></span></small>
 </div>
 <ng-template #updateContent let-c="close" let-d="dismiss">
   <div class="modal-header">
-    <h4 class="modal-title">Modifica {{featurette.title}}</h4>
+    <h4 class="modal-title">Modifica <span [innerText]="featurette.title"></span></h4>
     <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
       <span aria-hidden="true">&times;</span>
     </button>

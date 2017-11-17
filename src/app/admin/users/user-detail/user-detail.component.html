@@ -4,8 +4,8 @@
   </div>
   <div class="col-md-8">
     <div class="card-body">
-      <h4 class="card-title">{{user.username}}</h4>
-      <p class="card-text">{{user.firstName}} {{user.lastName}}</p>
+      <h4 class="card-title" [innerText]="user.username"></h4>
+      <p class="card-text" [innerText]="user.firstName +' '+ user.lastName"></p>
       <div class="row">
         <div class="col-md-12">
           <button type="button" class="btn btn-outline-primary btn-sm" (click)="modifyUser()">Modifica</button>
@@ -16,12 +16,12 @@
   </div>
 </div>
 <div class="card-footer">
-    <small class="text-muted">Inserito nel {{user.insertDate | date:'dd/MM/yyyy' }}</small>
+    <small class="text-muted">Inserito nel <span [innerText]="user.insertDate | date:'dd/MM/yyyy'"></span></small>
 </div>
 
 <ng-template #updateContent let-c="close" let-d="dismiss">
   <div class="modal-header">
-    <h4 class="modal-title">Modifica {{user.username}}</h4>
+    <h4 class="modal-title">Modifica <span [innerText]="user.username"></span></h4>
     <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
       <span aria-hidden="true">&times;</span>
     </button>

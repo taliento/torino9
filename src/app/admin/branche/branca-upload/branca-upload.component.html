@@ -4,8 +4,8 @@
     <select class="form-control" id="_id" formControlName="_id">
       <option style="display:none;" disabled value="null">Seleziona una branca</option>
       <option *ngFor="let opt of brancheCombo" [ngValue]="opt">
-        <h5>{{opt.title}}</h5>
-        <p>{{opt.subtitle}}</p>
+        <h5 [innerText]="opt.title"></h5>
+        <p [innerText]="opt.subtitle"></p>
       </option>
     </select>
   </div>

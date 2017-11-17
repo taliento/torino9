@@ -6,7 +6,7 @@
             </div>
         </div>
         <br>
-        <p class="post-meta">Inserito da <span>{{news.author}}</span> nel {{news.insertDate | date:'dd/MM/yyyy' }}</p>
+        <p class="post-meta">Inserito da <span [innerText]="news.author"></span> nel <span [innerText]="news.insertDate | date:'dd/MM/yyyy'"></span></p>
     </div>
 <article>
 

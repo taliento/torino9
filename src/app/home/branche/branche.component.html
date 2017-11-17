@@ -1,8 +1,8 @@
 <div class="row">
   <div class="col-lg-4" *ngFor="let branca of brancheList">
     <img class="rounded-circle img-fluid" [src]="branca.imgPath" alt="Generic placeholder image" width="140" height="140">
-    <h2>{{branca.title}}</h2>
-    <p>{{branca.subtitle}}</p>
+    <h2 [innerText]="branca.title"></h2>
+    <p [innerText]="branca.subtitle"></p>
     <button class="btn btn-secondary" [routerLink]="['/branca',branca._id]" routerLinkActive="active">Dettagli &raquo;</button>
   </div>
 </div>

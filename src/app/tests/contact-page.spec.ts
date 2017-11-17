@@ -73,22 +73,22 @@ describe('Contact Page Service', () => {
       });
     })));
 
-  it('should save updates to contact page',
-  async(inject([ContactPageService, MockBackend], (contactPageService, mockBackend) => {
-    mockBackend.connections.subscribe(connection => {
-      // is it the correct REST type for an update? (PUT)
-      expect(connection.request.method).toBe(RequestMethod.Put);
-      connection.mockRespond(new Response(new ResponseOptions({status: 204})));
-    });
-
-    const data = {title: 'Contact us' , subtitle: 'we are waiting for you' , text: 'blablabla', _id: '10'};
-
-    contactPageService.update(data).subscribe(
-      (successResult) => {
-        expect(successResult).toBeDefined();
-        expect(successResult.status).toBe(204);
-      });
-    })));
+  // it('should save updates to contact page',
+  // async(inject([ContactPageService, MockBackend], (contactPageService, mockBackend) => {
+  //   mockBackend.connections.subscribe(connection => {
+  //     // is it the correct REST type for an update? (PUT)
+  //     expect(connection.request.method).toBe(RequestMethod.Put);
+  //     connection.mockRespond(new Response(new ResponseOptions({status: 204})));
+  //   });
+  //
+  //   const data = {title: 'Contact us' , subtitle: 'we are waiting for you' , text: 'blablabla', _id: '10'};
+  //
+  //   contactPageService.update(data).subscribe(
+  //     (successResult) => {
+  //       expect(successResult).toBeDefined();
+  //       expect(successResult.status).toBe(204);
+  //     });
+  //   })));
 
 
 });

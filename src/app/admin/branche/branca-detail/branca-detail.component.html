@@ -1,6 +1,6 @@
 <div class="card-body">
-  <h4 class="card-title">{{branca.title}}</h4>
-  <p class="card-text"><small class="text-muted">{{branca.subtitle}}</small></p>
+  <h4 class="card-title" [innerText]="branca.title"></h4>
+  <p class="card-text"><small class="text-muted" [innerText]="branca.subtitle"></small></p>
   <div class="card-text" [froalaView]="branca.text"></div>
   <button type="button" class="btn btn-outline-primary btn-sm" (click)="updateModal()">Modifica</button>
   <button type="button" class="btn btn-outline-danger btn-sm" (click)="deleteBranca()">Elimina</button>
@@ -11,7 +11,7 @@
 </div> -->
 <ng-template #updateContent let-c="close" let-d="dismiss">
   <div class="modal-header">
-    <h4 class="modal-title">Modifica {{branca.title}}</h4>
+    <h4 class="modal-title">Modifica <span [innerText]="branca.title"></span></h4>
     <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
       <span aria-hidden="true">&times;</span>
     </button>
