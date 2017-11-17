@@ -43,11 +43,7 @@ export class BrancaUploadComponent implements OnInit {
   }
 
   getOptBranca(_id) {
-    for (let i = 0 ; i < this.brancheCombo.length ; i++) {
-      if (this.brancheCombo[i].id === _id) {
-        return this.brancheCombo[i];
-      }
-    }
+    return this.brancheCombo.find(xx => xx.id === _id);
   }
 
   onBrancaChange() {

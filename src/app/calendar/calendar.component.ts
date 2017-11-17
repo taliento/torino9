@@ -46,22 +46,10 @@ export class CalendarComponent implements OnInit {
   }
 
   loadTasks(date: NgbDateStruct) {
-    this.tasks = []; // clear prev tasks
-    for (let i = 0 ; i < this.monthEvents.length ; i++) {
-      const taskDate: any = this.monthEvents[i].date;
-      if (taskDate.day === date.day && taskDate.month === date.month) {
-        this.tasks.push(this.monthEvents[i]);
-      }
-    }
+    this.tasks = this.monthEvents.filter(xx => xx.date.day === date.day && xx.date.month === date.month);
   }
 
   dateHasTask(date: NgbDateStruct): boolean {
-    for (let i = 0 ; i < this.monthEvents.length ; i++) {
-      const taskDate: any = this.monthEvents[i].date;
-      if (taskDate.day === date.day && taskDate.month === date.month) {
-        return true;
-      }
-    }
-    return false;
+    return this.monthEvents.find(xx => xx.date.day === date.day && xx.date.month === date.month) != null;
   }
 }
