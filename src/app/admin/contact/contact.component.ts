@@ -32,25 +32,13 @@ export class ContactComponent implements OnInit {
 
   save() {
     this.contactPage.contacts = this.contactList.getContacts();
-
-    if (this.contactPage._id) {
-      this.contactPageService.update(this.contactPage)
-      .subscribe(
-        data => {
-          this.alertService.success('Pagina modificata', false);
-        },
-        error => {
-          this.alertService.error(error._body);
-        });
-    } else {
-      this.contactPageService.insert(this.contactPage)
-      .subscribe(
-        data => {
-          this.alertService.success('Pagina inserita', false);
-        },
-        error => {
-          this.alertService.error(error._body);
-        });
-    }
+    this.contactPageService.insert(this.contactPage)
+    .subscribe(
+      data => {
+        this.alertService.success('Pagina inserita', false);
+      },
+      error => {
+        this.alertService.error(error._body);
+      });
   }
 }

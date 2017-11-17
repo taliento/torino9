@@ -22,8 +22,4 @@ export class ContactPageService extends AService {
     return this.http.post(this.apiUrl + '/contact/insert', contactPage, this.jwt());
   }
 
-  update(contactPage: ContactPage) {
-    return this.http.put(this.apiUrl + '/contact/' + contactPage._id, contactPage, this.jwt());
-  }
-
 }
