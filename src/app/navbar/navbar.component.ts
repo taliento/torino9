@@ -28,7 +28,7 @@ export class NavbarComponent implements OnInit {
     this.user = this.authenticationService.getUser();
     this.menuItems = ROUTES.filter(menuItem => menuItem.menuType !== MenuType.BRAND);
 
-    this.customPageService.getList().then((results) => {// custom pages
+    this.customPageService.get().then((results) => {// custom pages
       const length = results.length;
       let i = 0;
       for (i ; i < length ; i++) {
@@ -42,6 +42,7 @@ export class NavbarComponent implements OnInit {
           childs: []
         });
       }
+
     });
 
     this.brandMenu = ROUTES.filter(menuItem => menuItem.menuType === MenuType.BRAND)[0];

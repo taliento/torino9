@@ -44,6 +44,8 @@ unless({ path: [
   '/api/users/authenticate',
   '/api/users/register',
   '/api/news',
+  '/api/page',
+  /^\/api\/page\/get\/.*/,
   '/api/news/count',
   /^\/api\/news\/get\/.*/,
   /^\/api\/news\/paged\/.*/,
@@ -75,6 +77,7 @@ app.use('/api/carousel', require('./controllers/carousel.controller'));
 app.use('/api/featurette', require('./controllers/featurette.controller'));
 app.use('/api/about', require('./controllers/about-page.controller'));
 app.use('/api/contact', require('./controllers/contact-page.controller'));
+app.use('/api/page', require('./controllers/custom-page.controller'));
 app.use('/api/branca', require('./controllers/branca.controller'));
 app.use('/api/download', require('./controllers/download.controller'));
 app.use('/api/config', require('./controllers/app-config.controller'));

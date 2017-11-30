@@ -12,23 +12,26 @@ export class CustomPageService extends AService {
   }
 
   getById(_id: string): Promise<CustomPage> {
-    const url = `/page/get/${_id}`;
     return this.http.
-    get(this.apiUrl + url)
+    get(this.apiUrl + `/page/get/${_id}`)
     .toPromise()
     .then(response => response.json())
     .catch(this.handleError);
   }
 
-  getList(): Promise<Array<CustomPage>> {
+  get(): Promise<Array<CustomPage>> {
     return this.http.
-      get(this.apiUrl + '/page/list')
+      get(this.apiUrl + '/page')
       .toPromise()
       .then(response => response.json() as Array<CustomPage>)
       .catch(this.handleError);
   }
 
   insert(formData: FormData): Observable<CustomPage> {
-    return this.http.post(this.apiUrl + '/page/insert', formData, this.jwt()).map(response => response.json() as CustomPage);
+    return this.http.post(this.apiUrl + '/page/insertUpload', formData, this.jwt()).map(response => response.json() as CustomPage);
+  }
+
+  update(formData: FormData) {
+    return this.http.post(this.apiUrl + '/page/updateUpload', formData, this.jwt());
   }
 }

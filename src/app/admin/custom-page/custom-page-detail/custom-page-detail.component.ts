@@ -26,7 +26,7 @@ export class CustomPageDetailComponent implements OnInit {
         if (params['id'] === 'new') {
           return new Promise<CustomPage>((resolve, reject) => {
             try {
-              resolve();
+              resolve(new CustomPage());
             } catch (error) {
               reject(error);
             }

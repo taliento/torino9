@@ -26,7 +26,7 @@ export class UserService extends AService {
   }
 
   getById(_id: string) {
-    return this.http.get(this.apiUrl + '/users/' + _id, this.jwt()).map((response: Response) => response.json());
+    return this.http.get(this.apiUrl + `/users/${_id}`, this.jwt()).map((response: Response) => response.json());
   }
 
   create(user: User) {
@@ -38,14 +38,14 @@ export class UserService extends AService {
   }
 
   update(user: User) {
-    return this.http.put(this.apiUrl + '/users/' + user._id, user, this.jwt());
+    return this.http.put(this.apiUrl + `/users/${user._id}`, user, this.jwt());
   }
 
   updateUpload(formData: FormData) {
-    return this.http.post(this.apiUrl + '/users/updateUpload/', formData, this.jwt());
+    return this.http.post(this.apiUrl + '/users/updateUpload', formData, this.jwt());
   }
 
   delete(_id: string) {
-    return this.http.delete(this.apiUrl + '/users/' + _id, this.jwt());
+    return this.http.delete(this.apiUrl + `/users/${_id}`, this.jwt());
   }
 }

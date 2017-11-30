@@ -19,6 +19,6 @@ export class CustomPageComponent implements OnInit {
   }
 
   loadPages() {
-    this.customPageService.getList().then(list => this.pages = list);
+    this.customPageService.get().then(list => this.pages = list).catch(error => console.log(error));
   }
 }

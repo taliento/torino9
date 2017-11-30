@@ -20,8 +20,7 @@ export class NewsService extends AService {
   }
 
   getPaged(params: any) {
-    const url = `/news/paged/${params.limit}/${params.page}/${params.size}`;
-    return this.http.get(this.apiUrl + url);
+    return this.http.get(this.apiUrl + `/news/paged/${params.limit}/${params.page}/${params.size}`);
   }
 
   count() {
@@ -29,9 +28,8 @@ export class NewsService extends AService {
   }
 
   getById(_id: string): Promise<News> {
-    const url = `/news/get/${_id}`;
       return this.http.
-      get(this.apiUrl + url)
+      get(this.apiUrl + `/news/get/${_id}`)
       .toPromise()
       .then(response => response.json() as News)
       .catch(this.handleError);
@@ -42,10 +40,10 @@ export class NewsService extends AService {
   }
 
   delete(_id: string) {
-    return this.http.delete(this.apiUrl + '/news/' + _id, this.jwt());
+    return this.http.delete(this.apiUrl + `/news/${_id}`, this.jwt());
   }
 
   update(news: News) {
-    return this.http.put(this.apiUrl + '/news/' + news._id, news, this.jwt());
+    return this.http.put(this.apiUrl + `/news/${news._id}`, news, this.jwt());
   }
 }

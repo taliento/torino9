@@ -19,9 +19,8 @@ export class BrancaService extends AService {
   }
 
   getById(_id: string): Promise<Branca> {
-    const url = `/branca/get/${_id}`;
       return this.http.
-      get(this.apiUrl + url)
+      get(this.apiUrl + `/branca/get/${_id}`)
       .toPromise()
       .then(response => response.json())
       .catch(this.handleError);
@@ -36,7 +35,7 @@ export class BrancaService extends AService {
   }
 
   delete(_id: string) {
-    return this.http.delete(this.apiUrl + '/branca/' + _id, this.jwt());
+    return this.http.delete(this.apiUrl + `/branca/${_id}`, this.jwt());
   }
 
 }

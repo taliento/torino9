@@ -21,6 +21,6 @@ export class DownloadService extends AService {
   }
 
   uploadAll(formData: FormData) {
-    return this.http.post(this.apiUrl + '/download/uploadAll/', formData, this.jwt());
+    return this.http.post(this.apiUrl + '/download/uploadAll', formData, this.jwt());
   }
 }

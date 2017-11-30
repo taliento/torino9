@@ -18,11 +18,11 @@ export class CustomPageFormComponent implements OnInit {
     this.form = fb.group({
       _id: ['', Validators.required],
       title: ['', Validators.required],
-      menuLabel: ['', Validators.required],
-      text: null,
       subtitle: ['', Validators.required],
+      text: null,
+      menuLabel: ['', Validators.required],
       appPath: ['', Validators.required],
-      imgPath: null
+      imgFile: null
     });
   }
 
