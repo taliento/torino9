@@ -4,6 +4,7 @@ import { AdminComponent } from './admin/admin.component';
 import { LoginComponent } from './login';
 import { ContactComponent } from './contact';
 import { AboutUsComponent } from './about';
+import {CustomPageComponent} from './custom-page/custom-page.component';
 
 const appRoutes: Routes = [
     { path: 'admin', component: AdminComponent, canActivate: [AuthGuard]},
@@ -19,5 +20,6 @@ export const routing = RouterModule.forRoot(appRoutes);
 export const MODULE_COMPONENTS = [
   AboutUsComponent,
   ContactComponent,
-  LoginComponent
+  LoginComponent,
+  CustomPageComponent
 ];

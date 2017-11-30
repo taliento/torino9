@@ -29,6 +29,6 @@ export class CustomPageService extends AService {
   }
 
   insert(formData: FormData): Observable<CustomPage> {
-    return this.http.post(this.apiUrl + '/branca/insert', formData, this.jwt()).map(response => response.json() as CustomPage);
+    return this.http.post(this.apiUrl + '/page/insert', formData, this.jwt()).map(response => response.json() as CustomPage);
   }
 }

@@ -22,6 +22,7 @@ import { MapModule } from './map/map.module';
 import { BrancaModule } from './branca/branca.module';
 import { FroalaEditorModule, FroalaViewModule } from 'angular-froala-wysiwyg';
 
+
 @NgModule({
   declarations: [
     AppComponent,
