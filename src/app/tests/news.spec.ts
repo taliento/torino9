@@ -11,8 +11,8 @@ import {
 } from '@angular/http';
 import { TestBed, fakeAsync, tick, inject, async } from '@angular/core/testing';
 import { MockBackend, MockConnection } from '@angular/http/testing';
-import { NewsService } from '../services/news.service';
-import { News } from '../models';
+import { NewsService } from '../shared/services';
+import { News } from '../shared/models';
 
 describe('News Service', () => {
 

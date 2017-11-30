@@ -26,11 +26,25 @@ import { BrancaUploadComponent } from './branche/branca-upload/branca-upload.com
 import { FeaturetteUploadComponent } from './featurettes/featurette-upload/featurette-upload.component';
 import { UserUploadComponent } from './users/user-upload/user-upload.component';
 import { DownloadsComponent } from './downloads/downloads.component';
-import {ImagesUploadComponent} from './downloads/upload-images/upload-images.component';
-import {AppConfigComponent} from './config/app-config.component';
+import { ImagesUploadComponent } from './downloads/upload-images/upload-images.component';
+import { AppConfigComponent } from './config/app-config.component';
+import { CustomPageDetailComponent } from './custom-page/custom-page-detail/custom-page-detail.component';
+import { CustomPageComponent } from './custom-page/custom-page.component';
+import { AdminTabsComponent} from './admin-tabs/admin-tabs.component';
+import { CustomPageFormComponent } from './custom-page/custom-page-form/custom-page-form.component';
 
 export const MODULE_ROUTES: Route[] = [
-  { path: '', pathMatch: 'full' , component: AdminComponent }
+  { path: 'admin', redirectTo: 'main/tabs', pathMatch: 'prefix' },
+  { path: 'main',  component: AdminComponent,
+    children: [
+      {
+        path: 'tabs',  component: AdminTabsComponent,
+      },
+      {
+        path: 'page/:id', component: CustomPageDetailComponent
+      }
+    ]
+  }
 ];
 
 export const MODULE_COMPONENTS = [
@@ -61,5 +75,9 @@ export const MODULE_COMPONENTS = [
   UserUploadComponent,
   DownloadsComponent,
   ImagesUploadComponent,
-  AppConfigComponent
+  AppConfigComponent,
+  CustomPageComponent,
+  CustomPageDetailComponent,
+  AdminTabsComponent,
+  CustomPageFormComponent
 ];

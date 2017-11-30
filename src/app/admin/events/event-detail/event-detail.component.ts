@@ -1,7 +1,7 @@
 import { Component, Input, Output, EventEmitter, ViewChild } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { Event } from '../../../models/event.model';
-import { CalendarService, AlertService } from '../../../services/index';
+import { Event } from '../../../shared/models';
+import { CalendarService, AlertService } from '../../../shared/services';
 
 @Component({
   moduleId: module.id,

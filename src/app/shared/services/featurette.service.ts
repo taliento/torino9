@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
 import 'rxjs/add/operator/toPromise';
-import { Featurette } from '../models/featurette.model';
+import { Featurette } from '../models';
 import { AService } from './a-service.service';
 
 @Injectable()

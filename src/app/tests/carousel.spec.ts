@@ -11,8 +11,8 @@ import {
 } from '@angular/http';
 import { TestBed, fakeAsync, tick, inject, async } from '@angular/core/testing';
 import { MockBackend, MockConnection } from '@angular/http/testing';
-import { CarouselService } from '../services/index';
-import { DTCarousel } from '../models/dt-carousel.model';
+import { CarouselService } from '../shared/services';
+import { DTCarousel } from '../shared/models';
 
 describe('Carousel Service', () => {
 

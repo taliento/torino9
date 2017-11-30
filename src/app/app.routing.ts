@@ -1,9 +1,9 @@
 import { Routes, RouterModule } from '@angular/router';
-import { AuthGuard } from './guards/index';
+import { AuthGuard } from './shared/guards';
 import { AdminComponent } from './admin/admin.component';
-import { LoginComponent } from './login/index';
-import { ContactComponent } from './contact/index';
-import { AboutUsComponent } from './about/index';
+import { LoginComponent } from './login';
+import { ContactComponent } from './contact';
+import { AboutUsComponent } from './about';
 
 const appRoutes: Routes = [
     { path: 'admin', component: AdminComponent, canActivate: [AuthGuard]},

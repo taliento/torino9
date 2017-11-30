@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import {BrowserModule, DomSanitizer} from '@angular/platform-browser';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import 'rxjs/add/operator/switchMap';
-import { BrancaService } from '../services/branca.service';
-import { Branca } from '../models/';
+import { BrancaService } from '../shared/services';
+import { Branca } from '../shared/models/';
 
 @Component({
   moduleId: module.id,

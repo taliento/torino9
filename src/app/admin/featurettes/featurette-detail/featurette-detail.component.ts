@@ -1,7 +1,7 @@
 import { Component, Input, Output, EventEmitter, ViewChild } from '@angular/core';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
-import { Featurette } from '../../../models/featurette.model';
-import { FeaturetteService, AlertService } from '../../../services/index';
+import { Featurette } from '../../../shared/models';
+import { FeaturetteService, AlertService } from '../../../shared/services';
 
 @Component({
   moduleId: module.id,

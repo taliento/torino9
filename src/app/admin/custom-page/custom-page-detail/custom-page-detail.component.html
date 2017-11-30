@@ -1,0 +1,14 @@
+<div class="container-fluid">
+  <img class="page-image img-fluid mx-auto" [src]="page.imgPath" alt="custom image">
+</div>
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-body">
+          <app-custom-page-form #insertForm [customPage]="page" (formSubmit)="formSubmit($event)"></app-custom-page-form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

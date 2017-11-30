@@ -11,8 +11,8 @@ import {
 } from '@angular/http';
 import { TestBed, fakeAsync, tick, inject, async } from '@angular/core/testing';
 import { MockBackend, MockConnection } from '@angular/http/testing';
-import { CalendarService } from '../services/index';
-import { Event } from '../models/event.model';
+import { CalendarService } from '../shared/services';
+import { Event } from '../shared/models';
 
 describe('Calendar Service', () => {
 

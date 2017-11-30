@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AppConfigService, AlertService } from '../../services/index';
+import { AppConfigService, AlertService } from '../../shared/services';
 
 @Component({
   moduleId: module.id,
@@ -9,13 +9,15 @@ import { AppConfigService, AlertService } from '../../services/index';
 
 export class AppConfigComponent implements OnInit {
 
-  config: any = {title:''};
+  config: any = {title: ''};
 
   constructor(private appConfigService: AppConfigService, private alertService: AlertService) { }
 
   ngOnInit() {
     this.appConfigService.getConfig().subscribe((result) => {
-      if(result && result.json()) this.config = result.json();
+      if (result && result.json()) {
+        this.config = result.json();
+      }
     });
   }
 

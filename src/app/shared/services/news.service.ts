@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
 import 'rxjs/add/operator/toPromise';
 import { AService } from './a-service.service';
-import { News } from '../models/news.model';
+import { News } from '../models';
 
 @Injectable()
 export class NewsService extends AService {

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { ContactPage } from '../models/contact-page.model';
+import { ContactPage } from '../models';
 import { AService } from './a-service.service';
 import { Http } from '@angular/http';
 

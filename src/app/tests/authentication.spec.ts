@@ -11,7 +11,7 @@ import {
 } from '@angular/http';
 import { TestBed, fakeAsync, tick, inject, async } from '@angular/core/testing';
 import { MockBackend, MockConnection } from '@angular/http/testing';
-import { AuthenticationService } from '../services/index';
+import { AuthenticationService } from '../shared/services';
 
 describe('Authentication Service', () => {
 

@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { Featurette } from '../../models/featurette.model';
-import { FeaturetteService, AlertService } from '../../services/index';
+import { Featurette } from '../../shared/models';
+import { FeaturetteService, AlertService } from '../../shared/services';
 
 @Component({
     moduleId: module.id,

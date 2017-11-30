@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Featurette } from '../../models/featurette.model';
-import { FeaturetteService } from '../../services/index';
+import { Featurette } from '../../shared/models';
+import { FeaturetteService } from '../../shared/services';
 
 @Component({
     moduleId: module.id,

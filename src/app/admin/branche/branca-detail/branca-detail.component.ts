@@ -1,7 +1,7 @@
 import { Component, Input, Output, EventEmitter, ViewChild } from '@angular/core';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
-import { Branca } from '../../../models';
-import { BrancaService, AlertService } from '../../../services/index';
+import { Branca } from '../../../shared/models';
+import { BrancaService, AlertService } from '../../../shared/services';
 
 @Component({
   moduleId: module.id,

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { debounceTime } from 'rxjs/operator/debounceTime';
-import { AlertService } from '../services/index';
+import { AlertService } from '../shared/services';
 
 @Component({
     moduleId: module.id,

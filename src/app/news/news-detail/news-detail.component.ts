@@ -1,8 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
-import { NewsService} from '../../services/news.service';
-import { News } from '../../models/news.model';
-import { NewsHeaderService } from '../../services/newsheader.service';
+import { NewsService, NewsHeaderService} from '../../shared/services';
+import { News } from '../../shared/models';
 import 'rxjs/add/operator/switchMap';
 @Component({
   moduleId: module.id,

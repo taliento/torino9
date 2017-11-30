@@ -11,8 +11,8 @@ import {
 } from '@angular/http';
 import { TestBed, fakeAsync, tick, inject, async } from '@angular/core/testing';
 import { MockBackend, MockConnection } from '@angular/http/testing';
-import { UserService } from '../services/index';
-import { User } from '../models';
+import { UserService } from '../shared/services';
+import { User } from '../shared/models';
 
 describe('Users Service', () => {
 

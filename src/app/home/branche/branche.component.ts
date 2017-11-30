@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Branca } from '../../models';
-import { BrancaService } from '../../services/index';
+import { Branca } from '../../shared/models';
+import { BrancaService } from '../../shared/services';
 
 @Component({
     moduleId: module.id,

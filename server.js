@@ -33,6 +33,8 @@ unless({ path: [
   '/contact',
   '/login',
   '/admin',
+  '/main/tabs',
+  /^\/main\/page\/.*/,
   /^\/branca\/.*/,
 
   //public folders

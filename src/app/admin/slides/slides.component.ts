@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { DTCarousel } from '../../models/dt-carousel.model';
-import { CarouselService, AlertService } from '../../services/index';
+import { DTCarousel } from '../../shared/models';
+import { CarouselService, AlertService } from '../../shared/services';
 
 @Component({
   moduleId: module.id,

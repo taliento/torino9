@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NewsDetailComponent } from './news-detail';
 import { NewsListComponent } from './news-list';
-import { NewsHeaderService} from '../services/newsheader.service';
+import { NewsHeaderService} from '../shared/services';
 @Component({
   moduleId: module.id,
   selector: 'app-news',

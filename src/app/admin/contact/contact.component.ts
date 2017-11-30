@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { ContactPage } from '../../models/contact-page.model';
-import { ContactPageService, AlertService } from '../../services/index';
+import { ContactPage } from '../../shared/models';
+import { ContactPageService, AlertService } from '../../shared/services';
 import { ContactListComponent } from './contact-list/contact-list.component';
 
 @Component({

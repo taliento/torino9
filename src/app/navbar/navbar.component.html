@@ -11,6 +11,7 @@
 
   <div class="navbar-collapse" [ngClass]="{collapse: isCollapsed}">
 
+    <!--static routes -->
     <ul class="navbar-nav mr-auto">
       <li *ngFor="let menuItem of menuItems; index as i;" class="nav-item">
         <a *ngIf="!menuItem.dropdown" class="nav-link" [routerLink]="[menuItem.path]" routerLinkActive="active" (click)="isCollapsed = true" [innerText]="menuItem.title"></a>
@@ -30,6 +31,7 @@
       <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
     </form> -->
 
+    <!-- user button -->
     <ul class="navbar-nav">
       <li ngbDropdown class="d-inline-block" placement="bottom-right" *ngIf="user">
         <button class="btn btn-outline-dark" role="button" id="dropdownBasic1" ngbDropdownToggle>

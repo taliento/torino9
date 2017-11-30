@@ -1,0 +1,16 @@
+<div class="container-fluid">
+  <img class="page-image img-fluid mx-auto" [src]="page.imgPath" alt="custom image">
+</div>
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-body">
+          <h4 class="card-title" [innerText]="page.title"></h4>
+          <h6 class="card-subtitle mb-2 text-muted" [innerText]="page.subtitle"></h6>
+          <div class="card-text" [froalaView]="page.text"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

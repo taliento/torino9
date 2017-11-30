@@ -1,7 +1,7 @@
 import { Component, Input, Output, EventEmitter, ViewChild } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { News } from '../../../models/news.model';
-import { NewsService, AlertService } from '../../../services/index';
+import { News } from '../../../shared/models';
+import { NewsService, AlertService } from '../../../shared/services';
 
 @Component({
   moduleId: module.id,

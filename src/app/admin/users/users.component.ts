@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 
-import { User } from '../../models/index';
-import { UserService, AuthenticationService, AlertService } from '../../services/index';
+import { User } from '../../shared/models';
+import { UserService, AuthenticationService, AlertService } from '../../shared/services';
 
 @Component({
   moduleId: module.id,

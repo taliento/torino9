@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
-import { AppConfigService } from './services';
+import { AppConfigService } from './shared/services';
 
 @Component({
   selector: 'app-root',

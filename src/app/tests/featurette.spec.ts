@@ -11,8 +11,8 @@ import {
 } from '@angular/http';
 import { TestBed, fakeAsync, tick, inject, async } from '@angular/core/testing';
 import { MockBackend, MockConnection } from '@angular/http/testing';
-import { FeaturetteService } from '../services/index';
-import { Featurette } from '../models';
+import { FeaturetteService } from '../shared/services';
+import { Featurette } from '../shared/models';
 
 describe('Featurette Service', () => {
 

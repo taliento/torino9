@@ -1,6 +1,6 @@
 import {Component, ElementRef, ViewChild, Inject, Output, EventEmitter, Input, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import { DTCarousel } from '../../../models/dt-carousel.model';
+import { DTCarousel } from '../../../shared/models';
 
 @Component({
   selector: 'app-slide-upload',

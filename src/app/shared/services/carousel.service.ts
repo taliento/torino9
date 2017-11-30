@@ -3,7 +3,7 @@ import { Http } from '@angular/http';
 import 'rxjs/add/operator/toPromise';
 import { AService } from './a-service.service';
 
-import { DTCarousel } from '../models/dt-carousel.model';
+import { DTCarousel } from '../models';
 
 @Injectable()
 export class CarouselService extends AService {

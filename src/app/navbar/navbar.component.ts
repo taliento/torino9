@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ROUTES } from './navbar-routes.config';
 import { MenuType } from './navbar.metadata';
-import { AuthenticationService } from '../services/index';
+import { AuthenticationService, CustomPageService } from '../shared/services';
 import { Router } from '@angular/router';
 
 @Component({
@@ -15,7 +15,10 @@ export class NavbarComponent implements OnInit {
   isCollapsed = true;
   public user: any;
 
-  constructor(private authenticationService: AuthenticationService, private router: Router) {
+  constructor(
+     private authenticationService: AuthenticationService,
+     private customPageService: CustomPageService,
+     private router: Router) {
     this.authenticationService.userValue.subscribe((nextValue) => {
       this.user = nextValue;
     });
@@ -24,6 +27,23 @@ export class NavbarComponent implements OnInit {
   ngOnInit() {
     this.user = this.authenticationService.getUser();
     this.menuItems = ROUTES.filter(menuItem => menuItem.menuType !== MenuType.BRAND);
+
+    this.customPageService.getList().then((results) => {// custom pages
+      const length = results.length;
+      let i = 0;
+      for (i ; i < length ; i++) {
+        const pageItem = results[i];
+        this.menuItems.push({
+          title : pageItem.menuLabel,
+          path: pageItem.appPath,
+          param: '',
+          dropdown: false,
+          menuType: MenuType.LEFT,
+          childs: []
+        });
+      }
+    });
+
     this.brandMenu = ROUTES.filter(menuItem => menuItem.menuType === MenuType.BRAND)[0];
   }
 

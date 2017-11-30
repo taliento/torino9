@@ -1,7 +1,7 @@
 import { Component, Input, EventEmitter, Output, ViewChild } from '@angular/core';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
-import { DTCarousel } from '../../../models/dt-carousel.model';
-import { CarouselService, AlertService } from '../../../services/index';
+import { DTCarousel } from '../../../shared/models';
+import { CarouselService, AlertService } from '../../../shared/services';
 
 @Component({
   moduleId: module.id,

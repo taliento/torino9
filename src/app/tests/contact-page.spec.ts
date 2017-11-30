@@ -11,8 +11,8 @@ import {
 } from '@angular/http';
 import { TestBed, fakeAsync, tick, inject, async } from '@angular/core/testing';
 import { MockBackend, MockConnection } from '@angular/http/testing';
-import { ContactPageService } from '../services/index';
-import { ContactPage } from '../models/';
+import { ContactPageService } from '../shared/services';
+import { ContactPage } from '../shared/models';
 
 describe('Contact Page Service', () => {
 

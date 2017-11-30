@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { BrancaService, AlertService } from '../../services/index';
-import { Branca } from '../../models';
+import { BrancaService, AlertService } from '../../shared/services';
+import { Branca } from '../../shared/models';
 
 
 @Component({

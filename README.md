@@ -51,5 +51,6 @@ ng serve
 - [x] html editor (trial)
 - [x] fix gmap css font bug
 - [x] upload images to imgur
+- [ ] custom pages
 - [ ] sites
 - [ ] code cleanup

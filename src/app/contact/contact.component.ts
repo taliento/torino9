@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ContactPage } from '../models/contact-page.model';
-import { ContactPageService } from '../services/index';
+import { ContactPage } from '../shared/models';
+import { ContactPageService } from '../shared/services';
 
 @Component({
   moduleId: module.id,

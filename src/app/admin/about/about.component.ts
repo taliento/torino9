@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { AboutPageService, AlertService } from '../../services/index';
-import { AboutPage } from '../../models/about-page.model';
+import { AboutPageService, AlertService } from '../../shared/services';
+import { AboutPage } from '../../shared/models';
 
 @Component({
     moduleId: module.id,

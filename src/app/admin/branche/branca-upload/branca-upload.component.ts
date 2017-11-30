@@ -1,6 +1,6 @@
 import {Component, ElementRef, ViewChild, Inject, Output, EventEmitter, Input, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import { Branca } from '../../../models';
+import { Branca } from '../../../shared/models';
 
 const BRANCHE_COMBO = [
   {id: 'LC', title: 'Lupetti', subtitle: '(L/C) - bambini/e dai 8 ai 11/12 anni'},

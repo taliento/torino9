@@ -13,11 +13,11 @@ import { NewsModule } from './news/index';
 import { CalendarModule } from './calendar/calendar.module';
 import { AlertComponent } from './alert/index';
 import { routing, MODULE_COMPONENTS } from './app.routing';
-import { AuthGuard } from './guards/index';
+import { AuthGuard } from './shared/guards/index';
 import { AlertService, AuthenticationService, UserService,
   NewsService, NewsHeaderService, CarouselService,
   FeaturetteService, CalendarService, AboutPageService,
-  ContactPageService, BrancaService, DownloadService, AppConfigService } from './services/index';
+  ContactPageService, BrancaService, DownloadService, AppConfigService, CustomPageService } from './shared/services';
 import { MapModule } from './map/map.module';
 import { BrancaModule } from './branca/branca.module';
 import { FroalaEditorModule, FroalaViewModule } from 'angular-froala-wysiwyg';
@@ -60,7 +60,8 @@ import { FroalaEditorModule, FroalaViewModule } from 'angular-froala-wysiwyg';
     ContactPageService,
     BrancaService,
     DownloadService,
-    AppConfigService
+    AppConfigService,
+    CustomPageService
   ],
   bootstrap: [AppComponent]
 })

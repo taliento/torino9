@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { News } from '../../models/news.model';
-import { NewsService, AlertService, AuthenticationService } from '../../services/index';
+import { News } from '../../shared/models';
+import { NewsService, AlertService, AuthenticationService } from '../../shared/services';
 
 @Component({
     moduleId: module.id,

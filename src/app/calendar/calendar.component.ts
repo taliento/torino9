@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
-import { Event } from '../models/event.model';
-import { CalendarService } from '../services/index';
+import { Event } from '../shared/models';
+import { CalendarService } from '../shared/services';
 
 const now = new Date();
 

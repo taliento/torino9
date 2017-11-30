@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { Event } from '../../models/event.model';
+import { Event } from '../../shared/models';
 
 @Component({
   moduleId: module.id,

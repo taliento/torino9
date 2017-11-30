@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { CarouselService } from '../../services/index';
-import { DTCarousel } from '../../models';
+import { CarouselService } from '../../shared/services';
+import { DTCarousel } from '../../shared/models';
 
 @Component({
   moduleId: module.id,

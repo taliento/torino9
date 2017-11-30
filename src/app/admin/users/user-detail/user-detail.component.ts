@@ -1,7 +1,7 @@
 import { Component, Input, Output, EventEmitter, ViewChild } from '@angular/core';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
-import { User } from '../../../models/index';
-import { UserService, AlertService } from '../../../services/index';
+import { User } from '../../../shared/models';
+import { UserService, AlertService } from '../../../shared/services';
 
 @Component({
   moduleId: module.id,

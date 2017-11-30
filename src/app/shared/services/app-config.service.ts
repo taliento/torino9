@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { AboutPage } from '../models/about-page.model';
+import { AboutPage } from '../models';
 import { Http } from '@angular/http';
 import { AService } from './a-service.service';
 import { Observable } from 'rxjs/Observable';
