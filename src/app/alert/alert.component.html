@@ -1,5 +1,5 @@
 <div class="container dt-alert" *ngIf="message">
   <p>
-    <ngb-alert [dismissible]="false" ([type])="message.type" [innerText]="message.text"></ngb-alert>
+    <ngb-alert [dismissible]="false" [type]="message.type"><span>{{message.text}}</span></ngb-alert>
   </p>
 </div>

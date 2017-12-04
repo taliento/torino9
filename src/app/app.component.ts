@@ -8,7 +8,8 @@ import { AppConfigService } from './shared/services';
 })
 export class AppComponent implements OnInit {
 
-  public constructor(private titleService: Title, private appConfigService: AppConfigService) { }
+  public constructor(private titleService: Title,
+    private appConfigService: AppConfigService) { }
 
   ngOnInit() {
     this.appConfigService.getTitle().subscribe(result => {
