@@ -19,15 +19,17 @@ import { AlertService, AuthenticationService, UserService,
   FeaturetteService, CalendarService, AboutPageService,
   ContactPageService, BrancaService, DownloadService, AppConfigService, CustomPageService } from './shared/services';
 import { MapModule } from './map/map.module';
-import { BrancaModule } from './branca/branca.module';
+
 import { FroalaEditorModule, FroalaViewModule } from 'angular-froala-wysiwyg';
+import { MainLayoutComponent } from './main-layout/main-layout.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     AlertComponent,
-    MODULE_COMPONENTS
+    MODULE_COMPONENTS,
+    MainLayoutComponent
   ],
   imports: [
     NgbModule.forRoot(),
@@ -40,7 +42,6 @@ import { FroalaEditorModule, FroalaViewModule } from 'angular-froala-wysiwyg';
     HomeModule,
     AdminModule,
     NewsModule,
-    BrancaModule,
     CalendarModule,
     routing,
     BrowserModule,

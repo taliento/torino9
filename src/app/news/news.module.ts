@@ -12,7 +12,7 @@ import { FroalaEditorModule, FroalaViewModule } from 'angular-froala-wysiwyg';
     FroalaEditorModule.forRoot(), FroalaViewModule.forRoot(),
     CommonModule,
     NgbModule,
-     RouterModule.forChild(MODULE_ROUTES) ],
+    RouterModule.forChild(MODULE_ROUTES) ],
   declarations: [ MODULE_COMPONENTS ]
 })
 export class NewsModule {}

@@ -1,5 +1,5 @@
 <div class="list-group">
-  <a [routerLink]="['/main/page',page._id]" routerLinkActive="active" *ngFor="let page of pages" class="list-group-item list-group-item-action flex-column align-items-start">
+  <a [routerLink]="['/mainlayout/admin/page',page._id]" routerLinkActive="active" *ngFor="let page of pages" class="list-group-item list-group-item-action flex-column align-items-start">
     <div class="d-flex w-100 justify-content-between">
       <h5 class="mb-1" [innerText]="page.title"></h5>
       <!-- <small>3 days ago</small> -->
@@ -9,4 +9,4 @@
   </a>
 </div>
 
-<button class="btn btn-outline-primary" [routerLink]="['/main/page','new']" routerLinkActive="active">Inserisci pagina</button>
+<button class="btn btn-outline-primary" [routerLink]="['/mainlayout/admin/page','new']" routerLinkActive="active">Inserisci pagina</button>

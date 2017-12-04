@@ -23,6 +23,6 @@ export class NewsDetailComponent implements OnInit {
 
   gotoNews() {
     this.headerService.reset();
-    this.router.navigate(['/news']);
+    this.router.navigate(['/mainlayout/news/list']);
   }
 }

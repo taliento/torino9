@@ -11,7 +11,7 @@ import { CustomPageService, AlertService } from '../../../shared/services';
 export class CustomPageDetailComponent implements OnInit {
 
   @ViewChild('insertForm') insertForm;
-  page: CustomPage = null;
+  page: CustomPage = new CustomPage();
 
   constructor(
     private current: ActivatedRoute,
@@ -35,20 +35,34 @@ export class CustomPageDetailComponent implements OnInit {
 
         return this.customPageService.getById(params['id']);
 
-      } )
-      .subscribe(page => this.page = page);
+      }).subscribe(page => this.page = page);
     }
 
     formSubmit($event) {
-      this.customPageService.insert($event)
-      .subscribe(
-        data => {
-          this.page = data;
-          this.alertService.success('Inserito!', false);
-          this.insertForm.setLoading(false);
-        },
-        error => {
-          this.alertService.error(error._body);
-        });
+
+      if($event._id) {
+        this.customPageService.insert($event)
+        .subscribe(
+          data => {
+            this.page = data;
+            this.alertService.success('Inserito!', false);
+            this.insertForm.setLoading(false);
+          },
+          error => {
+            this.alertService.error(error._body);
+          });
+      } else {
+        this.customPageService.update($event)
+        .subscribe(
+          data => {
+            this.alertService.success('Inserito!', false);
+            this.insertForm.setLoading(false);
+          },
+          error => {
+            this.alertService.error(error._body);
+          });
       }
+
+
+    }
 }

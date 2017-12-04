@@ -39,13 +39,13 @@
           <img *ngIf="user.imgPath" [src]="user.imgPath" width="30" height="30" class="rounded-circle" alt="">
         </button>
         <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
-          <a class="dropdown-item" [routerLink]="['admin']" routerLinkActive="active" (click)="isCollapsed = true"><span><i class="fa fa-superpowers" aria-hidden="true"></i></span> Area Admin</a>
+          <a class="dropdown-item" [routerLink]="['/mainlayout/admin/tabs']" routerLinkActive="active" (click)="isCollapsed = true"><span><i class="fa fa-superpowers" aria-hidden="true"></i></span> Area Admin</a>
           <div role="separator" class="dropdown-divider"></div>
           <a class="dropdown-item" (click)="logout()"><span><i class="fa fa-power-off" aria-hidden="true"></i></span> Logout</a>
         </div>
       </li>
       <li class="nav-item" *ngIf="!user">
-        <button class="btn btn-outline-primary" role="button" [routerLink]="['login']" routerLinkActive="active" (click)="isCollapsed = true">Signin</button>
+        <button class="btn btn-outline-primary" role="button" [routerLink]="['/login']" routerLinkActive="active" (click)="isCollapsed = true">Signin</button>
       </li>
     </ul>
 
