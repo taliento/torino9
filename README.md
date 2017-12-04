@@ -22,7 +22,7 @@ npm test
 
 ## DEV
 
-you need an .env file with that params
+you need an .env file with this params
 ```
 SECRET=<SECRET>
 MONGODB_URI=<MONGODB_URI>
@@ -31,7 +31,7 @@ WEB_CONCURRENCY=<WEB_CONCURRENCY>
 IMGUR_CLIENTID=<IMGUR_CLIENTID>
 ```
 
-and then
+to run
 
 ```
 npm install

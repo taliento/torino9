@@ -6,7 +6,7 @@
     "ng": "ng",
     "start": "nf start",
     "build": "ng build",
-    "test": "mocha && ./node_modules/.bin/karma start --single-run",
+    "test": "mocha && ./node_modules/.bin/karma start --browsers Firefox --single-run",
     "lint": "ng lint",
     "postinstall": "ng build --prod"
   },
