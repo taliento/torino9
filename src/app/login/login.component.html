@@ -1,13 +1,10 @@
 <div class="container-fluid login-container">
-
   <div class="row">
     <div class="col-md-12">
       <img src="assets/images/logo.svg" width="100" height="100" alt="Card image cap">
     </div>
   </div>
-
   <br>
-
   <div class="row">
     <div class="col-md-12">
       <div class="card text-center mx-auto" style="width: 20rem;">
@@ -15,6 +12,7 @@
           Accedi al tuo account
         </div>
         <div class="card-body">
+          <app-alert></app-alert>
           <form class="form-signin"  name="form" (ngSubmit)="f.form.valid && login()" #f="ngForm">
             <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !username.valid }">
               <label for="username" class="sr-only">Username</label>
@@ -33,5 +31,5 @@
       </div>
     </div>
   </div>
-<app-footer></app-footer>
+  <app-footer></app-footer>
 </div>

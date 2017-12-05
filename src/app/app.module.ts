@@ -3,7 +3,7 @@ import { BrowserModule, Title } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { NavbarModule } from './navbar/index';
 import { FooterModule } from './footer/index';
@@ -36,6 +36,7 @@ import { MainLayoutComponent } from './main-layout/main-layout.component';
     FroalaEditorModule.forRoot(), FroalaViewModule.forRoot(),
     CommonModule,
     FormsModule,
+    ReactiveFormsModule,
     HttpModule,
     NavbarModule,
     FooterModule,

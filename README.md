@@ -5,8 +5,6 @@ scout sites
 
 [![Build Status](https://travis-ci.org/taliento/torino9.svg?branch=master)](https://travis-ci.org/taliento/torino9)
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.2.6.
-
 [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
 
 
