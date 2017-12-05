@@ -37,7 +37,12 @@ export class LoginComponent implements OnInit {
         },
         error => {
             console.log(error);
-            this.alertService.error(error._body);
+            if(error.status === 401) {
+              this.alertService.warning(error._body);
+            } else if(error.status === 400) {
+              this.alertService.error("Servizio non disponibile");
+            }
+
             this.loading = false;
         });
     }

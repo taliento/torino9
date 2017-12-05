@@ -52,8 +52,8 @@ export class CustomPageFormComponent implements OnInit {
     input.append('title', this.form.get('title').value);
     input.append('subtitle', this.form.get('subtitle').value);
     input.append('text', this.form.get('text').value);
-    input.append('menuLabel', this.form.get('menuLabel').value);
-    input.append('appPath', this.form.get('appPath').value);
+    input.append('menuLabel', this.form.get('menuLabel').value.toString().trim());
+    input.append('appPath', this.form.get('appPath').value.toString().trim());
     input.append('imgFile', this.form.get('imgFile').value);
     return input;
   }
