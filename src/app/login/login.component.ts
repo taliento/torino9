@@ -6,7 +6,7 @@ import { AlertService, AuthenticationService } from '../shared/services';
 @Component({
     moduleId: module.id,
     templateUrl: 'login.component.html',
-    styleUrls: ['./login.component.css']
+    styleUrls: ['./login.component.scss']
 })
 
 export class LoginComponent implements OnInit {

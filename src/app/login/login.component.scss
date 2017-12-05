@@ -1,5 +1,7 @@
+@import "../../assets/scss/variables";
+
 .login-container {
-  background-color: #7aadff;
+  background-color: $primary;
   height: 100%;
   padding-top: 50px;
 }

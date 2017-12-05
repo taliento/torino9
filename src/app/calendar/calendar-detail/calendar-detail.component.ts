@@ -5,7 +5,7 @@ import { Event } from '../../shared/models';
   moduleId: module.id,
   selector: 'app-calendar-detail',
   templateUrl: 'calendar-detail.component.html',
-  styleUrls: ['../calendar.component.css']
+  styleUrls: ['../calendar.component.scss']
 })
 export class CalendarDetailComponent {
   @Input() task: Event;

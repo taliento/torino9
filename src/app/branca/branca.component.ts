@@ -9,7 +9,7 @@ import { Branca } from '../shared/models/';
   moduleId: module.id,
   selector: 'app-branca',
   templateUrl: 'branca.component.html',
-  styleUrls: ['./branca.component.css']
+  styleUrls: ['./branca.component.scss']
 })
 export class BrancaComponent implements OnInit {
 

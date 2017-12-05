@@ -7,7 +7,8 @@ import { Router } from '@angular/router';
 @Component({
   moduleId: module.id,
   selector: 'app-navbar',
-  templateUrl: 'navbar.component.html'
+  templateUrl: 'navbar.component.html',
+  styleUrls: ['./navbar.component.scss']
 })
 export class NavbarComponent implements OnInit {
   public menuItems: any[];

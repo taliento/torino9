@@ -10,7 +10,7 @@ const now = new Date();
     selector: 'app-events',
     templateUrl: 'events.component.html',
     styleUrls: [
-      './events.component.css'
+      './events.component.scss'
     ]
 })
 
