@@ -21,6 +21,7 @@
     "@angular/common": "^5.0.0",
     "@angular/compiler": "^5.0.0",
     "@angular/compiler-cli": "^5.0.0",
+    "typescript": "~2.4.2",
     "@angular/core": "^5.0.0",
     "@angular/forms": "^5.0.0",
     "@angular/http": "^5.0.0",
@@ -74,6 +75,5 @@
     "superagent": "^3.6.3",
     "ts-node": "~3.0.4",
     "tslint": "~5.3.2",
-    "typescript": "~2.4.2"
   }
 }
