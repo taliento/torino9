@@ -1,19 +1,15 @@
 import { Routes, RouterModule } from '@angular/router';
 import { AuthGuard } from './shared/guards';
-import { AdminComponent } from './admin/admin.component';
 import { LoginComponent } from './login';
 import { ContactComponent } from './contact';
 import { AboutUsComponent } from './about';
-import {CustomPageComponent} from './custom-page/custom-page.component';
-import { HomeComponent} from './home/home.component';
-import { MainLayoutComponent} from './main-layout/main-layout.component';
-import {BrancaComponent} from './branca/branca.component';
-import {NewsComponent} from './news/news.component';
-import {CalendarComponent} from './calendar/calendar.component';
-import {AdminTabsComponent} from './admin/admin-tabs/admin-tabs.component';
-import {CustomPageDetailComponent} from './admin/custom-page/custom-page-detail/custom-page-detail.component';
-import {NewsListComponent} from './news/news-list';
-import {NewsDetailComponent} from './news/news-detail';
+import { CustomPageComponent } from './custom-page/custom-page.component';
+import { MainLayoutComponent } from './main-layout/main-layout.component';
+import { BrancaComponent } from './branca/branca.component';
+import { NewsComponent } from './news/news.component';
+import { CalendarComponent } from './calendar/calendar.component';
+import { HomeComponent } from './home//home.component';
+import { AdminComponent } from './admin/admin.component';
 
 const appRoutes: Routes = [
     {
@@ -21,32 +17,24 @@ const appRoutes: Routes = [
       children:[
         {
           path: 'home',
-          component: HomeComponent
-        },
-        {
-          path: 'calendar',
-          component: CalendarComponent
-        },
-        {
-          path: 'news',
-          component: NewsComponent,
-          children:[
-            { path: 'list', pathMatch: 'full', component: NewsListComponent },
-            { path: 'detail/:id', component: NewsDetailComponent }
-          ]
+          component: HomeComponent,
+          loadChildren: './home/home.module#HomeModule'
         },
         {
           path: 'admin',
           component: AdminComponent,
           canActivate: [AuthGuard],
-          children:[
-            {
-              path: 'tabs',  component: AdminTabsComponent,
-            },
-            {
-              path: 'page/:id', component: CustomPageDetailComponent
-            }
-          ]
+          loadChildren: './admin/admin.module#AdminModule'
+        },
+        {
+          path: 'calendar',
+          component: CalendarComponent,
+          loadChildren: './calendar/calendar.module#CalendarModule'
+        },
+        {
+          path: 'news',
+          component: NewsComponent,
+          loadChildren: './news/news.module#NewsModule'
         },
         {
           path: 'about',

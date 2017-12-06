@@ -9,14 +9,13 @@ export class AuthGuard implements CanActivate {
     private authenticationService: AuthenticationService,
     private router: Router) { }
 
-  canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
+  canActivate(route: ActivatedRouteSnapshot) {
     if (this.authenticationService.getUser()) {
       // admin logged in so return true
       return true;
     }
 
-    // not logged in so redirect to login page with the return url
-    this.router.navigate([''], { queryParams: { returnUrl: state.url }});
+    this.router.navigate(['mainlayout/home']);
     return false;
   }
 }

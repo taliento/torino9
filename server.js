@@ -27,7 +27,7 @@ app.use('/public/img/', express.static(path.join(__dirname, 'public/img')));
 app.use(expressJwt({ secret: process.env.SECRET }).
 unless({ path: [
   //public app routes
-  '/mainlayout/news',
+  '/mainlayout/news/list',
   '/mainlayout/calendar',
   '/mainlayout/about',
   '/mainlayout/contact',
@@ -35,7 +35,7 @@ unless({ path: [
   '/mainlayout/admin',
   '/main/tabs',
   /^\/main\/page\/.*/,
-  /^\/branca\/.*/,
+  /^\/mainlayout\/branca\/.*/,
 
   //public folders
   /^\/public\/.*/,

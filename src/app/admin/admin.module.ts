@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
+import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
@@ -12,8 +12,8 @@ import { FroalaEditorModule, FroalaViewModule } from 'angular-froala-wysiwyg';
 imports: [ NgbModule,
   RouterModule.forChild(MODULE_ROUTES),
   FroalaEditorModule.forRoot(), FroalaViewModule.forRoot(),
-  BrowserModule,
   ReactiveFormsModule,
+  CommonModule,
   FormsModule,
   MapModule,
   HttpModule

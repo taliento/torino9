@@ -30,7 +30,7 @@ export class BrancaComponent implements OnInit {
         }
       },
       error => {
-        this.router.navigate(['']);
+        this.router.navigate(['mainlayout/home']);
       });
   }
 }

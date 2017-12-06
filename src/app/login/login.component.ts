@@ -11,7 +11,6 @@ import { AlertService, AuthenticationService } from '../shared/services';
 export class LoginComponent implements OnInit {
     model: any = {};
     loading = false;
-    returnUrl: string;
 
     constructor(
         private route: ActivatedRoute,
@@ -22,9 +21,6 @@ export class LoginComponent implements OnInit {
     ngOnInit() {
         // reset login status
         this.authenticationService.logout();
-
-        // get return url from route parameters or default to '/'
-        this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
     }
 
     login() {
@@ -33,7 +29,7 @@ export class LoginComponent implements OnInit {
         .subscribe(
         data => {
             this.alertService.success("Accesso effettuato!");
-            this.router.navigate([this.returnUrl]);
+            this.router.navigate(['mainlayout/home']);
         },
         error => {
             console.log(error);

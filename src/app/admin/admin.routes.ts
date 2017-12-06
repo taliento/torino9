@@ -35,7 +35,12 @@ import { CustomPageFormComponent } from './custom-page/custom-page-form/custom-p
 import {AuthGuard} from '../shared/guards';
 
 export const MODULE_ROUTES: Route[] = [
-  { path: 'admin', redirectTo: 'mainlayout/admin'}
+  {
+    path: 'tabs',  component: AdminTabsComponent,
+  },
+  {
+    path: 'page/:id', component: CustomPageDetailComponent
+  }
 ];
 
 export const MODULE_COMPONENTS = [
