@@ -20,11 +20,13 @@ export class CustomPageComponent implements OnInit {
   ngOnInit() {
     this.current.params
    .switchMap((params: Params) => this.customPageService.getById(params['id']))
-   .subscribe((customPage) => {
-       this.page = customPage;
+   .subscribe(
+     page => {
+       this.page = page;
      },
      error => {
-       this.router.navigate(['mainlayout/home']);
+       console.log(error)
+      //  this.router.navigate(['mainlayout/home']);
      });
   }
 }

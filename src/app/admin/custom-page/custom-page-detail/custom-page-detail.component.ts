@@ -12,6 +12,7 @@ export class CustomPageDetailComponent implements OnInit {
 
   @ViewChild('insertForm') insertForm;
   page: CustomPage = new CustomPage();
+  newPage = false;
 
   constructor(
     private current: ActivatedRoute,
@@ -26,13 +27,14 @@ export class CustomPageDetailComponent implements OnInit {
         if (params['id'] === 'new') {
           return new Promise<CustomPage>((resolve, reject) => {
             try {
+              this.newPage = true;
               resolve(new CustomPage());
             } catch (error) {
               reject(error);
             }
           });
         }
-
+        this.newPage = false;
         return this.customPageService.getById(params['id']);
 
       }).subscribe(page => this.page = page);
@@ -40,7 +42,7 @@ export class CustomPageDetailComponent implements OnInit {
 
     formSubmit($event) {
 
-      if($event._id) {
+      if(this.newPage) {
         this.customPageService.insert($event)
         .subscribe(
           data => {
@@ -55,7 +57,7 @@ export class CustomPageDetailComponent implements OnInit {
         this.customPageService.update($event)
         .subscribe(
           data => {
-            this.alertService.success('Inserito!', false);
+            this.alertService.success('Modificato!', false);
             this.insertForm.setLoading(false);
           },
           error => {

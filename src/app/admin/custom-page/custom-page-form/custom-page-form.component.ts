@@ -48,13 +48,17 @@ export class CustomPageFormComponent implements OnInit {
 
   private prepareSave(): any {
     const input = new FormData();
-    input.append('_id', this.form.get('_id').value.id); // id of the opt
+    if(this.form.get('_id').value) {
+      input.append('_id', this.form.get('_id').value);
+    }
     input.append('title', this.form.get('title').value);
     input.append('subtitle', this.form.get('subtitle').value);
     input.append('text', this.form.get('text').value);
     input.append('menuLabel', this.form.get('menuLabel').value.toString().trim());
     input.append('appPath', this.form.get('appPath').value.toString().trim());
-    input.append('imgFile', this.form.get('imgFile').value);
+    if(this.form.get('imgFile').value) {
+        input.append('imgFile', this.form.get('imgFile').value);
+    }
     return input;
   }
 

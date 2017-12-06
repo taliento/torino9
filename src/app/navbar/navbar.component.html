@@ -15,7 +15,7 @@
     <ul class="navbar-nav mr-auto">
       <li *ngFor="let menuItem of menuItems; index as i;" class="nav-item">
         <a *ngIf="!menuItem.dropdown" class="nav-link" [routerLink]="[menuItem.path]" routerLinkActive="active" (click)="isCollapsed = true" [innerText]="menuItem.title"></a>
-        <ul class="navbar-nav" *ngIf="menuItem.dropdown">
+        <ul *ngIf="menuItem.dropdown" class="navbar-nav">
           <li ngbDropdown class="d-inline-block" placement="bottom-right" ngbDropdown>
             <a class="btn nav-link" role="button" attr.id="dropdown{{i}}" ngbDropdownToggle [innerText]="menuItem.title"></a>
             <div ngbDropdownMenu attr.aria-labelledby="dropdown{{i}}">

@@ -47,6 +47,10 @@ const appRoutes: Routes = [
         {
           path: 'branca/:id',
           component: BrancaComponent
+        },
+        {
+          path: 'page/:id',
+          component: CustomPageComponent
         }
       ]
     },

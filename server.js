@@ -27,19 +27,19 @@ app.use('/public/img/', express.static(path.join(__dirname, 'public/img')));
 app.use(expressJwt({ secret: process.env.SECRET }).
 unless({ path: [
   //public app routes
+  '/login',
   '/mainlayout/news/list',
   '/mainlayout/calendar',
   '/mainlayout/about',
   '/mainlayout/contact',
-  '/login',
   '/mainlayout/admin',
-  '/main/tabs',
-  /^\/main\/page\/.*/,
+  /^\/mainlayout\/page\/.*/,
   /^\/mainlayout\/branca\/.*/,
 
   //public folders
   /^\/public\/.*/,
   /^\/public\/img\/.*/,
+
   //public api routes
   '/api/users/authenticate',
   '/api/users/register',
@@ -94,21 +94,21 @@ function clientErrorHandler(err, req, res, next) {
     next(err);
   }
 }
-function errorHandler(err, req, res, next) {
-  if (err.name === 'UnauthorizedError') {
-    res.redirect('/');
-    return;
-  }
-  if (res.headersSent) {
-    return next(err);
-  }
-  res.status(500);
-  res.render('error', { error: err });
-}
+// function errorHandler(err, req, res, next) {
+//   if (err.name === 'UnauthorizedError') {
+//     res.redirect('/');
+//     return;
+//   }
+//   if (res.headersSent) {
+//     return next(err);
+//   }
+//   res.status(500);
+//   res.render('error', { error: err });
+// }
 
 app.use(logErrors);
 app.use(clientErrorHandler);
-app.use(errorHandler);
+// app.use(errorHandler);
 
 // // application -------------------------------------------------------------
 app.get('*', function(req, res) {

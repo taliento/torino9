@@ -29,19 +29,25 @@ export class NavbarComponent implements OnInit {
     this.user = this.authenticationService.getUser();
     this.menuItems = ROUTES.filter(menuItem => menuItem.menuType !== MenuType.BRAND);
 
+
+    let pages = { path: '#', param: '', title: 'Altro', dropdown: true, menuType: MenuType.LEFT,childs:[]};
     this.customPageService.get().then((results) => {// custom pages
-      const length = results.length;
+      const pagesNumber = results.length;
       let i = 0;
-      for (i ; i < length ; i++) {
+      for (i ; i < pagesNumber ; i++) {
         const pageItem = results[i];
-        this.menuItems.push({
+         pages.childs.push({
           title : pageItem.menuLabel,
-          path: pageItem.appPath,
-          param: '',
+          path: '/mainlayout/page',
+          param: pageItem._id,
           dropdown: false,
           menuType: MenuType.LEFT,
           childs: []
         });
+      }
+
+      if(pagesNumber > 0) {
+          this.menuItems.push(pages);//pages dropdown
       }
 
     });

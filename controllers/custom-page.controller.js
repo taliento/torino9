@@ -12,7 +12,8 @@ router.post('/insertUpload', insertUpload);
 router.get('/', get);
 router.put('/:_id', update);
 router.post('/updateUpload', updateUpload);
-router.get('/get/:_id', getById);
+router.get('/get/:_id', getById);//test only
+
 router.delete('/:_id', _delete);
 module.exports = router;
 
