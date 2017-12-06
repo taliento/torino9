@@ -10,6 +10,9 @@
     "lint": "ng lint",
     "postinstall": "ng build --prod"
   },
+  "engines": {
+     "npm": "8.5.0"
+   },
   "private": true,
   "dependencies": {
     "@agm/core": "^1.0.0-beta.1",
