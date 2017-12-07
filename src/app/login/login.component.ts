@@ -28,15 +28,15 @@ export class LoginComponent implements OnInit {
         this.authenticationService.login(this.model.username, this.model.password)
         .subscribe(
         data => {
-            this.alertService.success("Accesso effettuato!");
+            this.alertService.success('Accesso effettuato!');
             this.router.navigate(['mainlayout/home']);
         },
         error => {
             console.log(error);
-            if(error.status === 401) {
+            if (error.status === 401) {
               this.alertService.warning(error._body);
-            } else if(error.status === 400) {
-              this.alertService.error("Servizio non disponibile");
+            } else if (error.status === 400) {
+              this.alertService.error('Servizio non disponibile');
             }
 
             this.loading = false;

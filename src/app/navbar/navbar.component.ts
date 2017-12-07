@@ -30,7 +30,7 @@ export class NavbarComponent implements OnInit {
     this.menuItems = ROUTES.filter(menuItem => menuItem.menuType !== MenuType.BRAND);
 
 
-    let pages = { path: '#', param: '', title: 'Altro', dropdown: true, menuType: MenuType.LEFT,childs:[]};
+    const pages = { path: '#', param: '', title: 'Altro', dropdown: true, menuType: MenuType.LEFT, childs: []};
     this.customPageService.get().then((results) => {// custom pages
       const pagesNumber = results.length;
       let i = 0;
@@ -46,8 +46,8 @@ export class NavbarComponent implements OnInit {
         });
       }
 
-      if(pagesNumber > 0) {
-          this.menuItems.push(pages);//pages dropdown
+      if (pagesNumber > 0) {
+          this.menuItems.push(pages); // pages dropdown
       }
 
     });

@@ -32,8 +32,10 @@ import { MainLayoutComponent } from './main-layout/main-layout.component';
     MainLayoutComponent
   ],
   imports: [
+    routing,
     NgbModule.forRoot(),
-    FroalaEditorModule.forRoot(), FroalaViewModule.forRoot(),
+    FroalaEditorModule.forRoot(),
+    FroalaViewModule.forRoot(),
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
@@ -44,7 +46,6 @@ import { MainLayoutComponent } from './main-layout/main-layout.component';
     AdminModule,
     NewsModule,
     CalendarModule,
-    routing,
     BrowserModule,
     MapModule
   ],

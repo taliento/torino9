@@ -48,7 +48,7 @@ export class CustomPageFormComponent implements OnInit {
 
   private prepareSave(): any {
     const input = new FormData();
-    if(this.form.get('_id').value) {
+    if (this.form.get('_id').value) {
       input.append('_id', this.form.get('_id').value);
     }
     input.append('title', this.form.get('title').value);
@@ -56,7 +56,7 @@ export class CustomPageFormComponent implements OnInit {
     input.append('text', this.form.get('text').value);
     input.append('menuLabel', this.form.get('menuLabel').value.toString().trim());
     input.append('appPath', this.form.get('appPath').value.toString().trim());
-    if(this.form.get('imgFile').value) {
+    if (this.form.get('imgFile').value) {
         input.append('imgFile', this.form.get('imgFile').value);
     }
     return input;

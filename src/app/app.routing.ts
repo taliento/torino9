@@ -14,7 +14,7 @@ import { AdminComponent } from './admin/admin.component';
 const appRoutes: Routes = [
     {
       path: 'mainlayout', component: MainLayoutComponent ,
-      children:[
+      children: [
         {
           path: 'home',
           component: HomeComponent,

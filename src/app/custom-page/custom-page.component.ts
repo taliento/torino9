@@ -25,7 +25,7 @@ export class CustomPageComponent implements OnInit {
        this.page = page;
      },
      error => {
-       console.log(error)
+       console.log(error);
       //  this.router.navigate(['mainlayout/home']);
      });
   }

@@ -42,7 +42,7 @@ export class CustomPageDetailComponent implements OnInit {
 
     formSubmit($event) {
 
-      if(this.newPage) {
+      if (this.newPage) {
         this.customPageService.insert($event)
         .subscribe(
           data => {
