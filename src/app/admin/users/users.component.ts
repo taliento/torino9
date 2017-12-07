@@ -67,6 +67,7 @@ export class UsersComponent implements OnInit {
           this.loadData();
         },
         error => {
+          console.log(error);
           this.alertService.error(error._body);
         });
       }

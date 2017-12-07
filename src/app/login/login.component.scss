@@ -1,9 +1,18 @@
 @import "../../assets/scss/variables";
 
 .login-container {
-  background-color: $primary;
+  background: $primary;
+  /* fallback for old browsers */
+  background: -webkit-linear-gradient(right, $primary, $secondary);
+  background: -moz-linear-gradient(right, $primary, $secondary);
+  background: -o-linear-gradient(right, $primary, $secondary);
+  background: linear-gradient(to left, $primary, $secondary);
   height: 100%;
   padding-top: 50px;
+}
+
+.card {
+  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
 }
 
 .login-container img {
