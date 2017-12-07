@@ -1,8 +1,8 @@
 <div class="container">
+  <br>
   <div class="row">
     <div class="col-md-12">
       <div class="card" style="width: 70rem;">
-        <img class="card-img-top" [src]="page.imgPath" alt="Card image cap">
         <div class="card-header">
           {{page.menuLabel}}
         </div>
@@ -11,6 +11,7 @@
           <h6 class="card-subtitle mb-2 text-muted" [innerText]="page.subtitle"></h6>
           <div class="card-text" [froalaView]="page.text"></div>
         </div>
+        <img class="card-img-bottom" [src]="page.imgPath" alt="Card image cap">
       </div>
     </div>
   </div>

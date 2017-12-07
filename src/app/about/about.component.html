@@ -10,6 +10,8 @@
   <div class="row">
     <div class="col-md-12">
       <div class="card">
+        <!-- <div class="card-header">
+        </div> -->
         <div class="card-body">
           <div class="card-text" [froalaView]="aboutPage.text"></div>
           <a *ngFor="let link of aboutPage.links" [href]="link.href" class="card-link" [innerText]="link.text"></a>

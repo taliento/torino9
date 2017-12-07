@@ -2,23 +2,27 @@
   <div class="container">
     <h3 class="display-3"><span><i class="fa fa-calendar" aria-hidden="true"></i></span> Calendario</h3>
     <hr class="my-4">
-    <p>Il calendario è una progressione matematica di sorprese arbitrarie.</p>
-    <small>(Paul Scott)</small>
+    <p>Qui trovi le attività e gli eventi programmati.</p>
+    <!-- <small>(Paul Scott)</small> -->
   </div>
 </div>
 <div class="container">
-  <div class="row">
-    <div class="col-md-10">
-      <ul class="list-group" [title]="'Eventi del '+ model.day+'/'+model.month+'/'+model.year">
-        <div *ngIf="!tasks.length" class="list-group-item">Nessun evento nella data <span [innerText]="model.day+'/'+model.month+'/'+model.year"></span></div>
-        <app-calendar-detail *ngFor="let task of tasks" [task]="task"></app-calendar-detail>
-      </ul>
-    </div>
-    <div class="col-md-2">
-      <!-- <button class="btn btn-sm btn-outline-primary" (click)="selectToday();dp.navigateTo();">Vai ad oggi</button>
-      <hr/> -->
-      <ngb-datepicker #dp [(ngModel)]="model" (navigate)="navigate($event)" [dayTemplate]="customDay"></ngb-datepicker>
-      <br>
+  <div class="card">
+    <div class="card-body">
+      <div class="row">
+        <div class="col-md-8">
+          <ul class="list-group" [title]="'Eventi del '+ model.day+'/'+model.month+'/'+model.year">
+            <div *ngIf="!tasks.length" class="list-group-item">Nessun evento nella data <span [innerText]="model.day+'/'+model.month+'/'+model.year"></span></div>
+            <app-calendar-detail *ngFor="let task of tasks" [task]="task"></app-calendar-detail>
+          </ul>
+        </div>
+        <div class="col-md-2">
+          <!-- <button class="btn btn-sm btn-outline-primary" (click)="selectToday();dp.navigateTo();">Vai ad oggi</button>
+          <hr/> -->
+          <ngb-datepicker #dp [(ngModel)]="model" (navigate)="navigate($event)" [dayTemplate]="customDay"></ngb-datepicker>
+
+        </div>
+      </div>
       <div class="row">
         <small>Legenda:</small>
         <span class="badge badge-warning">Evento</span>

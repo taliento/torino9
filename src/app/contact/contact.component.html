@@ -10,9 +10,11 @@
 <div class="container">
   <div class="card-deck">
     <div class="card" style="width: 20rem;" *ngFor="let contact of contactPage.contacts">
-      <div class="card-body">
-        <h4 class="card-title" [innerText]="contact.name"></h4>
-        <h6 class="card-subtitle mb-2 text-muted" [innerText]="contact.nickname"></h6>
+      <div class="card-header">
+        {{contact.name}}
+      </div>
+      <div class="card-body" *ngIf="contact.nickname">
+        <h4 class="card-title" [innerText]="contact.nickname"></h4>
       </div>
       <ul class="list-group list-group-flush">
         <li class="list-group-item">
