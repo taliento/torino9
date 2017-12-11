@@ -1,11 +1,4 @@
 <br>
-<div class="card-deck">
-  <div class="card" *ngFor="let branca of branche">
-    <app-branca-detail [branca]="branca" (delete)="delete($event)" (update)="addBranca($event)"></app-branca-detail>
-  </div>
-</div>
-
-<br>
 <div class="row">
   <div class="col-md-2">
     <button [disabled]="branche.length >= 3" type="button" class="btn btn-outline-primary" (click)="isCollapsed = !isCollapsed" [attr.aria-expanded]="!isCollapsed" aria-controls="collapseExample">
@@ -20,6 +13,13 @@
     <div class="card-body">
       <app-branca-upload #insertForm (formSubmit)="addBranca($event)"></app-branca-upload>
     </div>
+  </div>
+</div>
+
+<br>
+<div class="card-deck">
+  <div class="card" *ngFor="let branca of branche">
+    <app-branca-detail [branca]="branca" (delete)="delete($event)" (update)="addBranca($event)"></app-branca-detail>
   </div>
 </div>
 
