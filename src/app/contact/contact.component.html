@@ -8,10 +8,10 @@
 </div>
 
 <div class="container">
-  <div class="card-deck">
-    <div class="card" style="width: 20rem;" *ngFor="let contact of contactPage.contacts">
-      <div class="card-header">
-        {{contact.name}}
+  <div class="row">
+    <div class="card contact-card" *ngFor="let contact of contactPage.contacts">
+      <div class="card-header" [innerText]="contact.name">
+        <!-- {{contact.name}} -->
       </div>
       <div class="card-body" *ngIf="contact.nickname">
         <h4 class="card-title" [innerText]="contact.nickname"></h4>
