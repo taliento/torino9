@@ -7,22 +7,22 @@
     <label for="insertSubTitle">Sottotitolo</label>
     <input type="text" class="form-control" id="insertSubTitle" name="subtitle" placeholder="Sottotitolo" [(ngModel)]="contactPage.subtitle">
   </div>
-  <br>
-  <div class="row">
-    <div class="col-md-12">
-      <app-contact-map [mapTitle]="contactPage.mapTitle" [mapLat]="contactPage.mapLat" [mapLng]="contactPage.mapLng" (mapCenter)="mapCenter($event)"></app-contact-map>
-      <!-- <br>
-      <div class="container">
-          <p>Latitudine: {{contactPage.mapLat}} Longitudine: {{contactPage.mapLng}}</p>
-      </div> -->
-    </div>
-  </div>
+
   <br>
   <div class="row">
     <div class="col-md-12">
       <app-contact-list #contactList [contacts]="contactPage.contacts"></app-contact-list>
     </div>
   </div>
+
+  <br>
+  <div class="row">
+    <div class="col-md-12">
+      <app-contact-map [mapTitle]="contactPage.mapTitle" [mapLat]="contactPage.mapLat" [mapLng]="contactPage.mapLng" (mapCenter)="mapCenter($event)"></app-contact-map>
+    </div>
+  </div>
+
+
   <br>
   <div class="row">
     <button class="btn btn-outline-success" (click)="save()">Salva tutto</button>

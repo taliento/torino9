@@ -1,10 +1,55 @@
 <div class="row">
   <div class="col-md-10">
-    <form>
+    <!-- <form>
       <div *ngFor="let contact of contacts">
         <app-contact-detail [contact]="contact" (deleteContact)="deleteContact($event)"></app-contact-detail>
       </div>
-    </form>
+    </form> -->
+    <table class="table table-hover">
+    <thead>
+      <tr>
+        <th scope="col">Nome</th>
+        <th scope="col">Soprannome</th>
+        <th scope="col">Email</th>
+        <th scope="col">Telefono</th>
+        <th scope="col">Cellulare</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let contact of contacts">
+        <td>
+          <input type="text" class="form-control" id="inputName" [(ngModel)]="contact.name" name="name" placeholder="Nome">
+        </td>
+        <td>
+          <input type="text" class="form-control" id="inputNickname" [(ngModel)]="contact.nickname" name="nickname" placeholder="Soprannome">
+        </td>
+        <td>
+          <div class="input-group">
+            <span class="input-group-addon">
+              <i class="fa fa-envelope-o" aria-hidden="true"></i>
+            </span>
+            <input type="email" class="form-control" id="inputEmail" [(ngModel)]="contact.email" name="email" placeholder="Email">
+          </div>
+        </td>
+        <td>
+          <div class="input-group">
+            <span class="input-group-addon">
+              <i class="fa fa-phone" aria-hidden="true"></i>
+            </span>
+            <input type="text" class="form-control" id="inputTel" [(ngModel)]="contact.tel" name="tel" placeholder="Telefono">
+          </div>
+        </td>
+        <td>
+          <div class="input-group">
+            <span class="input-group-addon">
+              <i class="fa fa-mobile" aria-hidden="true"></i>
+            </span>
+            <input type="text" class="form-control" id="inputMobile" [(ngModel)]="contact.mobile" name="mobile" placeholder="Cellulare">
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
   </div>
   <div class="col-md-2">
     <button class="btn btn-sm btn-outline-primary" (click)="addContact()">Aggiungi contatto</button>
