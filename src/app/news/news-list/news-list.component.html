@@ -23,7 +23,7 @@
         <div class="sidebar-module" *ngIf="archives.length > 0">
           <h4>Archivio</h4>
           <ol class="list-group">
-            <button *ngFor="let date of archives" (click)="loadArchivePosts(date)" href="#" class="list-group-item list-group-item-action">{{date.year+' '+date.month | date: 'yyyy MMMM'}}</button>
+            <button *ngFor="let date of archives" (click)="loadArchivePosts(date)" href="#" class="list-group-item list-group-item-action" [class.active]="selectedDate == date">{{date.year+' '+date.month | date: 'yyyy MMMM'}}</button>
           </ol>
         </div>
         <!-- <div class="sidebar-module">

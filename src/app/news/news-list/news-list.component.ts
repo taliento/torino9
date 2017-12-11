@@ -19,6 +19,7 @@ export class NewsListComponent implements OnInit {
   previousPage: any;
   archives: Array<any> = [];
   date: Date = null;
+  selectedDate = null;
 
   constructor(private newsService: NewsService, private router: Router) {
   }
@@ -67,6 +68,7 @@ export class NewsListComponent implements OnInit {
   }
 
   loadArchivePosts(date) {
+    this.selectedDate = date;
     this.date = new Date(date.year+'-'+date.month+'-01T00:00:00');
     this.loadAll();
   }
