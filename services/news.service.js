@@ -1,9 +1,10 @@
 const Q = require('q');
 const mongo = require('mongoskin');
+const moment = require('moment');
 const db = mongo.db(process.env.MONGODB_URI, { native_parser: true });
 db.bind('news');
 
-var service = {};
+let service = {};
 service.getAll = getAll;
 service.getById = getById;
 service.create = create;
@@ -11,10 +12,11 @@ service.update = update;
 service.delete = _delete;
 service.getPaged = getPaged;
 service.count = count;
+service.archivesDate = archivesDate;
 module.exports = service;
 
 function getAll() {
-  var deferred = Q.defer();
+  let deferred = Q.defer();
   db.news.find().toArray(function(err, newsList) {
     if (err) deferred.reject(err.name + ': ' + err.message);
     deferred.resolve(newsList);
@@ -22,19 +24,36 @@ function getAll() {
   return deferred.promise;
 }
 
-function count() {
-  var deferred = Q.defer();
-  db.news.count({}, function(err, _count) {
+function count(_date) {
+  let deferred = Q.defer();
+
+  let findParams = {};
+  if(_date != 'all') {
+    let startDate = new Date(_date);
+    let endDate = moment(startDate).add(1,'month');
+    let plusOneMonth = new Date(endDate.toISOString());
+    findParams = {"insertDate":{ $gte: startDate, $lt: plusOneMonth}}
+  }
+
+  db.news.count(findParams, function(err, _count) {
     if (err) deferred.reject(err.name + ': ' + err.message);
     deferred.resolve({'count': _count});
   });
   return deferred.promise;
 }
 
-function getPaged(_limit, _page, _size) {
-  var deferred = Q.defer();
-  var _skip = _page * _limit;
-  db.news.find({}, null, {limit: _limit * 1, skip: _skip, sort: [['insertDate', -1]]}).toArray(function(err, newsList) {
+function getPaged(_limit, _page, _size, _date) {
+  let deferred = Q.defer();
+  let _skip = _page * _limit;
+  let findParams = {};
+  if(_date != 'all') {
+    let startDate = new Date(_date);
+    let endDate = moment(startDate).add(1,'month');
+    let plusOneMonth = new Date(endDate.toISOString());
+    findParams = {"insertDate":{ $gte: startDate, $lt: plusOneMonth}}
+  }
+
+  db.news.find(findParams, null, {limit: _limit * 1, skip: _skip, sort: [['insertDate', -1]]}).toArray(function(err, newsList) {
     if (err) deferred.reject(err.name + ': ' + err.message);
     deferred.resolve(newsList);
   });
@@ -42,7 +61,7 @@ function getPaged(_limit, _page, _size) {
 }
 
 function getById(_id) {
-  var deferred = Q.defer();
+  let deferred = Q.defer();
   db.news.findById(_id, function(err, news) {
     if (err) deferred.reject(err.name + ': ' + err.message);
     if (news) {
@@ -56,7 +75,7 @@ function getById(_id) {
 }
 
 function create(newsParam) {
-  var deferred = Q.defer();
+  let deferred = Q.defer();
   newsParam.insertDate = new Date();
   db.news.insert(
     newsParam,
@@ -68,9 +87,9 @@ function create(newsParam) {
 }
 
 function update(_id, newsParam) {
-  var deferred = Q.defer();
+  let deferred = Q.defer();
   // fields to update
-  var set = {
+  let set = {
     title: newsParam.title,
     subTitle: newsParam.title,
     text: newsParam.text,
@@ -87,7 +106,7 @@ function update(_id, newsParam) {
 }
 
 function _delete(_id) {
-  var deferred = Q.defer();
+  let deferred = Q.defer();
   db.news.remove(
     { _id: mongo.helper.toObjectID(_id) },
     function(err) {
@@ -95,4 +114,43 @@ function _delete(_id) {
       deferred.resolve();
     });
   return deferred.promise;
+}
+
+
+function archivesDate() {
+  let deferred = Q.defer();
+  //aggregate dates by month starting from two year ago
+  let date = new Date();
+  let newDate = moment(date).subtract(2,'years');
+  let twoYearsAgo = newDate.toISOString();
+
+  db.news.aggregate(
+    [
+      {
+        "$match": {
+          "insertDate": {
+            $gte: new Date(twoYearsAgo)// now - 2 years
+          }
+        }
+      },
+      {
+        "$project": {
+          "year": { "$year": "$insertDate" },
+          "month": { "$month": "$insertDate" }
+        }
+      },
+      {
+        "$group": {
+          "_id": null,
+          "distinctDate": {
+            "$addToSet": { "year": "$year", "month": "$month" }
+          }
+        }
+      }
+    ],function(err, dates) {
+      if (err) deferred.reject(err.name + ': ' + err.message);
+      deferred.resolve(dates);
+    });
+
+    return deferred.promise;
 }

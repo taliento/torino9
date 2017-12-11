@@ -30,7 +30,7 @@ export class NewsComponent implements OnInit {
     private authenticationService: AuthenticationService) { }
 
   ngOnInit(): void {
-    this.newsService.count().subscribe((res) => {
+    this.newsService.count("all").subscribe((res) => {
       this.collectionSize = parseInt(res.json().count, 10);
       if (this.collectionSize > 0) {
           this.loadData();
@@ -84,6 +84,7 @@ export class NewsComponent implements OnInit {
       limit: this.pageSize,
       page: this.page - 1,
       size: this.pageSize,
+      date: 'all'
     }).subscribe(
       res  => this.onSuccess(res.json()),
       (res: Response) => this.onError(res.json())

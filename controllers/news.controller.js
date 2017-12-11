@@ -7,11 +7,12 @@ const newsService = require('services/news.service');
 // routes
 router.post('/insert', insert);
 router.get('/', getAll);
-router.get('/count', count);
+router.get('/count/:date', count);
 router.get('/get/:_id', get);
-router.get('/paged/:limit/:page/:size', getPaged);
+router.get('/paged/:limit/:page/:size/:date', getPaged);
 router.put('/:_id', update);
 router.delete('/:_id', _delete);
+router.get('/archivesDate',archivesDate);
 module.exports = router;
 
 function insert(req, res) {
@@ -34,8 +35,18 @@ function getAll(req, res) {
   });
 }
 
+function archivesDate(req, res) {
+  newsService.archivesDate()
+  .then(function(dates) {
+    res.send(dates);
+  })
+  .catch(function(err) {
+    res.status(400).send(err);
+  });
+}
+
 function count(req, res) {
-  newsService.count()
+  newsService.count(req.params.date)
   .then(function(_count) {
     res.send(_count);
   })
@@ -45,7 +56,7 @@ function count(req, res) {
 }
 
 function getPaged(req, res) {
-  newsService.getPaged(req.params.limit, req.params.page, req.params.size)
+  newsService.getPaged(req.params.limit, req.params.page, req.params.size, req.params.date)
   .then(function(_news) {
     res.send(_news);
   })

@@ -20,11 +20,11 @@ export class NewsService extends AService {
   }
 
   getPaged(params: any) {
-    return this.http.get(this.apiUrl + `/news/paged/${params.limit}/${params.page}/${params.size}`);
+    return this.http.get(this.apiUrl + `/news/paged/${params.limit}/${params.page}/${params.size}/${params.date}`);
   }
 
-  count() {
-    return this.http.get(this.apiUrl + '/news/count');
+  count(date: any) {
+    return this.http.get(this.apiUrl + `/news/count/${date}`);
   }
 
   getById(_id: string): Promise<News> {
@@ -32,6 +32,18 @@ export class NewsService extends AService {
       get(this.apiUrl + `/news/get/${_id}`)
       .toPromise()
       .then(response => response.json() as News)
+      .catch(this.handleError);
+  }
+
+  getArchivesDate(): Promise<any> {
+    return this.http.
+      get(this.apiUrl + '/news/archivesDate')
+      .toPromise()
+      .then((response) => {
+        console.log(response.json());
+        return response.json()[0].distinctDate;
+
+      } )
       .catch(this.handleError);
   }
 

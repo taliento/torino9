@@ -17,12 +17,22 @@ export class NewsListComponent implements OnInit {
   pageSize = 2;
   collectionSize = 0;
   previousPage: any;
+  archives: Array<any> = [];
+  date: Date = null;
 
   constructor(private newsService: NewsService, private router: Router) {
   }
 
   ngOnInit(): void {
-    this.newsService.count().subscribe((res) => {
+    this.date = new Date();
+    this.date.setDate(1);
+    this.date.setHours(12,0);
+    this.loadAll();
+    this.loadArchive();
+  }
+
+  loadAll() {
+    this.newsService.count(this.date).subscribe((res) => {
       this.collectionSize = parseInt(res.json().count, 10);
       if (this.collectionSize > 0) {
           this.loadData();
@@ -42,10 +52,23 @@ export class NewsListComponent implements OnInit {
       limit: this.pageSize,
       page: this.page - 1,
       size: this.pageSize,
+      date: this.date
     }).subscribe(
       res  => this.onSuccess(res.json()),
       (res: Response) => this.onError(res.json())
     );
+  }
+
+  loadArchive() {
+    this.newsService.getArchivesDate().then(
+      res => this.archives = res,
+      err =>this.onError(err)
+    );
+  }
+
+  loadArchivePosts(date) {
+    this.date = new Date(date.year+'-'+date.month+'-01T00:00:00');
+    this.loadAll();
   }
 
   onSuccess (res) {

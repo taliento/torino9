@@ -41,12 +41,13 @@ unless({ path: [
   /^\/public\/img\/.*/,
 
   //public api routes
+  '/api/news/archivesDate',
   '/api/users/authenticate',
   '/api/users/register',
   '/api/news',
   '/api/page',
   /^\/api\/page\/get\/.*/,
-  '/api/news/count',
+  /^\/api\/news\/count\/.*/,
   /^\/api\/news\/get\/.*/,
   /^\/api\/news\/paged\/.*/,
   '/api/carousel',
