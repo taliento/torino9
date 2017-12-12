@@ -1,70 +1,15 @@
-<ngb-tabset>
-  <ngb-tab title="Slides">
-    <ng-template ngbTabContent>
-      <br>
-      <app-slides></app-slides>
-    </ng-template>
-  </ngb-tab>
-  <ngb-tab title="Branche">
-    <ng-template ngbTabContent>
-      <br>
-      <app-branche></app-branche>
-    </ng-template>
-  </ngb-tab>
-  <ngb-tab title="Featurettes">
-    <ng-template ngbTabContent>
-      <br>
-      <app-featurettes></app-featurettes>
-    </ng-template>
-  </ngb-tab>
-  <ngb-tab title="News">
-    <ng-template ngbTabContent>
-      <br>
-      <app-news></app-news>
-    </ng-template>
-  </ngb-tab>
-  <ngb-tab title="Eventi">
-    <ng-template ngbTabContent>
-      <br>
-      <app-events></app-events>
-    </ng-template>
-  </ngb-tab>
-  <ngb-tab title="Su di noi">
-    <ng-template ngbTabContent>
-      <br>
-      <app-about></app-about>
-    </ng-template>
-  </ngb-tab>
-  <ngb-tab title="Contatti">
-    <ng-template ngbTabContent>
-      <br>
-      <app-contact></app-contact>
-    </ng-template>
-  </ngb-tab>
-  <ngb-tab title="Users">
-    <ng-template ngbTabContent>
-      <br>
-      <app-users></app-users>
-    </ng-template>
-  </ngb-tab>
-
-  <ngb-tab title="Pages">
-    <ng-template ngbTabContent>
-      <br>
-      <app-custom-page></app-custom-page>
-    </ng-template>
-  </ngb-tab>
-
-  <ngb-tab title="backup/restore">
-    <ng-template ngbTabContent>
-      <br>
-      <app-downloads></app-downloads>
-    </ng-template>
-  </ngb-tab>
-  <ngb-tab title="App Config">
-    <ng-template ngbTabContent>
-      <br>
-      <app-config></app-config>
-    </ng-template>
-  </ngb-tab>
-</ngb-tabset>
+<div class="jumbotron">
+  <div class="container">
+    <h3 class="display-3"><span><i class="fa fa-superpowers" aria-hidden="true"></i></span> Admin page</h3>
+    <hr class="my-4">
+    <p>insert,delete,update stuffs...</p>
+  </div>
+</div>
+<div class="container">
+  <div class="list-group">
+    <button *ngFor="let tab of tabs" type="button"
+    class="list-group-item list-group-item-action "
+    [routerLink]="[tab.component]" routerLinkActive="active"
+    [innerText]="tab.title"></button><!--active-->
+  </div>
+</div>

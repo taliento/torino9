@@ -1,33 +1,42 @@
-<div class="row">
-  <div class="col-md-2">
-    <button type="button" class="btn btn-outline-primary" (click)="isCollapsed = !isCollapsed" [attr.aria-expanded]="!isCollapsed" aria-controls="collapseExample">
-      Inserisci Slide
-    </button>
-  </div>
-</div>
 <br>
-<div id="collapseExample" [ngbCollapse]="isCollapsed">
-  <div class="card">
-    <div class="card-body">
-      <app-slide-upload #insertForm (formSubmit)="addSlide($event)"></app-slide-upload>
+<div class="container">
+  <div class="row">
+    <div class="col-md-2">
+      <button class="btn btn-secondary" [routerLink]="['/mainlayout/admin/tabs']">Indietro</button>
     </div>
   </div>
-</div>
-<br>
-<div class="card-deck">
-  <div class="card" *ngFor="let slide of slides">
-    <app-slide-detail [slide]="slide" (updated)="loadData()"  (delete)="delete($event)"></app-slide-detail>
+  <br>
+  <div class="row">
+    <div class="col-md-2">
+      <button type="button" class="btn btn-outline-primary" (click)="isCollapsed = !isCollapsed" [attr.aria-expanded]="!isCollapsed" aria-controls="collapseExample">
+        Inserisci Slide
+      </button>
+    </div>
   </div>
-</div>
-
-<br>
-<div class="row">
-  <div class="col-md-10" *ngIf="collectionSize > 0">
-    <ngb-pagination [pageSize]="pageSize" [collectionSize]="collectionSize" [(page)]="page" [rotate]="true" (pageChange)="loadPage($event)"></ngb-pagination>
+  <br>
+  <div id="collapseExample" [ngbCollapse]="isCollapsed">
+    <div class="card">
+      <div class="card-body">
+        <app-slide-upload #insertForm (formSubmit)="addSlide($event)"></app-slide-upload>
+      </div>
+    </div>
+  </div>
+  <br>
+  <div class="card-deck">
+    <div class="card" *ngFor="let slide of slides">
+      <app-slide-detail [slide]="slide" (updated)="loadData()"  (delete)="delete($event)"></app-slide-detail>
+    </div>
   </div>
 
+  <br>
+  <div class="row">
+    <div class="col-md-10" *ngIf="collectionSize > 0">
+      <ngb-pagination [pageSize]="pageSize" [collectionSize]="collectionSize" [(page)]="page" [rotate]="true" (pageChange)="loadPage($event)"></ngb-pagination>
+    </div>
+
+  </div>
+
+
+
+  <app-confirm-dialog #confirmDialog [title]="confirmTitle" [text]="confirmText" (confirm)="deleteSlide()"></app-confirm-dialog>
 </div>
-
-
-
-<app-confirm-dialog #confirmDialog [title]="confirmTitle" [text]="confirmText" (confirm)="deleteSlide()"></app-confirm-dialog>

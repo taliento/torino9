@@ -38,6 +38,17 @@ export const MODULE_ROUTES: Route[] = [
   {
     path: 'tabs',  component: AdminTabsComponent,
   },
+  { component: SlidesComponent, path: 'slides'},
+  { component: BrancheComponent, path: 'branche'},
+  { component: FeaturetteComponent, path: 'featurettes'},
+  { component: NewsComponent, path: 'news'},
+  { component: EventsComponent, path: 'events'},
+  { component: AboutComponent, path: 'about'},
+  { component: ContactComponent, path: 'contact'},
+  { component: UsersComponent, path: 'users'},
+  { component: CustomPageComponent, path: 'custom-page'},
+  { component: DownloadsComponent, path: 'downloads'},
+  { component: AppConfigComponent, path: 'config'},
   {
     path: 'page/:id', component: CustomPageDetailComponent
   }

@@ -1,9 +1,16 @@
 <br>
-
-<form>
-  <div class="form-group">
-    <label for="insertTitle">Titolo</label>
-    <input type="text" class="form-control" id="insertTitle" name="title" placeholder="Titolo" [(ngModel)]="config.title">
+<div class="container">
+  <div class="row">
+    <div class="col-md-2">
+      <button class="btn btn-secondary" [routerLink]="['/mainlayout/admin/tabs']">Indietro</button>
+    </div>
   </div>
-  <button type="button" class="btn btn-outline-success" (click)="save()">Salva</button>
-</form>
+  <br>
+  <form>
+    <div class="form-group">
+      <label for="insertTitle">Titolo</label>
+      <input type="text" class="form-control" id="insertTitle" name="title" placeholder="Titolo" [(ngModel)]="config.title">
+    </div>
+    <button type="button" class="btn btn-outline-success" (click)="save()">Salva</button>
+  </form>
+</div>
