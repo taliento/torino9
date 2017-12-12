@@ -1,16 +1,23 @@
-<div class="jumbotron dt-jumbotron" [style.background-image]="backgroundImg">
-</div>
-<div class="container dt-container">
-  <h3 class="display-3"><span><i class="fa fa-fire" aria-hidden="true"></i></span> <span [innerText]="branca.title"></span></h3>
-  <hr class="my-4">
-  <p [innerText]="branca.subtitle"></p>
-  <small></small>
+<br>
+<div class="card text-white" style="height: 30rem;">
+  <img class="card-img branca-img" style="height: 30rem;" [src]="branca.imgPath" alt="Card image">
+  <div class="card-img-overlay">
+    <div class="container">
+      <br>
+      <h3 class="display-3"><span><i class="fa fa-fire" aria-hidden="true"></i></span> <span [innerText]="branca.title"></span></h3>
+      <hr class="my-4">
+      <p [innerText]="branca.subtitle"></p>
+    </div>
+  </div>
 </div>
 <br>
-<div class="container put-down">
+<br>
+<div class="container">
   <div class="row">
-      <div class="col-md-12">
+      <div class="card">
+        <div class="card-body">
           <div [froalaView]="branca.text"></div>
+        </div>
       </div>
   </div>
 </div>

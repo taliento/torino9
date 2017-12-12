@@ -1,51 +1,11 @@
-.dt-jumbotron {
-  background-repeat: no-repeat;
-  /*background-attachment: fixed;*/
-  background-position: center;
-  background-size: cover;
-  background-repeat: no-repeat;
-  overflow: hidden;
-  height: 20rem;
+.my-4 {
+  border-top: 1px solid rgb(255, 255, 255);
+}
+.branca-img {
   -webkit-filter: grayscale(150%) blur(2px); /* Safari 6.0 - 9.0 */
   filter: grayscale(150%) blur(2.2px);
   -webkit-transform: scale(1.1);
   transform: scale(1.1);
-  position: absolute;
-  z-index: -1;
-  top: 4rem;
-  left: 0;
-  right: 0;
-  content:"";
-}
-.dt-container {
-  margin-top: 8rem;
-  left: 0;
-  right: 0;
-  position: relative;
-  color: rgb(255, 255, 255);
-  text-shadow: 1px 1px rgb(104, 104, 104);
-}
-.put-down {
-  margin-top: 7rem;
-}
-.my-4 {
-  border-top: 1px solid rgb(255, 255, 255);
-}
-
-/* RESPONSIVE CSS
--------------------------------------------------- */
-
-
-/* small devices (smartphone, 320px and up) */
-@media (min-width: 320px) {
-    .dt-container h3 {
-        font-size: 2em;
-    }
-}
-
-/* Small devices (tablets, 768px and up) */
-@media (min-width: 768px) {
-    .dt-container h3 {
-        font-size: 4em;
-    }
+  background-repeat: no-repeat;
+  overflow: hidden;
 }
