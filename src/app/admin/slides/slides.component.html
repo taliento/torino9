@@ -25,8 +25,8 @@
         </div>
       </div>
       <br>
-      <div class="card-deck">
-        <div class="card" *ngFor="let slide of slides">
+      <div class="card-columns">
+        <div class="card" style="width: 20rem;" *ngFor="let slide of slides">
           <app-slide-detail [slide]="slide" (updated)="loadData()"  (delete)="delete($event)"></app-slide-detail>
         </div>
       </div>

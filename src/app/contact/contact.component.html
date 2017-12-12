@@ -9,52 +9,54 @@
 
 <div class="container">
   <div class="row">
-    <div class="card contact-card" *ngFor="let contact of contactPage.contacts">
-      <div class="card-header" [innerText]="contact.name">
-        <!-- {{contact.name}} -->
+    <div class="card-columns">
+      <div class="card contact-card" *ngFor="let contact of contactPage.contacts">
+        <div class="card-header" [innerText]="contact.name">
+          <!-- {{contact.name}} -->
+        </div>
+        <div class="card-body" *ngIf="contact.nickname">
+          <h4 class="card-title" [innerText]="contact.nickname"></h4>
+        </div>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item">
+            <div class="row">
+              <div class="col-md-2">
+                <span><i class="fa fa-envelope-o" aria-hidden="true"></i></span>
+              </div>
+              <div class="col-md-10">
+                <span [innerText]="contact.email"></span>
+              </div>
+            </div>
+          </li>
+          <li class="list-group-item">
+            <div class="row">
+              <div class="col-md-2">
+                <span><i class="fa fa-phone" aria-hidden="true"></i></span>
+              </div>
+              <div class="col-md-10">
+                <span [innerText]="contact.tel"></span>
+              </div>
+            </div>
+          </li>
+          <li class="list-group-item">
+            <div class="row">
+              <div class="col-md-2">
+                <span><i class="fa fa-mobile" aria-hidden="true"></i></span>
+              </div>
+              <div class="col-md-10">
+                <span [innerText]="contact.mobile"></span>
+              </div>
+            </div>
+          </li>
+        </ul>
+        <!-- <div class="card-body">
+          <a href="#" class="card-link">Card link</a>
+          <a href="#" class="card-link">Another link</a>
+        </div> -->
+        <!-- <div class="card-footer">
+          <small class="text-muted">Last updated 3 mins ago</small>
+        </div> -->
       </div>
-      <div class="card-body" *ngIf="contact.nickname">
-        <h4 class="card-title" [innerText]="contact.nickname"></h4>
-      </div>
-      <ul class="list-group list-group-flush">
-        <li class="list-group-item">
-          <div class="row">
-            <div class="col-md-2">
-              <span><i class="fa fa-envelope-o" aria-hidden="true"></i></span>
-            </div>
-            <div class="col-md-10">
-              <span [innerText]="contact.email"></span>
-            </div>
-          </div>
-        </li>
-        <li class="list-group-item">
-          <div class="row">
-            <div class="col-md-2">
-              <span><i class="fa fa-phone" aria-hidden="true"></i></span>
-            </div>
-            <div class="col-md-10">
-              <span [innerText]="contact.tel"></span>
-            </div>
-          </div>
-        </li>
-        <li class="list-group-item">
-          <div class="row">
-            <div class="col-md-2">
-              <span><i class="fa fa-mobile" aria-hidden="true"></i></span>
-            </div>
-            <div class="col-md-10">
-              <span [innerText]="contact.mobile"></span>
-            </div>
-          </div>
-        </li>
-      </ul>
-      <!-- <div class="card-body">
-        <a href="#" class="card-link">Card link</a>
-        <a href="#" class="card-link">Another link</a>
-      </div> -->
-      <!-- <div class="card-footer">
-        <small class="text-muted">Last updated 3 mins ago</small>
-      </div> -->
     </div>
   </div>
   <br>
