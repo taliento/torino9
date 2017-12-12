@@ -1,5 +1,5 @@
-<div class="card text-white" style="height: 30rem;">
-  <img class="card-img" style="height: 30rem;" *ngIf="page.imgPath" [src]="page.imgPath">
+<div class="card text-white" *ngIf="page.imgPath" style="height: 30rem;">
+  <img class="card-img" style="height: 30rem;"  [src]="page.imgPath">
   <div class="card-img-overlay">
     <div class="container">
       <br>
@@ -13,7 +13,10 @@
 <div class="container">
   <div class="row">
       <div class="card">
+        <div class="card-header" *ngIf="!page.imgPath" [innerText]="page.title">
+        </div>
         <div class="card-body">
+          <div class="card-subtitle" *ngIf="!page.imgPath" [innerText]="page.subtitle"></div>
           <div [froalaView]="page.text"></div>
         </div>
       </div>

@@ -32,6 +32,6 @@ export class NewsDetailComponent {
    }
 
    modifyNews() {
-     this.modalService.open(this.updateContent,{size:"lg"});
+     this.modalService.open(this.updateContent, {size: 'lg'});
    }
 }

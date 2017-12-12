@@ -27,7 +27,7 @@ export class NewsListComponent implements OnInit {
   ngOnInit(): void {
     this.date = new Date();
     this.date.setDate(1);
-    this.date.setHours(12,0);
+    this.date.setHours(12, 0);
     this.loadAll();
     this.loadArchive();
   }
@@ -63,13 +63,13 @@ export class NewsListComponent implements OnInit {
   loadArchive() {
     this.newsService.getArchivesDate().then(
       res => this.archives = res,
-      err =>this.onError(err)
+      err => this.onError(err)
     );
   }
 
   loadArchivePosts(date) {
     this.selectedDate = date;
-    this.date = new Date(date.year+'-'+date.month+'-01T00:00:00');
+    this.date = new Date(date.year + '-' + date.month + '-01T00:00:00');
     this.loadAll();
   }
 

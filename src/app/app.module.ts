@@ -69,7 +69,7 @@ registerLocaleData(localeIT);
     DownloadService,
     AppConfigService,
     CustomPageService,
-     { provide: LOCALE_ID, useValue: "it" }
+     { provide: LOCALE_ID, useValue: 'it' }
   ],
   bootstrap: [AppComponent]
 })

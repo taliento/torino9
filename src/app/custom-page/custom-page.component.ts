@@ -7,7 +7,7 @@ import { CustomPageService } from '../shared/services';
   moduleId: module.id,
   selector: 'app-custom-page',
   templateUrl: 'custom-page.component.html',
-  styleUrls:['./custom-page.component.scss']
+  styleUrls: ['./custom-page.component.scss']
 })
 export class CustomPageComponent implements OnInit {
 
