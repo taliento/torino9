@@ -6,25 +6,30 @@
     </div>
   </div>
   <br>
-  <div class="row">
-    <div class="col-md-2">
-      <button [disabled]="branche.length >= 3" type="button" class="btn btn-outline-primary" (click)="isCollapsed = !isCollapsed" [attr.aria-expanded]="!isCollapsed" aria-controls="collapseExample">
-        Inserisci Branca
-      </button>
-    </div>
-  </div>
-  <br>
-  <div id="collapseExample" [ngbCollapse]="isCollapsed">
-    <div class="card">
-      <div class="card-body">
-        <app-branca-upload #insertForm (formSubmit)="addBranca($event)"></app-branca-upload>
+  <div class="card">
+    <div class="card-header">Branche</div>
+    <div class="card-body">
+      <div class="row">
+        <div class="col-md-2">
+          <button [disabled]="branche.length >= 3" type="button" class="btn btn-outline-primary" (click)="isCollapsed = !isCollapsed" [attr.aria-expanded]="!isCollapsed" aria-controls="collapseExample">
+            Inserisci Branca
+          </button>
+        </div>
       </div>
-    </div>
-  </div>
-  <br>
-  <div class="card-deck">
-    <div class="card" *ngFor="let branca of branche">
-      <app-branca-detail [branca]="branca" (delete)="delete($event)" (update)="addBranca($event)"></app-branca-detail>
+      <br>
+      <div id="collapseExample" [ngbCollapse]="isCollapsed">
+        <div class="card">
+          <div class="card-body">
+            <app-branca-upload #insertForm (formSubmit)="addBranca($event)"></app-branca-upload>
+          </div>
+        </div>
+      </div>
+      <br>
+      <div class="card-deck">
+        <div class="card" *ngFor="let branca of branche">
+          <app-branca-detail [branca]="branca" (delete)="delete($event)" (update)="addBranca($event)"></app-branca-detail>
+        </div>
+      </div>
     </div>
   </div>
   <app-confirm-dialog #confirmDialog [title]="confirmTitle" [text]="confirmText" (confirm)="deleteBranca()"></app-confirm-dialog>

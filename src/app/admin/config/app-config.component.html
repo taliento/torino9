@@ -6,11 +6,16 @@
     </div>
   </div>
   <br>
-  <form>
-    <div class="form-group">
-      <label for="insertTitle">Titolo</label>
-      <input type="text" class="form-control" id="insertTitle" name="title" placeholder="Titolo" [(ngModel)]="config.title">
+  <div class="card">
+    <div class="card-header">App config</div>
+    <div class="card-body">
+      <form>
+        <div class="form-group">
+          <label for="insertTitle">Titolo</label>
+          <input type="text" class="form-control" id="insertTitle" name="title" placeholder="Titolo" [(ngModel)]="config.title">
+        </div>
+        <button type="button" class="btn btn-outline-success" (click)="save()">Salva</button>
+      </form>
     </div>
-    <button type="button" class="btn btn-outline-success" (click)="save()">Salva</button>
-  </form>
+  </div>
 </div>

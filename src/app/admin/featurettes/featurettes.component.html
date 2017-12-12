@@ -6,31 +6,36 @@
     </div>
   </div>
   <br>
-  <div class="row">
-    <div class="col-md-2">
-      <button type="button" class="btn btn-outline-primary" (click)="isCollapsed = !isCollapsed" [attr.aria-expanded]="!isCollapsed" aria-controls="collapseExample">
-        Inserisci Featurette
-      </button>
-    </div>
-  </div>
-  <br>
-  <div id="collapseExample" [ngbCollapse]="isCollapsed">
-    <div class="card">
-      <div class="card-body">
-        <app-featurette-upload #insertForm (formSubmit)="addFeaturette($event)"></app-featurette-upload>
+  <div class="card">
+    <div class="card-header">Featurettes</div>
+    <div class="card-body">
+      <div class="row">
+        <div class="col-md-2">
+          <button type="button" class="btn btn-outline-primary" (click)="isCollapsed = !isCollapsed" [attr.aria-expanded]="!isCollapsed" aria-controls="collapseExample">
+            Inserisci Featurette
+          </button>
+        </div>
       </div>
-    </div>
-  </div>
-  <br>
-  <div class="card-deck">
-    <div class="card" *ngFor="let featurette of featuretteList">
-      <app-featurette-detail [featurette]="featurette" (updated)="loadData()" (delete)="delete($event)"></app-featurette-detail>
-    </div>
-  </div>
-  <br>
-  <div class="row">
-    <div class="col-md-10" *ngIf="collectionSize > 0">
-      <ngb-pagination [pageSize]="pageSize" [collectionSize]="collectionSize" [(page)]="page" [rotate]="true" (pageChange)="loadPage($event)"></ngb-pagination>
+      <br>
+      <div id="collapseExample" [ngbCollapse]="isCollapsed">
+        <div class="card">
+          <div class="card-body">
+            <app-featurette-upload #insertForm (formSubmit)="addFeaturette($event)"></app-featurette-upload>
+          </div>
+        </div>
+      </div>
+      <br>
+      <div class="card-deck">
+        <div class="card" *ngFor="let featurette of featuretteList">
+          <app-featurette-detail [featurette]="featurette" (updated)="loadData()" (delete)="delete($event)"></app-featurette-detail>
+        </div>
+      </div>
+      <br>
+      <div class="row">
+        <div class="col-md-10" *ngIf="collectionSize > 0">
+          <ngb-pagination [pageSize]="pageSize" [collectionSize]="collectionSize" [(page)]="page" [rotate]="true" (pageChange)="loadPage($event)"></ngb-pagination>
+        </div>
+      </div>
     </div>
   </div>
   <app-confirm-dialog #confirmDialog [title]="confirmTitle" [text]="confirmText" (confirm)="deleteFeaturette()"></app-confirm-dialog>

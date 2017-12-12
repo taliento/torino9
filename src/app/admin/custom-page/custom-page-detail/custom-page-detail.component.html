@@ -7,15 +7,23 @@
   </div>
 </div>
 <br>
-<div class="container-fluid" *ngIf="page.imgPath" style="width: 20rem;">
-  <img class="page-image img-fluid mx-auto" [src]="page.imgPath" alt="custom image">
-</div>
 <div class="container">
-  <div class="row">
-    <div class="col-md-12">
-      <div class="card">
-        <div class="card-body" *ngIf="page._id || newPage">
-          <app-custom-page-form #insertForm [customPage]="page" (formSubmit)="formSubmit($event)"></app-custom-page-form>
+  <div class="card">
+    <div class="card-header">{{page.title}}</div>
+    <div class="card-body">
+      <div class="container-fluid" *ngIf="page.imgPath" style="width: 20rem;">
+        <img class="page-image img-fluid mx-auto" [src]="page.imgPath" alt="custom image">
+      </div>
+      <br>
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="card">
+              <div class="card-body" *ngIf="page._id || newPage">
+                <app-custom-page-form #insertForm [customPage]="page" (formSubmit)="formSubmit($event)"></app-custom-page-form>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
