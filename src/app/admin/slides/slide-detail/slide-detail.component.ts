@@ -36,7 +36,7 @@ export class SlideDetailComponent {
    }
 
    modifySlide() {
-     this.modalRef = this.modalService.open(this.updateContent);
+     this.modalRef = this.modalService.open(this.updateContent,{size:"lg"});
    }
 
 }

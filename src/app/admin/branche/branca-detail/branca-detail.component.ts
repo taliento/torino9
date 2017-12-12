@@ -29,6 +29,6 @@ export class BrancaDetailComponent {
    }
 
    updateModal() {
-     this.modalRef = this.modalService.open(this.updateContent);
+     this.modalRef = this.modalService.open(this.updateContent,{size:"lg"});
    }
 }

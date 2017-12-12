@@ -47,6 +47,6 @@ export class EventDetailComponent {
   }
 
   openUpdateModal() {
-    this.modalService.open(this.updateEvent);
+    this.modalService.open(this.updateEvent,{size:"lg"});
   }
 }
