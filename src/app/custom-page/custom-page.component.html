@@ -1,18 +1,21 @@
-<div class="container">
-  <br>
-  <div class="row">
-    <div class="col-md-12">
-      <div class="card" style="width: 70rem;">
-        <div class="card-header">
-          {{page.menuLabel}}
-        </div>
-        <div class="card-body">
-          <h4 class="card-title" [innerText]="page.title"></h4>
-          <h6 class="card-subtitle mb-2 text-muted" [innerText]="page.subtitle"></h6>
-          <div class="card-text" [froalaView]="page.text"></div>
-        </div>
-        <img class="card-img-bottom" [src]="page.imgPath" alt="Card image cap">
-      </div>
+<div class="card text-white" style="height: 20rem;">
+  <img class="card-img" style="height: 20rem;" *ngIf="page.imgPath" [src]="page.imgPath">
+  <div class="card-img-overlay">
+    <div class="container">
+      <br>
+      <h3 class="display-3" [innerText]="page.title"></h3>
+      <hr class="my-4">
+      <p [innerText]="page.subtitle"></p>
     </div>
+  </div>
+</div>
+<br>
+<div class="container">
+  <div class="row">
+      <div class="card">
+        <div class="card-body">
+          <div [froalaView]="page.text"></div>
+        </div>
+      </div>
   </div>
 </div>
