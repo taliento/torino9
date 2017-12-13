@@ -1,8 +1,7 @@
-<nav class="navbar navbar-expand-lg navbar-light justify-content-between"><!-- fixed-top  navbar-expand-md  justify-content-between-->
+<nav class="navbar navbar-fixed-top navbar-light justify-content-between"><!-- fixed-top  navbar-expand-md  justify-content-between-->
 
   <a class="navbar-brand" [routerLink]="[brandMenu.path]" (click)="isCollapsed = true">
     <img src="assets/images/logo.svg" width="30" height="30" class="d-inline-block align-top" alt="">
-    <span [innerText]="brandMenu.title"></span>
   </a>
 
   <button class="navbar-toggler" type="button" (click)="isCollapsed = !isCollapsed">
@@ -12,17 +11,17 @@
   <div class="navbar-collapse" [ngClass]="{collapse: isCollapsed}">
 
     <!--static routes -->
-    <ul class="navbar-nav mr-auto">
+    <ul class="navbar-nav">
       <li *ngFor="let menuItem of menuItems; index as i;" class="nav-item">
         <a *ngIf="!menuItem.dropdown" class="nav-link" [routerLink]="[menuItem.path]" [routerLinkActive]="['active']" (click)="isCollapsed = true" [innerText]="menuItem.title"></a>
-        <ul *ngIf="menuItem.dropdown" class="navbar-nav">
-          <li ngbDropdown class="d-inline-block" placement="bottom-right" ngbDropdown>
+        <div *ngIf="menuItem.dropdown">
+          <li ngbDropdown class="d-inline-block" placement="bottom-left" ngbDropdown>
             <a class="btn nav-link" role="button" attr.id="dropdown{{i}}" ngbDropdownToggle [innerText]="menuItem.title"></a>
             <div ngbDropdownMenu attr.aria-labelledby="dropdown{{i}}">
               <a *ngFor="let leaf of menuItem.childs" class="dropdown-item" [routerLink]="[leaf.path,leaf.param]" [routerLinkActive]="['active']" (click)="isCollapsed = true" [innerText]="leaf.title"></a>
             </div>
           </li>
-        </ul>
+        </div>
       </li>
     </ul>
 
@@ -33,7 +32,7 @@
 
     <!-- user button -->
     <ul class="navbar-nav">
-      <li ngbDropdown class="d-inline-block" placement="bottom-right" *ngIf="user">
+      <li ngbDropdown class="d-inline-block" placement="bottom-left" *ngIf="user">
         <button class="btn btn-outline-dark" role="button" id="dropdownBasic1" ngbDropdownToggle>
           <span [innerText]="user.username"></span>
           <img *ngIf="user.imgPath" [src]="user.imgPath" width="30" height="30" class="rounded-circle" alt="">

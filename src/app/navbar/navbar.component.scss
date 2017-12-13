@@ -1,5 +1,7 @@
 @import "../../assets/scss/variables";
 
 .navbar {
+  max-width: 20rem;
   background-color: $primary;
+  float: right;
 }
