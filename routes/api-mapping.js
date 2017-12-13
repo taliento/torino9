@@ -1,3 +1,6 @@
+/* jshint node: true */
+'use strict';
+
 const apiMapping = [
   {
     endpoint: '/api/users',
