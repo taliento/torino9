@@ -7,36 +7,56 @@
   </div>
   <br>
   <div class="card">
-    <div class="card-header">Contatti</div>
+    <div class="card-header">
+      <ul class="nav nav-pills card-header-pills">
+        <li class="nav-item">
+          <a class="nav-link disabled">Contatti</a>
+        </li>
+        <li class="nav-item">
+          <button class="btn btn-outline-success" (click)="save()">Salva</button>
+        </li>
+      </ul>
+    </div>
     <div class="card-body">
-      <div class="form-group">
-        <label for="insertTitle">Titolo</label>
-        <input type="text" class="form-control" id="insertTitle" name="title" placeholder="Titolo" [(ngModel)]="contactPage.title">
-      </div>
-      <div class="form-group">
-        <label for="insertSubTitle">Sottotitolo</label>
-        <input type="text" class="form-control" id="insertSubTitle" name="subtitle" placeholder="Sottotitolo" [(ngModel)]="contactPage.subtitle">
-      </div>
 
-      <br>
-      <div class="row">
-        <div class="col-md-12">
-          <app-contact-list #contactList [contacts]="contactPage.contacts"></app-contact-list>
-        </div>
-      </div>
+      <ngb-tabset>
+        <ngb-tab title="Header">
+          <ng-template ngbTabContent>
+            <br>
+            <form>
+              <div class="form-group">
+                <label for="insertTitle">Titolo</label>
+                <input type="text" class="form-control" id="insertTitle" name="title" placeholder="Titolo" [(ngModel)]="contactPage.title">
+              </div>
+              <div class="form-group">
+                <label for="insertSubTitle">Sottotitolo</label>
+                <input type="text" class="form-control" id="insertSubTitle" name="subtitle" placeholder="Sottotitolo" [(ngModel)]="contactPage.subtitle">
+              </div>
+            </form>
+          </ng-template>
+        </ngb-tab>
+        <ngb-tab title="Contatti">
+          <ng-template ngbTabContent>
+            <br>
+            <div class="row">
+              <div class="col-md-12">
+                <app-contact-list #contactList [contacts]="contactPage.contacts"></app-contact-list>
+              </div>
+            </div>
+          </ng-template>
+        </ngb-tab>
+        <ngb-tab title="Mappa">
+          <ng-template ngbTabContent>
+            <br>
+            <div class="row">
+              <div class="col-md-12">
+                <app-contact-map [mapTitle]="contactPage.mapTitle" [mapLat]="contactPage.mapLat" [mapLng]="contactPage.mapLng" (mapCenter)="mapCenter($event)"></app-contact-map>
+              </div>
+            </div>
+          </ng-template>
+        </ngb-tab>
+      </ngb-tabset>
 
-      <br>
-      <div class="row">
-        <div class="col-md-12">
-          <app-contact-map [mapTitle]="contactPage.mapTitle" [mapLat]="contactPage.mapLat" [mapLng]="contactPage.mapLng" (mapCenter)="mapCenter($event)"></app-contact-map>
-        </div>
-      </div>
-
-
-      <br>
-      <div class="row">
-        <button class="btn btn-outline-success" (click)="save()">Salva tutto</button>
-      </div>
     </div>
   </div>
 </div>

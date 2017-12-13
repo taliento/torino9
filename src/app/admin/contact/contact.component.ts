@@ -31,7 +31,10 @@ export class ContactComponent implements OnInit {
   }
 
   save() {
-    this.contactPage.contacts = this.contactList.getContacts();
+    if(this.contactList) {
+      this.contactPage.contacts = this.contactList.getContacts();
+    }
+
     this.contactPageService.insert(this.contactPage)
     .subscribe(
       data => {
