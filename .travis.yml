@@ -6,6 +6,5 @@ services: mongodb
 
 before_script:
   - node server.js &
-# script:
-#   - node server.js &
-#   - npm test
+script:
+  - npm test
