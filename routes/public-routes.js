@@ -1,11 +1,12 @@
 const publicRoutes = [
   //public app routes
   '/login',
+  '/mainlayout/home',
   '/mainlayout/news/list',
   '/mainlayout/calendar',
   '/mainlayout/about',
   '/mainlayout/contact',
-  '/mainlayout/admin',
+  '/mainlayout/admin/tabs',
   /^\/mainlayout\/page\/.*/,
   /^\/mainlayout\/branca\/.*/,
 
