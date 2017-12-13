@@ -3,5 +3,5 @@
   "description": "torino9 site",
   "repository": "https://github.com/taliento/torino9",
   "logo": "https://torino9appit.herokuapp.com/assets/images/logo.svg",
-  "keywords": ["node", "express", "angular-cli", "angular4", "bootstrap"]
+  "keywords": ["node", "express", "angular-cli", "angular", "bootstrap"]
 }

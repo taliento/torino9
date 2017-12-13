@@ -15,7 +15,7 @@
         <ngb-pagination [pageSize]="pageSize" [collectionSize]="collectionSize" [(page)]="page" [rotate]="true" (pageChange)="loadPage($event)"></ngb-pagination>
       </div>
       <div *ngIf="collectionSize === 0">
-        Nessuna news nel {{ date.year-date.month | date: 'yyyy-MMMM' }}
+        Nessuna news nel mese corrente.
       </div>
     </div>
     <aside class="col-sm-3 ml-sm-auto blog-sidebar">
