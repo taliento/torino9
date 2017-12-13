@@ -472,7 +472,7 @@ describe('express rest api server', function() {
     });
 
     it('count news', function(done) {
-      superagent.get(api + '/news/count')
+      superagent.get(api + '/news/count/all')
         .end(function(e, res) {
           expect(e).to.eql(null);
           expect(typeof res.body).to.eql('object');
@@ -482,7 +482,7 @@ describe('express rest api server', function() {
     });
 
     it('retrieves paged news', function(done) {
-      superagent.get(api + '/news/paged/1/0/1')
+      superagent.get(api + '/news/paged/1/0/1/all')
         .end(function(e, res) {
           expect(e).to.eql(null);
           expect(res.body.length).to.be.above(0);
