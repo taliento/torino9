@@ -6,7 +6,7 @@
     "ng": "ng",
     "start": "nf start",
     "build": "ng build",
-    "test": "./node_modules/mocha/bin/mocha && ./node_modules/.bin/karma start",
+    "test": "mocha && ./node_modules/.bin/karma start",
     "lint": "ng lint",
     "postinstall": "ng build --prod"
   },
@@ -54,6 +54,7 @@
     "throng": "^4.0.0",
     "typescript": "~2.4.2",
     "unzip": "^0.1.11",
+    "mocha": "^4.0.1",
     "zone.js": "^0.8.14"
   },
   "devDependencies": {
@@ -71,8 +72,6 @@
     "karma-coverage-istanbul-reporter": "^1.2.1",
     "karma-jasmine": "~1.1.0",
     "karma-jasmine-html-reporter": "^0.2.2",
-    "mocha": "^4.0.1",
-    "mocha-lcov-reporter": "^1.3.0",
     "protractor": "~5.1.2",
     "superagent": "^3.6.3",
     "ts-node": "~3.0.4",
