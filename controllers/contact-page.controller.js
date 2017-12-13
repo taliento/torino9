@@ -13,7 +13,7 @@ router.delete('/:_id', _delete);//test only
 module.exports = router;
 
 function insert(req, res) {
-  contactService.create(req.body)
+  contactService.create(req.app.locals.db,req.body)
   .then(function(contact) {
     res.send(contact);
   })
@@ -23,7 +23,7 @@ function insert(req, res) {
 }
 
 function get(req, res) {
-  contactService.get()
+  contactService.get(req.app.locals.db)
   .then(function(contact) {
     res.send(contact);
   })
@@ -33,7 +33,7 @@ function get(req, res) {
 }
 
 function getById(req, res) {
-  contactService.getById(req.params._id)
+  contactService.getById(req.app.locals.db,req.params._id)
   .then(function(contact) {
     res.send(contact);
   })
@@ -43,7 +43,7 @@ function getById(req, res) {
 }
 
 function _delete(req, res) {
-  contactService.delete(req.params._id)
+  contactService.delete(req.app.locals.db,req.params._id)
   .then(function() {
     res.sendStatus(200);
   })

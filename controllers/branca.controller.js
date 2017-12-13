@@ -16,7 +16,7 @@ router.delete('/:_id', _delete);
 module.exports = router;
 
 function getAll(req, res) {
-  brancaService.getAll()
+  brancaService.getAll(req.app.locals.db)
   .then(function(doc) {
     res.send(doc);
   })
@@ -26,7 +26,7 @@ function getAll(req, res) {
 }
 
 function get(req, res) {
-  brancaService.get(req.params._id)
+  brancaService.get(req.app.locals.db,req.params._id)
   .then(function(doc) {
     res.send(doc);
   })
@@ -36,7 +36,7 @@ function get(req, res) {
 }
 
 function insert(req, res) {
-  brancaService.create(req.body)
+  brancaService.create(req.app.locals.db,req.body)
   .then(function(doc) {
     res.send(doc);
   })
@@ -65,7 +65,7 @@ function insertUpload(req, res) {
 }
 
 function _delete(req, res) {
-  brancaService.delete(req.params._id)
+  brancaService.delete(req.app.locals.db,req.params._id)
   .then(function() {
     res.sendStatus(200);
   })

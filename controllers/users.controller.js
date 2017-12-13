@@ -22,7 +22,7 @@ router.delete('/:_id', _delete);
 module.exports = router;
 
 function authenticate(req, res) {
-  userService.authenticate(req.body.username, req.body.password)
+  userService.authenticate(req.app.locals.db,req.body.username, req.body.password)
   .then(function(user) {
     if (user) {
       // authentication successful
@@ -38,7 +38,7 @@ function authenticate(req, res) {
 }
 
 function register(req, res) {
-  userService.create(req.body)
+  userService.create(req.app.locals.db,req.body)
   .then(function(doc) {
     res.send(doc);
   })
@@ -68,7 +68,7 @@ function insertUpload(req, res) {
 }
 
 function insertTest(req, res) {
-  userService.create(req.body)
+  userService.create(req.app.locals.db,req.body)
   .then(function(doc) {
     res.send(doc);
   })
@@ -78,7 +78,7 @@ function insertTest(req, res) {
 }
 
 function getAll(req, res) {
-  userService.getAll()
+  userService.getAll(req.app.locals.db)
   .then(function(users) {
     res.send(users);
   })
@@ -88,7 +88,7 @@ function getAll(req, res) {
 }
 
 function getById(req, res) {
-  userService.getById(req.params._id)
+  userService.getById(req.app.locals.db,req.params._id)
   .then(function(user) {
     if (user) {
       res.send(user);
@@ -102,7 +102,7 @@ function getById(req, res) {
 }
 
 function update(req, res) {
-  userService.update(req.params._id, req.body)
+  userService.update(req.app.locals.db,req.params._id, req.body)
   .then(function() {
     res.sendStatus(200);
   })
@@ -136,7 +136,7 @@ function updateUpload(req, res) {
 }
 
 function _delete(req, res) {
-  userService.delete(req.params._id)
+  userService.delete(req.app.locals.db,req.params._id)
   .then(function() {
     res.sendStatus(200);
   })
@@ -146,7 +146,7 @@ function _delete(req, res) {
 }
 
 function count(req, res) {
-  userService.count()
+  userService.count(req.app.locals.db)
   .then(function(_count) {
     res.send(_count);
   })
@@ -156,7 +156,7 @@ function count(req, res) {
 }
 
 function getPaged(req, res) {
-  userService.getPaged(req.params.limit, req.params.page, req.params.size)
+  userService.getPaged(req.app.locals.db,req.params.limit, req.params.page, req.params.size)
   .then(function(_user) {
     res.send(_user);
   })

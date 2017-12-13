@@ -1,7 +1,8 @@
+/* jshint node: true */
+'use strict';
+
 const Q = require('q');
 const mongo = require('mongoskin');
-const db = mongo.db(process.env.MONGODB_URI, { native_parser: true });
-db.bind('page');
 
 var service = {};
 service.get = get;
@@ -12,7 +13,7 @@ service.delete = _delete;
 
 module.exports = service;
 
-function get() {
+function get(db) {
   var deferred = Q.defer();
   db.page.find().toArray(function(err, pages) {
     if (err) deferred.reject(err.name + ': ' + err.message);
@@ -22,7 +23,7 @@ function get() {
 }
 
 
-function getById(_id) {
+function getById(db,_id) {
   var deferred = Q.defer();
   db.page.findById(_id, function(err, page) {
     if (err) deferred.reject(err.name + ': ' + err.message);
@@ -35,7 +36,7 @@ function getById(_id) {
   return deferred.promise;
 }
 
-function create(page) {
+function create(db,page) {
   var deferred = Q.defer();
   page.insertDate = new Date();
   db.page.insert(
@@ -47,8 +48,8 @@ function create(page) {
     return deferred.promise;
   }
 
-function update(_id, page) {
-  
+function update(db,_id, page) {
+
   var deferred = Q.defer();
   // fields to update
   var set = {
@@ -74,7 +75,7 @@ function update(_id, page) {
     return deferred.promise;
   }
 
-  function _delete(_id) {
+  function _delete(db,_id) {
     var deferred = Q.defer();
     db.page.remove(
       { _id: mongo.helper.toObjectID(_id) },

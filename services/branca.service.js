@@ -1,7 +1,9 @@
+/* jshint node: true */
+'use strict';
+
 const Q = require('q');
 const mongo = require('mongoskin');
-const db = mongo.db(process.env.MONGODB_URI, { native_parser: true });
-db.bind('branca');
+
 
 var service = {};
 service.get = get;
@@ -10,8 +12,9 @@ service.create = create;
 service.delete = _delete;
 module.exports = service;
 
-function getAll() {
+function getAll(db) {
   var deferred = Q.defer();
+
   db.branca.find().toArray(function(err, branca) {
     if (err) deferred.reject(err.name + ': ' + err.message);
     deferred.resolve(branca);
@@ -19,8 +22,9 @@ function getAll() {
   return deferred.promise;
 }
 
-function get(_id) {
+function get(db,_id) {
   var deferred = Q.defer();
+
   db.branca.findById(_id, function(err, branca) {
     if (err) deferred.reject(err.name + ': ' + err.message);
     if (branca == null) {
@@ -32,16 +36,16 @@ function get(_id) {
   return deferred.promise;
 }
 
-function create(branca) {
+function create(db,branca) {
   var deferred = Q.defer();
   if (branca._id) {
-    return update(branca._id, branca);
+    return update(db,branca._id, branca);
   }
   deferred.reject('no id found');
   return deferred.promise;
 }
 
-function update(_id, branca) {
+function update(db,_id, branca) {
   var deferred = Q.defer();
   // fields to update
   var set = {
@@ -51,6 +55,7 @@ function update(_id, branca) {
     imgPath: branca.imgPath,
     updateDate: new Date()
   };
+
   db.branca.update(
     { _id: mongo.helper.toObjectID(_id) },
     { $set: set },
@@ -62,8 +67,9 @@ function update(_id, branca) {
     return deferred.promise;
   }
 
-  function _delete(_id) {
+  function _delete(db,_id) {
     var deferred = Q.defer();
+
     db.branca.remove(
       { _id: mongo.helper.toObjectID(_id) },
       function(err) {

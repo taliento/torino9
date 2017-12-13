@@ -1,8 +1,9 @@
+/* jshint node: true */
+'use strict';
+
+const moment = require('moment');
 const Q = require('q');
 const mongo = require('mongoskin');
-const moment = require('moment');
-const db = mongo.db(process.env.MONGODB_URI, { native_parser: true });
-db.bind('news');
 
 let service = {};
 service.getAll = getAll;
@@ -15,7 +16,7 @@ service.count = count;
 service.archivesDate = archivesDate;
 module.exports = service;
 
-function getAll() {
+function getAll(db) {
   let deferred = Q.defer();
   db.news.find().toArray(function(err, newsList) {
     if (err) deferred.reject(err.name + ': ' + err.message);
@@ -24,7 +25,7 @@ function getAll() {
   return deferred.promise;
 }
 
-function count(_date) {
+function count(db,_date) {
   let deferred = Q.defer();
 
   let findParams = {};
@@ -42,7 +43,7 @@ function count(_date) {
   return deferred.promise;
 }
 
-function getPaged(_limit, _page, _size, _date) {
+function getPaged(db,_limit, _page, _size, _date) {
   let deferred = Q.defer();
   let _skip = _page * _limit;
   let findParams = {};
@@ -60,7 +61,7 @@ function getPaged(_limit, _page, _size, _date) {
   return deferred.promise;
 }
 
-function getById(_id) {
+function getById(db,_id) {
   let deferred = Q.defer();
   db.news.findById(_id, function(err, news) {
     if (err) deferred.reject(err.name + ': ' + err.message);
@@ -74,7 +75,7 @@ function getById(_id) {
   return deferred.promise;
 }
 
-function create(newsParam) {
+function create(db,newsParam) {
   let deferred = Q.defer();
   newsParam.insertDate = new Date();
   db.news.insert(
@@ -86,7 +87,7 @@ function create(newsParam) {
   return deferred.promise;
 }
 
-function update(_id, newsParam) {
+function update(db,_id, newsParam) {
   let deferred = Q.defer();
   // fields to update
   let set = {
@@ -105,7 +106,7 @@ function update(_id, newsParam) {
   return deferred.promise;
 }
 
-function _delete(_id) {
+function _delete(db,_id) {
   let deferred = Q.defer();
   db.news.remove(
     { _id: mongo.helper.toObjectID(_id) },
@@ -117,7 +118,7 @@ function _delete(_id) {
 }
 
 
-function archivesDate() {
+function archivesDate(db) {
   let deferred = Q.defer();
   //aggregate dates by month starting from two year ago
   let date = new Date();

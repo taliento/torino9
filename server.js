@@ -12,6 +12,9 @@ app.use(cors());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
+//db connection
+app.locals.db = require('./datasource/mongoskin-datasource');
+
 // file upload with default options
 app.use(fileUpload());
 
@@ -28,17 +31,10 @@ app.use(expressJwt({ secret: process.env.SECRET }).
 unless({ path: require('./routes/public-routes') }));
 
 // routes
-app.use('/api/users', require('./controllers/users.controller'));
-app.use('/api/news', require('./controllers/news.controller'));
-app.use('/api/calendar', require('./controllers/calendar.controller'));
-app.use('/api/carousel', require('./controllers/carousel.controller'));
-app.use('/api/featurette', require('./controllers/featurette.controller'));
-app.use('/api/about', require('./controllers/about-page.controller'));
-app.use('/api/contact', require('./controllers/contact-page.controller'));
-app.use('/api/page', require('./controllers/custom-page.controller'));
-app.use('/api/branca', require('./controllers/branca.controller'));
-app.use('/api/download', require('./controllers/download.controller'));
-app.use('/api/config', require('./controllers/app-config.controller'));
+const routes = require('./routes/api-mapping');
+for(let i = 0 ; i < routes.length ; i++) {
+  app.use(routes[i].endpoint, require(routes[i].controller));
+}
 
 //error handling
 function logErrors(err, req, res, next) {

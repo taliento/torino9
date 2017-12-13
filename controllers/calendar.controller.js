@@ -15,7 +15,7 @@ router.delete('/:_id', _delete);
 module.exports = router;
 
 function insert(req, res) {
-  caledarService.create(req.body)
+  caledarService.create(req.app.locals.db,req.body)
   .then(function(doc) {
     res.send(doc);
   })
@@ -25,7 +25,7 @@ function insert(req, res) {
 }
 
 function getAll(req, res) {
-  caledarService.getAll()
+  caledarService.getAll(req.app.locals.db)
   .then(function(events) {
     res.send(events);
   })
@@ -35,7 +35,7 @@ function getAll(req, res) {
 }
 
 function getMonthEvents(req, res) {
-  caledarService.getMonthEvents(req.params.month, req.params.year)
+  caledarService.getMonthEvents(req.app.locals.db,req.params.month, req.params.year)
   .then(function(events) {
     res.send(events);
   })
@@ -45,7 +45,7 @@ function getMonthEvents(req, res) {
 }
 
 function get(req, res) {
-  caledarService.getById(req.params._id)
+  caledarService.getById(req.app.locals.db,req.params._id)
   .then(function(events) {
     if (events) {
       res.send(events);
@@ -59,7 +59,7 @@ function get(req, res) {
 }
 
 function update(req, res) {
-  caledarService.update(req.params._id, req.body)
+  caledarService.update(req.app.locals.db,req.params._id, req.body)
   .then(function() {
     res.sendStatus(200);
   })
@@ -69,7 +69,7 @@ function update(req, res) {
 }
 
 function _delete(req, res) {
-  caledarService.delete(req.params._id)
+  caledarService.delete(req.app.locals.db,req.params._id)
   .then(function() {
     res.sendStatus(200);
   })

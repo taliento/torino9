@@ -1,7 +1,8 @@
+/* jshint node: true */
+'use strict';
+
 const Q = require('q');
 const mongo = require('mongoskin');
-const db = mongo.db(process.env.MONGODB_URI, { native_parser: true });
-db.bind('contact');
 
 var service = {};
 service.get = get;
@@ -10,7 +11,7 @@ service.create = create;
 service.delete = _delete;
 module.exports = service;
 
-function get() {
+function get(db) {
   var deferred = Q.defer();
   db.contact.findOne({},function(err, contact) {
     if (err) deferred.reject(err.name + ': ' + err.message);
@@ -23,7 +24,7 @@ function get() {
   return deferred.promise;
 }
 
-function getById(_id) {
+function getById(db,_id) {
   var deferred = Q.defer();
   db.contact.findById(_id, function(err, contact) {
     if (err) deferred.reject(err.name + ': ' + err.message);
@@ -36,10 +37,10 @@ function getById(_id) {
   return deferred.promise;
 }
 
-function create(contact) {
+function create(db,contact) {
   var deferred = Q.defer();
   if (contact._id) {
-    return update(contact._id, contact);
+    return update(db,contact._id, contact);
   }
   contact.insertDate = new Date();
   db.contact.insert(
@@ -51,7 +52,7 @@ function create(contact) {
     return deferred.promise;
   }
 
-  function update(_id, contact) {
+  function update(db,_id, contact) {
     var deferred = Q.defer();
     // fields to update
     var set = {
@@ -74,7 +75,7 @@ function create(contact) {
       return deferred.promise;
     }
 
-    function _delete(_id) {
+    function _delete(db,_id) {
       var deferred = Q.defer();
       db.contact.remove(
         { _id: mongo.helper.toObjectID(_id) },

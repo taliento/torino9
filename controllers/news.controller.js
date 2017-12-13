@@ -17,7 +17,7 @@ router.get('/archivesDate',archivesDate);
 module.exports = router;
 
 function insert(req, res) {
-  newsService.create(req.body)
+  newsService.create(req.app.locals.db,req.body)
   .then(function(doc) {
     res.send(doc);
   })
@@ -27,7 +27,7 @@ function insert(req, res) {
 }
 
 function getAll(req, res) {
-  newsService.getAll()
+  newsService.getAll(req.app.locals.db)
   .then(function(_news) {
     res.send(_news);
   })
@@ -37,7 +37,7 @@ function getAll(req, res) {
 }
 
 function archivesDate(req, res) {
-  newsService.archivesDate()
+  newsService.archivesDate(req.app.locals.db)
   .then(function(dates) {
     res.send(dates);
   })
@@ -47,7 +47,7 @@ function archivesDate(req, res) {
 }
 
 function count(req, res) {
-  newsService.count(req.params.date)
+  newsService.count(req.app.locals.db,req.params.date)
   .then(function(_count) {
     res.send(_count);
   })
@@ -57,7 +57,7 @@ function count(req, res) {
 }
 
 function getPaged(req, res) {
-  newsService.getPaged(req.params.limit, req.params.page, req.params.size, req.params.date)
+  newsService.getPaged(req.app.locals.db,req.params.limit, req.params.page, req.params.size, req.params.date)
   .then(function(_news) {
     res.send(_news);
   })
@@ -67,7 +67,7 @@ function getPaged(req, res) {
 }
 
 function get(req, res) {
-  newsService.getById(req.params._id)
+  newsService.getById(req.app.locals.db,req.params._id)
   .then(function(news) {
     if (news) {
       res.send(news);
@@ -81,7 +81,7 @@ function get(req, res) {
 }
 
 function update(req, res) {
-  newsService.update(req.params._id, req.body)
+  newsService.update(req.app.locals.db,req.params._id, req.body)
   .then(function() {
     res.sendStatus(200);
   })
@@ -91,7 +91,7 @@ function update(req, res) {
 }
 
 function _delete(req, res) {
-  newsService.delete(req.params._id)
+  newsService.delete(req.app.locals.db,req.params._id)
   .then(function() {
     res.sendStatus(200);
   })

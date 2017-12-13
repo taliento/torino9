@@ -12,7 +12,7 @@ router.delete('/:_id', _delete);//test only
 module.exports = router;
 
 function insert(req, res) {
-  appConfigService.create(req.body)
+  appConfigService.create(req.app.locals.db,req.body)
   .then(function(doc) {
     res.send(doc);
   })
@@ -22,7 +22,7 @@ function insert(req, res) {
 }
 
 function get(req, res) {
-  appConfigService.get()
+  appConfigService.get(req.app.locals.db)
   .then(function(doc) {
     res.send(doc);
   })
@@ -32,7 +32,7 @@ function get(req, res) {
 }
 
 function _delete(req, res) {
-  appConfigService.delete(req.params._id)
+  appConfigService.delete(req.app.locals.db,req.params._id)
   .then(function() {
     res.sendStatus(200);
   })

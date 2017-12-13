@@ -19,7 +19,7 @@ router.delete('/:_id', _delete);
 module.exports = router;
 
 function insert(req, res) {
-  pageService.create(req.body)
+  pageService.create(req.app.locals.db,req.body)
   .then(function(page) {
     res.send(page);
   })
@@ -48,7 +48,7 @@ function insertUpload(req, res) {
 }
 
 function update(req, res) {
-  pageService.update(req.params._id, req.body)
+  pageService.update(req.app.locals.db,req.params._id, req.body)
   .then(function() {
     res.sendStatus(200);
   })
@@ -78,7 +78,7 @@ function updateUpload(req, res) {
 }
 
 function get(req, res) {
-  pageService.get()
+  pageService.get(req.app.locals.db)
   .then(function(pages) {
     res.send(pages);
   })
@@ -88,7 +88,7 @@ function get(req, res) {
 }
 
 function getById(req, res) {
-  pageService.getById(req.params._id)
+  pageService.getById(req.app.locals.db,req.params._id)
   .then(function(page) {
     res.send(page);
   })
@@ -98,7 +98,7 @@ function getById(req, res) {
 }
 
 function _delete(req, res) {
-  pageService.delete(req.params._id)
+  pageService.delete(req.app.locals.db,req.params._id)
   .then(function() {
     res.sendStatus(200);
   })

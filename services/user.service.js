@@ -1,10 +1,11 @@
+/* jshint node: true */
+'use strict';
+
+const Q = require('q');
+const mongo = require('mongoskin');
 const _ = require('lodash');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
-const Q = require('q');
-const mongo = require('mongoskin');
-const db = mongo.db(process.env.MONGODB_URI, { native_parser: true });
-db.bind('users');
 
 var service = {};
 
@@ -20,7 +21,7 @@ service.count = count;
 
 module.exports = service;
 
-function authenticate(username, password) {
+function authenticate(db,username, password) {
     var deferred = Q.defer();
 
     db.users.findOne({ username: username }, function(err, user) {
@@ -45,7 +46,7 @@ function authenticate(username, password) {
     return deferred.promise;
 }
 
-function getAll() {
+function getAll(db) {
     var deferred = Q.defer();
 
     db.users.find().sort({username: 1}).toArray(function(err, users) {
@@ -62,7 +63,7 @@ function getAll() {
     return deferred.promise;
 }
 
-function count() {
+function count(db) {
 
   var deferred = Q.defer();
 
@@ -74,7 +75,7 @@ function count() {
   return deferred.promise;
 }
 
-function getPaged(_limit, _page, _size) {
+function getPaged(db,_limit, _page, _size) {
 
   var deferred = Q.defer();
 
@@ -88,7 +89,7 @@ function getPaged(_limit, _page, _size) {
   return deferred.promise;
 }
 
-function getById(_id) {
+function getById(db,_id) {
     var deferred = Q.defer();
 
     db.users.findById(_id, function(err, user) {
@@ -106,7 +107,7 @@ function getById(_id) {
     return deferred.promise;
 }
 
-function create(userParam) {
+function create(db,userParam) {
     var deferred = Q.defer();
 
     // validation
@@ -142,7 +143,7 @@ function create(userParam) {
     return deferred.promise;
 }
 
-function update(_id, userParam) {
+function update(db,_id, userParam) {
     var deferred = Q.defer();
 
     if (!userParam || !userParam.username) {
@@ -166,7 +167,7 @@ function update(_id, userParam) {
 
                     if (user) {
                         // username already exists
-                        deferred.reject('Username "' + req.body.username + '" is already taken');
+                        deferred.reject('Username "' + userParam.username + '" is already taken');
                     } else {
                         updateUser();
                     }
@@ -204,7 +205,7 @@ function update(_id, userParam) {
     return deferred.promise;
 }
 
-function _delete(_id) {
+function _delete(db,_id) {
     var deferred = Q.defer();
 
     db.users.remove(

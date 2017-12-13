@@ -1,9 +1,10 @@
+/* jshint node: true */
+'use strict';
+
 const Q = require('q');
 const mongo = require('mongoskin');
-const db = mongo.db(process.env.MONGODB_URI, { native_parser: true });
-db.bind('about');
 
-var service = {};
+let service = {};
 service.get = get;
 service.getById = getById;
 service.create = create;
@@ -11,8 +12,9 @@ service.delete = _delete;
 
 module.exports = service;
 
-function get() {
-  var deferred = Q.defer();
+function get(db) {
+  let deferred = Q.defer();
+  
   db.about.findOne({},function(err, about) {
     if (err) deferred.reject(err.name + ': ' + err.message);
     if (about == null) {
@@ -24,8 +26,9 @@ function get() {
   return deferred.promise;
 }
 
-function getById(_id) {
-  var deferred = Q.defer();
+function getById(db,_id) {
+  let deferred = Q.defer();
+
   db.about.findById(_id, function(err, about) {
     if (err) deferred.reject(err.name + ': ' + err.message);
     if (about == null) {
@@ -37,12 +40,13 @@ function getById(_id) {
   return deferred.promise;
 }
 
-function create(about) {
-  var deferred = Q.defer();
+function create(db,about) {
+  let deferred = Q.defer();
   if (about._id) {
-    return update(about._id, about);
+    return update(db,about._id, about);
   }
   about.insertDate = new Date();
+
   db.about.insert(
     about,
     function(err, doc) {
@@ -52,16 +56,17 @@ function create(about) {
     return deferred.promise;
 }
 
-function update(_id, about) {
-  var deferred = Q.defer();
+function update(db,_id, about) {
+  let deferred = Q.defer();
   // fields to update
-  var set = {
+  let set = {
     title: about.title,
     subtitle: about.subtitle,
     text: about.text,
     links: about.links,
     updateDate: new Date()
   };
+
   db.about.update(
     { _id: mongo.helper.toObjectID(_id) },
     { $set: set },
@@ -72,8 +77,9 @@ function update(_id, about) {
     return deferred.promise;
 }
 
-function _delete(_id) {
-  var deferred = Q.defer();
+function _delete(db,_id) {
+  let deferred = Q.defer();
+
   db.about.remove(
     { _id: mongo.helper.toObjectID(_id) },
     function(err) {

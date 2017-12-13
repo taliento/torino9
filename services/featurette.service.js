@@ -1,7 +1,8 @@
+/* jshint node: true */
+'use strict';
+
 const Q = require('q');
 const mongo = require('mongoskin');
-const db = mongo.db(process.env.MONGODB_URI, { native_parser: true });
-db.bind('featurette');
 
 var service = {};
 service.getAll = getAll;
@@ -13,7 +14,7 @@ service.getPaged = getPaged;
 service.count = count;
 module.exports = service;
 
-function getAll() {
+function getAll(db) {
   var deferred = Q.defer();
   db.featurette.find().toArray(function(err, featuretteList) {
     if (err) deferred.reject(err.name + ': ' + err.message);
@@ -22,7 +23,7 @@ function getAll() {
   return deferred.promise;
 }
 
-function count() {
+function count(db) {
   var deferred = Q.defer();
   db.featurette.count({}, function(err, _count) {
     if (err) deferred.reject(err.name + ': ' + err.message);
@@ -31,7 +32,7 @@ function count() {
   return deferred.promise;
 }
 
-function getPaged(_limit, _page, _size) {
+function getPaged(db,_limit, _page, _size) {
   var deferred = Q.defer();
   var _skip = _page * _limit;
   db.featurette.find({}, null, {limit: _limit * 1, skip: _skip, sort: [['insertDate', -1]]}).toArray(function(err, featuretteList) {
@@ -41,7 +42,7 @@ function getPaged(_limit, _page, _size) {
   return deferred.promise;
 }
 
-function getById(_id) {
+function getById(db,_id) {
   var deferred = Q.defer();
   db.featurette.findById(_id, function(err, featurette) {
     if (err) deferred.reject(err.name + ': ' + err.message);
@@ -55,7 +56,7 @@ function getById(_id) {
   return deferred.promise;
 }
 
-function create(featuretteParam) {
+function create(db,featuretteParam) {
   var deferred = Q.defer();
   featuretteParam.insertDate = new Date();
   db.featurette.insert(
@@ -67,7 +68,7 @@ function create(featuretteParam) {
     return deferred.promise;
 }
 
-function update(_id, featuretteParam) {
+function update(db,_id, featuretteParam) {
   var deferred = Q.defer();
   // fields to update
   var set = {
@@ -87,7 +88,7 @@ function update(_id, featuretteParam) {
   return deferred.promise;
 }
 
-function _delete(_id) {
+function _delete(db,_id) {
   var deferred = Q.defer();
   db.featurette.remove(
     { _id: mongo.helper.toObjectID(_id) },

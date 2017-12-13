@@ -20,7 +20,7 @@ router.delete('/:_id', _delete);
 module.exports = router;
 
 function insert(req, res) {
-  featuretteService.create(req.body)
+  featuretteService.create(req.app.locals.db,req.body)
   .then(function(doc) {
     res.send(doc);
   })
@@ -49,7 +49,7 @@ function insertUpload(req, res) {
 }
 
 function getAll(req, res) {
-  featuretteService.getAll()
+  featuretteService.getAll(req.app.locals.db)
   .then(function(_featurette) {
     res.send(_featurette);
   })
@@ -59,7 +59,7 @@ function getAll(req, res) {
 }
 
 function count(req, res) {
-  featuretteService.count()
+  featuretteService.count(req.app.locals.db)
   .then(function(_count) {
     res.send(_count);
   })
@@ -69,7 +69,7 @@ function count(req, res) {
 }
 
 function getPaged(req, res) {
-  featuretteService.getPaged(req.params.limit, req.params.page, req.params.size)
+  featuretteService.getPaged(req.app.locals.db,req.params.limit, req.params.page, req.params.size)
   .then(function(_featurette) {
     res.send(_featurette);
   })
@@ -79,7 +79,7 @@ function getPaged(req, res) {
 }
 
 function get(req, res) {
-  featuretteService.getById(req.params._id)
+  featuretteService.getById(req.app.locals.db,req.params._id)
   .then(function(featurette) {
     if (featurette) {
       res.send(featurette);
@@ -93,7 +93,7 @@ function get(req, res) {
 }
 
 function update(req, res) {
-  featuretteService.update(req.params._id, req.body)
+  featuretteService.update(req.app.locals.db,req.params._id, req.body)
   .then(function() {
     res.sendStatus(200);
   })
@@ -123,7 +123,7 @@ function updateUpload(req, res) {
 }
 
 function _delete(req, res) {
-  featuretteService.delete(req.params._id)
+  featuretteService.delete(req.app.locals.db,req.params._id)
   .then(function() {
     res.sendStatus(200);
   })

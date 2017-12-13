@@ -20,7 +20,7 @@ router.delete('/:_id', _delete);
 module.exports = router;
 
 function insert(req, res) {
-  carouselService.create(req.body)
+  carouselService.create(req.app.locals.db,req.body)
   .then(function(doc) {
     res.send(doc);
   })
@@ -49,7 +49,7 @@ function insertUpload(req, res) {
 }
 
 function getAll(req, res) {
-  carouselService.getAll()
+  carouselService.getAll(req.app.locals.db)
   .then(function(_carouselItem) {
     res.send(_carouselItem);
   })
@@ -59,7 +59,7 @@ function getAll(req, res) {
 }
 
 function count(req, res) {
-  carouselService.count()
+  carouselService.count(req.app.locals.db)
   .then(function(_count) {
     res.send(_count);
   })
@@ -69,7 +69,7 @@ function count(req, res) {
 }
 
 function getPaged(req, res) {
-  carouselService.getPaged(req.params.limit, req.params.page, req.params.size)
+  carouselService.getPaged(req.app.locals.db,req.params.limit, req.params.page, req.params.size)
   .then(function(_carouselItem) {
     res.send(_carouselItem);
   })
@@ -79,7 +79,7 @@ function getPaged(req, res) {
 }
 
 function get(req, res) {
-  carouselService.getById(req.params._id)
+  carouselService.getById(req.app.locals.db,req.params._id)
   .then(function(_carouselItem) {
     if (_carouselItem) {
       res.send(_carouselItem);
@@ -93,7 +93,7 @@ function get(req, res) {
 }
 
 function update(req, res) {
-  carouselService.update(req.params._id, req.body)
+  carouselService.update(req.app.locals.db,req.params._id, req.body)
   .then(function() {
     res.sendStatus(200);
   })
@@ -124,7 +124,7 @@ function updateUpload(req, res) {
 }
 
 function _delete(req, res) {
-  carouselService.getById(req.params._id)
+  carouselService.getById(req.app.locals.db,req.params._id)
   .then(function(_carouselItem) {
     if (_carouselItem) {
       uploadService._delete(__dirname + '/..' + _carouselItem.imgPath).then(function() {
@@ -143,7 +143,7 @@ function _delete(req, res) {
 }
 
 function _deleteSlide(req, res) {
-  carouselService.delete(req.params._id)
+  carouselService.delete(req.app.locals.db,req.params._id)
   .then(function() {
     res.sendStatus(200);
   })
