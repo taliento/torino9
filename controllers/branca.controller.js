@@ -1,3 +1,4 @@
+/* jshint node: true */
 'use strict';
 
 const brancaService = require('services/branca.service');

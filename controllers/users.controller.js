@@ -1,3 +1,4 @@
+/* jshint node: true */
 'use strict';
 
 const userService = require('services/user.service');
@@ -51,7 +52,7 @@ function insertUpload(req, res) {
     uploadService.insert(req.files.imgFile).then(function(newImage) {
       imgurService.upload(newImage).then(function(_imgPath) {//upload to imgur
         req.body.imgPath = _imgPath;
-        insert(req, res);
+        register(req, res);
       }).catch(function(err) {
         console.log("imgurService.upload error " + err.message);
         res.status(400).send(err);

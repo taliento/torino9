@@ -1,3 +1,4 @@
+/* jshint node: true */
 'use strict';
 
 const fs = require('fs');
@@ -71,7 +72,7 @@ function uploadAll(file) {
   var deferred = Q.defer();
 
   var filePath = __dirname + '/../public/images.zip';
-  
+
   file.mv(filePath, function(err) {
     if (err) deferred.reject(err.name + ': ' + err.message);
 

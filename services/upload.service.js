@@ -1,3 +1,4 @@
+/* jshint node: true */
 'use strict';
 
 const fileUpload = require('express-fileupload');
@@ -32,11 +33,11 @@ function update(imgFile, imagePath) {
     insert(imgFile).then(function(path) {
       deferred.resolve(path);
     }).catch(function(err) {
-      res.status(400).send(err);
+      deferred.reject(err.name + ': ' + err.message);
     });
   })
   .catch(function(err) {
-    res.status(400).send(err);
+    deferred.reject(err.name + ': ' + err.message);
   });
   return deferred.promise;
 }

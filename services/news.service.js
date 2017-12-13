@@ -32,7 +32,7 @@ function count(_date) {
     let startDate = new Date(_date);
     let endDate = moment(startDate).add(1,'month');
     let plusOneMonth = new Date(endDate.toISOString());
-    findParams = {"insertDate":{ $gte: startDate, $lt: plusOneMonth}}
+    findParams = {"insertDate":{ $gte: startDate, $lt: plusOneMonth}};
   }
 
   db.news.count(findParams, function(err, _count) {
@@ -50,7 +50,7 @@ function getPaged(_limit, _page, _size, _date) {
     let startDate = new Date(_date);
     let endDate = moment(startDate).add(1,'month');
     let plusOneMonth = new Date(endDate.toISOString());
-    findParams = {"insertDate":{ $gte: startDate, $lt: plusOneMonth}}
+    findParams = {"insertDate":{ $gte: startDate, $lt: plusOneMonth}};
   }
 
   db.news.find(findParams, null, {limit: _limit * 1, skip: _skip, sort: [['insertDate', -1]]}).toArray(function(err, newsList) {

@@ -1,3 +1,4 @@
+/* jshint node: true */
 'use strict';
 
 const downloadService = require('services/download.service');

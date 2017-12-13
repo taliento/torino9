@@ -174,7 +174,7 @@ describe('express rest api server', function() {
           expect(e).to.eql(null);
           expect(typeof res.body).to.eql('object');
           expect(res.body.length).to.be.above(0);
-          expect(res.body.map(function(item) {return item._id})).to.contain(id);
+          expect(res.body.map(function(item) {return item._id;})).to.contain(id);
           done();
         });
     });
@@ -184,7 +184,7 @@ describe('express rest api server', function() {
         .end(function(e, res) {
           expect(e).to.eql(null);
           expect(res.body.length).to.be.above(0);
-          expect(res.body.map(function(item) {return item._id})).to.contain(id);
+          expect(res.body.map(function(item) {return item._id;})).to.contain(id);
           done();
         });
     });
@@ -247,7 +247,7 @@ describe('express rest api server', function() {
         .end(function(e, res) {
           expect(e).to.eql(null);
           expect(res.body.length).to.be.above(0);
-          expect(res.body.map(function(item) {return item._id})).to.contain(id);
+          expect(res.body.map(function(item) {return item._id;})).to.contain(id);
           done();
         });
     });
@@ -383,7 +383,7 @@ describe('express rest api server', function() {
         .end(function(e, res) {
           expect(e).to.eql(null);
           expect(res.body.length).to.be.above(0);
-          expect(res.body.map(function(item) {return item._id})).to.contain(id);
+          expect(res.body.map(function(item) {return item._id;})).to.contain(id);
           done();
         });
     });
@@ -466,7 +466,7 @@ describe('express rest api server', function() {
         .end(function(e, res) {
           expect(e).to.eql(null);
           expect(res.body.length).to.be.above(0);
-          expect(res.body.map(function(item) {return item._id})).to.contain(id);
+          expect(res.body.map(function(item) {return item._id;})).to.contain(id);
           done();
         });
     });
@@ -550,7 +550,7 @@ describe('express rest api server', function() {
         .end(function(e, res) {
           expect(e).to.eql(null);
           expect(res.body.length).to.be.above(0);
-          expect(res.body.map(function(item) {return item._id})).to.contain(id);
+          expect(res.body.map(function(item) {return item._id;})).to.contain(id);
           done();
         });
     });
