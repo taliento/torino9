@@ -1,3 +1,6 @@
+/* jshint node: true */
+'use strict';
+
 require('rootpath')();
 const express = require('express');
 const expressJwt = require('express-jwt');
@@ -64,7 +67,7 @@ app.use(logErrors);
 app.use(clientErrorHandler);
 // app.use(errorHandler);
 
-// // application -------------------------------------------------------------
+// application -------------------------------------------------------------
 app.get('*', function(req, res) {
   res.sendFile(distDir + '/index.html'); // load the single view file (angular will handle the page changes on the front-end)
 });

@@ -51,4 +51,3 @@ ng serve
 - [x] upload images to imgur
 - [x] custom pages
 - [ ] sites
-- [ ] code cleanup
