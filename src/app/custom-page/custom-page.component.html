@@ -1,11 +1,17 @@
-<div class="card text-white dt-shadow" *ngIf="page.imgPath">
-  <img class="card-img img-responsive" [src]="page.imgPath">
-  <div class="card-img-overlay">
-    <div class="container">
-      <br>
-      <h3 class="display-3" [innerText]="page.title"></h3>
-      <hr class="my-4">
-      <p [innerText]="page.subtitle"></p>
+<div class="container">
+  <div class="row">
+    <div class="col-md-8 offset-md-2">
+      <div class="card text-white dt-shadow" *ngIf="page.imgPath">
+        <img class="card-img img-responsive" [src]="page.imgPath">
+        <div class="card-img-overlay">
+          <div class="container">
+            <br>
+            <h3 class="display-3" [innerText]="page.title"></h3>
+            <hr class="my-4">
+            <p [innerText]="page.subtitle"></p>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </div>
