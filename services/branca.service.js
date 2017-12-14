@@ -5,7 +5,7 @@ const Q = require('q');
 const mongo = require('mongoskin');
 
 
-var service = {};
+let service = {};
 service.get = get;
 service.getAll = getAll;
 service.create = create;
@@ -13,9 +13,9 @@ service.delete = _delete;
 module.exports = service;
 
 function getAll(db) {
-  var deferred = Q.defer();
+  let deferred = Q.defer();
 
-  db.branca.find().toArray(function(err, branca) {
+  db.branca.find().toArray((err,branca) => {
     if (err) deferred.reject(err.name + ': ' + err.message);
     deferred.resolve(branca);
   });
@@ -23,9 +23,9 @@ function getAll(db) {
 }
 
 function get(db,_id) {
-  var deferred = Q.defer();
+  let deferred = Q.defer();
 
-  db.branca.findById(_id, function(err, branca) {
+  db.branca.findById(_id, (err,branca) => {
     if (err) deferred.reject(err.name + ': ' + err.message);
     if (branca == null) {
       deferred.reject('Not found!');
@@ -37,7 +37,7 @@ function get(db,_id) {
 }
 
 function create(db,branca) {
-  var deferred = Q.defer();
+  let deferred = Q.defer();
   if (branca._id) {
     return update(db,branca._id, branca);
   }
@@ -46,9 +46,9 @@ function create(db,branca) {
 }
 
 function update(db,_id, branca) {
-  var deferred = Q.defer();
+  let deferred = Q.defer();
   // fields to update
-  var set = {
+  let set = {
     title: branca.title,
     subtitle: branca.subtitle,
     text: branca.text,
@@ -60,7 +60,7 @@ function update(db,_id, branca) {
     { _id: mongo.helper.toObjectID(_id) },
     { $set: set },
     {upsert: true},
-    function(err, doc) {
+    (err, doc) => {
       if (err) deferred.reject(err.name + ': ' + err.message);
       deferred.resolve(doc);
     });
@@ -68,11 +68,11 @@ function update(db,_id, branca) {
   }
 
   function _delete(db,_id) {
-    var deferred = Q.defer();
+    let deferred = Q.defer();
 
     db.branca.remove(
       { _id: mongo.helper.toObjectID(_id) },
-      function(err) {
+      (err) => {
         if (err) deferred.reject(err.name + ': ' + err.message);
         deferred.resolve();
       });

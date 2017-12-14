@@ -14,40 +14,40 @@ module.exports = router;
 
 function insert(req, res) {
   aboutService.create(req.app.locals.db, req.body)
-  .then(function(doc) {
+  .then((doc) => {
     res.send(doc);
   })
-  .catch(function(err) {
+  .catch((err) => {
     res.status(400).send(err);
   });
 }
 
 function get(req, res) {
   aboutService.get(req.app.locals.db)
-  .then(function(about) {
+  .then((about) => {
     res.send(about);
   })
-  .catch(function(err) {
+  .catch((err) => {
     res.status(400).send(err);
   });
 }
 
 function getById(req, res) {
   aboutService.getById(req.app.locals.db, req.params._id)
-  .then(function(about) {
+  .then((about) => {
     res.send(about);
   })
-  .catch(function(err) {
+  .catch((err) => {
     res.status(400).send(err);
   });
 }
 
 function _delete(req, res) {
   aboutService.delete(req.app.locals.db, req.params._id)
-  .then(function() {
+  .then(() => {
     res.sendStatus(200);
   })
-  .catch(function(err) {
+  .catch((err) => {
     res.status(400).send(err);
   });
 }

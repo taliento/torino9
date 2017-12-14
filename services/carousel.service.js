@@ -5,7 +5,7 @@ const Q = require('q');
 const mongo = require('mongoskin');
 
 
-var service = {};
+let service = {};
 service.getAll = getAll;
 service.getById = getById;
 service.create = create;
@@ -16,9 +16,9 @@ service.count = count;
 module.exports = service;
 
 function getAll(db) {
-  var deferred = Q.defer();
+  let deferred = Q.defer();
 
-  db.carousel.find().sort({insertDate: -1}).toArray(function(err, carousel) {
+  db.carousel.find().sort({insertDate: -1}).toArray((err, carousel) => {
     if (err) deferred.reject(err.name + ': ' + err.message);
     deferred.resolve(carousel);
   });
@@ -26,9 +26,9 @@ function getAll(db) {
 }
 
 function count(db) {
-  var deferred = Q.defer();
-  
-  db.carousel.count({}, function(err, _count) {
+  let deferred = Q.defer();
+
+  db.carousel.count({}, (err, _count) => {
     if (err) deferred.reject(err.name + ': ' + err.message);
     deferred.resolve({'count': _count});
   });
@@ -36,10 +36,10 @@ function count(db) {
 }
 
 function getPaged(db,_limit, _page, _size) {
-  var deferred = Q.defer();
-  var _skip = _page * _limit;
+  let deferred = Q.defer();
+  let _skip = _page * _limit;
 
-  db.carousel.find({}, null, {limit: _limit * 1, skip: _skip, sort: [['insertDate', -1]]}).toArray(function(err, carousel) {
+  db.carousel.find({}, null, {limit: _limit * 1, skip: _skip, sort: [['insertDate', -1]]}).toArray((err, carousel) => {
     if (err) deferred.reject(err.name + ': ' + err.message);
     deferred.resolve(carousel);
   });
@@ -47,9 +47,9 @@ function getPaged(db,_limit, _page, _size) {
 }
 
 function getById(db,_id) {
-  var deferred = Q.defer();
+  let deferred = Q.defer();
 
-  db.carousel.findById(_id, function(err, carousel) {
+  db.carousel.findById(_id, (err, carousel) => {
     if (err) deferred.reject(err.name + ': ' + err.message);
     if (carousel) {
       deferred.resolve(carousel);
@@ -62,12 +62,12 @@ function getById(db,_id) {
 }
 
 function create(db,carousel) {
-  var deferred = Q.defer();
+  let deferred = Q.defer();
   carousel.insertDate = new Date();
 
   db.carousel.insert(
     carousel,
-    function(err, doc) {
+    (err, doc) => {
       if (err) deferred.reject(err.name + ': ' + err.message);
       deferred.resolve(doc);
     });
@@ -75,9 +75,9 @@ function create(db,carousel) {
 }
 
 function update(db,_id, carousel) {
-  var deferred = Q.defer();
+  let deferred = Q.defer();
   // fields to update
-  var set = {
+  let set = {
     title: carousel.title,
     imgPath: carousel.imgPath,
     text: carousel.text,
@@ -91,7 +91,7 @@ function update(db,_id, carousel) {
   db.carousel.update(
     { _id: mongo.helper.toObjectID(_id) },
     { $set: set },
-    function(err, doc) {
+    (err, doc) => {
       if (err) deferred.reject(err.name + ': ' + err.message);
       deferred.resolve();
     });
@@ -99,11 +99,11 @@ function update(db,_id, carousel) {
 }
 
 function _delete(db,_id) {
-  var deferred = Q.defer();
+  let deferred = Q.defer();
 
   db.carousel.remove(
     { _id: mongo.helper.toObjectID(_id) },
-    function(err) {
+    (err) => {
       if (err) deferred.reject(err.name + ': ' + err.message);
       deferred.resolve();
     });

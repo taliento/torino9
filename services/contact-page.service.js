@@ -4,7 +4,7 @@
 const Q = require('q');
 const mongo = require('mongoskin');
 
-var service = {};
+let service = {};
 service.get = get;
 service.getById = getById;
 service.create = create;
@@ -12,8 +12,8 @@ service.delete = _delete;
 module.exports = service;
 
 function get(db) {
-  var deferred = Q.defer();
-  db.contact.findOne({},function(err, contact) {
+  let deferred = Q.defer();
+  db.contact.findOne({},(err, contact) => {
     if (err) deferred.reject(err.name + ': ' + err.message);
     if (contact == null) {
       deferred.resolve();
@@ -25,8 +25,8 @@ function get(db) {
 }
 
 function getById(db,_id) {
-  var deferred = Q.defer();
-  db.contact.findById(_id, function(err, contact) {
+  let deferred = Q.defer();
+  db.contact.findById(_id, (err, contact) => {
     if (err) deferred.reject(err.name + ': ' + err.message);
     if (contact == null) {
       deferred.resolve();
@@ -38,14 +38,14 @@ function getById(db,_id) {
 }
 
 function create(db,contact) {
-  var deferred = Q.defer();
+  let deferred = Q.defer();
   if (contact._id) {
     return update(db,contact._id, contact);
   }
   contact.insertDate = new Date();
   db.contact.insert(
     contact,
-    function(err, doc) {
+    (err, doc) => {
       if (err) deferred.reject(err.name + ': ' + err.message);
       deferred.resolve(doc);
     });
@@ -53,9 +53,9 @@ function create(db,contact) {
   }
 
   function update(db,_id, contact) {
-    var deferred = Q.defer();
+    let deferred = Q.defer();
     // fields to update
-    var set = {
+    let set = {
       title: contact.title,
       subtitle: contact.subtitle,
       text: contact.text,
@@ -68,7 +68,7 @@ function create(db,contact) {
     db.contact.update(
       { _id: mongo.helper.toObjectID(_id) },
       { $set: set },
-      function(err, doc) {
+      (err, doc) => {
         if (err) deferred.reject(err.name + ': ' + err.message);
         deferred.resolve(doc);
       });
@@ -76,10 +76,10 @@ function create(db,contact) {
     }
 
     function _delete(db,_id) {
-      var deferred = Q.defer();
+      let deferred = Q.defer();
       db.contact.remove(
         { _id: mongo.helper.toObjectID(_id) },
-        function(err) {
+        (err) => {
           if (err) deferred.reject(err.name + ': ' + err.message);
 
           deferred.resolve();

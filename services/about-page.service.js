@@ -14,8 +14,8 @@ module.exports = service;
 
 function get(db) {
   let deferred = Q.defer();
-  
-  db.about.findOne({},function(err, about) {
+
+  db.about.findOne({},(err,about) => {
     if (err) deferred.reject(err.name + ': ' + err.message);
     if (about == null) {
       deferred.resolve();
@@ -29,7 +29,7 @@ function get(db) {
 function getById(db,_id) {
   let deferred = Q.defer();
 
-  db.about.findById(_id, function(err, about) {
+  db.about.findById(_id, (err,about) => {
     if (err) deferred.reject(err.name + ': ' + err.message);
     if (about == null) {
       deferred.resolve();
@@ -47,9 +47,7 @@ function create(db,about) {
   }
   about.insertDate = new Date();
 
-  db.about.insert(
-    about,
-    function(err, doc) {
+  db.about.insert(about,(err,doc) => {
       if (err) deferred.reject(err.name + ': ' + err.message);
       deferred.resolve(doc);
     });
@@ -70,7 +68,7 @@ function update(db,_id, about) {
   db.about.update(
     { _id: mongo.helper.toObjectID(_id) },
     { $set: set },
-    function(err, doc) {
+    (err,doc) => {
       if (err) deferred.reject(err.name + ': ' + err.message);
       deferred.resolve(doc);
     });
@@ -82,7 +80,7 @@ function _delete(db,_id) {
 
   db.about.remove(
     { _id: mongo.helper.toObjectID(_id) },
-    function(err) {
+    (err) => {
       if (err) deferred.reject(err.name + ': ' + err.message);
       deferred.resolve();
     });

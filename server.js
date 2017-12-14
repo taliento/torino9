@@ -72,12 +72,12 @@ app.use(clientErrorHandler);
 // app.use(errorHandler);
 
 // application -------------------------------------------------------------
-app.get('*', function(req, res) {
+app.get('*', (req, res) => {
   res.sendFile(distDir + '/index.html'); // load the single view file (angular will handle the page changes on the front-end)
 });
 
 // Initialize the app.
-var server = app.listen(process.env.PORT || 3000, function() {
-  var port = server.address().port;
+const server = app.listen(process.env.PORT || 3000, () => {
+  const port = server.address().port;
   console.log('App now running on port', port);
 });

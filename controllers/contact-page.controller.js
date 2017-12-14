@@ -14,40 +14,40 @@ module.exports = router;
 
 function insert(req, res) {
   contactService.create(req.app.locals.db,req.body)
-  .then(function(contact) {
+  .then((contact) => {
     res.send(contact);
   })
-  .catch(function(err) {
+  .catch((err) => {
     res.status(400).send(err);
   });
 }
 
 function get(req, res) {
   contactService.get(req.app.locals.db)
-  .then(function(contact) {
+  .then((contact) => {
     res.send(contact);
   })
-  .catch(function(err) {
+  .catch((err) => {
     res.status(400).send(err);
   });
 }
 
 function getById(req, res) {
   contactService.getById(req.app.locals.db,req.params._id)
-  .then(function(contact) {
+  .then((contact) => {
     res.send(contact);
   })
-  .catch(function(err) {
+  .catch((err) => {
     res.status(400).send(err);
   });
 }
 
 function _delete(req, res) {
   contactService.delete(req.app.locals.db,req.params._id)
-  .then(function() {
+  .then(() => {
     res.sendStatus(200);
   })
-  .catch(function(err) {
+  .catch((err) => {
     res.status(400).send(err);
   });
 }

@@ -7,7 +7,7 @@ const fs = require('fs');
 const Q = require('q');
 const publicImgPath = '/public/img/';
 
-var service = {};
+let service = {};
 service.insert = insert;
 service.update = update;
 service._delete = _delete;
@@ -16,10 +16,10 @@ module.exports = service;
 
 
 function insert(imgFile) {
-  var deferred = Q.defer();
-  var fileName = new Date().getTime() + imgFile.name;
-  var imgPath = __dirname + '/..' + publicImgPath + fileName;//timestamp name
-  imgFile.mv(imgPath, function(err) {//save file in filesystem
+  let deferred = Q.defer();
+  let fileName = new Date().getTime() + imgFile.name;
+  let imgPath = __dirname + '/..' + publicImgPath + fileName;//timestamp name
+  imgFile.mv(imgPath, (err) => {//save file in filesystem
     if (err) deferred.reject(err.name + ': ' + err.message);
     deferred.resolve(imgPath);
   });
@@ -27,25 +27,25 @@ function insert(imgFile) {
 }
 
 function update(imgFile, imagePath) {
-  var deferred = Q.defer();
-  var oldPath = __dirname + '/..' + imagePath;
-  _delete(oldPath).then(function() {
-    insert(imgFile).then(function(path) {
+  let deferred = Q.defer();
+  let oldPath = __dirname + '/..' + imagePath;
+  _delete(oldPath).then(() => {
+    insert(imgFile).then((path) => {
       deferred.resolve(path);
-    }).catch(function(err) {
+    }).catch((err) => {
       deferred.reject(err.name + ': ' + err.message);
     });
   })
-  .catch(function(err) {
+  .catch((err) => {
     deferred.reject(err.name + ': ' + err.message);
   });
   return deferred.promise;
 }
 
 function _delete(imgPath) {
-  var deferred = Q.defer();
+  let deferred = Q.defer();
   if (fs.existsSync(imgPath)) {
-    fs.unlink(imgPath, function(err) {
+    fs.unlink(imgPath, (err) => {
       if (err) deferred.reject(err.name + ': ' + err.message);
       deferred.resolve();
     });

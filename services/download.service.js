@@ -7,24 +7,24 @@ const unzip = require('unzip');
 const Q = require('q');
 const path = require('path');
 
-var service = {};
+let service = {};
 service.downloadAll = downloadAll;
 service.uploadAll = uploadAll;
 module.exports = service;
 
 function downloadAll() {
-  var deferred = Q.defer();
+  let deferred = Q.defer();
 
 
   // create a file to stream archive data to.
-  var output = fs.createWriteStream(__dirname + '/../public/images.zip');
-  var archive = archiver('zip', {
+  let output = fs.createWriteStream(__dirname + '/../public/images.zip');
+  let archive = archiver('zip', {
     zlib: { level: 9 } // Sets the compression level.
   });
 
   // listen for all archive data to be written
   // 'close' event is fired only when a file descriptor is involved
-  output.on('close', function() {
+  output.on('close', () => {
     console.log(archive.pointer() + ' total bytes');
     console.log('archiver has been finalized and the output file descriptor has closed.');
     deferred.resolve();
@@ -33,13 +33,13 @@ function downloadAll() {
   // This event is fired when the data source is drained no matter what was the data source.
   // It is not part of this library but rather from the NodeJS Stream API.
   // @see: https://nodejs.org/api/stream.html#stream_event_end
-  output.on('end', function() {
+  output.on('end', () => {
     console.log('Data has been drained');
 
   });
 
   // good practice to catch warnings (ie stat failures and other non-blocking errors)
-  archive.on('warning', function(err) {
+  archive.on('warning', (err) => {
     if (err.code === 'ENOENT') {
       // log warning
     } else {
@@ -49,7 +49,7 @@ function downloadAll() {
   });
 
   // good practice to catch this error explicitly
-  archive.on('error', function(err) {
+  archive.on('error', (err) => {
     throw err;
   });
 
@@ -69,11 +69,11 @@ function downloadAll() {
 
 
 function uploadAll(file) {
-  var deferred = Q.defer();
+  let deferred = Q.defer();
 
-  var filePath = __dirname + '/../public/images.zip';
+  let filePath = __dirname + '/../public/images.zip';
 
-  file.mv(filePath, function(err) {
+  file.mv(filePath, (err) => {
     if (err) deferred.reject(err.name + ': ' + err.message);
 
     fs.createReadStream(filePath).pipe(unzip.Extract({ path: __dirname + '/../public/img/' }));

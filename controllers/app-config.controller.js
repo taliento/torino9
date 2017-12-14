@@ -13,30 +13,30 @@ module.exports = router;
 
 function insert(req, res) {
   appConfigService.create(req.app.locals.db,req.body)
-  .then(function(doc) {
+  .then((doc) => {
     res.send(doc);
   })
-  .catch(function(err) {
+  .catch((err) => {
     res.status(400).send(err);
   });
 }
 
 function get(req, res) {
   appConfigService.get(req.app.locals.db)
-  .then(function(doc) {
+  .then((doc) => {
     res.send(doc);
   })
-  .catch(function(err) {
+  .catch((err) => {
     res.status(400).send(err);
   });
 }
 
 function _delete(req, res) {
   appConfigService.delete(req.app.locals.db,req.params._id)
-  .then(function() {
+  .then(() => {
     res.sendStatus(200);
   })
-  .catch(function(err) {
+  .catch((err) => {
     res.status(400).send(err);
   });
 }

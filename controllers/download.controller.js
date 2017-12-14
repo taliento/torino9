@@ -11,10 +11,10 @@ module.exports = router;
 
 function downloadAll(req, res) {
   downloadService.downloadAll()
-  .then(function() {
+  .then(() => {
     res.download(__dirname + '/../public/images.zip');
   })
-  .catch(function(err) {
+  .catch((err) => {
     res.status(400).send(err);
   });
 }
@@ -22,10 +22,10 @@ function downloadAll(req, res) {
 function uploadAll(req, res) {
   if (req.files && req.files.imgFile) {
     downloadService.uploadAll(req.files.imgFile)
-    .then(function(){
+    .then(() => {
       res.sendStatus(200);
     })
-    .catch(function(err) {
+    .catch((err) => {
       res.status(400).send(err);
     });
   }

@@ -20,26 +20,26 @@ module.exports = router;
 
 function insert(req, res) {
   pageService.create(req.app.locals.db,req.body)
-  .then(function(page) {
+  .then((page) => {
     res.send(page);
   })
-  .catch(function(err) {
+  .catch((err) => {
     res.status(400).send(err);
   });
 }
 
 function insertUpload(req, res) {
   if (req.files && req.files.imgFile) {
-    uploadService.insert(req.files.imgFile).then(function(newImage) {
-      imgurService.upload(newImage).then(function(_imgPath) {//upload to imgur
+    uploadService.insert(req.files.imgFile).then((newImage) => {
+      imgurService.upload(newImage).then((_imgPath) => {//upload to imgur
         req.body.imgPath = _imgPath;
         insert(req, res);
-      }).catch(function(err) {
+      }).catch((err) => {
         console.log("imgurService.upload error " + err.message);
         res.status(400).send(err);
       });
     })
-    .catch(function(err) {
+    .catch((err) => {
       res.status(400).send(err);
     });
   } else {
@@ -49,10 +49,10 @@ function insertUpload(req, res) {
 
 function update(req, res) {
   pageService.update(req.app.locals.db,req.params._id, req.body)
-  .then(function() {
+  .then(() => {
     res.sendStatus(200);
   })
-  .catch(function(err) {
+  .catch((err) => {
     res.status(400).send(err);
   });
 }
@@ -60,16 +60,16 @@ function update(req, res) {
 function updateUpload(req, res) {
   req.params._id = req.body._id;//XXX
   if (req.files && req.files.imgFile) {
-    uploadService.update(req.files.imgFile, req.body.imgPath).then(function(newImage) {
-      imgurService.upload(newImage).then(function(_imgPath) {//upload to imgur
+    uploadService.update(req.files.imgFile, req.body.imgPath).then((newImage) => {
+      imgurService.upload(newImage).then((_imgPath) => {//upload to imgur
         req.body.imgPath = _imgPath;
         update(req, res);
-      }).catch(function(err) {
+      }).catch((err) => {
         console.log("imgurService.upload error " + err.message);
         res.status(400).send(err);
       });
     })
-    .catch(function(err) {
+    .catch((err) => {
       res.status(400).send(err);
     });
   } else {
@@ -79,30 +79,30 @@ function updateUpload(req, res) {
 
 function get(req, res) {
   pageService.get(req.app.locals.db)
-  .then(function(pages) {
+  .then((pages) => {
     res.send(pages);
   })
-  .catch(function(err) {
+  .catch((err) => {
     res.status(400).send(err);
   });
 }
 
 function getById(req, res) {
   pageService.getById(req.app.locals.db,req.params._id)
-  .then(function(page) {
+  .then((page) => {
     res.send(page);
   })
-  .catch(function(err) {
+  .catch((err) => {
     res.status(400).send(err);
   });
 }
 
 function _delete(req, res) {
   pageService.delete(req.app.locals.db,req.params._id)
-  .then(function() {
+  .then(() => {
     res.sendStatus(200);
   })
-  .catch(function(err) {
+  .catch((err) => {
     res.status(400).send(err);
   });
 }

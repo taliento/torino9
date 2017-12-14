@@ -7,7 +7,7 @@ const _ = require('lodash');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
 
-var service = {};
+let service = {};
 
 service.authenticate = authenticate;
 service.getAll = getAll;
@@ -22,9 +22,9 @@ service.count = count;
 module.exports = service;
 
 function authenticate(db,username, password) {
-    var deferred = Q.defer();
+    let deferred = Q.defer();
 
-    db.users.findOne({ username: username }, function(err, user) {
+    db.users.findOne({ username: username }, (err, user) => {
         if (err) deferred.reject(err.name + ': ' + err.message);
 
         if (user && bcrypt.compareSync(password, user.hash)) {
@@ -47,13 +47,13 @@ function authenticate(db,username, password) {
 }
 
 function getAll(db) {
-    var deferred = Q.defer();
+    let deferred = Q.defer();
 
-    db.users.find().sort({username: 1}).toArray(function(err, users) {
+    db.users.find().sort({username: 1}).toArray((err, users) => {
         if (err) deferred.reject(err.name + ': ' + err.message);
 
         // return users (without hashed passwords)
-        users = _.map(users, function(user) {
+        users = _.map(users, (user) => {
             return _.omit(user, 'hash');
         });
 
@@ -65,9 +65,9 @@ function getAll(db) {
 
 function count(db) {
 
-  var deferred = Q.defer();
+  let deferred = Q.defer();
 
-  db.users.count({}, function(err, _count) {
+  db.users.count({}, (err, _count) => {
     if (err) deferred.reject(err.name + ': ' + err.message);
     deferred.resolve({'count': _count});
   });
@@ -77,11 +77,11 @@ function count(db) {
 
 function getPaged(db,_limit, _page, _size) {
 
-  var deferred = Q.defer();
+  let deferred = Q.defer();
 
-  var _skip = _page * _limit;
+  let _skip = _page * _limit;
 
-  db.users.find({}, null, {limit: _limit * 1, skip: _skip, sort: [['insertDate', -1]]}).toArray(function(err, users) {
+  db.users.find({}, null, {limit: _limit * 1, skip: _skip, sort: [['insertDate', -1]]}).toArray((err, users) => {
     if (err) deferred.reject(err.name + ': ' + err.message);
     deferred.resolve(users);
   });
@@ -90,9 +90,9 @@ function getPaged(db,_limit, _page, _size) {
 }
 
 function getById(db,_id) {
-    var deferred = Q.defer();
+    let deferred = Q.defer();
 
-    db.users.findById(_id, function(err, user) {
+    db.users.findById(_id, (err, user) => {
         if (err) deferred.reject(err.name + ': ' + err.message);
 
         if (user) {
@@ -108,12 +108,12 @@ function getById(db,_id) {
 }
 
 function create(db,userParam) {
-    var deferred = Q.defer();
+    let deferred = Q.defer();
 
     // validation
     db.users.findOne(
         { username: userParam.username },
-        function(err, user) {
+        (err, user) => {
             if (err) deferred.reject(err.name + ': ' + err.message);
 
             if (user) {
@@ -126,14 +126,14 @@ function create(db,userParam) {
 
     function createUser() {
         // set user object to userParam without the cleartext password
-        var user = _.omit(userParam, 'password');
+        let user = _.omit(userParam, 'password');
         user.insertDate = new Date();
         // add hashed password to user object
         user.hash = bcrypt.hashSync(userParam.password, 10);
 
         db.users.insert(
             user,
-            function(err, doc) {
+            (err, doc) => {
                 if (err) deferred.reject(err.name + ': ' + err.message);
 
                 deferred.resolve(doc);
@@ -144,14 +144,14 @@ function create(db,userParam) {
 }
 
 function update(db,_id, userParam) {
-    var deferred = Q.defer();
+    let deferred = Q.defer();
 
     if (!userParam || !userParam.username) {
       deferred.reject('no username param was found!');
     }
 
     // validation
-    db.users.findById(_id, function(err, user) {
+    db.users.findById(_id, (err, user) => {
         if (err) deferred.reject(err.name + ': ' + err.message);
 
         if (!user || !user.username) {
@@ -162,7 +162,7 @@ function update(db,_id, userParam) {
             // username has changed so check if the new username is already taken
             db.users.findOne(
                 { username: userParam.username },
-                function(err, user) {
+                (err, user) => {
                     if (err) deferred.reject(err.name + ': ' + err.message);
 
                     if (user) {
@@ -179,7 +179,7 @@ function update(db,_id, userParam) {
 
     function updateUser() {
         // fields to update
-        var set = {
+        let set = {
             firstName: userParam.firstName,
             lastName: userParam.lastName,
             username: userParam.username,
@@ -195,7 +195,7 @@ function update(db,_id, userParam) {
         db.users.update(
             { _id: mongo.helper.toObjectID(_id) },
             { $set: set },
-            function(err, doc) {
+            (err, doc) => {
                 if (err) deferred.reject(err.name + ': ' + err.message);
 
                 deferred.resolve();
@@ -206,11 +206,11 @@ function update(db,_id, userParam) {
 }
 
 function _delete(db,_id) {
-    var deferred = Q.defer();
+    let deferred = Q.defer();
 
     db.users.remove(
         { _id: mongo.helper.toObjectID(_id) },
-        function(err) {
+        (err) => {
             if (err) deferred.reject(err.name + ': ' + err.message);
 
             deferred.resolve();

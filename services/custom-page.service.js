@@ -4,7 +4,7 @@
 const Q = require('q');
 const mongo = require('mongoskin');
 
-var service = {};
+let service = {};
 service.get = get;
 service.getById = getById;
 service.create = create;
@@ -14,8 +14,8 @@ service.delete = _delete;
 module.exports = service;
 
 function get(db) {
-  var deferred = Q.defer();
-  db.page.find().toArray(function(err, pages) {
+  let deferred = Q.defer();
+  db.page.find().toArray((err, pages) => {
     if (err) deferred.reject(err.name + ': ' + err.message);
     deferred.resolve(pages);
   });
@@ -24,8 +24,8 @@ function get(db) {
 
 
 function getById(db,_id) {
-  var deferred = Q.defer();
-  db.page.findById(_id, function(err, page) {
+  let deferred = Q.defer();
+  db.page.findById(_id, (err, page) => {
     if (err) deferred.reject(err.name + ': ' + err.message);
     if (page == null) {
       deferred.reject('Not found!');
@@ -37,11 +37,11 @@ function getById(db,_id) {
 }
 
 function create(db,page) {
-  var deferred = Q.defer();
+  let deferred = Q.defer();
   page.insertDate = new Date();
   db.page.insert(
     page,
-    function(err, doc) {
+    (err, doc) => {
       if (err) deferred.reject(err.name + ': ' + err.message);
       deferred.resolve(doc);
     });
@@ -50,9 +50,9 @@ function create(db,page) {
 
 function update(db,_id, page) {
 
-  var deferred = Q.defer();
+  let deferred = Q.defer();
   // fields to update
-  var set = {
+  let set = {
     title: page.title,
     subtitle: page.subtitle,
     text: page.text,
@@ -68,7 +68,7 @@ function update(db,_id, page) {
   db.page.update(
     { _id: mongo.helper.toObjectID(_id) },
     { $set: set },
-    function(err, doc) {
+    (err, doc) => {
       if (err) deferred.reject(err.name + ': ' + err.message);
       deferred.resolve(doc);
     });
@@ -76,10 +76,10 @@ function update(db,_id, page) {
   }
 
   function _delete(db,_id) {
-    var deferred = Q.defer();
+    let deferred = Q.defer();
     db.page.remove(
       { _id: mongo.helper.toObjectID(_id) },
-      function(err) {
+      (err) => {
         if (err) deferred.reject(err.name + ': ' + err.message);
 
         deferred.resolve();

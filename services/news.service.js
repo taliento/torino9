@@ -18,7 +18,7 @@ module.exports = service;
 
 function getAll(db) {
   let deferred = Q.defer();
-  db.news.find().toArray(function(err, newsList) {
+  db.news.find().toArray((err, newsList) => {
     if (err) deferred.reject(err.name + ': ' + err.message);
     deferred.resolve(newsList);
   });
@@ -36,7 +36,7 @@ function count(db,_date) {
     findParams = {"insertDate":{ $gte: startDate, $lt: plusOneMonth}};
   }
 
-  db.news.count(findParams, function(err, _count) {
+  db.news.count(findParams, (err, _count) => {
     if (err) deferred.reject(err.name + ': ' + err.message);
     deferred.resolve({'count': _count});
   });
@@ -54,7 +54,7 @@ function getPaged(db,_limit, _page, _size, _date) {
     findParams = {"insertDate":{ $gte: startDate, $lt: plusOneMonth}};
   }
 
-  db.news.find(findParams, null, {limit: _limit * 1, skip: _skip, sort: [['insertDate', -1]]}).toArray(function(err, newsList) {
+  db.news.find(findParams, null, {limit: _limit * 1, skip: _skip, sort: [['insertDate', -1]]}).toArray((err, newsList) => {
     if (err) deferred.reject(err.name + ': ' + err.message);
     deferred.resolve(newsList);
   });
@@ -63,7 +63,7 @@ function getPaged(db,_limit, _page, _size, _date) {
 
 function getById(db,_id) {
   let deferred = Q.defer();
-  db.news.findById(_id, function(err, news) {
+  db.news.findById(_id, (err, news) => {
     if (err) deferred.reject(err.name + ': ' + err.message);
     if (news) {
       deferred.resolve(news);
@@ -80,7 +80,7 @@ function create(db,newsParam) {
   newsParam.insertDate = new Date();
   db.news.insert(
     newsParam,
-    function(err, doc) {
+    (err, doc) => {
       if (err) deferred.reject(err.name + ': ' + err.message);
       deferred.resolve(doc);
     });
@@ -99,7 +99,7 @@ function update(db,_id, newsParam) {
   db.news.update(
     { _id: mongo.helper.toObjectID(_id) },
     { $set: set },
-    function(err, doc) {
+    (err, doc) => {
       if (err) deferred.reject(err.name + ': ' + err.message);
       deferred.resolve();
     });
@@ -110,7 +110,7 @@ function _delete(db,_id) {
   let deferred = Q.defer();
   db.news.remove(
     { _id: mongo.helper.toObjectID(_id) },
-    function(err) {
+    (err) => {
       if (err) deferred.reject(err.name + ': ' + err.message);
       deferred.resolve();
     });
@@ -148,7 +148,7 @@ function archivesDate(db) {
           }
         }
       }
-    ],function(err, dates) {
+    ],(err, dates) => {
       if (err) deferred.reject(err.name + ': ' + err.message);
       deferred.resolve(dates);
     });

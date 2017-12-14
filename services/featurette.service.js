@@ -4,7 +4,7 @@
 const Q = require('q');
 const mongo = require('mongoskin');
 
-var service = {};
+let service = {};
 service.getAll = getAll;
 service.getById = getById;
 service.create = create;
@@ -15,8 +15,8 @@ service.count = count;
 module.exports = service;
 
 function getAll(db) {
-  var deferred = Q.defer();
-  db.featurette.find().toArray(function(err, featuretteList) {
+  let deferred = Q.defer();
+  db.featurette.find().toArray((err, featuretteList) => {
     if (err) deferred.reject(err.name + ': ' + err.message);
     deferred.resolve(featuretteList);
   });
@@ -24,8 +24,8 @@ function getAll(db) {
 }
 
 function count(db) {
-  var deferred = Q.defer();
-  db.featurette.count({}, function(err, _count) {
+  let deferred = Q.defer();
+  db.featurette.count({}, (err, _count) => {
     if (err) deferred.reject(err.name + ': ' + err.message);
     deferred.resolve({'count': _count});
   });
@@ -33,9 +33,9 @@ function count(db) {
 }
 
 function getPaged(db,_limit, _page, _size) {
-  var deferred = Q.defer();
-  var _skip = _page * _limit;
-  db.featurette.find({}, null, {limit: _limit * 1, skip: _skip, sort: [['insertDate', -1]]}).toArray(function(err, featuretteList) {
+  let deferred = Q.defer();
+  let _skip = _page * _limit;
+  db.featurette.find({}, null, {limit: _limit * 1, skip: _skip, sort: [['insertDate', -1]]}).toArray((err, featuretteList) => {
     if (err) deferred.reject(err.name + ': ' + err.message);
     deferred.resolve(featuretteList);
   });
@@ -43,8 +43,8 @@ function getPaged(db,_limit, _page, _size) {
 }
 
 function getById(db,_id) {
-  var deferred = Q.defer();
-  db.featurette.findById(_id, function(err, featurette) {
+  let deferred = Q.defer();
+  db.featurette.findById(_id, (err, featurette) => {
     if (err) deferred.reject(err.name + ': ' + err.message);
     if (featurette) {
       deferred.resolve(featurette);
@@ -57,11 +57,11 @@ function getById(db,_id) {
 }
 
 function create(db,featuretteParam) {
-  var deferred = Q.defer();
+  let deferred = Q.defer();
   featuretteParam.insertDate = new Date();
   db.featurette.insert(
     featuretteParam,
-    function(err, doc) {
+    (err, doc) => {
       if (err) deferred.reject(err.name + ': ' + err.message);
       deferred.resolve(doc);
     });
@@ -69,9 +69,9 @@ function create(db,featuretteParam) {
 }
 
 function update(db,_id, featuretteParam) {
-  var deferred = Q.defer();
+  let deferred = Q.defer();
   // fields to update
-  var set = {
+  let set = {
     title: featuretteParam.title,
     subTitle: featuretteParam.subTitle,
     imgPath: featuretteParam.imgPath,
@@ -81,7 +81,7 @@ function update(db,_id, featuretteParam) {
   db.featurette.update(
     { _id: mongo.helper.toObjectID(_id) },
     { $set: set },
-    function(err, doc) {
+    (err, doc) => {
       if (err) deferred.reject(err.name + ': ' + err.message);
       deferred.resolve();
     });
@@ -89,10 +89,10 @@ function update(db,_id, featuretteParam) {
 }
 
 function _delete(db,_id) {
-  var deferred = Q.defer();
+  let deferred = Q.defer();
   db.featurette.remove(
     { _id: mongo.helper.toObjectID(_id) },
-    function(err) {
+    (err) => {
       if (err) deferred.reject(err.name + ': ' + err.message);
       deferred.resolve();
     });
