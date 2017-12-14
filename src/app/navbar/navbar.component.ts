@@ -28,30 +28,21 @@ export class NavbarComponent implements OnInit {
   ngOnInit() {
     this.user = this.authenticationService.getUser();
     this.menuItems = ROUTES.filter(menuItem => menuItem.menuType !== MenuType.BRAND);
-
-
-    const pages = { path: '#', param: '', title: 'Altro', dropdown: true, menuType: MenuType.LEFT, childs: []};
     this.customPageService.get().then((results) => {// custom pages
-      const pagesNumber = results.length;
-      let i = 0;
-      for (i ; i < pagesNumber ; i++) {
-        const pageItem = results[i];
-         pages.childs.push({
-          title : pageItem.menuLabel,
-          path: '/mainlayout/page',
-          param: pageItem._id,
-          dropdown: false,
-          menuType: MenuType.LEFT,
-          childs: []
-        });
-      }
-
-      if (pagesNumber > 0) {
-          this.menuItems.push(pages); // pages dropdown
-      }
-
+      if(!results || results.length == 0) return;
+      const pages = { path: '#', param: '', title: 'Altro', dropdown: true, menuType: MenuType.LEFT, childs: []};
+      results.forEach((page) => {
+        pages.childs.push({
+         title : page.menuLabel,
+         path: '/mainlayout/page',
+         param: page._id,
+         dropdown: false,
+         menuType: MenuType.LEFT,
+         childs: []
+       });
+     });
+      this.menuItems.push(pages); // pages dropdown
     });
-
     this.brandMenu = ROUTES.filter(menuItem => menuItem.menuType === MenuType.BRAND)[0];
   }
 
@@ -59,7 +50,6 @@ export class NavbarComponent implements OnInit {
     this.authenticationService.logout();
     this.router.navigate(['mainlayout/home']);
   }
-
 
   public getMenuItemClasses(menuItem: any) {
     return {
