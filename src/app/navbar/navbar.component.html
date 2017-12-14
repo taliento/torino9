@@ -18,7 +18,7 @@
           <li ngbDropdown class="d-inline-block" placement="bottom-left" ngbDropdown>
             <a class="btn nav-link" role="button" attr.id="dropdown{{i}}" ngbDropdownToggle [innerText]="menuItem.title"></a>
             <div ngbDropdownMenu attr.aria-labelledby="dropdown{{i}}">
-              <a *ngFor="let leaf of menuItem.childs" class="dropdown-item" [routerLink]="[leaf.path,leaf.param]" [routerLinkActive]="['active']" (click)="isCollapsed = true" [innerText]="leaf.title"></a>
+              <button *ngFor="let leaf of menuItem.childs" class="dropdown-item" [routerLink]="[leaf.path,leaf.param]" [routerLinkActive]="['active']" (click)="isCollapsed = true" [innerText]="leaf.title"></button>
             </div>
           </li>
         </div>
@@ -38,9 +38,9 @@
           <img *ngIf="user.imgPath" [src]="user.imgPath" width="30" height="30" class="rounded-circle" alt="">
         </button>
         <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
-          <a class="dropdown-item" [routerLink]="['/mainlayout/admin/tabs']" [routerLinkActive]="['active']" (click)="isCollapsed = true"><span><i class="fa fa-superpowers" aria-hidden="true"></i></span> Area Admin</a>
+          <button class="dropdown-item" [routerLink]="['/mainlayout/admin/tabs']" [routerLinkActive]="['active']" (click)="isCollapsed = true"><span><i class="fa fa-superpowers" aria-hidden="true"></i></span> Area Admin</button>
           <div role="separator" class="dropdown-divider"></div>
-          <a class="dropdown-item" (click)="logout()"><span><i class="fa fa-power-off" aria-hidden="true"></i></span> Logout</a>
+          <button class="dropdown-item" (click)="logout()"><span><i class="fa fa-power-off" aria-hidden="true"></i></span> Logout</button>
         </div>
       </li>
       <li class="nav-item" *ngIf="!user">
