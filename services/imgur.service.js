@@ -7,16 +7,16 @@ const imgur = require('imgur');
 
 var service = {};
 service.upload = upload;
+service.configure = configure;
 module.exports = service;
 
 function configure() {
-  imgur.setClientId(process.env.IMGUR_CLIENTID);
+  imgur.setCredentials(process.env.IMGUR_USERNAME, process.env.IMGUR_PASSWORD, process.env.IMGUR_CLIENTID);
 }
 
 function upload(filePath) {
   var deferred = Q.defer();
 
-  configure();
   // A single image
   imgur.uploadFile(path.resolve(filePath))
   .then(function (json) {

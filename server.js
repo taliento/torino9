@@ -5,11 +5,15 @@ require('rootpath')();
 const express = require('express');
 const expressJwt = require('express-jwt');
 const fileUpload = require('express-fileupload');
+const imgurService = require('./services/imgur.service');
 const cors = require('cors');
 const bodyParser = require('body-parser');
 const path = require('path');
 
 const app = express();
+
+//init imgurService
+imgurService.configure();
 
 app.use(cors());
 app.use(bodyParser.urlencoded({ extended: false }));
