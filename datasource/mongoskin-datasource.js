@@ -5,8 +5,10 @@ const mongo = require('mongoskin');
 //db connection
 const db = mongo.db(process.env.MONGODB_URI, { native_parser: true });
 const collections = ['about','config','branca','calendar','carousel','contact','page','featurette','news','users'];
+const _ = require('lodash');
 
-for(let i = 0 ; i < collections.length ; i++) {
-  db.bind(collections[i]);
-}
+_.forEach(collections, (collection) => {
+  db.bind(collection);
+});
+
 module.exports = db;

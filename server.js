@@ -9,6 +9,7 @@ const imgurService = require('./services/imgur.service');
 const cors = require('cors');
 const bodyParser = require('body-parser');
 const path = require('path');
+const _ = require('lodash');
 
 const app = express();
 
@@ -38,10 +39,9 @@ app.use(expressJwt({ secret: process.env.SECRET }).
 unless({ path: require('./routes/public-routes') }));
 
 // routes
-const routes = require('./routes/api-mapping');
-for(let i = 0 ; i < routes.length ; i++) {
-  app.use(routes[i].endpoint, require(routes[i].controller));
-}
+_.forEach(require('./routes/api-mapping'), (_route) => {
+  app.use(_route.endpoint, require(_route.controller));
+});
 
 //error handling
 function logErrors(err, req, res, next) {
