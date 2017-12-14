@@ -12,7 +12,7 @@
 
   <div class="form-group">
     <label for="text">Testo</label>
-    <div id="text" formControlName="text" [froalaEditor]></div>
+    <app-html-editor id="text" [text]="form.get('text').value" (textChange)="form.get('text').setValue($event)"></app-html-editor>
   </div>
 
   <div class="form-group">

@@ -17,7 +17,7 @@
         </div>
         <div class="card-body">
           <div class="card-subtitle" *ngIf="!page.imgPath" [innerText]="page.subtitle"></div>
-          <div [froalaView]="page.text"></div>
+          <div [innerHtml]="page.text"></div>
         </div>
       </div>
   </div>

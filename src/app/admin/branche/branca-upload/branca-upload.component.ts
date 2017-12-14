@@ -15,7 +15,7 @@ const BRANCHE_COMBO = [
 export class BrancaUploadComponent implements OnInit {
   brancheCombo = BRANCHE_COMBO; // XXX
 
-  form: FormGroup;
+  public form: FormGroup;
   loading = false;
   @ViewChild('imgInput') imgInput: ElementRef;
   @Output() formSubmit: EventEmitter<any> = new EventEmitter();

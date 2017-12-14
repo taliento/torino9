@@ -3,7 +3,7 @@
     <img [src]="carouselItem.imgPath" [alt]="carouselItem.alt">
     <div class="carousel-caption d-md-block" [class.text-center]="carouselItem.position == 'center'" [class.text-left]="carouselItem.position == 'left'" [class.text-right]="carouselItem.position == 'right'">
       <h1 [innerText]="carouselItem.title"></h1>
-      <p [innerText]="carouselItem.text"></p>
+      <p [innerHtml]="carouselItem.text"></p>
       <button class="btn btn-lg btn-primary" [routerLink]="[carouselItem.btnHref]" routerLinkActive="active" [innerText]="carouselItem.btnText"></button>
     </div>
   </ng-template>

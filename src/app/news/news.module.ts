@@ -5,11 +5,9 @@ import { CommonModule } from '@angular/common';
 import { Route, RouterModule } from '@angular/router';
 
 import { MODULE_COMPONENTS, MODULE_ROUTES } from './news.routes';
-import { FroalaEditorModule, FroalaViewModule } from 'angular-froala-wysiwyg';
 
 @NgModule({
   imports: [
-    FroalaEditorModule.forRoot(), FroalaViewModule.forRoot(),
     CommonModule,
     NgbModule,
     RouterModule.forChild(MODULE_ROUTES) ],

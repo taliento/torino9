@@ -22,8 +22,7 @@
         </div>
         <div class="form-group">
           <label for="insertText">Testo</label>
-          <!-- <textarea rows="5" class="form-control" id="insertText" name="text" placeholder="Testo" [(ngModel)]="aboutPage.text"></textarea> -->
-          <div [(froalaModel)]="aboutPage.text" id="insertText" name="text" [froalaEditor]></div>
+          <app-html-editor [(text)]="aboutPage.text"></app-html-editor>
         </div>
         <app-about-links #aboutLinks [links]="aboutPage.links"></app-about-links>
         <button type="button" class="btn btn-outline-success" (click)="save()">Salva</button>

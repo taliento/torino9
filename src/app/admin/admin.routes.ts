@@ -32,6 +32,7 @@ import { CustomPageDetailComponent } from './custom-page/custom-page-detail/cust
 import { CustomPageComponent } from './custom-page/custom-page.component';
 import { AdminTabsComponent} from './admin-tabs/admin-tabs.component';
 import { CustomPageFormComponent } from './custom-page/custom-page-form/custom-page-form.component';
+import { HtmlEditorComponent } from './html-editor/html-editor.component';
 import {AuthGuard} from '../shared/guards';
 
 export const MODULE_ROUTES: Route[] = [
@@ -86,5 +87,6 @@ export const MODULE_COMPONENTS = [
   CustomPageComponent,
   CustomPageDetailComponent,
   AdminTabsComponent,
-  CustomPageFormComponent
+  CustomPageFormComponent,
+  HtmlEditorComponent
 ];

@@ -1,0 +1,10 @@
+<div class="card">
+  <div class="card-header">
+    <button *ngIf="!editView" type="button" class="btn btn-outline-primary" (click)="editView = !editView">Edit</button>
+    <button *ngIf="editView" type="button" class="btn btn-outline-secondary" (click)="editView = !editView">Preview</button>
+  </div>
+  <div class="card-body">
+    <p [innerHtml]="text" *ngIf="!editView"></p>
+    <textarea *ngIf="editView" rows="5" class="form-control" id="insertText" name="text" placeholder="Testo" [(ngModel)]="text"></textarea>
+  </div>
+</div>

@@ -3,7 +3,7 @@
     <h5 class="mb-1" [innerText]="task.title"></h5>
     <small>Il <span [innerText]="task.date.day+'/'+task.date.month+'/'+task.date.year"></span> <span *ngIf="task.time">- <span [innerText]="task.time.hour+':'+task.time.minute"></span></span></small>
   </div>
-  <div class="mb-1" [froalaView]="task.text"></div>
+  <div class="mb-1" [innerHtml]="task.text"></div>
   <small *ngIf="task.insertDate">Inserito il <span [innerText]="task.insertDate | date:'dd/MM/yyyy'"></span></small>
 
   <div class="pull-right">
@@ -32,8 +32,7 @@
       </div>
       <div class="form-group">
         <label for="updateText">Testo</label>
-        <div [(froalaModel)]="task.text" id="updateText" name="text" [froalaEditor]></div>
-        <!-- <textarea rows="5" class="form-control" id="updateText" name="text" [(ngModel)]="task.text" placeholder="Testo"></textarea> -->
+        <app-html-editor [(text)]="task.text"></app-html-editor>
       </div>
       <div class="form-group">
         <label for="insertTime">Ora inizio</label>

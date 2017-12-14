@@ -2,7 +2,7 @@
 <div class="card-body">
   <h4 class="card-title" [innerText]="featurette.title"></h4>
   <p class="card-text"><small class="text-muted" [innerText]="featurette.subTitle"></small></p>
-  <p class="card-text" [innerText]="featurette.text"></p>
+  <p class="card-text" [innerHtml]="featurette.text"></p>
   <button type="button" class="btn btn-outline-primary btn-sm" (click)="modifyFeaturette()">Update</button>
   <button type="button" class="btn btn-outline-danger btn-sm" (click)="deleteFeaturette()">Delete</button>
 </div>

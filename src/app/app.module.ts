@@ -20,7 +20,6 @@ import { AlertService, AuthenticationService, UserService,
   ContactPageService, BrancaService, DownloadService, AppConfigService, CustomPageService } from './shared/services';
 import { MapModule } from './map/map.module';
 import { LOCALE_ID } from '@angular/core';
-import { FroalaEditorModule, FroalaViewModule } from 'angular-froala-wysiwyg';
 import { MainLayoutComponent } from './main-layout/main-layout.component';
 import { registerLocaleData } from '@angular/common';
 import localeIT from '@angular/common/locales/it';
@@ -37,8 +36,6 @@ registerLocaleData(localeIT);
   imports: [
     routing,
     NgbModule.forRoot(),
-    FroalaEditorModule.forRoot(),
-    FroalaViewModule.forRoot(),
     CommonModule,
     FormsModule,
     ReactiveFormsModule,

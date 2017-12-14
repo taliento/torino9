@@ -46,7 +46,7 @@ ng serve
 - [x] contact page
 - [x] admin module
 - [x] calendar
-- [x] html editor (trial)
+- [x] html editor
 - [x] fix gmap css font bug
 - [x] upload images to imgur
 - [x] custom pages

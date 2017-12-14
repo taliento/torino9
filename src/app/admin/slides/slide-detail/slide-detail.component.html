@@ -1,7 +1,7 @@
 <img class="card-img-top" [src]="slide.imgPath" [alt]="slide.alt">
 <div class="card-body">
   <h4 class="card-title" [innerText]="slide.title"></h4>
-  <p class="card-text" [innerText]="slide.text"></p>
+  <p class="card-text" [innerHtml]="slide.text"></p>
   <button type="button" class="btn btn-outline-primary btn-sm" (click)="modifySlide()">Update</button>
   <button type="button" class="btn btn-outline-danger btn-sm" (click)="deleteSlide()">Delete</button>
 </div>

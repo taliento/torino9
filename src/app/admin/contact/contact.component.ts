@@ -31,7 +31,7 @@ export class ContactComponent implements OnInit {
   }
 
   save() {
-    if(this.contactList) {
+    if (this.contactList) {
       this.contactPage.contacts = this.contactList.getContacts();
     }
 

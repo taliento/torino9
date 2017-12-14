@@ -1,7 +1,7 @@
 <div class="card-body">
   <h4 class="card-title" [innerText]="news.title"></h4>
   <p class="card-text"><small class="text-muted" [innerText]="news.subTitle"></small></p>
-  <div class="card-text" [froalaView]="news.text"></div>
+  <div class="card-text" [innerHtml]="news.text"></div>
   <button type="button" class="btn btn-outline-primary btn-sm" (click)="modifyNews()">Update</button>
   <button type="button" class="btn btn-outline-danger btn-sm" (click)="deleteNews()">Delete</button>
 </div>
@@ -28,8 +28,7 @@
         </div>
         <div class="form-group">
           <label for="updateText">Testo</label>
-          <div [(froalaModel)]="news.text" id="updateText" name="text" [froalaEditor]></div>
-          <!-- <textarea rows="5" class="form-control" id="updateText" name="text" [(ngModel)]="news.text" placeholder="Testo"></textarea> -->
+          <app-html-editor [(text)]="news.text"></app-html-editor>
         </div>
       </form>
 

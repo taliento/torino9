@@ -61,8 +61,7 @@
           </div>
           <div class="form-group">
             <label for="insertText">Testo</label>
-            <div [(froalaModel)]="newEvent.text" id="insertText" name="text" [froalaEditor]></div>
-            <!-- <textarea rows="5" class="form-control" id="insertText" name="text" placeholder="Testo Evento" [(ngModel)]="newEvent.text"></textarea> -->
+            <app-html-editor [(text)]="newEvent.text"></app-html-editor>
           </div>
           <div class="form-group">
             <label for="insertTime">Ora inizio</label>

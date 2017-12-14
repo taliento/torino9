@@ -35,8 +35,7 @@
 
               <div class="form-group">
                 <label for="insertText">Testo</label>
-                <div [(froalaModel)]="newNews.text" id="insertText" name="text" [froalaEditor]></div>
-                <!-- <textarea rows="5" class="form-control" id="insertText" name="text" placeholder="Testo news" [(ngModel)]="newNews.text"></textarea> -->
+                <app-html-editor [(text)]="newNews.text"></app-html-editor>
               </div>
 
               <button type="button" class="btn btn-outline-success" (click)="addNews()">Inserisci</button>
