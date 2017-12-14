@@ -1,11 +1,11 @@
 <nav class="navbar fixed-top navbar-light"><!-- fixed-top  navbar-expand-md  justify-content-between-->
 
   <a class="navbar-brand" [routerLink]="[brandMenu.path]" (click)="isCollapsed = true">
-    <img src="assets/images/logo.svg" width="30" height="30" class="d-inline-block align-top" alt="Home" title="Home">
+    <img src="assets/images/logo.svg" width="28" class="d-inline-block align-top" alt="Home" title="Home">
   </a>
 
-  <button class="navbar-toggler" type="button" (click)="isCollapsed = !isCollapsed">
-    <span class="navbar-toggler-icon"></span>
+  <button class="btn btn-outline-primary" type="button" (click)="isCollapsed = !isCollapsed">
+    <span><i class="fa fa-bars" aria-hidden="true"></i></span>
   </button>
 
   <div class="navbar-collapse" [ngClass]="{collapse: isCollapsed}">
