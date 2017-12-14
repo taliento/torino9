@@ -1,15 +1,17 @@
-<br>
 <div class="container">
-  <div class="row">
-    <div class="col-md-2">
-      <button class="btn btn-secondary" [routerLink]="['/mainlayout/admin/custom-page']">Indietro</button>
-    </div>
-  </div>
-</div>
 <br>
 <div class="container">
   <div class="card">
-    <div class="card-header">{{page.title}}</div>
+    <div class="card-header">
+      <ul class="nav nav-pills card-header-pills">
+        <li class="nav-item">
+          <a class="nav-link disabled">{{page.title}}</a>
+        </li>
+        <li class="nav-item">
+          <button class="btn btn-secondary" [routerLink]="['/mainlayout/admin/custom-page']">Indietro</button>
+        </li>
+      </ul>
+    </div>
     <div class="card-body">
       <div class="container-fluid" *ngIf="page.imgPath" style="width: 20rem;">
         <img class="page-image img-fluid mx-auto" [src]="page.imgPath" alt="custom image">

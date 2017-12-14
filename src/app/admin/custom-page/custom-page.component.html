@@ -1,13 +1,16 @@
-<br>
 <div class="container">
-  <div class="row">
-    <div class="col-md-2">
-      <button class="btn btn-secondary" [routerLink]="['/mainlayout/admin/tabs']">Indietro</button>
-    </div>
-  </div>
   <br>
   <div class="card">
-    <div class="card-header">Pages</div>
+    <div class="card-header">
+      <ul class="nav nav-pills card-header-pills">
+        <li class="nav-item">
+          <a class="nav-link disabled">Pages</a>
+        </li>
+        <li class="nav-item">
+          <button class="btn btn-secondary" [routerLink]="['/mainlayout/admin/tabs']">Indietro</button>
+        </li>
+      </ul>
+    </div>
     <div class="card-body">
       <div class="list-group">
         <a [routerLink]="['/mainlayout/admin/page',page._id]" routerLinkActive="active" *ngFor="let page of pages" class="list-group-item list-group-item-action flex-column align-items-start">

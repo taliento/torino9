@@ -1,13 +1,16 @@
-<br>
 <div class="container">
-  <div class="row">
-    <div class="col-md-2">
-      <button class="btn btn-secondary" [routerLink]="['/mainlayout/admin/tabs']">Indietro</button>
-    </div>
-  </div>
   <br>
   <div class="card">
-    <div class="card-header">backup/restore</div>
+    <div class="card-header">
+      <ul class="nav nav-pills card-header-pills">
+        <li class="nav-item">
+          <a class="nav-link disabled">Backup/Restore</a>
+        </li>
+        <li class="nav-item">
+          <button class="btn btn-secondary" [routerLink]="['/mainlayout/admin/tabs']">Indietro</button>
+        </li>
+      </ul>
+    </div>
     <div class="card-body">
       <div class="row">
         <button class="btn btn-primary" (click)="downloadImages()">Download images</button>
