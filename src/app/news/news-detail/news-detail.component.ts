@@ -18,7 +18,7 @@ export class NewsDetailComponent implements OnInit {
   ngOnInit() {
      this.current.params
     .switchMap((params: Params) => this.newsService.getById(params['id']))
-    .subscribe(news => {this.news = news;  this.headerService.change(news.title, news.subTitle, '(' + news.author + ')'); });
+    .subscribe(news => {this.news = news;  this.headerService.change(news.title, news.subTitle, 'Inserito da ' + news.author); });
   }
 
   gotoNews() {

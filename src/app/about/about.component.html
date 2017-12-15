@@ -9,14 +9,13 @@
 <div class="container">
   <div class="row">
     <div class="col-md-12">
-      <div class="card">
-        <!-- <div class="card-header">
-        </div> -->
-        <div class="card-body">
-          <div class="card-text" [innerHtml]="aboutPage.text"></div>
+      <!-- <div class="card">
+        <div class="card-body"> -->
+          <!-- <div class="card-text" [innerHtml]="aboutPage.text"></div> -->
+          <p [innerHtml]="aboutPage.text"></p>
           <a *ngFor="let link of aboutPage.links" [href]="link.href" class="card-link" [innerText]="link.text"></a>
-        </div>
-      </div>
+        <!-- </div>
+      </div> -->
     </div>
   </div>
   <br>
