@@ -30,8 +30,10 @@
 </div>
 
 <ng-template #customDay let-date="date" let-currentMonth="currentMonth" let-selected="selected">
-  <div class="day btn-light"
-    [ngClass]="{'bg-primary': selected, 'text-white': selected, 'text-muted': date.month !== currentMonth, 'bg-warning': (!selected && hasTask(date)) }"
+  <div class="custom-day"
+  [class.custom-event]="hasTask(date)" [class.bg-primary]="selected"
+  [class.text-white]="selected" [class.focused]="focused"
+  [class.text-muted]="date.month !== currentMonth"
    (click)="loadTasks(date)">
     <span [innerText]="date.day"></span>
   </div>
