@@ -520,7 +520,7 @@ describe('express rest api server', function() {
 
     it('user register', function(done) {
       superagent.post(api + '/users/register')
-        .send({ username: 'test' , password: 'password' })
+        .send({ username: 'testuser' , password: 'password' })
         .end(function(e, res) {
           expect(e).to.eql(null);
           expect(typeof res.body).to.eql('object');
@@ -579,7 +579,7 @@ describe('express rest api server', function() {
 
     it('updates an user', function(done) {
       superagent.put(api + '/users/' + id)
-        .send({ username: 'test' , password: 'passwordnew' })
+        .send({ username: 'testuser' , password: 'passwordnew' })
         .set('Authorization', 'Bearer ' + token)
         .set('Accept', 'application/json')
         .end(function(e, res) {
