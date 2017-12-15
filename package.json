@@ -4,11 +4,11 @@
   "license": "MIT",
   "scripts": {
     "ng": "ng",
+    "postinstall": "node ./scripts/default-user.js && ng build --prod",
     "start": "nf start",
     "build": "ng build",
     "test": "./node_modules/.bin/mocha && ./node_modules/.bin/karma start",
-    "lint": "ng lint",
-    "postinstall": "ng build --prod"
+    "lint": "ng lint"
   },
   "engines": {
     "node": "8.x"

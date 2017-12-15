@@ -33,7 +33,7 @@
     <!-- user button -->
     <ul class="navbar-nav mr-auto">
       <li ngbDropdown class="d-inline-block" placement="bottom-left" *ngIf="user">
-        <button class="btn btn-outline-dark" role="button" id="dropdownBasic1" ngbDropdownToggle>
+        <button class="btn btn-outline-primary text-white" role="button" id="dropdownBasic1" ngbDropdownToggle>
           <span [innerText]="user.username"></span>
           <img *ngIf="user.imgPath" [src]="user.imgPath" width="30" height="30" class="rounded-circle" alt="">
         </button>
@@ -44,7 +44,7 @@
         </div>
       </li>
       <li class="nav-item" *ngIf="!user">
-        <button class="btn btn-outline-primary" role="button" [routerLink]="['/login']" [routerLinkActive]="['active']" (click)="isCollapsed = true">Signin</button>
+        <button class="btn btn-outline-primary text-white" role="button" [routerLink]="['/login']" [routerLinkActive]="['active']" (click)="isCollapsed = true">Signin</button>
       </li>
     </ul>
 
