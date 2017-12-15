@@ -1,4 +1,4 @@
-<nav class="navbar fixed-top navbar-light"><!-- fixed-top  navbar-expand-md  justify-content-between-->
+<nav class="navbar fixed-top navbar-light"  ><!-- fixed-top  navbar-expand-md  justify-content-between-->
 
   <a class="navbar-brand" [routerLink]="[brandMenu.path]" (click)="isCollapsed = true">
     <img src="assets/images/logo.svg" width="28" class="d-inline-block align-top" alt="Home" title="Home">
@@ -8,7 +8,7 @@
     <span><i class="fa fa-bars" aria-hidden="true"></i></span>
   </button>
 
-  <div class="navbar-collapse" [ngClass]="{collapse: isCollapsed}">
+  <div tabindex="-1" class="navbar-collapse" [ngClass]="{collapse: isCollapsed}">
 
     <!--static routes -->
     <ul class="navbar-nav mr-auto">
@@ -40,11 +40,11 @@
         <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
           <button class="dropdown-item" [routerLink]="['/mainlayout/admin/tabs']" [routerLinkActive]="['active']" (click)="isCollapsed = true"><span><i class="fa fa-superpowers" aria-hidden="true"></i></span> Area Admin</button>
           <div role="separator" class="dropdown-divider"></div>
-          <button class="dropdown-item" (click)="logout()"><span><i class="fa fa-power-off" aria-hidden="true"></i></span> Logout</button>
+          <button class="dropdown-item" type="submit" (click)="logout();isCollapsed = true;"><span><i class="fa fa-power-off" aria-hidden="true"></i></span> Logout</button>
         </div>
       </li>
       <li class="nav-item" *ngIf="!user">
-        <button class="btn btn-outline-primary text-white" role="button" [routerLink]="['/login']" [routerLinkActive]="['active']" (click)="isCollapsed = true">Signin</button>
+        <button class="btn btn-outline-primary text-white" role="button" [routerLink]="['/login']" [routerLinkActive]="['active']">Signin</button>
       </li>
     </ul>
 

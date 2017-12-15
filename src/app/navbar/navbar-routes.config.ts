@@ -1,7 +1,7 @@
 import { MenuType, RouteInfo } from './navbar.metadata';
 
 export const ROUTES: RouteInfo[] = [
-  { path: '#', param: '', title: 'Torino9', dropdown: false, menuType: MenuType.BRAND, childs: [] },
+  { path: '#', param: '', title: 'AGESCI', dropdown: false, menuType: MenuType.BRAND, childs: [] },
   { path: '/mainlayout/news/list', param: '', title: 'Novità', dropdown: false, menuType: MenuType.LEFT, childs: [] },
   { path: '/mainlayout/calendar', param: '', title: 'Calendario', dropdown: false, menuType: MenuType.LEFT, childs: [] },
   { path: '/mainlayout/about', param: '', title: 'Su di noi', dropdown: false, menuType: MenuType.LEFT, childs: [] },

@@ -50,7 +50,7 @@ export class NavbarComponent implements OnInit {
 
     logout() {
       this.authenticationService.logout();
-      this.router.navigate(['mainlayout/home']);
+      this.router.navigate(['#']);
     }
 
     public getMenuItemClasses(menuItem: any) {
