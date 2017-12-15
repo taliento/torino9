@@ -17,12 +17,13 @@ import { AuthGuard } from './shared/guards/index';
 import { AlertService, AuthenticationService, UserService,
   NewsService, NewsHeaderService, CarouselService,
   FeaturetteService, CalendarService, AboutPageService,
-  ContactPageService, BrancaService, DownloadService, AppConfigService, CustomPageService } from './shared/services';
+  ContactPageService, BrancaService, DownloadService, AppConfigService, CustomPageService, CustomDatepickerI18n } from './shared/services';
 import { MapModule } from './map/map.module';
 import { LOCALE_ID } from '@angular/core';
 import { MainLayoutComponent } from './main-layout/main-layout.component';
 import { registerLocaleData } from '@angular/common';
 import localeIT from '@angular/common/locales/it';
+import {NgbDatepickerI18n} from '@ng-bootstrap/ng-bootstrap';
 
 registerLocaleData(localeIT);
 
@@ -66,7 +67,8 @@ registerLocaleData(localeIT);
     DownloadService,
     AppConfigService,
     CustomPageService,
-     { provide: LOCALE_ID, useValue: 'it' }
+   { provide: LOCALE_ID, useValue: 'it' },
+   {provide: NgbDatepickerI18n, useClass: CustomDatepickerI18n}
   ],
   bootstrap: [AppComponent]
 })

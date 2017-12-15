@@ -12,3 +12,4 @@ export { BrancaService } from './branca.service';
 export { DownloadService } from './download.service';
 export { AppConfigService } from './app-config.service';
 export { CustomPageService} from './custom-page.service';
+export { CustomDatepickerI18n } from './custom-datepicker-i18n.service';
