@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { AppConfigService } from '../shared/services';
 
 @Component({
     moduleId: module.id,
@@ -6,5 +7,15 @@ import { Component } from '@angular/core';
     templateUrl: 'footer.component.html'
 })
 
-export class FooterComponent {
+export class FooterComponent implements OnInit {
+
+  title: string;
+
+  constructor(private appConfigService: AppConfigService) { }
+
+  ngOnInit() {
+    this.appConfigService.getTitle().subscribe(result => {
+      this.title = (result ? result : 'Scout site' );
+    });
+  }
 }

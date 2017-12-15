@@ -14,7 +14,7 @@ const I18N_VALUES = {
 @Injectable()
 export class CustomDatepickerI18n extends NgbDatepickerI18n {
 
-  locale: string = "it";
+  locale = 'it';
 
   constructor(@Inject(LOCALE_ID) locale: string) {
     super();

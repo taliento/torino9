@@ -29,7 +29,9 @@ export class NavbarComponent implements OnInit {
       this.user = this.authenticationService.getUser();
       this.menuItems = ROUTES.filter(menuItem => menuItem.menuType !== MenuType.BRAND);
       this.customPageService.get().then((results) => {// custom pages
-        if(!results || results.length == 0) return;
+        if (!results || results.length === 0) {
+          return;
+        }
         const pages = { path: '#', param: '', title: 'Altro', dropdown: true, menuType: MenuType.LEFT, childs: []};
         results.forEach((page) => {
           pages.childs.push({
