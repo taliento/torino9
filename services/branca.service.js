@@ -52,9 +52,12 @@ function update(db,_id, branca) {
     title: branca.title,
     subtitle: branca.subtitle,
     text: branca.text,
-    imgPath: branca.imgPath,
     updateDate: new Date()
   };
+
+  if(branca.imgPath) {
+    set.imgPath = branca.imgPath;
+  }
 
   db.branca.update(
     { _id: mongo.helper.toObjectID(_id) },

@@ -183,9 +183,13 @@ function update(db,_id, userParam) {
             firstName: userParam.firstName,
             lastName: userParam.lastName,
             username: userParam.username,
-            imgPath: userParam.imgPath,
+
             updateDate: new Date()
         };
+
+        if(userParam.imgPath) {
+          set.imgPath = userParam.imgPath;
+        }
 
         // update password if it was entered
         if (userParam.password && userParam.password != '') {

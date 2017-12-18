@@ -79,7 +79,6 @@ function update(db,_id, carousel) {
   // fields to update
   let set = {
     title: carousel.title,
-    imgPath: carousel.imgPath,
     text: carousel.text,
     btnText: carousel.btnText,
     btnHref: carousel.btnHref,
@@ -87,6 +86,10 @@ function update(db,_id, carousel) {
     position: carousel.position,
     updateDate: new Date()
   };
+
+  if(carousel.imgPath) {
+    set.imgPath = carousel.imgPath;
+  }
 
   db.carousel.update(
     { _id: mongo.helper.toObjectID(_id) },

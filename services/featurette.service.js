@@ -74,10 +74,14 @@ function update(db,_id, featuretteParam) {
   let set = {
     title: featuretteParam.title,
     subTitle: featuretteParam.subTitle,
-    imgPath: featuretteParam.imgPath,
     text: featuretteParam.text,
     updateDate: new Date()
   };
+
+  if(featuretteParam.imgPath) {
+    set.imgPath = featuretteParam.imgPath;
+  }
+
   db.featurette.update(
     { _id: mongo.helper.toObjectID(_id) },
     { $set: set },

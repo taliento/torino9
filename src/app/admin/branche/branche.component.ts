@@ -12,10 +12,13 @@ import { Branca } from '../../shared/models';
 export class BrancheComponent implements OnInit {
 
   @ViewChild('insertForm') insertForm;
+  @ViewChild('confirmDialog') confirmDialog;
+  @ViewChild('brancaDetail') brancaDetail;
+
   isCollapsed = true;
   branche: Branca[] = [];
   idDelete: string;
-  @ViewChild('confirmDialog') confirmDialog;
+
   confirmTitle = 'Sicuro?';
   confirmText = 'Stai elminando una branca...';
 
@@ -31,6 +34,7 @@ export class BrancheComponent implements OnInit {
       data => {
         this.alertService.success('Inserito!', false);
         this.insertForm.setLoading(false);
+        this.brancaDetail.closeModal();
         this.isCollapsed = true;
         this.loadData();
       },

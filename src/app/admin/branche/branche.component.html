@@ -29,7 +29,7 @@
       <br>
       <div class="card-columns">
         <div class="card" *ngFor="let branca of branche">
-          <app-branca-detail [branca]="branca" (delete)="delete($event)" (update)="addBranca($event)"></app-branca-detail>
+          <app-branca-detail #brancaDetail [branca]="branca" (delete)="delete($event)" (update)="addBranca($event)"></app-branca-detail>
         </div>
       </div>
     </div>

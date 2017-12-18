@@ -25,7 +25,12 @@ export class BrancaDetailComponent {
 
    updateBranca($event) {
      this.update.emit($event);
-     this.modalRef.close();
+   }
+
+   closeModal() {
+    if(this.modalRef) {
+        this.modalRef.close();
+    }
    }
 
    updateModal() {
