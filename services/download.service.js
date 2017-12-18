@@ -19,7 +19,9 @@ function downloadAll() {
   // create a file to stream archive data to.
   let output = fs.createWriteStream(__dirname + '/../public/images.zip');
   let archive = archiver('zip', {
-    zlib: { level: 9 } // Sets the compression level.
+    zlib: {
+      level: 9
+    } // Sets the compression level.
   });
 
   // listen for all archive data to be written
@@ -76,7 +78,9 @@ function uploadAll(file) {
   file.mv(filePath, (err) => {
     if (err) deferred.reject(err.name + ': ' + err.message);
 
-    fs.createReadStream(filePath).pipe(unzip.Extract({ path: __dirname + '/../public/img/' }));
+    fs.createReadStream(filePath).pipe(unzip.Extract({
+      path: __dirname + '/../public/img/'
+    }));
     deferred.resolve();
   });
 

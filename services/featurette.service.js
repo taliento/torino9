@@ -27,22 +27,30 @@ function count(db) {
   let deferred = Q.defer();
   db.featurette.count({}, (err, _count) => {
     if (err) deferred.reject(err.name + ': ' + err.message);
-    deferred.resolve({'count': _count});
+    deferred.resolve({
+      'count': _count
+    });
   });
   return deferred.promise;
 }
 
-function getPaged(db,_limit, _page, _size) {
+function getPaged(db, _limit, _page, _size) {
   let deferred = Q.defer();
   let _skip = _page * _limit;
-  db.featurette.find({}, null, {limit: _limit * 1, skip: _skip, sort: [['insertDate', -1]]}).toArray((err, featuretteList) => {
+  db.featurette.find({}, null, {
+    limit: _limit * 1,
+    skip: _skip,
+    sort: [
+      ['insertDate', -1]
+    ]
+  }).toArray((err, featuretteList) => {
     if (err) deferred.reject(err.name + ': ' + err.message);
     deferred.resolve(featuretteList);
   });
   return deferred.promise;
 }
 
-function getById(db,_id) {
+function getById(db, _id) {
   let deferred = Q.defer();
   db.featurette.findById(_id, (err, featurette) => {
     if (err) deferred.reject(err.name + ': ' + err.message);
@@ -56,7 +64,7 @@ function getById(db,_id) {
   return deferred.promise;
 }
 
-function create(db,featuretteParam) {
+function create(db, featuretteParam) {
   let deferred = Q.defer();
   featuretteParam.insertDate = new Date();
   db.featurette.insert(
@@ -65,10 +73,10 @@ function create(db,featuretteParam) {
       if (err) deferred.reject(err.name + ': ' + err.message);
       deferred.resolve(doc);
     });
-    return deferred.promise;
+  return deferred.promise;
 }
 
-function update(db,_id, featuretteParam) {
+function update(db, _id, featuretteParam) {
   let deferred = Q.defer();
   // fields to update
   let set = {
@@ -78,13 +86,15 @@ function update(db,_id, featuretteParam) {
     updateDate: new Date()
   };
 
-  if(featuretteParam.imgPath) {
+  if (featuretteParam.imgPath) {
     set.imgPath = featuretteParam.imgPath;
   }
 
-  db.featurette.update(
-    { _id: mongo.helper.toObjectID(_id) },
-    { $set: set },
+  db.featurette.update({
+      _id: mongo.helper.toObjectID(_id)
+    }, {
+      $set: set
+    },
     (err, doc) => {
       if (err) deferred.reject(err.name + ': ' + err.message);
       deferred.resolve();
@@ -92,10 +102,11 @@ function update(db,_id, featuretteParam) {
   return deferred.promise;
 }
 
-function _delete(db,_id) {
+function _delete(db, _id) {
   let deferred = Q.defer();
-  db.featurette.remove(
-    { _id: mongo.helper.toObjectID(_id) },
+  db.featurette.remove({
+      _id: mongo.helper.toObjectID(_id)
+    },
     (err) => {
       if (err) deferred.reject(err.name + ': ' + err.message);
       deferred.resolve();

@@ -15,7 +15,7 @@ module.exports = service;
 function get(db) {
   let deferred = Q.defer();
 
-  db.about.findOne({},(err,about) => {
+  db.about.findOne({}, (err, about) => {
     if (err) deferred.reject(err.name + ': ' + err.message);
     if (about == null) {
       deferred.resolve();
@@ -26,10 +26,10 @@ function get(db) {
   return deferred.promise;
 }
 
-function getById(db,_id) {
+function getById(db, _id) {
   let deferred = Q.defer();
 
-  db.about.findById(_id, (err,about) => {
+  db.about.findById(_id, (err, about) => {
     if (err) deferred.reject(err.name + ': ' + err.message);
     if (about == null) {
       deferred.resolve();
@@ -40,21 +40,21 @@ function getById(db,_id) {
   return deferred.promise;
 }
 
-function create(db,about) {
+function create(db, about) {
   let deferred = Q.defer();
   if (about._id) {
-    return update(db,about._id, about);
+    return update(db, about._id, about);
   }
   about.insertDate = new Date();
 
-  db.about.insert(about,(err,doc) => {
-      if (err) deferred.reject(err.name + ': ' + err.message);
-      deferred.resolve(doc);
-    });
-    return deferred.promise;
+  db.about.insert(about, (err, doc) => {
+    if (err) deferred.reject(err.name + ': ' + err.message);
+    deferred.resolve(doc);
+  });
+  return deferred.promise;
 }
 
-function update(db,_id, about) {
+function update(db, _id, about) {
   let deferred = Q.defer();
   // fields to update
   let set = {
@@ -65,24 +65,27 @@ function update(db,_id, about) {
     updateDate: new Date()
   };
 
-  db.about.update(
-    { _id: mongo.helper.toObjectID(_id) },
-    { $set: set },
-    (err,doc) => {
+  db.about.update({
+      _id: mongo.helper.toObjectID(_id)
+    }, {
+      $set: set
+    },
+    (err, doc) => {
       if (err) deferred.reject(err.name + ': ' + err.message);
       deferred.resolve(doc);
     });
-    return deferred.promise;
+  return deferred.promise;
 }
 
-function _delete(db,_id) {
+function _delete(db, _id) {
   let deferred = Q.defer();
 
-  db.about.remove(
-    { _id: mongo.helper.toObjectID(_id) },
+  db.about.remove({
+      _id: mongo.helper.toObjectID(_id)
+    },
     (err) => {
       if (err) deferred.reject(err.name + ': ' + err.message);
       deferred.resolve();
     });
-    return deferred.promise;
-  }
+  return deferred.promise;
+}

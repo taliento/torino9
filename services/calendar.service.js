@@ -24,17 +24,20 @@ function getAll(db) {
   return deferred.promise;
 }
 
-function getMonthEvents(db,_month, _year) {
+function getMonthEvents(db, _month, _year) {
   let deferred = Q.defer();
 
-  db.calendar.find({'date.month': parseInt(_month, 10), 'date.year': parseInt(_year, 10)}).toArray((err, _events) => {
+  db.calendar.find({
+    'date.month': parseInt(_month, 10),
+    'date.year': parseInt(_year, 10)
+  }).toArray((err, _events) => {
     if (err) deferred.reject(err.name + ': ' + err.message);
     deferred.resolve(_events);
   });
   return deferred.promise;
 }
 
-function getById(db,_id) {
+function getById(db, _id) {
   let deferred = Q.defer();
 
   db.calendar.findById(_id, (err, calendar) => {
@@ -49,7 +52,7 @@ function getById(db,_id) {
   return deferred.promise;
 }
 
-function create(db,calendarParam) {
+function create(db, calendarParam) {
   let deferred = Q.defer();
   calendarParam.insertDate = new Date();
 
@@ -59,38 +62,41 @@ function create(db,calendarParam) {
       if (err) deferred.reject(err.name + ': ' + err.message);
       deferred.resolve(doc);
     });
-    return deferred.promise;
-  }
+  return deferred.promise;
+}
 
-  function update(db,_id, calendarParam) {
-    let deferred = Q.defer();
-    // fields to update
-    let set = {
-      title: calendarParam.title,
-      text: calendarParam.text,
-      date: calendarParam.date,
-      time: calendarParam.time,
-      updateDate: new Date()
-    };
+function update(db, _id, calendarParam) {
+  let deferred = Q.defer();
+  // fields to update
+  let set = {
+    title: calendarParam.title,
+    text: calendarParam.text,
+    date: calendarParam.date,
+    time: calendarParam.time,
+    updateDate: new Date()
+  };
 
-    db.calendar.update(
-      { _id: mongo.helper.toObjectID(_id) },
-      { $set: set },
-      (err, doc) => {
-        if (err) deferred.reject(err.name + ': ' + err.message);
-        deferred.resolve();
-      });
-      return deferred.promise;
-    }
+  db.calendar.update({
+      _id: mongo.helper.toObjectID(_id)
+    }, {
+      $set: set
+    },
+    (err, doc) => {
+      if (err) deferred.reject(err.name + ': ' + err.message);
+      deferred.resolve();
+    });
+  return deferred.promise;
+}
 
-    function _delete(db,_id) {
-      let deferred = Q.defer();
+function _delete(db, _id) {
+  let deferred = Q.defer();
 
-      db.calendar.remove(
-        { _id: mongo.helper.toObjectID(_id) },
-        (err) => {
-          if (err) deferred.reject(err.name + ': ' + err.message);
-          deferred.resolve();
-        });
-        return deferred.promise;
-      }
+  db.calendar.remove({
+      _id: mongo.helper.toObjectID(_id)
+    },
+    (err) => {
+      if (err) deferred.reject(err.name + ': ' + err.message);
+      deferred.resolve();
+    });
+  return deferred.promise;
+}

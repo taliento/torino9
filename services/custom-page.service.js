@@ -23,7 +23,7 @@ function get(db) {
 }
 
 
-function getById(db,_id) {
+function getById(db, _id) {
   let deferred = Q.defer();
   db.page.findById(_id, (err, page) => {
     if (err) deferred.reject(err.name + ': ' + err.message);
@@ -36,7 +36,7 @@ function getById(db,_id) {
   return deferred.promise;
 }
 
-function create(db,page) {
+function create(db, page) {
   let deferred = Q.defer();
   page.insertDate = new Date();
   db.page.insert(
@@ -45,10 +45,10 @@ function create(db,page) {
       if (err) deferred.reject(err.name + ': ' + err.message);
       deferred.resolve(doc);
     });
-    return deferred.promise;
-  }
+  return deferred.promise;
+}
 
-function update(db,_id, page) {
+function update(db, _id, page) {
 
   let deferred = Q.defer();
   // fields to update
@@ -61,28 +61,31 @@ function update(db,_id, page) {
     updateDate: new Date()
   };
 
-  if(page.imgPath) {
+  if (page.imgPath) {
     set.imgPath = page.imgPath;
   }
 
-  db.page.update(
-    { _id: mongo.helper.toObjectID(_id) },
-    { $set: set },
+  db.page.update({
+      _id: mongo.helper.toObjectID(_id)
+    }, {
+      $set: set
+    },
     (err, doc) => {
       if (err) deferred.reject(err.name + ': ' + err.message);
       deferred.resolve(doc);
     });
-    return deferred.promise;
-  }
+  return deferred.promise;
+}
 
-  function _delete(db,_id) {
-    let deferred = Q.defer();
-    db.page.remove(
-      { _id: mongo.helper.toObjectID(_id) },
-      (err) => {
-        if (err) deferred.reject(err.name + ': ' + err.message);
+function _delete(db, _id) {
+  let deferred = Q.defer();
+  db.page.remove({
+      _id: mongo.helper.toObjectID(_id)
+    },
+    (err) => {
+      if (err) deferred.reject(err.name + ': ' + err.message);
 
-        deferred.resolve();
-      });
-    return deferred.promise;
-  }
+      deferred.resolve();
+    });
+  return deferred.promise;
+}

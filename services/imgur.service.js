@@ -19,13 +19,13 @@ function upload(filePath) {
 
   // A single image
   imgur.uploadFile(path.resolve(filePath))
-  .then((json) => {
-    deferred.resolve(json.data.link);
-  })
-  .catch((err) => {
-    console.error("Imgur service error: " + JSON.stringify(err.message));
-    deferred.reject(err.name + ': ' + err.message);
-  });
+    .then((json) => {
+      deferred.resolve(json.data.link);
+    })
+    .catch((err) => {
+      console.error("Imgur service error: " + JSON.stringify(err.message));
+      deferred.reject(err.name + ': ' + err.message);
+    });
 
   return deferred.promise;
 }

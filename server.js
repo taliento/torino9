@@ -17,7 +17,9 @@ const app = express();
 imgurService.configure();
 
 app.use(cors());
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({
+  extended: false
+}));
 app.use(bodyParser.json());
 
 //db connection
@@ -35,8 +37,11 @@ app.use('/public/img/', express.static(path.join(__dirname, 'public/img')));
 
 //API location
 // use JWT auth to secure the api
-app.use(expressJwt({ secret: process.env.SECRET }).
-unless({ path: require('./routes/public-routes') }));
+app.use(expressJwt({
+  secret: process.env.SECRET
+}).unless({
+  path: require('./routes/public-routes')
+}));
 
 // routes
 _.forEach(require('./routes/api-mapping'), (_route) => {
@@ -48,9 +53,12 @@ function logErrors(err, req, res, next) {
   console.error(err.stack);
   next(err);
 }
+
 function clientErrorHandler(err, req, res, next) {
   if (req.xhr) {
-    res.status(500).send({ error: 'Something failed!' });
+    res.status(500).send({
+      error: 'Something failed!'
+    });
   } else {
     next(err);
   }
