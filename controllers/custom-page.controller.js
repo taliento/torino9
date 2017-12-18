@@ -60,7 +60,8 @@ function update(req, res) {
 function updateUpload(req, res) {
   req.params._id = req.body._id; //XXX
   if (req.files && req.files.imgFile) {
-    uploadService.update(req.files.imgFile, req.body.imgPath).then((newImage) => {
+    uploadService.update(req.files.imgFile, req.body.imgPath)
+      .then((newImage) => {
         imgurService.upload(newImage).then((_imgPath) => { //upload to imgur
           req.body.imgPath = _imgPath;
           update(req, res);

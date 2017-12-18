@@ -22,7 +22,8 @@ router.delete('/:_id', _delete);
 module.exports = router;
 
 function authenticate(req, res) {
-  userService.authenticate(req.app.locals.db, req.body.username, req.body.password)
+  userService.authenticate(
+    req.app.locals.db, req.body.username, req.body.password)
     .then((user) => {
       if (user) {
         // authentication successful
@@ -115,8 +116,8 @@ function updateUpload(req, res) {
 
   req.params._id = req.body._id; //XXX
   if (req.files && req.files.imgFile) {
-    uploadService.update(req.files.imgFile, req.body.imgPath).then((newImage) => {
-
+    uploadService.update(req.files.imgFile, req.body.imgPath)
+      .then((newImage) => {
         imgurService.upload(newImage).then((_imgPath) => { //upload to imgur
           req.body.imgPath = _imgPath;
           update(req, res);
@@ -156,7 +157,8 @@ function count(req, res) {
 }
 
 function getPaged(req, res) {
-  userService.getPaged(req.app.locals.db, req.params.limit, req.params.page, req.params.size)
+  userService.getPaged(
+    req.app.locals.db, req.params.limit, req.params.page, req.params.size)
     .then((_user) => {
       res.send(_user);
     })

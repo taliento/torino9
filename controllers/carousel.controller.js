@@ -69,7 +69,8 @@ function count(req, res) {
 }
 
 function getPaged(req, res) {
-  carouselService.getPaged(req.app.locals.db, req.params.limit, req.params.page, req.params.size)
+  carouselService.getPaged(
+    req.app.locals.db, req.params.limit, req.params.page, req.params.size)
     .then((_carouselItem) => {
       res.send(_carouselItem);
     })
@@ -105,7 +106,8 @@ function update(req, res) {
 function updateUpload(req, res) {
   req.params._id = req.body._id; //XXX
   if (req.files && req.files.imgFile) {
-    uploadService.update(req.files.imgFile, req.body.imgPath).then((newImage) => {
+    uploadService.update(req.files.imgFile, req.body.imgPath)
+      .then((newImage) => {
         imgurService.upload(newImage).then((_imgPath) => { //upload to imgur
           req.body.imgPath = _imgPath;
           update(req, res);
@@ -127,7 +129,8 @@ function _delete(req, res) {
   carouselService.getById(req.app.locals.db, req.params._id)
     .then((_carouselItem) => {
       if (_carouselItem) {
-        uploadService._delete(__dirname + '/..' + _carouselItem.imgPath).then(() => {
+        uploadService._delete(__dirname + '/..' + _carouselItem.imgPath)
+          .then(() => {
             _deleteSlide(req, res);
           })
           .catch((err) => {

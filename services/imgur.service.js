@@ -11,7 +11,10 @@ service.configure = configure;
 module.exports = service;
 
 function configure() {
-  imgur.setCredentials(process.env.IMGUR_USERNAME, process.env.IMGUR_PASSWORD, process.env.IMGUR_CLIENTID);
+  imgur.setCredentials(
+    process.env.IMGUR_USERNAME,
+    process.env.IMGUR_PASSWORD, 
+    process.env.IMGUR_CLIENTID);
 }
 
 function upload(filePath) {

@@ -57,7 +57,9 @@ function count(req, res) {
 }
 
 function getPaged(req, res) {
-  newsService.getPaged(req.app.locals.db, req.params.limit, req.params.page, req.params.size, req.params.date)
+  newsService.getPaged(
+    req.app.locals.db, req.params.limit,
+    req.params.page, req.params.size, req.params.date)
     .then((_news) => {
       res.send(_news);
     })

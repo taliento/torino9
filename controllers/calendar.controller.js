@@ -35,7 +35,8 @@ function getAll(req, res) {
 }
 
 function getMonthEvents(req, res) {
-  caledarService.getMonthEvents(req.app.locals.db, req.params.month, req.params.year)
+  caledarService.getMonthEvents(
+    req.app.locals.db, req.params.month, req.params.year)
     .then((events) => {
       res.send(events);
     })

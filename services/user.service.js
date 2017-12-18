@@ -133,7 +133,7 @@ function create(db, userParam) {
 
       if (user) {
         // username already exists
-        deferred.reject('Username "' + userParam.username + '" is already taken');
+        deferred.reject('Username "' + userParam.username + '" already exists');
       } else {
         createUser();
       }
@@ -183,7 +183,8 @@ function update(db, _id, userParam) {
 
           if (user) {
             // username already exists
-            deferred.reject('Username "' + userParam.username + '" is already taken');
+            deferred.reject(
+              'Username "' + userParam.username + '" already exists');
           } else {
             updateUser();
           }

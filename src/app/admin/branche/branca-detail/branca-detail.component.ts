@@ -28,7 +28,7 @@ export class BrancaDetailComponent {
    }
 
    closeModal() {
-    if(this.modalRef) {
+    if (this.modalRef) {
         this.modalRef.close();
     }
    }
