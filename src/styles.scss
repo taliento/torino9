@@ -28,16 +28,16 @@ h6,
 .h4,
 .h5,
 .h6 {
-    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif !important;
-    font-style: normal !important;
-    font-weight: normal !important;
+  font-family: "Helvetica Neue",Helvetica,Arial,sans-serif !important;
+  font-style: normal !important;
+  font-weight: normal !important;
 }
 
 /* CUSTOMIZE THE CAROUSEL
 -------------------------------------------------- */
 ngb-carousel {
-    width: inherit;
-    height: inherit;
+  width: inherit;
+  height: inherit;
 }
 
 /* Carousel base class */
@@ -120,16 +120,16 @@ ngb-carousel {
   }
 }
 
- /*small devices (smartphone, 320px and up)*/
+/*small devices (smartphone, 320px and up)*/
 @media (min-width: 320px) {
-    .jumbotron h3 {
-        font-size: 2em;
-    }
+  .jumbotron h3 {
+    font-size: 2em;
+  }
 }
 
 /* Small devices (tablets, 768px and up) */
 @media (min-width: 768px) {
-    .jumbotron h3 {
-        font-size: 4em;
-    }
+  .jumbotron h3 {
+    font-size: 4em;
+  }
 }
