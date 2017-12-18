@@ -1,5 +1,5 @@
+<div class="card-header" [innerText]="news.title"></div>
 <div class="card-body">
-  <h4 class="card-title" [innerText]="news.title"></h4>
   <p class="card-text"><small class="text-muted" [innerText]="news.subTitle"></small></p>
   <div class="card-text" [innerHtml]="news.text"></div>
   <button type="button" class="btn btn-outline-primary btn-sm" (click)="modifyNews()">Update</button>

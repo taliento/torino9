@@ -1,10 +1,10 @@
+<div class="card-header" [innerText]="user.username"></div>
 <div class="row">
   <div class="col-md-4">
     <img class="card-img-bottom" [src]="user.imgPath" alt="user avatar">
   </div>
   <div class="col-md-8">
     <div class="card-body">
-      <h4 class="card-title" [innerText]="user.username"></h4>
       <p class="card-text" [innerText]="user.firstName +' '+ user.lastName"></p>
       <div class="row">
         <div class="col-md-12">

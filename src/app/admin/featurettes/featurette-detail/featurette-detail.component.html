@@ -1,6 +1,6 @@
+<div class="card-header" [innerText]="featurette.title"></div>
 <img class="card-img-top" height="200px" [src]="featurette.imgPath" [alt]="featurette.alt">
 <div class="card-body">
-  <h4 class="card-title" [innerText]="featurette.title"></h4>
   <p class="card-text"><small class="text-muted" [innerText]="featurette.subTitle"></small></p>
   <p class="card-text" [innerHtml]="featurette.text"></p>
   <button type="button" class="btn btn-outline-primary btn-sm" (click)="modifyFeaturette()">Update</button>

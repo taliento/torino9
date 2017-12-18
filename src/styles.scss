@@ -123,13 +123,13 @@ ngb-carousel {
 /*small devices (smartphone, 320px and up)*/
 @media (min-width: 320px) {
   .jumbotron h3 {
-    font-size: 2em;
+    font-size: 2em !important;
   }
 }
 
 /* Small devices (tablets, 768px and up) */
 @media (min-width: 768px) {
   .jumbotron h3 {
-    font-size: 4em;
+    font-size: 4em !important;
   }
 }

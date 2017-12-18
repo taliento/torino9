@@ -1,8 +1,7 @@
-<div class="card text-white  dt-shadow">
+<div class="card text-white dt-shadow">
   <img class="card-img branca-img img-fluid" [src]="branca.imgPath" alt="Card image">
   <div class="card-img-overlay">
     <div class="container">
-      <br>
       <h3 class="display-3"><span><i class="fa fa-fire" aria-hidden="true"></i></span> <span [innerText]="branca.title"></span></h3>
       <hr class="my-4">
       <p [innerText]="branca.subtitle"></p>
@@ -15,10 +14,5 @@
     <div class="col-md-12">
       <p [innerHtml]="branca.text"></p>
     </div>
-      <!-- <div class="card">
-        <div class="card-body">
-          <div [innerHtml]="branca.text"></div>
-        </div>
-      </div> -->
   </div>
 </div>
