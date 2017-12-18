@@ -12,9 +12,12 @@ describe('express rest api server', function() {
 
   const api = "http://localhost:" + (process.env.PORT || 3000) + apiUrl;
 
-  before(function(done) {// insert api test user, and get auth token
+  before(function(done) { // insert api test user, and get auth token
     superagent.post(api + '/users/register')
-      .send({ username: user, password: password })
+      .send({
+        username: user,
+        password: password
+      })
       .end(function(e, res) {
         expect(e).to.eql(null);
         expect(typeof res.body).to.eql('object');
@@ -24,7 +27,10 @@ describe('express rest api server', function() {
         idApitest = res.body.ops[0]._id;
 
         superagent.post(api + '/users/authenticate')
-          .send({ username: user, password: password })
+          .send({
+            username: user,
+            password: password
+          })
           .set('Accept', 'application/json')
           .end(function(err, res) {
             expect(err).to.eql(null);
@@ -39,7 +45,11 @@ describe('express rest api server', function() {
 
     it('insert about page', function(done) {
       superagent.post(api + '/about/insert')
-        .send({ title: 'test' , subtitle: 'about page sub', text: 'about text' })
+        .send({
+          title: 'test',
+          subtitle: 'about page sub',
+          text: 'about text'
+        })
         .set('Authorization', 'Bearer ' + token)
         .end(function(e, res) {
           expect(e).to.eql(null);
@@ -65,7 +75,12 @@ describe('express rest api server', function() {
 
     it('updates about page', function(done) {
       superagent.post(api + '/about/insert')
-        .send({ title: 'test' , subtitle: 'about page sub', text: 'about text', _id: id })
+        .send({
+          title: 'test',
+          subtitle: 'about page sub',
+          text: 'about text',
+          _id: id
+        })
         .set('Authorization', 'Bearer ' + token)
         .end(function(e, res) {
           expect(e).to.eql(null);
@@ -91,7 +106,12 @@ describe('express rest api server', function() {
 
     it('insert branca page', function(done) {
       superagent.post(api + '/branca/insert')
-        .send({ title: 'test' , subtitle: 'branca page sub', text: 'about text', _id: 'branca1' })
+        .send({
+          title: 'test',
+          subtitle: 'branca page sub',
+          text: 'about text',
+          _id: 'branca1'
+        })
         .set('Authorization', 'Bearer ' + token)
         .end(function(e, res) {
           expect(e).to.eql(null);
@@ -115,7 +135,12 @@ describe('express rest api server', function() {
 
     it('updates branca page', function(done) {
       superagent.post(api + '/branca/insert')
-        .send({ title: 'test' , subtitle: 'about page sub', text: 'about text', _id: 'branca1' })
+        .send({
+          title: 'test',
+          subtitle: 'about page sub',
+          text: 'about text',
+          _id: 'branca1'
+        })
         .set('Authorization', 'Bearer ' + token)
         .end(function(e, res) {
           expect(e).to.eql(null);
@@ -144,7 +169,14 @@ describe('express rest api server', function() {
 
     it('post event', function(done) {
       superagent.post(api + '/calendar/insert')
-        .send({ title: 'test' , date: { year: now.getFullYear(), month: now.getMonth(), day: now.getDate() } })
+        .send({
+          title: 'test',
+          date: {
+            year: now.getFullYear(),
+            month: now.getMonth(),
+            day: now.getDate()
+          }
+        })
         .set('Authorization', 'Bearer ' + token)
         .end(function(e, res) {
           expect(e).to.eql(null);
@@ -174,7 +206,9 @@ describe('express rest api server', function() {
           expect(e).to.eql(null);
           expect(typeof res.body).to.eql('object');
           expect(res.body.length).to.be.above(0);
-          expect(res.body.map(function(item) {return item._id;})).to.contain(id);
+          expect(res.body.map(function(item) {
+            return item._id;
+          })).to.contain(id);
           done();
         });
     });
@@ -184,14 +218,23 @@ describe('express rest api server', function() {
         .end(function(e, res) {
           expect(e).to.eql(null);
           expect(res.body.length).to.be.above(0);
-          expect(res.body.map(function(item) {return item._id;})).to.contain(id);
+          expect(res.body.map(function(item) {
+            return item._id;
+          })).to.contain(id);
           done();
         });
     });
 
     it('updates an event', function(done) {
       superagent.put(api + '/calendar/' + id)
-        .send({ title: 'test2' , date: { year: now.getFullYear(), month: now.getMonth(), day: now.getDate() } })
+        .send({
+          title: 'test2',
+          date: {
+            year: now.getFullYear(),
+            month: now.getMonth(),
+            day: now.getDate()
+          }
+        })
         .set('Authorization', 'Bearer ' + token)
         .set('Accept', 'application/json')
         .end(function(e, res) {
@@ -218,7 +261,10 @@ describe('express rest api server', function() {
 
     it('post slide', function(done) {
       superagent.post(api + '/carousel/insert')
-        .send({ title: 'test' , subtitle: 'test carousel' })
+        .send({
+          title: 'test',
+          subtitle: 'test carousel'
+        })
         .set('Authorization', 'Bearer ' + token)
         .end(function(e, res) {
           expect(e).to.eql(null);
@@ -247,7 +293,9 @@ describe('express rest api server', function() {
         .end(function(e, res) {
           expect(e).to.eql(null);
           expect(res.body.length).to.be.above(0);
-          expect(res.body.map(function(item) {return item._id;})).to.contain(id);
+          expect(res.body.map(function(item) {
+            return item._id;
+          })).to.contain(id);
           done();
         });
     });
@@ -274,7 +322,10 @@ describe('express rest api server', function() {
 
     it('updates a slide', function(done) {
       superagent.put(api + '/carousel/' + id)
-        .send({ title: 'test' , subtitle: 'test carousel' })
+        .send({
+          title: 'test',
+          subtitle: 'test carousel'
+        })
         .set('Authorization', 'Bearer ' + token)
         .set('Accept', 'application/json')
         .end(function(e, res) {
@@ -301,7 +352,11 @@ describe('express rest api server', function() {
 
     it('inser contacts page', function(done) {
       superagent.post(api + '/contact/insert')
-        .send({ title: 'test' , subtitle: 'contact page sub', text: 'about text' })
+        .send({
+          title: 'test',
+          subtitle: 'contact page sub',
+          text: 'about text'
+        })
         .set('Authorization', 'Bearer ' + token)
         .end(function(e, res) {
           expect(e).to.eql(null);
@@ -327,7 +382,12 @@ describe('express rest api server', function() {
 
     it('updates contacts page', function(done) {
       superagent.post(api + '/contact/insert')
-        .send({ title: 'test' , subtitle: 'contact page sub', text: 'about text', _id: id })
+        .send({
+          title: 'test',
+          subtitle: 'contact page sub',
+          text: 'about text',
+          _id: id
+        })
         .set('Authorization', 'Bearer ' + token)
         .end(function(e, res) {
           expect(e).to.eql(null);
@@ -354,7 +414,10 @@ describe('express rest api server', function() {
 
     it('post featurette', function(done) {
       superagent.post(api + '/featurette/insert')
-        .send({ title: 'test' , subtitle: 'test featurette' })
+        .send({
+          title: 'test',
+          subtitle: 'test featurette'
+        })
         .set('Authorization', 'Bearer ' + token)
         .end(function(e, res) {
           expect(e).to.eql(null);
@@ -383,7 +446,9 @@ describe('express rest api server', function() {
         .end(function(e, res) {
           expect(e).to.eql(null);
           expect(res.body.length).to.be.above(0);
-          expect(res.body.map(function(item) {return item._id;})).to.contain(id);
+          expect(res.body.map(function(item) {
+            return item._id;
+          })).to.contain(id);
           done();
         });
     });
@@ -410,7 +475,10 @@ describe('express rest api server', function() {
 
     it('updates a featurette', function(done) {
       superagent.put(api + '/featurette/' + id)
-        .send({ title: 'test' , subtitle: 'test featurette' })
+        .send({
+          title: 'test',
+          subtitle: 'test featurette'
+        })
         .set('Authorization', 'Bearer ' + token)
         .set('Accept', 'application/json')
         .end(function(e, res) {
@@ -437,7 +505,10 @@ describe('express rest api server', function() {
 
     it('post news', function(done) {
       superagent.post(api + '/news/insert')
-        .send({ title: 'test' , subtitle: 'test news' })
+        .send({
+          title: 'test',
+          subtitle: 'test news'
+        })
         .set('Authorization', 'Bearer ' + token)
         .end(function(e, res) {
           expect(e).to.eql(null);
@@ -466,7 +537,9 @@ describe('express rest api server', function() {
         .end(function(e, res) {
           expect(e).to.eql(null);
           expect(res.body.length).to.be.above(0);
-          expect(res.body.map(function(item) {return item._id;})).to.contain(id);
+          expect(res.body.map(function(item) {
+            return item._id;
+          })).to.contain(id);
           done();
         });
     });
@@ -493,7 +566,10 @@ describe('express rest api server', function() {
 
     it('updates a news', function(done) {
       superagent.put(api + '/news/' + id)
-        .send({ title: 'test' , subtitle: 'test news' })
+        .send({
+          title: 'test',
+          subtitle: 'test news'
+        })
         .set('Authorization', 'Bearer ' + token)
         .set('Accept', 'application/json')
         .end(function(e, res) {
@@ -520,7 +596,10 @@ describe('express rest api server', function() {
 
     it('user register', function(done) {
       superagent.post(api + '/users/register')
-        .send({ username: 'testuser' , password: 'password' })
+        .send({
+          username: 'testuser',
+          password: 'password'
+        })
         .end(function(e, res) {
           expect(e).to.eql(null);
           expect(typeof res.body).to.eql('object');
@@ -550,7 +629,9 @@ describe('express rest api server', function() {
         .end(function(e, res) {
           expect(e).to.eql(null);
           expect(res.body.length).to.be.above(0);
-          expect(res.body.map(function(item) {return item._id;})).to.contain(id);
+          expect(res.body.map(function(item) {
+            return item._id;
+          })).to.contain(id);
           done();
         });
     });
@@ -579,7 +660,10 @@ describe('express rest api server', function() {
 
     it('updates an user', function(done) {
       superagent.put(api + '/users/' + id)
-        .send({ username: 'testuser' , password: 'passwordnew' })
+        .send({
+          username: 'testuser',
+          password: 'passwordnew'
+        })
         .set('Authorization', 'Bearer ' + token)
         .set('Accept', 'application/json')
         .end(function(e, res) {
@@ -601,7 +685,7 @@ describe('express rest api server', function() {
     });
   });
 
-  after(function(done) {// delete api test user
+  after(function(done) { // delete api test user
     superagent.del(api + '/users/' + idApitest)
       .set('Authorization', 'Bearer ' + token)
       .set('Accept', 'application/json')
