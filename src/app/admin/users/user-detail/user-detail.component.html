@@ -8,8 +8,12 @@
       <p class="card-text" [innerText]="user.firstName +' '+ user.lastName"></p>
       <div class="row">
         <div class="col-md-12">
-          <button type="button" class="btn btn-outline-primary btn-sm" (click)="modifyUser()">Modifica</button>
-          <button type="button" class="btn btn-outline-danger btn-sm" (click)="deleteUser()">Elimina</button>
+          <button type="button" class="btn btn-outline-primary btn-sm" (click)="modifyUser()" title="Modifica">
+            <i class="fa fa-pencil" aria-hidden="true"></i>
+          </button>
+          <button type="button" class="btn btn-outline-danger btn-sm" (click)="deleteUser()" title="Elimina">
+            <i class="fa fa-trash" aria-hidden="true"></i>
+          </button>
         </div>
       </div>
     </div>

@@ -2,8 +2,12 @@
 <div class="card-body">
   <h5 class="card-title" [innerText]="branca.subtitle"></h5>
   <div class="card-text" [innerHtml]="branca.text"></div>
-  <button type="button" class="btn btn-outline-primary btn-sm" (click)="updateModal()">Modifica</button>
-  <button type="button" class="btn btn-outline-danger btn-sm" (click)="deleteBranca()">Elimina</button>
+  <button type="button" class="btn btn-outline-primary btn-sm" (click)="updateModal()" title="Modifica">
+    <i class="fa fa-pencil" aria-hidden="true"></i>
+  </button>
+  <button type="button" class="btn btn-outline-danger btn-sm" (click)="deleteBranca()" title="Elimina">
+    <i class="fa fa-trash" aria-hidden="true"></i>
+  </button>
 </div>
 <img class="card-img-bottom" [src]="branca.imgPath" height="200px" alt="Branca img">
 <!-- <div class="card-footer">
