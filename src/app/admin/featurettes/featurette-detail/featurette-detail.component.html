@@ -3,8 +3,12 @@
 <div class="card-body">
   <p class="card-text"><small class="text-muted" [innerText]="featurette.subTitle"></small></p>
   <p class="card-text" [innerHtml]="featurette.text"></p>
-  <button type="button" class="btn btn-outline-primary btn-sm" (click)="modifyFeaturette()">Update</button>
-  <button type="button" class="btn btn-outline-danger btn-sm" (click)="deleteFeaturette()">Delete</button>
+  <button type="button" class="btn btn-outline-primary btn-sm" (click)="modifyFeaturette()" title="Modifica">
+    <i class="fa fa-pencil" aria-hidden="true"></i>
+  </button>
+  <button type="button" class="btn btn-outline-danger btn-sm" (click)="deleteFeaturette()" title="Elimina">
+    <i class="fa fa-trash" aria-hidden="true"></i>
+  </button>
 </div>
 <div class="card-footer">
   <small class="text-muted">Inserita nel <span [innerText]="featurette.insertDate | date:'dd/MM/yyyy'"></span></small>

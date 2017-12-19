@@ -4,8 +4,7 @@ import { TABS } from './admin-tabs.config';
 @Component({
     moduleId: module.id,
     selector: 'app-admin-tabs',
-    templateUrl: './admin-tabs.component.html',
-    styleUrls: ['./admin-tabs.component.scss']
+    templateUrl: './admin-tabs.component.html'
 })
 
 export class AdminTabsComponent implements OnInit {

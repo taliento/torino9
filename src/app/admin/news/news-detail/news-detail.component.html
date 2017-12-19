@@ -2,8 +2,12 @@
 <div class="card-body">
   <p class="card-text"><small class="text-muted" [innerText]="news.subTitle"></small></p>
   <div class="card-text" [innerHtml]="news.text"></div>
-  <button type="button" class="btn btn-outline-primary btn-sm" (click)="modifyNews()">Update</button>
-  <button type="button" class="btn btn-outline-danger btn-sm" (click)="deleteNews()">Delete</button>
+  <button type="button" class="btn btn-outline-primary btn-sm" (click)="modifyNews()" title="Modifica">
+    <i class="fa fa-pencil" aria-hidden="true"></i>
+  </button>
+  <button type="button" class="btn btn-outline-danger btn-sm" (click)="deleteNews()" title="Elimina">
+    <i class="fa fa-trash" aria-hidden="true"></i>
+  </button>
 </div>
 <div class="card-footer">
   <small class="text-muted">Inserito da <span [innerText]="news.author"></span> nel <span [innerText]="news.insertDate | date:'dd/MM/yyyy'"></span></small>

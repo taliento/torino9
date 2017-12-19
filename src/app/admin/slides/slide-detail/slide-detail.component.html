@@ -2,8 +2,12 @@
 <img class="card-img-top" [src]="slide.imgPath" [alt]="slide.alt">
 <div class="card-body">
   <p class="card-text" [innerHtml]="slide.text"></p>
-  <button type="button" class="btn btn-outline-primary btn-sm" (click)="modifySlide()">Update</button>
-  <button type="button" class="btn btn-outline-danger btn-sm" (click)="deleteSlide()">Delete</button>
+  <button type="button" class="btn btn-outline-primary btn-sm" (click)="modifySlide()" title="Modifica">
+    <i class="fa fa-pencil" aria-hidden="true"></i>
+  </button>
+  <button type="button" class="btn btn-outline-danger btn-sm" (click)="deleteSlide()" title="Elimina">
+    <i class="fa fa-trash" aria-hidden="true"></i>
+  </button>
 </div>
 <div class="card-footer">
   <small class="text-muted">Inserita nel <span [innerText]="slide.insertDate | date:'dd/MM/yyyy'"></span></small>

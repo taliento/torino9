@@ -7,11 +7,11 @@
   <small *ngIf="task.insertDate">Inserito il <span [innerText]="task.insertDate | date:'dd/MM/yyyy'"></span></small>
 
   <div class="pull-right">
-    <button type="button" class="btn btn-outline-primary btn-sm" (click)="openUpdateModal()">
-      Modifica  Evento
+    <button type="button" class="btn btn-outline-primary btn-sm" (click)="openUpdateModal()" title="Modifica  Evento">
+      <i class="fa fa-pencil" aria-hidden="true"></i>
     </button>
-    <button type="button" class="btn btn-outline-danger btn-sm" (click)="confirmDialog.open()">
-      Elimina  Evento
+    <button type="button" class="btn btn-outline-danger btn-sm" (click)="confirmDialog.open()" title="Elimina  Evento">
+      <i class="fa fa-trash" aria-hidden="true"></i>
     </button>
   </div>
 
