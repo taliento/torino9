@@ -10,11 +10,16 @@ import { NewsComponent } from './news/news.component';
 import { CalendarComponent } from './calendar/calendar.component';
 import { HomeComponent } from './home//home.component';
 import { AdminComponent } from './admin/admin.component';
+import { PolicyComponent } from './policy/policy.component';
 
 const appRoutes: Routes = [
     {
       path: 'mainlayout', component: MainLayoutComponent ,
       children: [
+        {
+          path: 'cookie-policy',
+          component: PolicyComponent
+        },
         {
           path: 'home',
           component: HomeComponent,
@@ -72,5 +77,7 @@ export const MODULE_COMPONENTS = [
   ContactComponent,
   LoginComponent,
   CustomPageComponent,
-  BrancaComponent
+  BrancaComponent,
+  PolicyComponent,
+  MainLayoutComponent
 ];

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ElementRef, HostListener } from '@angular/core';
 import { Branca } from '../../shared/models';
 import { BrancaService } from '../../shared/services';
 
