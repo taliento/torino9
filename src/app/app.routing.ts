@@ -18,44 +18,53 @@ const appRoutes: Routes = [
       children: [
         {
           path: 'cookie-policy',
-          component: PolicyComponent
+          component: PolicyComponent,
+          data: { state: 'cookie-policy' }
         },
         {
           path: 'home',
           component: HomeComponent,
-          loadChildren: './home/home.module#HomeModule'
+          loadChildren: './home/home.module#HomeModule',
+          data: { state: 'home' }
         },
         {
           path: 'admin',
           component: AdminComponent,
           canActivate: [AuthGuard],
-          loadChildren: './admin/admin.module#AdminModule'
+          loadChildren: './admin/admin.module#AdminModule',
+          data: { state: 'admin' }
         },
         {
           path: 'calendar',
           component: CalendarComponent,
-          loadChildren: './calendar/calendar.module#CalendarModule'
+          loadChildren: './calendar/calendar.module#CalendarModule',
+          data: { state: 'calendar' }
         },
         {
           path: 'news',
           component: NewsComponent,
-          loadChildren: './news/news.module#NewsModule'
+          loadChildren: './news/news.module#NewsModule',
+          data: { state: 'news' }
         },
         {
           path: 'about',
-          component: AboutUsComponent
+          component: AboutUsComponent,
+          data: { state: 'about' }
         },
         {
           path: 'contact',
-          component: ContactComponent
+          component: ContactComponent,
+          data: { state: 'contact' }
         },
         {
           path: 'branca/:id',
-          component: BrancaComponent
+          component: BrancaComponent,
+          data: { state: 'branca/:id' }
         },
         {
           path: 'page/:id',
-          component: CustomPageComponent
+          component: CustomPageComponent,
+          data: { state: 'page/:id' }
         }
       ]
     },

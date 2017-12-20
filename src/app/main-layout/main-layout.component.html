@@ -1,7 +1,9 @@
-<div class="body-container position-absolute">
-  <router-outlet></router-outlet>
-  <app-footer></app-footer>
-</div>
+<main [@routerTransition]="getState(o)">
+  <div class="body-container position-absolute">
+    <router-outlet #o="outlet"></router-outlet>
+    <app-footer></app-footer>
+  </div>
+</main>
 <app-navbar></app-navbar>
 <div class="container alert-container">
   <app-alert></app-alert>
