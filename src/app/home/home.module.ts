@@ -6,6 +6,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { RouterModule } from '@angular/router';
 import { MODULE_COMPONENTS, MODULE_ROUTES } from './home.routes';
 import { MapModule } from '../map/map.module';
+import { BrancaDetailComponent } from './branche/branca-detail/branca-detail.component';
+import { FeaturetteDetailComponent } from './featurette/featurette-detail/featurette-detail.component';
 
 @NgModule({
   imports: [
@@ -18,7 +20,9 @@ import { MapModule } from '../map/map.module';
     MapModule
   ],
   declarations: [
-    MODULE_COMPONENTS
+    MODULE_COMPONENTS,
+    BrancaDetailComponent,
+    FeaturetteDetailComponent
   ]
 })
 export class HomeModule {}

@@ -1,0 +1,12 @@
+<div [@featuretteAnimation]="state">
+  <hr class="featurette-divider">
+  <div class="row featurette">
+    <div class="col-md-7" [class.order-md-2]="!isOdd()">
+      <h2 class="featurette-heading"><span [innerText]="featurette.title"></span> <span class="text-muted" [innerText]="featurette.subTitle"></span></h2>
+      <p class="lead" [innerHtml]="featurette.text"></p>
+    </div>
+    <div class="col-md-5" [class.order-md-1]="!isOdd()">
+      <img class="featurette-image img-fluid mx-auto" [src]="featurette.imgPath" width="500px" alt="featurette image">
+    </div>
+  </div>
+</div>
