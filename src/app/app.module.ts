@@ -17,13 +17,14 @@ import { AuthGuard } from './shared/guards/index';
 import { AlertService, AuthenticationService, UserService,
   NewsService, NewsHeaderService, CarouselService,
   FeaturetteService, CalendarService, AboutPageService,
-  ContactPageService, BrancaService, DownloadService, AppConfigService, CustomPageService, CustomDatepickerI18n } from './shared/services';
+  ContactPageService, BrancaService, DownloadService, AppConfigService, CustomPageService, CustomDatepickerI18n, PolicyService } from './shared/services';
 import { MapModule } from './map/map.module';
 import { LOCALE_ID } from '@angular/core';
-import { MainLayoutComponent } from './main-layout/main-layout.component';
 import { registerLocaleData } from '@angular/common';
 import localeIT from '@angular/common/locales/it';
 import {NgbDatepickerI18n} from '@ng-bootstrap/ng-bootstrap';
+import { CookieLawModule } from 'angular2-cookie-law';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 registerLocaleData(localeIT);
 
@@ -32,7 +33,6 @@ registerLocaleData(localeIT);
     AppComponent,
     AlertComponent,
     MODULE_COMPONENTS,
-    MainLayoutComponent
   ],
   imports: [
     routing,
@@ -48,7 +48,9 @@ registerLocaleData(localeIT);
     NewsModule,
     CalendarModule,
     BrowserModule,
-    MapModule
+    MapModule,
+    CookieLawModule,
+    BrowserAnimationsModule
   ],
   providers: [
     AuthGuard,
@@ -67,6 +69,7 @@ registerLocaleData(localeIT);
     DownloadService,
     AppConfigService,
     CustomPageService,
+    PolicyService,
    { provide: LOCALE_ID, useValue: 'it' },
    {provide: NgbDatepickerI18n, useClass: CustomDatepickerI18n}
   ],
