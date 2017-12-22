@@ -14,8 +14,8 @@ export class AuthenticationInterceptorService implements HttpInterceptor {
     let request: HttpRequest<any>;
     const router = this.injector.get(Router);
 
-    if(localStorage && localStorage.getItem('AuthData')) {
-      const auth = JSON.parse(localStorage.getItem('AuthData'));
+    if(localStorage && localStorage.getItem('currentUser')) {
+      const auth = JSON.parse(localStorage.getItem('currentUser'));
 
       if(!auth || !auth.token) return next.handle(req);
 

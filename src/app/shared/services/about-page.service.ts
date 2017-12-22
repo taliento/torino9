@@ -12,8 +12,7 @@ export class AboutPageService extends AService {
   }
 
   get(): Promise<AboutPage> {
-    return this.http.
-      get<AboutPage>(this.apiUrl + '/about')
+    return this.http.get<AboutPage>(this.apiUrl + '/about')
       .toPromise()
       .catch(this.handleError);
   }

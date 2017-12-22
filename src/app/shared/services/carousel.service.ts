@@ -14,8 +14,7 @@ export class CarouselService extends AService {
   }
 
   getAll(): Promise<DTCarousel[]> {
-    return this.http.
-      get<DTCarousel[]>(this.apiUrl + '/carousel')
+    return this.http.get<DTCarousel[]>(this.apiUrl + '/carousel')
       .toPromise()
       .catch(this.handleError);
   }
@@ -29,8 +28,7 @@ export class CarouselService extends AService {
   }
 
   getById(_id: string): Promise<DTCarousel> {
-      return this.http.
-      get<DTCarousel>(this.apiUrl + `/carousel/get/${_id}`)
+      return this.http.get<DTCarousel>(this.apiUrl + `/carousel/get/${_id}`)
       .toPromise()
       .catch(this.handleError);
   }

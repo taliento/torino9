@@ -13,8 +13,7 @@ export class NewsService extends AService {
   }
 
   getAll(): Promise<News[]> {
-    return this.http.
-      get<News[]>(this.apiUrl + '/news')
+    return this.http.get<News[]>(this.apiUrl + '/news')
       .toPromise()
       .catch(this.handleError);
   }
@@ -28,15 +27,13 @@ export class NewsService extends AService {
   }
 
   getById(_id: string): Promise<News> {
-      return this.http.
-      get<News>(this.apiUrl + `/news/get/${_id}`)
+      return this.http.get<News>(this.apiUrl + `/news/get/${_id}`)
       .toPromise()
       .catch(this.handleError);
   }
 
   getArchivesDate(): Promise<any> {// FIXME type
-    return this.http.
-      get(this.apiUrl + '/news/archivesDate')
+    return this.http.get(this.apiUrl + '/news/archivesDate')
       .toPromise()
       .then((response) => {
         console.log(response.valueOf());

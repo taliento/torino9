@@ -13,8 +13,7 @@ export class CalendarService extends AService {
   }
 
   getAll(): Promise<Event[]> {
-    return this.http.
-      get<Event[]>(this.apiUrl + '/calendar')
+    return this.http.get<Event[]>(this.apiUrl + '/calendar')
       .toPromise()
       .catch(this.handleError);
   }
@@ -26,8 +25,7 @@ export class CalendarService extends AService {
   }
 
   getById(_id: string): Promise<Event> {
-      return this.http.
-      get<Event>(this.apiUrl + `/calendar/get/${_id}`)
+      return this.http.get<Event>(this.apiUrl + `/calendar/get/${_id}`)
       .toPromise()
       .catch(this.handleError);
   }

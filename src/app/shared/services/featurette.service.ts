@@ -13,15 +13,13 @@ export class FeaturetteService extends AService {
   }
 
   getAll(): Promise<Featurette[]> {
-    return this.http.
-      get<Featurette[]>(this.apiUrl + '/featurette')
+    return this.http.get<Featurette[]>(this.apiUrl + '/featurette')
       .toPromise()
       .catch(this.handleError);
   }
 
   getById(_id: string): Promise<Featurette> {
-      return this.http.
-      get<Featurette>(this.apiUrl + `/featurette/get/${_id}`)
+      return this.http.get<Featurette>(this.apiUrl + `/featurette/get/${_id}`)
       .toPromise()
       .catch(this.handleError);
   }

@@ -12,8 +12,7 @@ export class CustomPageService extends AService {
   }
 
   getById(_id: string): Promise<CustomPage> {
-    return this.http.
-    get<CustomPage>(this.apiUrl + `/page/get/${_id}`)
+    return this.http.get<CustomPage>(this.apiUrl + `/page/get/${_id}`)
     .toPromise()
     .catch(this.handleError);
   }

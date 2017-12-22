@@ -12,8 +12,7 @@ export class ContactPageService extends AService {
   }
 
   get(): Promise<any> {
-    return this.http.
-      get<ContactPage>(this.apiUrl + '/contact')
+    return this.http.get<ContactPage>(this.apiUrl + '/contact')
       .toPromise()
       .catch(this.handleError);
   }
