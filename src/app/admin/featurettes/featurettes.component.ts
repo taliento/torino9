@@ -25,7 +25,7 @@ export class FeaturetteComponent implements OnInit {
 
   ngOnInit(): void {
     this.featuretteService.count().subscribe((res) => {
-      this.collectionSize = parseInt(res.json().count, 10);
+      this.collectionSize = res;
       if (this.collectionSize > 0) {
           this.loadData();
       }
@@ -79,13 +79,9 @@ export class FeaturetteComponent implements OnInit {
       page: this.page - 1,
       size: this.pageSize,
     }).subscribe(
-      res  => this.onSuccess(res.json()),
+      res  => this.featuretteList = res,
       (res: Response) => this.onError(res.json())
     );
-  }
-
-  onSuccess (res) {
-    this.featuretteList = res;
   }
 
   onError (res) {

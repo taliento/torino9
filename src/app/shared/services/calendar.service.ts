@@ -1,48 +1,46 @@
 import { Injectable } from '@angular/core';
-import { Http } from '@angular/http';
 import 'rxjs/add/operator/toPromise';
 import { AService } from './a-service.service';
 import { Event } from '../models';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs/Observable';
 
 @Injectable()
 export class CalendarService extends AService {
 
-  constructor(http: Http) {
+  constructor(http: HttpClient) {
     super(http);
   }
 
   getAll(): Promise<Event[]> {
     return this.http.
-      get(this.apiUrl + '/calendar')
+      get<Event[]>(this.apiUrl + '/calendar')
       .toPromise()
-      .then(response => response.json() as Event[])
       .catch(this.handleError);
   }
 
   getMonthEvents(date: any): Promise<Event[]> {
-    return this.http.get(this.apiUrl + `/calendar/month/${date.month}/${date.year}`)
+    return this.http.get<Event[]>(this.apiUrl + `/calendar/month/${date.month}/${date.year}`)
     .toPromise()
-    .then(response => response.json() as Event[])
     .catch(this.handleError);
   }
 
   getById(_id: string): Promise<Event> {
       return this.http.
-      get(this.apiUrl + `/calendar/get/${_id}`)
+      get<Event>(this.apiUrl + `/calendar/get/${_id}`)
       .toPromise()
-      .then(response => response.json() as Event)
       .catch(this.handleError);
   }
 
-  insert(event: Event) {
-    return this.http.post(this.apiUrl + '/calendar/insert', event, this.jwt());
+  insert(event: Event): Observable<Event> {
+    return this.http.post<Event>(this.apiUrl + '/calendar/insert', event);
   }
 
   delete(_id: string) {
-    return this.http.delete(this.apiUrl + `/calendar/${_id}`, this.jwt());
+    return this.http.delete(this.apiUrl + `/calendar/${_id}`);
   }
 
   update(event: Event) {
-    return this.http.put(this.apiUrl + `/calendar/${event._id}`, event, this.jwt());
+    return this.http.put(this.apiUrl + `/calendar/${event._id}`, event);
   }
 }

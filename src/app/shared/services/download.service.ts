@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
-import { Http, Response } from '@angular/http';
+import { Response } from '@angular/http';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs/Observable';
 import { AService } from './a-service.service';
 import { saveAs } from 'file-saver/FileSaver';
 
@@ -7,13 +9,14 @@ import { saveAs } from 'file-saver/FileSaver';
 export class DownloadService extends AService {
 
 
-  constructor(http: Http) {
+  constructor(http: HttpClient) {
     super(http);
   }
 
   downloadAll() {
-    this.http.get(this.apiUrl + '/download/downloadAll', this.jwtBlob())
-    .map((response: Response) => response.blob())
+    this.http.get(this.apiUrl + '/download/downloadAll', {
+      responseType: "blob"
+    })
     .subscribe(data => {
         saveAs(data, 'images.zip');
       }
@@ -21,6 +24,6 @@ export class DownloadService extends AService {
   }
 
   uploadAll(formData: FormData) {
-    return this.http.post(this.apiUrl + '/download/uploadAll', formData, this.jwt());
+    return this.http.post(this.apiUrl + '/download/uploadAll', formData);
   }
 }

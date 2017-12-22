@@ -34,7 +34,7 @@ export class NewsListComponent implements OnInit {
 
   loadAll() {
     this.newsService.count(this.date).subscribe((res) => {
-      this.collectionSize = parseInt(res.json().count, 10);
+      this.collectionSize = res;
       if (this.collectionSize > 0) {
           this.loadData();
       }
@@ -55,7 +55,7 @@ export class NewsListComponent implements OnInit {
       size: this.pageSize,
       date: this.date
     }).subscribe(
-      res  => this.onSuccess(res.json()),
+      res  => this.newsList = res,
       (res: Response) => this.onError(res.json())
     );
   }
@@ -71,10 +71,6 @@ export class NewsListComponent implements OnInit {
     this.selectedDate = date;
     this.date = new Date(date.year + '-' + date.month + '-01T00:00:00');
     this.loadAll();
-  }
-
-  onSuccess (res) {
-    this.newsList = res;
   }
 
   onError (res) {

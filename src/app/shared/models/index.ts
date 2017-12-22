@@ -7,4 +7,5 @@ export { DTCarousel } from './dt-carousel.model';
 export { Featurette } from './featurette.model';
 export { News } from './news.model';
 export { Branca } from './branca.model';
-export {CustomPage} from './custom-page.model';
+export { CustomPage } from './custom-page.model';
+export { AppConfig } from './app-config.model';

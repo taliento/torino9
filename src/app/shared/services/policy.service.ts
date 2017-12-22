@@ -1,11 +1,12 @@
 import { Injectable } from '@angular/core';
-import { Http } from '@angular/http';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs/Observable';
 import { AService } from './a-service.service';
 
 @Injectable()
 export class PolicyService extends AService {
 
-  constructor(http: Http) {
+  constructor(http: HttpClient) {
     super(http);
   }
 

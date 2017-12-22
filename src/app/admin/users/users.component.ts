@@ -31,9 +31,9 @@ export class UsersComponent implements OnInit {
 
   ngOnInit() {
     this.userService.count().subscribe((res) => {
-      this.collectionSize = parseInt(res.json().count, 10);
+      this.collectionSize = res;
       if (this.collectionSize > 0) {
-          this.loadData();
+        this.loadData();
       }
     });
   }
@@ -85,14 +85,11 @@ export class UsersComponent implements OnInit {
           page: this.page - 1,
           size: this.pageSize,
         }).subscribe(
-          res  => this.onSuccess(res.json()),
+          res  => this.users = res,
           (res: Response) => this.onError(res.json())
         );
       }
 
-      onSuccess (res) {
-        this.users = res;
-      }
 
       onError (res) {
         console.log('error:' + res);
