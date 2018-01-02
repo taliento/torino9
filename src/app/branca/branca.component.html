@@ -7,7 +7,7 @@
        'text-danger': branca.color == 'red',
         'text-warning': branca.color == 'yellow',
       'text-success': branca.color == 'green'}">
-        <span><i class="fa fa-fire" aria-hidden="true"></i></span>
+        <span><i [class]="branca.icon" aria-hidden="true"></i></span>
          <span [innerText]="branca.title"></span></h3>
       <hr class="my-4">
       <p [innerText]="branca.subtitle"></p>

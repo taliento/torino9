@@ -5,4 +5,5 @@ export class Branca {
   text: string;
   imgPath: string;
   color: string;
+  icon: string;
 }
