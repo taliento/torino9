@@ -52,6 +52,7 @@ function update(db, _id, branca) {
     title: branca.title,
     subtitle: branca.subtitle,
     text: branca.text,
+    color: branca.color,
     updateDate: new Date()
   };
 

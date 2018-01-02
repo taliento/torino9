@@ -1,6 +1,9 @@
-<h4 class="card-header" [innerText]="branca.title"></h4>
+<h4 class="card-header" [innerText]="branca.title" [ngClass]="{'text-primary': color == 'blue',
+ 'text-danger': branca.color == 'red',
+  'text-warning': branca.color == 'yellow',
+'text-success': branca.color == 'green'}"></h4>
 <div class="card-body">
-  <h5 class="card-title" [innerText]="branca.subtitle"></h5>
+  <h5 class="card-title"  [innerText]="branca.subtitle"></h5>
   <div class="card-text" [innerHtml]="branca.text"></div>
   <button type="button" class="btn btn-outline-primary btn-sm" (click)="updateModal()" title="Modifica">
     <i class="fa fa-pencil" aria-hidden="true"></i>
