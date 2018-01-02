@@ -1,6 +1,6 @@
 <div class="jumbotron jumbotron-fluid">
   <div class="container">
-    <h3 class="display-3"><span><i class="fa fa-superpowers" aria-hidden="true"></i></span> Admin page</h3>
+    <h3 class="display-3"><span><i class="fa fa-cogs" aria-hidden="true"></i></span> Admin page</h3>
     <hr class="my-4">
     <p>insert,delete,update stuffs...</p>
   </div>
@@ -9,11 +9,11 @@
   <div class="list-group">
     <button *ngFor="let tab of tabs" type="button"
     class="list-group-item list-group-item-action"
-    [class.list-group-item-danger]="tab.style == 'danger'"
-    [class.list-group-item-warning]="tab.style == 'warning'"
-    [class.list-group-item-primary]="tab.style == 'primary'"
-    [class.list-group-item-info]="tab.style == 'info'"
-    [class.list-group-item-success]="tab.style == 'success'"
+    [ngClass]="{'list-group-item-danger': tab.style == 'danger',
+      'list-group-item-warning': tab.style == 'warning',
+      'list-group-item-primary': tab.style == 'primary',
+      'list-group-item-info': tab.style == 'info',
+      'list-group-item-success': tab.style == 'success'}"
     [routerLink]="[tab.component]" routerLinkActive="active"
     [innerText]="tab.title"></button><!--active-->
   </div>
