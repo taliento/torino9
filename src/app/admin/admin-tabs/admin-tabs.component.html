@@ -8,7 +8,12 @@
 <div class="container">
   <div class="list-group">
     <button *ngFor="let tab of tabs" type="button"
-    class="list-group-item list-group-item-action "
+    class="list-group-item list-group-item-action"
+    [class.list-group-item-danger]="tab.style == 'danger'"
+    [class.list-group-item-warning]="tab.style == 'warning'"
+    [class.list-group-item-primary]="tab.style == 'primary'"
+    [class.list-group-item-info]="tab.style == 'info'"
+    [class.list-group-item-success]="tab.style == 'success'"
     [routerLink]="[tab.component]" routerLinkActive="active"
     [innerText]="tab.title"></button><!--active-->
   </div>

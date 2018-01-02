@@ -4,4 +4,5 @@ export class Branca {
   subtitle: string;
   text: string;
   imgPath: string;
+  color: string;
 }

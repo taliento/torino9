@@ -27,7 +27,7 @@
         </div>
       </div>
       <br>
-      <div class="card-deck">
+      <div class="card-columns">
         <div class="card" *ngFor="let featurette of featuretteList">
           <app-featurette-detail [featurette]="featurette" (updated)="loadData()" (delete)="delete($event)"></app-featurette-detail>
         </div>

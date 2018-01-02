@@ -1,6 +1,21 @@
 <div [@fadeInAnimation]="state">
-  <img class="rounded-circle" [src]="branca.imgPath" alt="Generic placeholder image" width="140" height="140">
-  <h2 [innerText]="branca.title"></h2>
+  <img class="border rounded-circle"
+  [ngClass]="{'border-primary': branca.color == 'blue',
+   'border-danger': branca.color == 'red',
+    'border-warning': branca.color == 'yellow',
+  'border-success': branca.color == 'green'}"
+  [src]="branca.imgPath" alt="Generic placeholder image" width="140" height="140">
+  <h2 [ngClass]="{'text-primary': branca.color == 'blue',
+   'text-danger': branca.color == 'red',
+    'text-warning': branca.color == 'yellow',
+  'text-success': branca.color == 'green'}"
+  [innerText]="branca.title"></h2>
   <p [innerText]="branca.subtitle"></p>
-  <button class="btn btn-outline-primary" [routerLink]="['/mainlayout/branca',branca._id]" routerLinkActive="active">Dettagli &raquo;</button>
+  <button class="btn"
+  [ngClass]="{'btn-outline-primary': branca.color == 'blue',
+   'btn-outline-danger': branca.color == 'red',
+    'btn-outline-warning': branca.color == 'yellow',
+  'btn-outline-success': branca.color == 'green'}"
+  [routerLink]="['/mainlayout/branca',branca._id]"
+  routerLinkActive="active">Dettagli &raquo;</button>
 </div>

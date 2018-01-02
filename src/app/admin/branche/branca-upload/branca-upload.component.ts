@@ -8,12 +8,15 @@ const BRANCHE_COMBO = [
   {id: 'RS', title: 'Rover e Scolte', subtitle: '(R/S) - giovani dai 16 ai 20/21 anni'}
 ];
 
+const BRANCHE_COLORS = ['blue', 'green', 'red', 'yellow'];
+
 @Component({
   selector: 'app-branca-upload',
   templateUrl: './branca-upload.component.html'
 })
 export class BrancaUploadComponent implements OnInit {
   brancheCombo = BRANCHE_COMBO; // XXX
+  brancheColors = BRANCHE_COLORS;
 
   public form: FormGroup;
   loading = false;
@@ -27,6 +30,7 @@ export class BrancaUploadComponent implements OnInit {
       title: ['', Validators.required],
       text: null,
       subtitle: null,
+      color: null,
       imgFile: null
     });
   }
@@ -37,6 +41,7 @@ export class BrancaUploadComponent implements OnInit {
       this.form.get('_id').disable();
       this.form.get('title').setValue(this.branca.title);
       this.form.get('subtitle').setValue(this.branca.subtitle);
+      this.form.get('color').setValue(this.branca.color);
       this.form.get('text').setValue(this.branca.text);
     }
     this.onBrancaChange();
@@ -67,6 +72,7 @@ export class BrancaUploadComponent implements OnInit {
     input.append('title', this.form.get('title').value);
     input.append('subtitle', this.form.get('subtitle').value);
     input.append('text', this.form.get('text').value);
+    input.append('color', this.form.get('color').value);
     input.append('imgFile', this.form.get('imgFile').value);
     return input;
   }
