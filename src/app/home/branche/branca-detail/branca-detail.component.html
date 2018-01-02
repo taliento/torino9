@@ -11,5 +11,11 @@
   'text-success': branca.color == 'green'}"
   [innerText]="branca.title"></h2>
   <p [innerText]="branca.subtitle"></p>
-  <button class="btn btn-outline-primary" [routerLink]="['/mainlayout/branca',branca._id]" routerLinkActive="active">Dettagli &raquo;</button>
+  <button class="btn"
+  [ngClass]="{'btn-outline-primary': branca.color == 'blue',
+   'btn-outline-danger': branca.color == 'red',
+    'btn-outline-warning': branca.color == 'yellow',
+  'btn-outline-success': branca.color == 'green'}"
+  [routerLink]="['/mainlayout/branca',branca._id]"
+  routerLinkActive="active">Dettagli &raquo;</button>
 </div>
