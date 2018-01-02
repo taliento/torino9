@@ -38,7 +38,7 @@
           <img *ngIf="user.imgPath" [src]="user.imgPath" width="30" height="30" class="rounded-circle" alt="">
         </button>
         <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
-          <button class="dropdown-item" [routerLink]="['/mainlayout/admin/tabs']" [routerLinkActive]="['active']" (click)="isCollapsed = true"><span><i class="fa fa-superpowers" aria-hidden="true"></i></span> Area Admin</button>
+          <button class="dropdown-item" [routerLink]="['/mainlayout/admin/tabs']" [routerLinkActive]="['active']" (click)="isCollapsed = true"><span><i class="fa fa-cogs" aria-hidden="true"></i></span> Area Admin</button>
           <div role="separator" class="dropdown-divider"></div>
           <button class="dropdown-item" type="submit" (click)="logout();isCollapsed = true;"><span><i class="fa fa-power-off" aria-hidden="true"></i></span> Logout</button>
         </div>
