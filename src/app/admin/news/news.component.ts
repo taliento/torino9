@@ -31,7 +31,7 @@ export class NewsComponent implements OnInit {
 
   ngOnInit(): void {
     this.newsService.count('all').subscribe((res) => {
-      this.collectionSize = parseInt(res.json().count, 10);
+      this.collectionSize = res;
       if (this.collectionSize > 0) {
           this.loadData();
       }
@@ -86,13 +86,9 @@ export class NewsComponent implements OnInit {
       size: this.pageSize,
       date: 'all'
     }).subscribe(
-      res  => this.onSuccess(res.json()),
+      res  => this.newsList = res,
       (res: Response) => this.onError(res.json())
     );
-  }
-
-  onSuccess (res) {
-    this.newsList = res;
   }
 
   onError (res) {

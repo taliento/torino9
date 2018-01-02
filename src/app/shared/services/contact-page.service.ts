@@ -1,25 +1,24 @@
 import { Injectable } from '@angular/core';
 import { ContactPage } from '../models';
 import { AService } from './a-service.service';
-import { Http } from '@angular/http';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs/Observable';
 
 @Injectable()
 export class ContactPageService extends AService {
 
-  constructor(http: Http) {
+  constructor(http: HttpClient) {
     super(http);
   }
 
   get(): Promise<any> {
-    return this.http.
-      get(this.apiUrl + '/contact')
+    return this.http.get<ContactPage>(this.apiUrl + '/contact')
       .toPromise()
-      .then(response => response.json())
       .catch(this.handleError);
   }
 
-  insert(contactPage: ContactPage) {
-    return this.http.post(this.apiUrl + '/contact/insert', contactPage, this.jwt());
+  insert(contactPage: ContactPage): Observable<ContactPage> {
+    return this.http.post<ContactPage>(this.apiUrl + '/contact/insert', contactPage);
   }
 
 }

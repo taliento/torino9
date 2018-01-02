@@ -25,7 +25,7 @@ export class SlidesComponent implements OnInit {
 
   ngOnInit(): void {
     this.carouselService.count().subscribe((res) => {
-      this.collectionSize = parseInt(res.json().count, 10);
+      this.collectionSize = res;
       if (this.collectionSize > 0) {
           this.loadData();
       }
@@ -78,13 +78,9 @@ export class SlidesComponent implements OnInit {
       page: this.page - 1,
       size: this.pageSize,
     }).subscribe(
-      res  => this.onSuccess(res.json()),
+      res  => this.slides = res,
       (res: Response) => this.onError(res.json())
     );
-  }
-
-  onSuccess (res: any) {
-    this.slides = res;
   }
 
   onError (res: any) {

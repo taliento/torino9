@@ -32,9 +32,7 @@ function count(db) {
 
   db.carousel.count({}, (err, _count) => {
     if (err) deferred.reject(err.name + ': ' + err.message);
-    deferred.resolve({
-      'count': _count
-    });
+    deferred.resolve(_count);
   });
   return deferred.promise;
 }

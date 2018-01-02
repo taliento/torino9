@@ -149,7 +149,7 @@ function _delete(req, res) {
 function count(req, res) {
   userService.count(req.app.locals.db)
     .then((_count) => {
-      res.send(_count);
+      res.send(_count+"");
     })
     .catch((err) => {
       res.status(400).send(err);

@@ -43,9 +43,7 @@ function count(db, _date) {
 
   db.news.count(findParams, (err, _count) => {
     if (err) deferred.reject(err.name + ': ' + err.message);
-    deferred.resolve({
-      'count': _count
-    });
+    deferred.resolve(_count);
   });
   return deferred.promise;
 }

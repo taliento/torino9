@@ -3,8 +3,7 @@ import { PolicyService } from '../shared/services';
 
 @Component({
   selector: 'app-policy',
-  templateUrl: 'policy.component.html',
-  styleUrls: ['policy.component.scss']
+  templateUrl: 'policy.component.html'
 })
 export class PolicyComponent {
   policy: any = null;

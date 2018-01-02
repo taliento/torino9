@@ -7,4 +7,5 @@ export class User {
     lastName: string;
     admin: boolean;
     imgPath: string;
+    token: string;
 }

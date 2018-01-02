@@ -49,7 +49,7 @@ function archivesDate(req, res) {
 function count(req, res) {
   newsService.count(req.app.locals.db, req.params.date)
     .then((_count) => {
-      res.send(_count);
+      res.send(_count+"");
     })
     .catch((err) => {
       res.status(400).send(err);

@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
-import { Http } from '@angular/http';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/toPromise';
 import { Featurette } from '../models';
 import { AService } from './a-service.service';
@@ -7,51 +8,47 @@ import { AService } from './a-service.service';
 @Injectable()
 export class FeaturetteService extends AService {
 
-  constructor(http: Http) {
+  constructor(http: HttpClient) {
     super(http);
   }
 
   getAll(): Promise<Featurette[]> {
-    return this.http.
-      get(this.apiUrl + '/featurette')
+    return this.http.get<Featurette[]>(this.apiUrl + '/featurette')
       .toPromise()
-      .then(response => response.json() as Featurette[])
       .catch(this.handleError);
   }
 
   getById(_id: string): Promise<Featurette> {
-      return this.http.
-      get(this.apiUrl + `/featurette/get/${_id}`)
+      return this.http.get<Featurette>(this.apiUrl + `/featurette/get/${_id}`)
       .toPromise()
-      .then(response => response.json() as Featurette)
       .catch(this.handleError);
   }
 
-  getPaged(params: any) {
-    return this.http.get(this.apiUrl + `/featurette/paged/${params.limit}/${params.page}/${params.size}`);
+  getPaged(params: any): Observable<Featurette[]> {
+    return this.http.get<Featurette[]>(this.apiUrl + `/featurette/paged/${params.limit}/${params.page}/${params.size}`);
   }
 
-  insert(featurette: Featurette) {
-    return this.http.post(this.apiUrl + '/featurette/insert', featurette, this.jwt());
+  insert(featurette: Featurette): Observable<Featurette> {
+    return this.http.post<Featurette>(this.apiUrl + '/featurette/insert', featurette);
   }
 
-  insertUpload(formData: FormData) {
-    return this.http.post(this.apiUrl + '/featurette/insertUpload', formData, this.jwt());
+  insertUpload(formData: FormData): Observable<Featurette> {
+    return this.http.post<Featurette>(this.apiUrl + '/featurette/insertUpload', formData);
   }
 
   delete(_id: string) {
-    return this.http.delete(this.apiUrl + `/featurette/${_id}`, this.jwt());
+    return this.http.delete(this.apiUrl + `/featurette/${_id}`);
   }
 
-  count() {
-    return this.http.get(this.apiUrl + '/featurette/count');
+  count(): Observable<number> {
+    return this.http.get<number>(this.apiUrl + '/featurette/count');
   }
 
   update(slide: Featurette) {
-    return this.http.put(this.apiUrl + `/featurette/${slide._id}`, slide, this.jwt());
+    return this.http.put(this.apiUrl + `/featurette/${slide._id}`, slide);
   }
 
   updateUpload(formData: FormData) {
-    return this.http.post(this.apiUrl + '/featurette/updateUpload', formData, this.jwt());
+    return this.http.post(this.apiUrl + '/featurette/updateUpload', formData);
   }
 }

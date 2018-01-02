@@ -1,41 +1,41 @@
 import { Injectable } from '@angular/core';
-import { Http } from '@angular/http';
+import { HttpClient } from '@angular/common/http';
 import { AService } from './a-service.service';
 import { Branca} from '../models';
+import { Observable } from 'rxjs/Observable';
+
 
 @Injectable()
 export class BrancaService extends AService {
 
-  constructor(http: Http) {
+  constructor(http: HttpClient) {
     super(http);
   }
 
   getAll(): Promise<Branca[]> {
     return this.http.
-      get(this.apiUrl + '/branca')
+      get<Branca[]>(this.apiUrl + '/branca')
       .toPromise()
-      .then(response => response.json() as Branca[])
       .catch(this.handleError);
   }
 
   getById(_id: string): Promise<Branca> {
       return this.http.
-      get(this.apiUrl + `/branca/get/${_id}`)
+      get<Branca>(this.apiUrl + `/branca/get/${_id}`)
       .toPromise()
-      .then(response => response.json())
       .catch(this.handleError);
   }
 
-  insert(branca: Branca) {
-    return this.http.post(this.apiUrl + '/branca/insert', branca, this.jwt());
+  insert(branca: Branca) : Observable<Branca>{
+    return this.http.post<Branca>(this.apiUrl + '/branca/insert', branca);
   }
 
-  insertUpload(formData: FormData) {
-    return this.http.post(this.apiUrl + '/branca/insertUpload', formData, this.jwt());
+  insertUpload(formData: FormData): Observable<Branca> {
+    return this.http.post<Branca>(this.apiUrl + '/branca/insertUpload', formData);
   }
 
   delete(_id: string) {
-    return this.http.delete(this.apiUrl + `/branca/${_id}`, this.jwt());
+    return this.http.delete(this.apiUrl + `/branca/${_id}`);
   }
 
 }

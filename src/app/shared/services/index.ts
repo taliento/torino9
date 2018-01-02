@@ -14,3 +14,4 @@ export { AppConfigService } from './app-config.service';
 export { CustomPageService} from './custom-page.service';
 export { CustomDatepickerI18n } from './custom-datepicker-i18n.service';
 export { PolicyService } from './policy.service';
+export { AuthenticationInterceptorService } from './authentication-interceptor.service'; 

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { AlertService, AuthenticationService } from '../shared/services';
+import { User } from '../shared/models';
 
 @Component({
     moduleId: module.id,
@@ -9,7 +10,7 @@ import { AlertService, AuthenticationService } from '../shared/services';
 })
 
 export class LoginComponent implements OnInit {
-    model: any = {};
+    model: User = new User();
     loading = false;
 
     constructor(
