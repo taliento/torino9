@@ -37,7 +37,7 @@ export class FeaturetteService extends AService {
   }
 
   delete(_id: string) {
-    return this.http.delete(this.apiUrl + `/featurette/${_id}`);
+    return this.http.delete(this.apiUrl + `/featurette/${_id}`,{responseType: 'text'});
   }
 
   count(): Observable<number> {

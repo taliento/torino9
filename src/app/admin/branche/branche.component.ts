@@ -50,8 +50,7 @@ export class BrancheComponent implements OnInit {
 
   deleteBranca() {
     this.brancheService.delete(this.idDelete).
-    subscribe(
-      data => {
+    subscribe(res => {
         this.alertService.success('Branca eliminata', false);
         this.loadData();
       },

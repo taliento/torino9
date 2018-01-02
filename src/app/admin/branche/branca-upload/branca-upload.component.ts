@@ -1,38 +1,15 @@
 import {Component, ElementRef, ViewChild, Inject, Output, EventEmitter, Input, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import { Branca } from '../../../shared/models';
-
-const BRANCHE_COMBO = [
-  {
-    id: 'LC',
-    title: 'Lupetti',
-    subtitle: '(L/C) - bambini/e dai 8 ai 11/12 anni',
-    icon: 'fa fa-paw'
-  },
-  {
-    id: 'EG',
-    title: 'Esploratori e Guide',
-    subtitle: '(E/G) - ragazzi/e dai 11/12 ai 16 anni',
-    icon: 'fa fa-fire'
-  },
-  {
-    id: 'RS',
-    title: 'Rover e Scolte',
-    subtitle: '(R/S) - giovani dai 16 ai 20/21 anni',
-    icon: 'fa fa-plane'
-  }
-]; // XXX
-
-const BRANCHE_COLORS = ['blue', 'green', 'red', 'yellow'];
+import { BrancaService } from '../../../shared/services';
 
 @Component({
   selector: 'app-branca-upload',
   templateUrl: './branca-upload.component.html'
 })
 export class BrancaUploadComponent implements OnInit {
-  brancheCombo = BRANCHE_COMBO; // XXX
-  brancheColors = BRANCHE_COLORS;
-
+  brancheCombo = [];
+  brancheColors = [];
   icon: string;
 
   public form: FormGroup;
@@ -41,7 +18,7 @@ export class BrancaUploadComponent implements OnInit {
   @Output() formSubmit: EventEmitter<any> = new EventEmitter();
   @Input() branca: Branca;
 
-  constructor(@Inject(FormBuilder) fb: FormBuilder) {
+  constructor(@Inject(FormBuilder) fb: FormBuilder, private brancaService: BrancaService) {
     this.form = fb.group({
       _id: ['', Validators.required],
       title: ['', Validators.required],
@@ -50,6 +27,9 @@ export class BrancaUploadComponent implements OnInit {
       color: null,
       imgFile: null
     });
+
+    this.brancheCombo = brancaService.getBranche();
+    this.brancheColors = brancaService.getBrancheColors();
   }
 
   ngOnInit() {

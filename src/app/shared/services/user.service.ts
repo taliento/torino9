@@ -48,6 +48,6 @@ export class UserService extends AService {
   }
 
   delete(_id: string) {
-    return this.http.delete(this.apiUrl + `/users/${_id}`);
+    return this.http.delete(this.apiUrl + `/users/${_id}`,{responseType: 'text'});
   }
 }
