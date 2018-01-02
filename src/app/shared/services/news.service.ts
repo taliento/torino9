@@ -48,7 +48,7 @@ export class NewsService extends AService {
   }
 
   delete(_id: string) {
-    return this.http.delete(this.apiUrl + `/news/${_id}`);
+    return this.http.delete(this.apiUrl + `/news/${_id}`,{responseType: 'text'});
   }
 
   update(news: News) {

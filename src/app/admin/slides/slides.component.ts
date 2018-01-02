@@ -54,8 +54,7 @@ export class SlidesComponent implements OnInit {
 
   deleteSlide() {
     this.carouselService.delete(this.idDelete).
-    subscribe(
-      data => {
+    subscribe(result => {
         this.alertService.success('Slide eliminata', false);
         this.collectionSize--;
         this.loadData();

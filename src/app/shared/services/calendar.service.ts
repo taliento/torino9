@@ -35,7 +35,7 @@ export class CalendarService extends AService {
   }
 
   delete(_id: string) {
-    return this.http.delete(this.apiUrl + `/calendar/${_id}`);
+    return this.http.delete(this.apiUrl + `/calendar/${_id}`,{responseType: 'text'});
   }
 
   update(event: Event) {

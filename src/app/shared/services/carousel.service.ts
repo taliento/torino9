@@ -42,7 +42,7 @@ export class CarouselService extends AService {
   }
 
   delete(_id: string) {
-    return this.http.delete(this.apiUrl + `/carousel/${_id}`);
+    return this.http.delete(this.apiUrl + `/carousel/${_id}`,{responseType: 'text'});
   }
 
   update(slide: DTCarousel) {
