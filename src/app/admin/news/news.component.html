@@ -44,8 +44,8 @@
         </div>
       </div>
       <br>
-      <div class="card" style="margin-bottom:10px" *ngFor="let news of newsList">
-        <app-news-detail [news]="news" (delete)="delete($event)"></app-news-detail>
+      <div class="card-columns">
+        <app-news-detail class="card" *ngFor="let news of newsList" [news]="news" (delete)="delete($event)"></app-news-detail>
       </div>
 
       <br>

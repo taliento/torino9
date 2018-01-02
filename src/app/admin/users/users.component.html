@@ -27,7 +27,7 @@
         </div>
       </div>
 
-      <div class="card-deck">
+      <div class="card-columns">
         <div class="card" *ngFor="let user of users">
           <app-user-detail [user]="user" (updated)="loadData()" (delete)="delete($event)"></app-user-detail>
         </div>
