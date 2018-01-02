@@ -3,10 +3,25 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import { Branca } from '../../../shared/models';
 
 const BRANCHE_COMBO = [
-  {id: 'LC', title: 'Lupetti', subtitle: '(L/C) - bambini/e dai 8 ai 11/12 anni'},
-  {id: 'EG', title: 'Esploratori e Guide', subtitle: '(E/G) - ragazzi/e dai 11/12 ai 16 anni'},
-  {id: 'RS', title: 'Rover e Scolte', subtitle: '(R/S) - giovani dai 16 ai 20/21 anni'}
-];
+  {
+    id: 'LC',
+    title: 'Lupetti',
+    subtitle: '(L/C) - bambini/e dai 8 ai 11/12 anni',
+    icon: 'fa fa-paw'
+  },
+  {
+    id: 'EG',
+    title: 'Esploratori e Guide',
+    subtitle: '(E/G) - ragazzi/e dai 11/12 ai 16 anni',
+    icon: 'fa fa-fire'
+  },
+  {
+    id: 'RS',
+    title: 'Rover e Scolte',
+    subtitle: '(R/S) - giovani dai 16 ai 20/21 anni',
+    icon: 'fa fa-plane'
+  }
+]; // XXX
 
 const BRANCHE_COLORS = ['blue', 'green', 'red', 'yellow'];
 
@@ -17,6 +32,8 @@ const BRANCHE_COLORS = ['blue', 'green', 'red', 'yellow'];
 export class BrancaUploadComponent implements OnInit {
   brancheCombo = BRANCHE_COMBO; // XXX
   brancheColors = BRANCHE_COLORS;
+
+  icon: string;
 
   public form: FormGroup;
   loading = false;
@@ -43,6 +60,7 @@ export class BrancaUploadComponent implements OnInit {
       this.form.get('subtitle').setValue(this.branca.subtitle);
       this.form.get('color').setValue(this.branca.color);
       this.form.get('text').setValue(this.branca.text);
+      this.icon = this.branca.icon;
     }
     this.onBrancaChange();
   }
@@ -54,12 +72,13 @@ export class BrancaUploadComponent implements OnInit {
   onBrancaChange() {
     const brancaControl = this.form.get('_id');
     brancaControl.valueChanges.subscribe((value) => {
+      this.icon = value.icon;
       this.form.get('title').setValue(value.title);
       this.form.get('subtitle').setValue(value.subtitle);
     } );
   }
 
-  onFileChange(event) {
+  onFileChange(event: any) {
     if (event.target.files.length > 0) {
       const file = event.target.files[0];
       this.form.get('imgFile').setValue(file);
@@ -74,6 +93,7 @@ export class BrancaUploadComponent implements OnInit {
     input.append('text', this.form.get('text').value);
     input.append('color', this.form.get('color').value);
     input.append('imgFile', this.form.get('imgFile').value);
+    input.append('icon', this.icon);
     return input;
   }
 
