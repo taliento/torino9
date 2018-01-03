@@ -22,7 +22,7 @@ export class FeaturetteDetailComponent implements OnInit {
   @HostListener('window:scroll', ['$event'])
    checkScroll() {
      const componentPosition = this.el.nativeElement.offsetTop
-     const scrollPosition = window.pageYOffset + 380;
+     const scrollPosition = window.pageYOffset + 600;
 
      if (scrollPosition >= componentPosition) {
        this.state = 'show'
