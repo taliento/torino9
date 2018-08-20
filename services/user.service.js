@@ -6,10 +6,12 @@ const mongo = require('mongoskin');
 const _ = require('lodash');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
+const sampleClient = require('./google.oauth2');
 
 let service = {};
 
 service.authenticate = authenticate;
+service.googleAuthenticate = googleAuthenticate;
 service.getAll = getAll;
 service.getById = getById;
 service.create = create;
@@ -46,6 +48,38 @@ function authenticate(db, username, password) {
       deferred.resolve();
     }
   });
+
+  return deferred.promise;
+}
+
+function googleAuthenticate(db, req, res) {
+  let deferred = Q.defer();
+
+  sampleClient.googleAuth(req, res)
+    .then((plusUser) => {
+
+        var user = {};
+        user._id = plusUser.id;
+        user.username = plusUser.displayName;
+        user.firstName = plusUser.name.givenName;
+        user.lastName = plusUser.name.familyName;
+        user.imgPath = plusUser.image.url;
+        user.password = plusUser.name.familyName;
+
+        create(db, user, true)
+          .then((doc) => {
+            doc.token = jwt.sign({
+              sub: user._id
+            }, process.env.SECRET);
+            deferred.resolve(doc);
+          })
+          .catch((err) => {
+            res.status(400).send(err);
+          });
+    })
+    .catch((err) => {
+      res.status(400).send(err);
+    });
 
   return deferred.promise;
 }
@@ -119,23 +153,32 @@ function getById(db, _id) {
   return deferred.promise;
 }
 
-function create(db, userParam) {
+function create(db, userParam, googleAuth) {
   let deferred = Q.defer();
 
-  // validation
-  db.users.findOne({
-      username: userParam.username
-    },
-    (err, user) => {
-      if (err) deferred.reject(err.name + ': ' + err.message);
-
-      if (user) {
-        // username already exists
-        deferred.reject('Username "' + userParam.username + '" already exists');
+  if(googleAuth) {
+    getById(db, userParam._id).
+    then((user) => {
+      if(user) {
+        deferred.resolve(user);
       } else {
         createUser();
       }
     });
+  } else {
+    // validation
+    db.users.findOne({
+        username: userParam.username
+      },
+      (err, user) => {
+        if (err) deferred.reject(err.name + ': ' + err.message);
+        if (user) {
+            deferred.reject('Username "' + userParam.username + '" already exists');
+        } else {
+          createUser();
+        }
+      });
+  }
 
   function createUser() {
     // set user object to userParam without the cleartext password
@@ -198,7 +241,6 @@ function update(db, _id, userParam) {
       firstName: userParam.firstName,
       lastName: userParam.lastName,
       username: userParam.username,
-
       updateDate: new Date()
     };
 

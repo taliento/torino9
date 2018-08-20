@@ -7,23 +7,35 @@
   <br>
   <div class="row">
     <div class="col-md-12">
-      <div class="card text-center mx-auto" style="width: 20rem;">
+      <div class="card text-center mx-auto" style="width: 40rem;">
         <div class="card-header">
           Accedi al tuo account
         </div>
         <div class="card-body">
-          <app-alert></app-alert>
-          <form class="form-signin"  name="form" (ngSubmit)="f.form.valid && login()" #f="ngForm">
-            <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !username.valid }">
-              <label for="username" class="sr-only">Username</label>
-              <input id="username" type="email" class="form-control" placeholder="Username" name="username" [(ngModel)]="model.username" #username="ngModel" required>
+            <div class="row border-between">
+              <div class="col-md-6">
+                <button class="btn btn-block btn-social btn-google" type="submit" (click)="googleLogin()">
+                  <span class="fa fa-google"></span>
+                  Sign in with Google
+                </button>
+              </div>
+
+              <div class="col-md-6">
+                <app-alert></app-alert>
+                <form class="form-signin"  name="form" (ngSubmit)="f.form.valid && login()" #f="ngForm">
+                  <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !username.valid }">
+                    <label for="username" class="sr-only">Username</label>
+                    <input id="username" type="email" class="form-control" placeholder="Username" name="username" [(ngModel)]="model.username" #username="ngModel" required>
+                  </div>
+                  <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !password.valid }">
+                    <label for="inputPassword" class="sr-only">Password</label>
+                    <input id="inputPassword" class="form-control" name="password" type="password" [(ngModel)]="model.password" #password="ngModel" required>
+                  </div>
+                  <button class="btn btn-lg btn-outline-primary btn-block" type="submit">Accedi</button>
+                </form>
+              </div>
             </div>
-            <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !password.valid }">
-              <label for="inputPassword" class="sr-only">Password</label>
-              <input id="inputPassword" class="form-control" name="password" type="password" [(ngModel)]="model.password" #password="ngModel" required>
-            </div>
-            <button class="btn btn-lg btn-outline-primary btn-block" type="submit">Accedi</button>
-          </form>
+
         </div>
         <div class="card-footer text-muted">
           Sei nuovo? <a href="#">Registrati</a>

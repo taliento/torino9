@@ -43,4 +43,23 @@ export class LoginComponent implements OnInit {
             this.loading = false;
         });
     }
+
+    googleLogin() {
+      this.authenticationService.googleLogin()
+      .subscribe(
+      data => {
+          this.alertService.success('Accesso effettuato!');
+          this.router.navigate(['mainlayout/home']);
+      },
+      error => {
+          console.log(error);
+          if (error.status === 401) {
+            this.alertService.warning(error._body);
+          } else if (error.status === 400) {
+            this.alertService.error('Servizio non disponibile');
+          }
+
+          this.loading = false;
+      });
+    }
 }

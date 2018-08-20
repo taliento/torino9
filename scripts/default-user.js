@@ -9,6 +9,7 @@ const userService = require('../services/user.service');
 const user = {
   username: "test",
   password: "test",
+  admin: true,
   imgPath: "assets/images/logo.svg"
 };
 const db = require('../datasource/mongoskin-datasource');

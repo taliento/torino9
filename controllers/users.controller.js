@@ -9,6 +9,7 @@ const router = express.Router();
 
 // routes
 router.post('/authenticate', authenticate);
+router.get('/googleAuthenticate', googleAuthenticate);
 router.post('/register', register);
 router.post('/insertUpload', insertUpload);
 router.post('/insertTest', insertTest);
@@ -36,6 +37,24 @@ function authenticate(req, res) {
     .catch((err) => {
       res.status(400).send(err);
     });
+}
+
+function googleAuthenticate(req, res) {
+
+  userService.googleAuthenticate(req.app.locals.db, req, res)
+  .then((user) => {
+
+    if (user) {
+      // authentication successful
+      res.send(user);
+    } else {
+      // authentication failed
+      res.status(401).send('Login failed');
+    }
+  })
+  .catch((err) => {
+    res.status(400).send(err);
+  });
 }
 
 function register(req, res) {

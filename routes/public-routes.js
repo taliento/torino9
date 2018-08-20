@@ -16,7 +16,7 @@ const publicRoutes = [
 
   //public api routes
   '/api/news/archivesDate',
-  '/api/users/authenticate',
+  '/api/users/googleAuthenticate',
   '/api/users/register',
   '/api/news',
   '/api/page',

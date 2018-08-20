@@ -28,6 +28,18 @@ export class AuthenticationService extends AService {
     });
   }
 
+  googleLogin() {
+    return this.http.get<User>(this.apiUrl + '/users/googleAuthenticate')
+    .map((response) => {
+      // login successful if there's a jwt token in the response
+      const user = response;
+      if (user && user.token) {
+        // store user details and jwt token in local storage to keep user logged in between page refreshes
+        this.setUser(user);
+      }
+    });
+  }
+
   logout() {
     // remove user from local storage to log user out
     localStorage.removeItem('currentUser');
