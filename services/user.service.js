@@ -36,6 +36,7 @@ function authenticate(db, username, password) {
       deferred.resolve({
         _id: user._id,
         username: user.username,
+        admin: user.admin,
         firstName: user.firstName,
         lastName: user.lastName,
         imgPath: user.imgPath,
@@ -240,6 +241,7 @@ function update(db, _id, userParam) {
     let set = {
       firstName: userParam.firstName,
       lastName: userParam.lastName,
+      admin: userParam.admin,
       username: userParam.username,
       updateDate: new Date()
     };

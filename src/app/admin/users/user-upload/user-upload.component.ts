@@ -17,6 +17,7 @@ export class UserUploadComponent implements OnInit {
     this.form = fb.group({
       username: [null, Validators.required],
       password: [null, Validators.required],
+      admin: null,
       firstName: null,
       lastName: null,
       imgFile: null
@@ -27,6 +28,7 @@ export class UserUploadComponent implements OnInit {
     if (this.user) {
       this.form.get('username').setValue(this.user.username);
       this.form.get('password').setValue(this.user.password);
+      this.form.get('admin').setValue(this.user.admin);
       this.form.get('firstName').setValue(this.user.firstName);
       this.form.get('lastName').setValue(this.user.lastName);
     }
@@ -43,6 +45,7 @@ export class UserUploadComponent implements OnInit {
     const input = new FormData();
     input.append('username', this.form.get('username').value);
     input.append('password', this.form.get('password').value);
+    input.append('admin', this.form.get('admin').value);
     input.append('firstName', this.form.get('firstName').value);
     input.append('lastName', this.form.get('lastName').value);
     input.append('imgFile', this.form.get('imgFile').value);

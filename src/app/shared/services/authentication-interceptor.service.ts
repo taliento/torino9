@@ -18,7 +18,9 @@ export class AuthenticationInterceptorService implements HttpInterceptor {
     if(localStorage && localStorage.getItem('currentUser')) {
       const auth = JSON.parse(localStorage.getItem('currentUser'));
 
-      if(!auth || !auth.token) return next.handle(req);
+      if(!auth || !auth.token) return next.handle(req);// only logged users
+
+      if(!auth.admin) return next.handle(req);// only admin users
 
       request = req.clone({setHeaders:{Authorization: `Bearer ${auth.token}`}});
 

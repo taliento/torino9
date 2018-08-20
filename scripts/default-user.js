@@ -17,14 +17,14 @@ const db = require('../datasource/mongoskin-datasource');
 
 userService.count(db)
   .then((result) => {
-    if (result.count == 0) {
+    // if (result.count == 0) {
       // console.log("No user found");
       createDefaultUser();
-    } else {
+    // } else {
       // console.log(result.count + " users found");
-      db.close();
-      return;
-    }
+      // db.close();
+      // return;
+    // }
   })
   .catch((err) => {
     console.log(err);

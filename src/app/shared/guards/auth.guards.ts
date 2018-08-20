@@ -10,9 +10,10 @@ export class AuthGuard implements CanActivate {
     private router: Router) { }
 
   canActivate(route: ActivatedRouteSnapshot) {
-    if (this.authenticationService.getUser()) {
-      // admin logged in so return true
-      return true;
+    if (this.authenticationService.getUser()) {// user logged
+      if(this.authenticationService.getUser().admin) {// admin logged
+        return true;
+      }
     }
 
     this.router.navigate(['mainlayout/home']);
