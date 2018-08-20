@@ -4,7 +4,7 @@
   "license": "MIT",
   "scripts": {
     "ng": "ng",
-    "postinstall": "node ./scripts/default-user.js && ng build --prod",
+    "postinstall": "ng build --prod",/* node ./scripts/default-user.js &&  */
     "start": "nf start",
     "build": "ng build",
     "test": "./node_modules/.bin/mocha && ./node_modules/.bin/karma start",
