@@ -29,10 +29,14 @@ const Q = require('q');
 /**
  * To use OAuth2 authentication, we need access to a a CLIENT_ID, CLIENT_SECRET, AND REDIRECT_URI.  To get these credentials for your application, visit https://console.cloud.google.com/apis/credentials.
  */
-const keyPath = path.join(__dirname, '../oauth2.keys.json');
 let keys = { redirect_uris: [''] };
-if (fs.existsSync(keyPath)) {
-  keys = require(keyPath).web;
+if(process.env.web) {
+    keys = process.env.web;
+} else {
+  const keyPath = path.join(__dirname, '../oauth2.keys.json');
+  if (fs.existsSync(keyPath)) {
+    keys = require(keyPath).web;
+  }
 }
 
 /**
