@@ -80,13 +80,6 @@ async function authenticate (scopes) {
   });
 }
 
-async function runSample () {
-  // retrieve user profile
-  const res = await plus.people.get({ userId: 'me' });
-  console.log(res.data);
-
-}
-
 function googleAuth() {
   let deferred = Q.defer();
 
