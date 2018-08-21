@@ -17,7 +17,16 @@ export class LoginComponent implements OnInit {
         private route: ActivatedRoute,
         private router: Router,
         private authenticationService: AuthenticationService,
-        private alertService: AlertService) { }
+        private alertService: AlertService) {
+
+        this.route.queryParams.subscribe((params) => {
+          // console.log("login route params" + JSON.stringify(params));
+
+          if(params['code']) {
+            this.googleLogin(params['code']);
+          }
+        });
+    }
 
     ngOnInit() {
         // reset login status
@@ -44,8 +53,26 @@ export class LoginComponent implements OnInit {
         });
     }
 
-    googleLogin() {
-      this.authenticationService.googleLogin()
+    googleAuth() {
+      this.authenticationService.getOauthUrl()
+      .subscribe(
+          data => {
+            window.location.href = data.url;
+          },
+          error => {
+              console.log(error);
+              if (error.status === 401) {
+                this.alertService.warning(error._body);
+              } else if (error.status === 400) {
+                this.alertService.error('Servizio non disponibile');
+              }
+
+              this.loading = false;
+        });
+    }
+
+    googleLogin(code: string) {
+      this.authenticationService.googleLogin(code)
       .subscribe(
       data => {
           this.alertService.success('Accesso effettuato!');

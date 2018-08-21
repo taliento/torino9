@@ -28,8 +28,8 @@ export class AuthenticationService extends AService {
     });
   }
 
-  googleLogin() {
-    return this.http.get<User>(this.apiUrl + '/users/googleAuthenticate')
+  googleLogin(code: string) {
+    return this.http.post<User>(this.apiUrl + '/users/googleAuthenticate', {token: code})
     .map((response) => {
       // login successful if there's a jwt token in the response
       const user = response;
@@ -38,6 +38,10 @@ export class AuthenticationService extends AService {
         this.setUser(user);
       }
     });
+  }
+
+  getOauthUrl() {
+    return this.http.get<any>(this.apiUrl + '/users/getOauthUrl');
   }
 
   logout() {

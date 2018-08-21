@@ -9,7 +9,8 @@ const router = express.Router();
 
 // routes
 router.post('/authenticate', authenticate);
-router.get('/googleAuthenticate', googleAuthenticate);
+router.post('/googleAuthenticate', googleAuthenticate);
+router.get('/getOauthUrl', getOauthUrl);
 router.post('/register', register);
 router.post('/insertUpload', insertUpload);
 router.post('/insertTest', insertTest);
@@ -39,9 +40,17 @@ function authenticate(req, res) {
     });
 }
 
+function getOauthUrl(req,res) {
+  userService.getOauthUrl(req,res)
+    .then((url) => res.send(url))
+    .catch((err) => {
+      res.status(400).send(err);
+    });
+}
+
 function googleAuthenticate(req, res) {
 
-  userService.googleAuthenticate(req.app.locals.db, req, res)
+  userService.googleAuthenticate(req.app.locals.db, req.body.token, req, res)
   .then((user) => {
 
     if (user) {

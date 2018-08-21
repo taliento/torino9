@@ -12,6 +12,7 @@ let service = {};
 
 service.authenticate = authenticate;
 service.googleAuthenticate = googleAuthenticate;
+service.getOauthUrl = getOauthUrl;
 service.getAll = getAll;
 service.getById = getById;
 service.create = create;
@@ -53,10 +54,22 @@ function authenticate(db, username, password) {
   return deferred.promise;
 }
 
-function googleAuthenticate(db, req, res) {
+function getOauthUrl(code, req, res) {
   let deferred = Q.defer();
 
-  sampleClient.googleAuth(req, res)
+  sampleClient.getOauthUrl()
+  .then((url) => deferred.resolve(url))
+  .catch((err) => {
+    res.status(400).send(err);
+  });
+
+  return deferred.promise;
+}
+
+function googleAuthenticate(db, token, req, res) {
+  let deferred = Q.defer();
+
+  sampleClient.googleAuth(token)
     .then((plusUser) => {
 
         var user = {};

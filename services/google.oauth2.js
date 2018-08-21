@@ -1,34 +1,13 @@
-// Copyright 2012-2016, Google, Inc.
-// Licensed under the Apache License, Version 2.0 (the "License");
-// you may not use this file except in compliance with the License.
-// You may obtain a copy of the License at
-//
-//    http://www.apache.org/licenses/LICENSE-2.0
-//
-// Unless required by applicable law or agreed to in writing, software
-// distributed under the License is distributed on an "AS IS" BASIS,
-// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-// See the License for the specific language governing permissions and
-// limitations under the License.
 
 'use strict';
 
 const fs = require('fs');
 const path = require('path');
-const http = require('http');
-const url = require('url');
-const querystring = require('querystring');
-const opn = require('opn');
-const destroyer = require('server-destroy');
-
 const {google} = require('googleapis');
 const plus = google.plus('v1');
-const scopes = ['https://www.googleapis.com/auth/plus.me'];
+
 const Q = require('q');
 
-/**
- * To use OAuth2 authentication, we need access to a a CLIENT_ID, CLIENT_SECRET, AND REDIRECT_URI.  To get these credentials for your application, visit https://console.cloud.google.com/apis/credentials.
- */
 let keys = { redirect_uris: [''] };
 const keyPath = path.join(__dirname, '../oauth2.keys.json');
 if (fs.existsSync(keyPath)) {
@@ -36,68 +15,53 @@ if (fs.existsSync(keyPath)) {
 
   keys.client_id = keys.client_id.replace("<CLIENT_ID>",process.env.GOOGLE_CLIENT_ID);
   keys.client_secret = process.env.GOOGLE_CLIENT_SECRET;
-  keys.redirect_uris[0] = keys.redirect_uris[0].replace("<GOOGLE_REDIRECT_URI>", process.env.GOOGLE_REDIRECT_URI);
+  keys.redirect_uris[0] = process.env.GOOGLE_REDIRECT_URI);
 }
 
-/**
- * Create a new OAuth2 client with the configured keys.
- */
 const oauth2Client = new google.auth.OAuth2(
   keys.client_id,
   keys.client_secret,
   keys.redirect_uris[0]
 );
 
-/**
- * This is one of the many ways you can configure googleapis to use authentication credentials.  In this method, we're setting a global reference for all APIs.  Any other API you use here, like google.drive('v3'), will now use this auth client. You can also override the auth client at the service and method call levels.
- */
+const scopes = ['https://www.googleapis.com/auth/plus.me'];
+
 google.options({ auth: oauth2Client });
 
-/**
- * Open an http server to accept the oauth callback. In this simple example, the only request to our webserver is to /callback?code=<code>
- */
-async function authenticate (scopes) {
+function authenticate (_token) {
+  let deferred = Q.defer();
+  oauth2Client.getToken(_token)
+  .then(googleToken => {
+    oauth2Client.credentials = googleToken.tokens;
+    deferred.resolve(oauth2Client);
+  });
+  return deferred.promise;
+}
+
+async function getOauthUrl() {
   return new Promise((resolve, reject) => {
-    // grab the url that will be used for authorization
     const authorizeUrl = oauth2Client.generateAuthUrl({
       access_type: 'offline',
       scope: scopes.join(' ')
     });
-    const server = http.createServer(async (req, res) => {
-      try {
-        if (req.url.indexOf('/oauth2callback') > -1) {
-          const qs = querystring.parse(url.parse(req.url).query);
-          res.end('Authentication successful! Please return to the console.');
-          server.destroy();
-          const {tokens} = await oauth2Client.getToken(qs.code);
-          oauth2Client.credentials = tokens;
-          resolve(oauth2Client);
-        }
-      } catch (e) {
-        reject(e);
-      }
-    }).listen(3000, () => {
-      // open the browser to the authorize url to start the workflow
-      opn(authorizeUrl, {wait: false}).then(cp => cp.unref());
-    });
-    destroyer(server);
+    var url = {};
+    url.url = authorizeUrl;
+    resolve(url);
   });
 }
 
-function googleAuth() {
+function googleAuth(code) {
   let deferred = Q.defer();
-
-  authenticate(scopes)
+  authenticate(code)
   .then((client) => {
     plus.people.get({ userId: 'me' })
     .then(res => deferred.resolve(res.data))
   })
   .catch(console.error);
-
   return deferred.promise;
 }
 
-
 module.exports = {
+  getOauthUrl,
   googleAuth
 };
