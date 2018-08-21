@@ -1,22 +1,30 @@
 
 'use strict';
 
-const fs = require('fs');
-const path = require('path');
 const {google} = require('googleapis');
 const plus = google.plus('v1');
 
 const Q = require('q');
 
-let keys = { redirect_uris: [''] };
-const keyPath = path.join(__dirname, '../oauth2.keys.json');
-if (fs.existsSync(keyPath)) {
-  keys = require(keyPath).web;
+const configuration = {
+  "web": {
+    "client_id": "<CLIENT_ID>.apps.googleusercontent.com",
+    "project_id": "torino9",
+    "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+    "token_uri": "https://accounts.google.com/o/oauth2/token",
+    "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+    "client_secret": "<client_secret>",
+    "redirect_uris": [
+      "<GOOGLE_REDIRECT_URI>"
+    ]
+  }
+};
 
-  keys.client_id = keys.client_id.replace("<CLIENT_ID>",process.env.GOOGLE_CLIENT_ID);
-  keys.client_secret = process.env.GOOGLE_CLIENT_SECRET;
-  keys.redirect_uris[0] = process.env.GOOGLE_REDIRECT_URI);
-}
+keys = configuration.web;
+
+keys.client_id = keys.client_id.replace("<CLIENT_ID>",process.env.GOOGLE_CLIENT_ID);
+keys.client_secret = process.env.GOOGLE_CLIENT_SECRET;
+keys.redirect_uris[0] = process.env.GOOGLE_REDIRECT_URI);
 
 const oauth2Client = new google.auth.OAuth2(
   keys.client_id,
