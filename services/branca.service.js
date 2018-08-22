@@ -1,9 +1,8 @@
 /* jshint node: true */
-'use strict';
+"use strict";
 
-const Q = require('q');
-const mongo = require('mongoskin');
-
+const Q = require("q");
+const mongo = require("mongoskin");
 
 let service = {};
 service.get = get;
@@ -16,7 +15,7 @@ function getAll(db) {
   let deferred = Q.defer();
 
   db.branca.find().toArray((err, branca) => {
-    if (err) deferred.reject(err.name + ': ' + err.message);
+    if (err) deferred.reject(err.name + ": " + err.message);
     deferred.resolve(branca);
   });
   return deferred.promise;
@@ -26,9 +25,9 @@ function get(db, _id) {
   let deferred = Q.defer();
 
   db.branca.findById(_id, (err, branca) => {
-    if (err) deferred.reject(err.name + ': ' + err.message);
+    if (err) deferred.reject(err.name + ": " + err.message);
     if (branca == null) {
-      deferred.reject('Not found!');
+      deferred.reject("Not found!");
     } else {
       deferred.resolve(branca);
     }
@@ -41,7 +40,7 @@ function create(db, branca) {
   if (branca._id) {
     return update(db, branca._id, branca);
   }
-  deferred.reject('no id found');
+  deferred.reject("no id found");
   return deferred.promise;
 }
 
@@ -61,29 +60,35 @@ function update(db, _id, branca) {
     set.imgPath = branca.imgPath;
   }
 
-  db.branca.update({
+  db.branca.update(
+    {
       _id: mongo.helper.toObjectID(_id)
-    }, {
+    },
+    {
       $set: set
-    }, {
+    },
+    {
       upsert: true
     },
     (err, doc) => {
-      if (err) deferred.reject(err.name + ': ' + err.message);
+      if (err) deferred.reject(err.name + ": " + err.message);
       deferred.resolve(doc);
-    });
+    }
+  );
   return deferred.promise;
 }
 
 function _delete(db, _id) {
   let deferred = Q.defer();
 
-  db.branca.remove({
+  db.branca.remove(
+    {
       _id: mongo.helper.toObjectID(_id)
     },
-    (err) => {
-      if (err) deferred.reject(err.name + ': ' + err.message);
+    err => {
+      if (err) deferred.reject(err.name + ": " + err.message);
       deferred.resolve();
-    });
+    }
+  );
   return deferred.promise;
 }

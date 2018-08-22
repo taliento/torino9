@@ -1,28 +1,28 @@
+"use strict";
 
-'use strict';
+const { google } = require("googleapis");
+const plus = google.plus("v1");
 
-const {google} = require('googleapis');
-const plus = google.plus('v1');
-
-const Q = require('q');
+const Q = require("q");
 
 const configuration = {
-  "web": {
-    "client_id": "<CLIENT_ID>.apps.googleusercontent.com",
-    "project_id": "torino9",
-    "auth_uri": "https://accounts.google.com/o/oauth2/auth",
-    "token_uri": "https://accounts.google.com/o/oauth2/token",
-    "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
-    "client_secret": "<client_secret>",
-    "redirect_uris": [
-      "<GOOGLE_REDIRECT_URI>"
-    ]
+  web: {
+    client_id: "<CLIENT_ID>.apps.googleusercontent.com",
+    project_id: "torino9",
+    auth_uri: "https://accounts.google.com/o/oauth2/auth",
+    token_uri: "https://accounts.google.com/o/oauth2/token",
+    auth_provider_x509_cert_url: "https://www.googleapis.com/oauth2/v1/certs",
+    client_secret: "<client_secret>",
+    redirect_uris: ["<GOOGLE_REDIRECT_URI>"]
   }
 };
 
 let keys = configuration.web;
 
-keys.client_id = keys.client_id.replace("<CLIENT_ID>",process.env.GOOGLE_CLIENT_ID);
+keys.client_id = keys.client_id.replace(
+  "<CLIENT_ID>",
+  process.env.GOOGLE_CLIENT_ID
+);
 keys.client_secret = process.env.GOOGLE_CLIENT_SECRET;
 keys.redirect_uris[0] = process.env.GOOGLE_REDIRECT_URI;
 
@@ -32,14 +32,13 @@ const oauth2Client = new google.auth.OAuth2(
   keys.redirect_uris[0]
 );
 
-const scopes = ['https://www.googleapis.com/auth/plus.me'];
+const scopes = ["https://www.googleapis.com/auth/plus.me"];
 
 google.options({ auth: oauth2Client });
 
-function authenticate (_token) {
+function authenticate(_token) {
   let deferred = Q.defer();
-  oauth2Client.getToken(_token)
-  .then(googleToken => {
+  oauth2Client.getToken(_token).then(googleToken => {
     oauth2Client.credentials = googleToken.tokens;
     deferred.resolve(oauth2Client);
   });
@@ -49,8 +48,8 @@ function authenticate (_token) {
 async function getOauthUrl() {
   return new Promise((resolve, reject) => {
     const authorizeUrl = oauth2Client.generateAuthUrl({
-      access_type: 'offline',
-      scope: scopes.join(' ')
+      access_type: "offline",
+      scope: scopes.join(" ")
     });
     var url = {};
     url.url = authorizeUrl;
@@ -61,11 +60,10 @@ async function getOauthUrl() {
 function googleAuth(code) {
   let deferred = Q.defer();
   authenticate(code)
-  .then((client) => {
-    plus.people.get({ userId: 'me' })
-    .then(res => deferred.resolve(res.data))
-  })
-  .catch(console.error);
+    .then(client => {
+      plus.people.get({ userId: "me" }).then(res => deferred.resolve(res.data));
+    })
+    .catch(console.error);
   return deferred.promise;
 }
 

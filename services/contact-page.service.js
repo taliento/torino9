@@ -1,8 +1,8 @@
 /* jshint node: true */
-'use strict';
+"use strict";
 
-const Q = require('q');
-const mongo = require('mongoskin');
+const Q = require("q");
+const mongo = require("mongoskin");
 
 let service = {};
 service.get = get;
@@ -14,7 +14,7 @@ module.exports = service;
 function get(db) {
   let deferred = Q.defer();
   db.contact.findOne({}, (err, contact) => {
-    if (err) deferred.reject(err.name + ': ' + err.message);
+    if (err) deferred.reject(err.name + ": " + err.message);
     if (contact == null) {
       deferred.resolve();
     } else {
@@ -27,7 +27,7 @@ function get(db) {
 function getById(db, _id) {
   let deferred = Q.defer();
   db.contact.findById(_id, (err, contact) => {
-    if (err) deferred.reject(err.name + ': ' + err.message);
+    if (err) deferred.reject(err.name + ": " + err.message);
     if (contact == null) {
       deferred.resolve();
     } else {
@@ -43,12 +43,10 @@ function create(db, contact) {
     return update(db, contact._id, contact);
   }
   contact.insertDate = new Date();
-  db.contact.insert(
-    contact,
-    (err, doc) => {
-      if (err) deferred.reject(err.name + ': ' + err.message);
-      deferred.resolve(doc);
-    });
+  db.contact.insert(contact, (err, doc) => {
+    if (err) deferred.reject(err.name + ": " + err.message);
+    deferred.resolve(doc);
+  });
   return deferred.promise;
 }
 
@@ -65,27 +63,32 @@ function update(db, _id, contact) {
     mapTitle: contact.mapTitle,
     updateDate: new Date()
   };
-  db.contact.update({
+  db.contact.update(
+    {
       _id: mongo.helper.toObjectID(_id)
-    }, {
+    },
+    {
       $set: set
     },
     (err, doc) => {
-      if (err) deferred.reject(err.name + ': ' + err.message);
+      if (err) deferred.reject(err.name + ": " + err.message);
       deferred.resolve(doc);
-    });
+    }
+  );
   return deferred.promise;
 }
 
 function _delete(db, _id) {
   let deferred = Q.defer();
-  db.contact.remove({
+  db.contact.remove(
+    {
       _id: mongo.helper.toObjectID(_id)
     },
-    (err) => {
-      if (err) deferred.reject(err.name + ': ' + err.message);
+    err => {
+      if (err) deferred.reject(err.name + ": " + err.message);
 
       deferred.resolve();
-    });
+    }
+  );
   return deferred.promise;
 }

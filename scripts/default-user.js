@@ -1,22 +1,22 @@
 /* jshint node: true */
-'use strict';
+"use strict";
 
 /**
  * create a default user if not exists
  */
 
-const userService = require('../services/user.service');
+const userService = require("../services/user.service");
 const user = {
   username: "test",
   password: "test",
   admin: true,
   imgPath: "assets/images/logo.svg"
 };
-const db = require('../datasource/mongoskin-datasource');
+const db = require("../datasource/mongoskin-datasource");
 
-
-userService.count(db)
-  .then((result) => {
+userService
+  .count(db)
+  .then(result => {
     if (result.count == 0) {
       // console.log("No user found");
       createDefaultUser();
@@ -26,24 +26,23 @@ userService.count(db)
       return;
     }
   })
-  .catch((err) => {
+  .catch(err => {
     console.log(err);
     db.close();
     return;
   });
 
-
 function createDefaultUser() {
-
   console.log("I'm inserting " + JSON.stringify(user));
 
-  userService.create(db, user)
-    .then((doc) => {
+  userService
+    .create(db, user)
+    .then(doc => {
       console.log("Default user created!");
       db.close();
       return;
     })
-    .catch((err) => {
+    .catch(err => {
       console.log("Error while inserting default user: " + err);
       db.close();
       return;

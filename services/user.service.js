@@ -1,13 +1,13 @@
 /* jshint node: true */
-'use strict';
+"use strict";
 
-const Q = require('q');
-const mongo = require('mongoskin');
-const _ = require('lodash');
-const jwt = require('jsonwebtoken');
-const bcrypt = require('bcryptjs');
+const Q = require("q");
+const mongo = require("mongoskin");
+const _ = require("lodash");
+const jwt = require("jsonwebtoken");
+const bcrypt = require("bcryptjs");
 
-const sampleClient = require('./google.oauth2');
+const sampleClient = require("./google.oauth2");
 
 let service = {};
 
@@ -28,29 +28,35 @@ module.exports = service;
 function authenticate(db, username, password) {
   let deferred = Q.defer();
 
-  db.users.findOne({
-    username: username
-  }, (err, user) => {
-    if (err) deferred.reject(err.name + ': ' + err.message);
+  db.users.findOne(
+    {
+      username: username
+    },
+    (err, user) => {
+      if (err) deferred.reject(err.name + ": " + err.message);
 
-    if (user && bcrypt.compareSync(password, user.hash)) {
-      // authentication successful
-      deferred.resolve({
-        _id: user._id,
-        username: user.username,
-        admin: user.admin,
-        firstName: user.firstName,
-        lastName: user.lastName,
-        imgPath: user.imgPath,
-        token: jwt.sign({
-          sub: user._id
-        }, process.env.SECRET)
-      });
-    } else {
-      // authentication failed
-      deferred.resolve();
+      if (user && bcrypt.compareSync(password, user.hash)) {
+        // authentication successful
+        deferred.resolve({
+          _id: user._id,
+          username: user.username,
+          admin: user.admin,
+          firstName: user.firstName,
+          lastName: user.lastName,
+          imgPath: user.imgPath,
+          token: jwt.sign(
+            {
+              sub: user._id
+            },
+            process.env.SECRET
+          )
+        });
+      } else {
+        // authentication failed
+        deferred.resolve();
+      }
     }
-  });
+  );
 
   return deferred.promise;
 }
@@ -58,11 +64,12 @@ function authenticate(db, username, password) {
 function getOauthUrl(code, req, res) {
   let deferred = Q.defer();
 
-  sampleClient.getOauthUrl()
-  .then((url) => deferred.resolve(url))
-  .catch((err) => {
-    res.status(400).send(err);
-  });
+  sampleClient
+    .getOauthUrl()
+    .then(url => deferred.resolve(url))
+    .catch(err => {
+      res.status(400).send(err);
+    });
 
   return deferred.promise;
 }
@@ -70,29 +77,33 @@ function getOauthUrl(code, req, res) {
 function googleAuthenticate(db, token, req, res) {
   let deferred = Q.defer();
 
-  sampleClient.googleAuth(token)
-    .then((plusUser) => {
+  sampleClient
+    .googleAuth(token)
+    .then(plusUser => {
 
-        var user = {};
-        user._id = plusUser.id;
-        user.username = plusUser.displayName;
-        user.firstName = plusUser.name.givenName;
-        user.lastName = plusUser.name.familyName;
-        user.imgPath = plusUser.image.url;
-        user.password = plusUser.name.familyName;
+      var user = {};
+      user._id = plusUser.id;
+      user.username = plusUser.displayName;
+      user.firstName = plusUser.name.givenName;
+      user.lastName = plusUser.name.familyName;
+      user.imgPath = plusUser.image.url;
+      user.password = plusUser.name.familyName;
 
-        create(db, user, true)
-          .then((doc) => {
-            doc.token = jwt.sign({
+      create(db, user, true)
+        .then(doc => {
+          doc.token = jwt.sign(
+            {
               sub: user._id
-            }, process.env.SECRET);
-            deferred.resolve(doc);
-          })
-          .catch((err) => {
-            res.status(400).send(err);
-          });
+            },
+            process.env.SECRET
+          );
+          deferred.resolve(doc);
+        })
+        .catch(err => {
+          res.status(400).send(err);
+        });
     })
-    .catch((err) => {
+    .catch(err => {
       res.status(400).send(err);
     });
 
@@ -102,28 +113,30 @@ function googleAuthenticate(db, token, req, res) {
 function getAll(db) {
   let deferred = Q.defer();
 
-  db.users.find().sort({
-    username: 1
-  }).toArray((err, users) => {
-    if (err) deferred.reject(err.name + ': ' + err.message);
+  db.users
+    .find()
+    .sort({
+      username: 1
+    })
+    .toArray((err, users) => {
+      if (err) deferred.reject(err.name + ": " + err.message);
 
-    // return users (without hashed passwords)
-    users = _.map(users, (user) => {
-      return _.omit(user, 'hash');
+      // return users (without hashed passwords)
+      users = _.map(users, user => {
+        return _.omit(user, "hash");
+      });
+
+      deferred.resolve(users);
     });
-
-    deferred.resolve(users);
-  });
 
   return deferred.promise;
 }
 
 function count(db) {
-
   let deferred = Q.defer();
 
   db.users.count({}, (err, _count) => {
-    if (err) deferred.reject(err.name + ': ' + err.message);
+    if (err) deferred.reject(err.name + ": " + err.message);
     deferred.resolve(_count);
   });
 
@@ -131,21 +144,20 @@ function count(db) {
 }
 
 function getPaged(db, _limit, _page, _size) {
-
   let deferred = Q.defer();
 
   let _skip = _page * _limit;
 
-  db.users.find({}, null, {
-    limit: _limit * 1,
-    skip: _skip,
-    sort: [
-      ['insertDate', -1]
-    ]
-  }).toArray((err, users) => {
-    if (err) deferred.reject(err.name + ': ' + err.message);
-    deferred.resolve(users);
-  });
+  db.users
+    .find({}, null, {
+      limit: _limit * 1,
+      skip: _skip,
+      sort: [["insertDate", -1]]
+    })
+    .toArray((err, users) => {
+      if (err) deferred.reject(err.name + ": " + err.message);
+      deferred.resolve(users);
+    });
 
   return deferred.promise;
 }
@@ -154,11 +166,11 @@ function getById(db, _id) {
   let deferred = Q.defer();
 
   db.users.findById(_id, (err, user) => {
-    if (err) deferred.reject(err.name + ': ' + err.message);
+    if (err) deferred.reject(err.name + ": " + err.message);
 
     if (user) {
       // return user (without hashed password)
-      deferred.resolve(_.omit(user, 'hash'));
+      deferred.resolve(_.omit(user, "hash"));
     } else {
       // user not found
       deferred.resolve();
@@ -171,10 +183,9 @@ function getById(db, _id) {
 function create(db, userParam, googleAuth) {
   let deferred = Q.defer();
 
-  if(googleAuth) {
-    getById(db, userParam._id).
-    then((user) => {
-      if(user) {
+  if (googleAuth) {
+    getById(db, userParam._id).then(user => {
+      if (user) {
         deferred.resolve(user);
       } else {
         createUser();
@@ -182,33 +193,34 @@ function create(db, userParam, googleAuth) {
     });
   } else {
     // validation
-    db.users.findOne({
+    db.users.findOne(
+      {
         username: userParam.username
       },
       (err, user) => {
-        if (err) deferred.reject(err.name + ': ' + err.message);
+        if (err) deferred.reject(err.name + ": " + err.message);
         if (user) {
-            deferred.reject('Username "' + userParam.username + '" already exists');
+          deferred.reject(
+            'Username "' + userParam.username + '" already exists'
+          );
         } else {
           createUser();
         }
-      });
+      }
+    );
   }
 
   function createUser() {
     // set user object to userParam without the cleartext password
-    let user = _.omit(userParam, 'password');
+    let user = _.omit(userParam, "password");
     user.insertDate = new Date();
     // add hashed password to user object
     user.hash = bcrypt.hashSync(userParam.password, 10);
 
-    db.users.insert(
-      user,
-      (err, doc) => {
-        if (err) deferred.reject(err.name + ': ' + err.message);
-
-        deferred.resolve(doc);
-      });
+    db.users.insert(user, (err, doc) => {
+      if (err) deferred.reject(err.name + ": " + err.message);
+      deferred.resolve(doc);
+    });
   }
 
   return deferred.promise;
@@ -218,33 +230,36 @@ function update(db, _id, userParam) {
   let deferred = Q.defer();
 
   if (!userParam || !userParam.username) {
-    deferred.reject('no username param was found!');
+    deferred.reject("no username param was found!");
   }
 
   // validation
   db.users.findById(_id, (err, user) => {
-    if (err) deferred.reject(err.name + ': ' + err.message);
+    if (err) deferred.reject(err.name + ": " + err.message);
 
     if (!user || !user.username) {
-      deferred.reject('no username was found!');
+      deferred.reject("no username was found!");
     }
 
     if (user.username !== userParam.username) {
       // username has changed so check if the new username is already taken
-      db.users.findOne({
+      db.users.findOne(
+        {
           username: userParam.username
         },
         (err, user) => {
-          if (err) deferred.reject(err.name + ': ' + err.message);
+          if (err) deferred.reject(err.name + ": " + err.message);
 
           if (user) {
             // username already exists
             deferred.reject(
-              'Username "' + userParam.username + '" already exists');
+              'Username "' + userParam.username + '" already exists'
+            );
           } else {
             updateUser();
           }
-        });
+        }
+      );
     } else {
       updateUser();
     }
@@ -265,20 +280,23 @@ function update(db, _id, userParam) {
     }
 
     // update password if it was entered
-    if (userParam.password && userParam.password != '') {
+    if (userParam.password && userParam.password != "") {
       set.hash = bcrypt.hashSync(userParam.password, 10);
     }
 
-    db.users.update({
+    db.users.update(
+      {
         _id: mongo.helper.toObjectID(_id)
-      }, {
+      },
+      {
         $set: set
       },
       (err, doc) => {
-        if (err) deferred.reject(err.name + ': ' + err.message);
+        if (err) deferred.reject(err.name + ": " + err.message);
 
         deferred.resolve();
-      });
+      }
+    );
   }
 
   return deferred.promise;
@@ -287,14 +305,16 @@ function update(db, _id, userParam) {
 function _delete(db, _id) {
   let deferred = Q.defer();
 
-  db.users.remove({
+  db.users.remove(
+    {
       _id: mongo.helper.toObjectID(_id)
     },
-    (err) => {
-      if (err) deferred.reject(err.name + ': ' + err.message);
+    err => {
+      if (err) deferred.reject(err.name + ": " + err.message);
 
       deferred.resolve();
-    });
+    }
+  );
 
   return deferred.promise;
 }

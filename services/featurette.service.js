@@ -1,8 +1,8 @@
 /* jshint node: true */
-'use strict';
+"use strict";
 
-const Q = require('q');
-const mongo = require('mongoskin');
+const Q = require("q");
+const mongo = require("mongoskin");
 
 let service = {};
 service.getAll = getAll;
@@ -17,7 +17,7 @@ module.exports = service;
 function getAll(db) {
   let deferred = Q.defer();
   db.featurette.find().toArray((err, featuretteList) => {
-    if (err) deferred.reject(err.name + ': ' + err.message);
+    if (err) deferred.reject(err.name + ": " + err.message);
     deferred.resolve(featuretteList);
   });
   return deferred.promise;
@@ -26,7 +26,7 @@ function getAll(db) {
 function count(db) {
   let deferred = Q.defer();
   db.featurette.count({}, (err, _count) => {
-    if (err) deferred.reject(err.name + ': ' + err.message);
+    if (err) deferred.reject(err.name + ": " + err.message);
     deferred.resolve(_count);
   });
   return deferred.promise;
@@ -35,23 +35,23 @@ function count(db) {
 function getPaged(db, _limit, _page, _size) {
   let deferred = Q.defer();
   let _skip = _page * _limit;
-  db.featurette.find({}, null, {
-    limit: _limit * 1,
-    skip: _skip,
-    sort: [
-      ['insertDate', -1]
-    ]
-  }).toArray((err, featuretteList) => {
-    if (err) deferred.reject(err.name + ': ' + err.message);
-    deferred.resolve(featuretteList);
-  });
+  db.featurette
+    .find({}, null, {
+      limit: _limit * 1,
+      skip: _skip,
+      sort: [["insertDate", -1]]
+    })
+    .toArray((err, featuretteList) => {
+      if (err) deferred.reject(err.name + ": " + err.message);
+      deferred.resolve(featuretteList);
+    });
   return deferred.promise;
 }
 
 function getById(db, _id) {
   let deferred = Q.defer();
   db.featurette.findById(_id, (err, featurette) => {
-    if (err) deferred.reject(err.name + ': ' + err.message);
+    if (err) deferred.reject(err.name + ": " + err.message);
     if (featurette) {
       deferred.resolve(featurette);
     } else {
@@ -65,12 +65,10 @@ function getById(db, _id) {
 function create(db, featuretteParam) {
   let deferred = Q.defer();
   featuretteParam.insertDate = new Date();
-  db.featurette.insert(
-    featuretteParam,
-    (err, doc) => {
-      if (err) deferred.reject(err.name + ': ' + err.message);
-      deferred.resolve(doc);
-    });
+  db.featurette.insert(featuretteParam, (err, doc) => {
+    if (err) deferred.reject(err.name + ": " + err.message);
+    deferred.resolve(doc);
+  });
   return deferred.promise;
 }
 
@@ -88,26 +86,31 @@ function update(db, _id, featuretteParam) {
     set.imgPath = featuretteParam.imgPath;
   }
 
-  db.featurette.update({
+  db.featurette.update(
+    {
       _id: mongo.helper.toObjectID(_id)
-    }, {
+    },
+    {
       $set: set
     },
     (err, doc) => {
-      if (err) deferred.reject(err.name + ': ' + err.message);
+      if (err) deferred.reject(err.name + ": " + err.message);
       deferred.resolve();
-    });
+    }
+  );
   return deferred.promise;
 }
 
 function _delete(db, _id) {
   let deferred = Q.defer();
-  db.featurette.remove({
+  db.featurette.remove(
+    {
       _id: mongo.helper.toObjectID(_id)
     },
-    (err) => {
-      if (err) deferred.reject(err.name + ': ' + err.message);
+    err => {
+      if (err) deferred.reject(err.name + ": " + err.message);
       deferred.resolve();
-    });
+    }
+  );
   return deferred.promise;
 }

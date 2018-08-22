@@ -1,8 +1,8 @@
 /* jshint node: true */
-'use strict';
+"use strict";
 
-const Q = require('q');
-const mongo = require('mongoskin');
+const Q = require("q");
+const mongo = require("mongoskin");
 
 let service = {};
 service.get = get;
@@ -16,7 +16,7 @@ function get(db) {
   let deferred = Q.defer();
 
   db.about.findOne({}, (err, about) => {
-    if (err) deferred.reject(err.name + ': ' + err.message);
+    if (err) deferred.reject(err.name + ": " + err.message);
     if (about == null) {
       deferred.resolve();
     } else {
@@ -30,7 +30,7 @@ function getById(db, _id) {
   let deferred = Q.defer();
 
   db.about.findById(_id, (err, about) => {
-    if (err) deferred.reject(err.name + ': ' + err.message);
+    if (err) deferred.reject(err.name + ": " + err.message);
     if (about == null) {
       deferred.resolve();
     } else {
@@ -48,7 +48,7 @@ function create(db, about) {
   about.insertDate = new Date();
 
   db.about.insert(about, (err, doc) => {
-    if (err) deferred.reject(err.name + ': ' + err.message);
+    if (err) deferred.reject(err.name + ": " + err.message);
     deferred.resolve(doc);
   });
   return deferred.promise;
@@ -65,27 +65,32 @@ function update(db, _id, about) {
     updateDate: new Date()
   };
 
-  db.about.update({
+  db.about.update(
+    {
       _id: mongo.helper.toObjectID(_id)
-    }, {
+    },
+    {
       $set: set
     },
     (err, doc) => {
-      if (err) deferred.reject(err.name + ': ' + err.message);
+      if (err) deferred.reject(err.name + ": " + err.message);
       deferred.resolve(doc);
-    });
+    }
+  );
   return deferred.promise;
 }
 
 function _delete(db, _id) {
   let deferred = Q.defer();
 
-  db.about.remove({
+  db.about.remove(
+    {
       _id: mongo.helper.toObjectID(_id)
     },
-    (err) => {
-      if (err) deferred.reject(err.name + ': ' + err.message);
+    err => {
+      if (err) deferred.reject(err.name + ": " + err.message);
       deferred.resolve();
-    });
+    }
+  );
   return deferred.promise;
 }

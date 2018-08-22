@@ -29,10 +29,10 @@ export class AuthenticationService extends AService {
   }
 
   googleLogin(code: string) {
-    return this.http.post<User>(this.apiUrl + '/users/googleAuthenticate', {token: code})
+    return this.http.post<any>(this.apiUrl + '/users/googleAuthenticate', {token: code})
     .map((response) => {
       // login successful if there's a jwt token in the response
-      const user = response;
+      const user = response
       if (user && user.token) {
         // store user details and jwt token in local storage to keep user logged in between page refreshes
         this.setUser(user);
@@ -53,7 +53,6 @@ export class AuthenticationService extends AService {
   setUser(value: User) {
     localStorage.setItem('currentUser', JSON.stringify(value));
     this.userValue.next(value); // this will make sure to tell every subscriber about the change.
-
   }
 
   getUser() {
