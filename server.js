@@ -6,6 +6,7 @@ const express = require('express');
 const expressJwt = require('express-jwt');
 const fileUpload = require('express-fileupload');
 const imgurService = require('./services/imgur.service');
+const googleClient = require("./services/google.oauth2");
 const cors = require('cors');
 const bodyParser = require('body-parser');
 const path = require('path');
@@ -15,6 +16,9 @@ const app = express();
 
 //init imgurService
 imgurService.configure();
+
+//init googleapis
+googleClient.configure();
 
 app.use(cors());
 app.use(bodyParser.urlencoded({

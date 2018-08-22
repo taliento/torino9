@@ -2,7 +2,6 @@
 
 const { google } = require("googleapis");
 const plus = google.plus("v1");
-
 const Q = require("q");
 
 const configuration = {
@@ -17,24 +16,27 @@ const configuration = {
   }
 };
 
-let keys = configuration.web;
-
-keys.client_id = keys.client_id.replace(
-  "<CLIENT_ID>",
-  process.env.GOOGLE_CLIENT_ID
-);
-keys.client_secret = process.env.GOOGLE_CLIENT_SECRET;
-keys.redirect_uris[0] = process.env.GOOGLE_REDIRECT_URI;
-
-const oauth2Client = new google.auth.OAuth2(
-  keys.client_id,
-  keys.client_secret,
-  keys.redirect_uris[0]
-);
-
 const scopes = ["https://www.googleapis.com/auth/plus.me"];
 
-google.options({ auth: oauth2Client });
+let oauth2Client = null;
+
+function configure() {
+  let keys = configuration.web;
+  keys.client_id = keys.client_id.replace(
+    "<CLIENT_ID>",
+    process.env.GOOGLE_CLIENT_ID
+  );
+  keys.client_secret = process.env.GOOGLE_CLIENT_SECRET;
+  keys.redirect_uris[0] = process.env.GOOGLE_REDIRECT_URI;
+
+  oauth2Client = new google.auth.OAuth2(
+    keys.client_id,
+    keys.client_secret,
+    keys.redirect_uris[0]
+  );
+
+  google.options({ auth: oauth2Client });
+}
 
 function authenticate(_token) {
   let deferred = Q.defer();
@@ -69,5 +71,6 @@ function googleAuth(code) {
 
 module.exports = {
   getOauthUrl,
+  configure,
   googleAuth
 };

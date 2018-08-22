@@ -7,7 +7,7 @@ const _ = require("lodash");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcryptjs");
 
-const sampleClient = require("./google.oauth2");
+const googleClient = require("./google.oauth2");
 
 let service = {};
 
@@ -64,7 +64,7 @@ function authenticate(db, username, password) {
 function getOauthUrl(code, req, res) {
   let deferred = Q.defer();
 
-  sampleClient
+  googleClient
     .getOauthUrl()
     .then(url => deferred.resolve(url))
     .catch(err => {
@@ -77,7 +77,7 @@ function getOauthUrl(code, req, res) {
 function googleAuthenticate(db, token, req, res) {
   let deferred = Q.defer();
 
-  sampleClient
+  googleClient
     .googleAuth(token)
     .then(plusUser => {
 
