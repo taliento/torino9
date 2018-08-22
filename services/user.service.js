@@ -68,7 +68,7 @@ function getOauthUrl(code, req, res) {
     .getOauthUrl()
     .then(url => deferred.resolve(url))
     .catch(err => {
-      res.status(400).send(err);
+      deferred.reject(err);
     });
 
   return deferred.promise;
@@ -100,11 +100,11 @@ function googleAuthenticate(db, token, req, res) {
           deferred.resolve(doc);
         })
         .catch(err => {
-          res.status(400).send(err);
+          deferred.reject(err);
         });
     })
     .catch(err => {
-      res.status(400).send(err);
+      deferred.reject(err);
     });
 
   return deferred.promise;

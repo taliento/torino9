@@ -18,10 +18,8 @@ export class LoginComponent implements OnInit {
         private router: Router,
         private authenticationService: AuthenticationService,
         private alertService: AlertService) {
-
         this.route.queryParams.subscribe((params) => {
           // console.log("login route params" + JSON.stringify(params));
-
           if(params['code']) {
             this.googleLogin(params['code']);
           }
@@ -48,7 +46,6 @@ export class LoginComponent implements OnInit {
             } else if (error.status === 400) {
               this.alertService.error('Servizio non disponibile');
             }
-
             this.loading = false;
         });
     }
@@ -66,7 +63,6 @@ export class LoginComponent implements OnInit {
               } else if (error.status === 400) {
                 this.alertService.error('Servizio non disponibile');
               }
-
               this.loading = false;
         });
     }
@@ -85,7 +81,6 @@ export class LoginComponent implements OnInit {
           } else if (error.status === 400) {
             this.alertService.error('Servizio non disponibile');
           }
-
           this.loading = false;
       });
     }
