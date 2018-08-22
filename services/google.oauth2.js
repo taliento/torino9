@@ -20,11 +20,11 @@ const configuration = {
   }
 };
 
-keys = configuration.web;
+let keys = configuration.web;
 
 keys.client_id = keys.client_id.replace("<CLIENT_ID>",process.env.GOOGLE_CLIENT_ID);
 keys.client_secret = process.env.GOOGLE_CLIENT_SECRET;
-keys.redirect_uris[0] = process.env.GOOGLE_REDIRECT_URI);
+keys.redirect_uris[0] = process.env.GOOGLE_REDIRECT_URI;
 
 const oauth2Client = new google.auth.OAuth2(
   keys.client_id,

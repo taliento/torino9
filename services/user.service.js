@@ -6,6 +6,7 @@ const mongo = require('mongoskin');
 const _ = require('lodash');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
+
 const sampleClient = require('./google.oauth2');
 
 let service = {};
