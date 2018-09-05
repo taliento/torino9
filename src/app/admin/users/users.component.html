@@ -26,22 +26,17 @@
           </div>
         </div>
       </div>
-
       <div class="card-columns">
         <div class="card" *ngFor="let user of users">
           <app-user-detail [user]="user" (updated)="loadData()" (delete)="delete($event)"></app-user-detail>
         </div>
       </div>
-
       <br>
       <div class="row">
         <div class="col-md-10" *ngIf="collectionSize > 0">
           <ngb-pagination [pageSize]="pageSize" [collectionSize]="collectionSize" [(page)]="page" [rotate]="true" (pageChange)="loadPage($event)"></ngb-pagination>
         </div>
-
       </div>
-
-
     </div>
   </div>
 </div>

@@ -15,7 +15,6 @@ module.exports = service;
 
 function getAll(db) {
   let deferred = Q.defer();
-
   db.calendar.find().toArray((err, events) => {
     if (err) deferred.reject(err.name + ": " + err.message);
     deferred.resolve(events);
@@ -25,7 +24,6 @@ function getAll(db) {
 
 function getMonthEvents(db, _month, _year) {
   let deferred = Q.defer();
-
   db.calendar
     .find({
       "date.month": parseInt(_month, 10),
@@ -40,7 +38,6 @@ function getMonthEvents(db, _month, _year) {
 
 function getById(db, _id) {
   let deferred = Q.defer();
-
   db.calendar.findById(_id, (err, calendar) => {
     if (err) deferred.reject(err.name + ": " + err.message);
     if (calendar) {
@@ -56,7 +53,6 @@ function getById(db, _id) {
 function create(db, calendarParam) {
   let deferred = Q.defer();
   calendarParam.insertDate = new Date();
-
   db.calendar.insert(calendarParam, (err, doc) => {
     if (err) deferred.reject(err.name + ": " + err.message);
     deferred.resolve(doc);
@@ -74,7 +70,6 @@ function update(db, _id, calendarParam) {
     time: calendarParam.time,
     updateDate: new Date()
   };
-
   db.calendar.update(
     {
       _id: mongo.helper.toObjectID(_id)
@@ -92,7 +87,6 @@ function update(db, _id, calendarParam) {
 
 function _delete(db, _id) {
   let deferred = Q.defer();
-
   db.calendar.remove(
     {
       _id: mongo.helper.toObjectID(_id)

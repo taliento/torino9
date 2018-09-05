@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { AlertService, AuthenticationService } from '../shared/services';
+import { AlertService, AuthenticationService, LoadingService } from '../shared/services';
 import { User } from '../shared/models';
 
 @Component({
@@ -10,11 +10,12 @@ import { User } from '../shared/models';
 })
 
 export class LoginComponent implements OnInit {
+
     model: User = new User();
-    loading = false;
 
     constructor(
         private route: ActivatedRoute,
+        private loadingService: LoadingService,
         private router: Router,
         private authenticationService: AuthenticationService,
         private alertService: AlertService) {
@@ -32,10 +33,11 @@ export class LoginComponent implements OnInit {
     }
 
     login() {
-        this.loading = true;
+        this.loadingService.setLoading(true);
         this.authenticationService.login(this.model.username, this.model.password)
         .subscribe(
         data => {
+            this.loadingService.setLoading(false);
             this.alertService.success('Accesso effettuato!');
             this.router.navigate(['mainlayout/home']);
         },
@@ -46,7 +48,7 @@ export class LoginComponent implements OnInit {
             } else if (error.status === 400) {
               this.alertService.error('Servizio non disponibile');
             }
-            this.loading = false;
+            this.loadingService.setLoading(false);
         });
     }
 
@@ -63,14 +65,16 @@ export class LoginComponent implements OnInit {
               } else if (error.status === 400) {
                 this.alertService.error('Servizio non disponibile');
               }
-              this.loading = false;
         });
     }
 
     googleLogin(code: string) {
+      this.loadingService.setLoading(true);
+
       this.authenticationService.googleLogin(code)
       .subscribe(
       data => {
+          this.loadingService.setLoading(false);
           this.alertService.success('Accesso effettuato!');
           this.router.navigate(['mainlayout/home']);
       },
@@ -81,7 +85,6 @@ export class LoginComponent implements OnInit {
           } else if (error.status === 400) {
             this.alertService.error('Servizio non disponibile');
           }
-          this.loading = false;
       });
     }
 }

@@ -19,6 +19,13 @@ const configuration = {
 const scopes = ["https://www.googleapis.com/auth/plus.me"];
 
 let oauth2Client = null;
+let service = {};
+
+service.getOauthUrl = getOauthUrl;
+service.configure = configure;
+service.googleAuth = googleAuth;
+
+module.exports = service;
 
 function configure() {
   let keys = configuration.web;
@@ -68,9 +75,3 @@ function googleAuth(code) {
     .catch(console.error);
   return deferred.promise;
 }
-
-module.exports = {
-  getOauthUrl,
-  configure,
-  googleAuth
-};

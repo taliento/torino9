@@ -8,3 +8,16 @@
 <div class="container alert-container">
   <app-alert></app-alert>
 </div>
+<div id="mask" class="mask" *ngIf="loading">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card text-center mx-auto loading-container" style="width: 20rem;">
+          <div class="card-body ">
+            <h3 class="text-primary">Loading... <i class="fa fa-spinner fa-spin fa-fw"></i></h3>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
